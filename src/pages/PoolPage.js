@@ -2,6 +2,7 @@ import pool_data from '../pool_data';
 import user_data from '../user_data';
 import PoolBox from '../components/PoolBox';
 import Tvl from '../components/Tvl';
+import Dpool from '../sections/Dpool';
 
 const dpool = {
     pools: [{
@@ -37,9 +38,6 @@ const dpool = {
     avg_apy: '12.34 apr',
     tvl_dpool :"12,344",
     tvl_pool_sum : "1.3m"
-    
-
-
 
 }
 
@@ -49,9 +47,8 @@ export default function PoolPage(props) {
     return (
         <div className="m-6">
 
-        <Dpool/>
+        <Dpool pools={dpool.pools}/>
 
-        </Dpool>
         <Tvl {...pool_data} user={user_data}/>
         {/* LIST OF POOLS TO DEPOSIT INTO */ }
 

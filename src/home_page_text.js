@@ -56,12 +56,12 @@ export const home_page_text = {
     ],
 
     hero_section1: {
-        "main": "Your gateway to simple compound interest on your stable assets",
+        "main": "A user friendly approach to liquidity pools, all represented as a single interest-bearing token”,        ",
         "button_text": "Join Waitlist"
     },
 
     hero_section2: {
-        main: "Reimagine Yield Farming",
+        main: "diversified Yield Farming",
         secondary: " Simply deposit your Defi Assets and begin earning between",
         gradient_text: "10% - 20% APR",
         button_text: "Launch App",
@@ -84,7 +84,7 @@ export const home_page_text = {
     },
 
     hero_section3: {
-        main: "Gateways Galore",
+        main: "Safe, Simple, Slick diversified yield",
         secondary: "Use our various gateways, to deposit, withdraw, and manage your stablecoin yields",
 
 
