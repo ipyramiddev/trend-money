@@ -35,7 +35,7 @@ module.exports = {
 				'4xl': '2rem',
 			},
 			backgroundImage: {
-				'hero-img': 'url(../public/home/hero-img.png)',
+				'hero-img': 'url(../public/home/banner.png)',
 				'nav-img': 'url(../public/nav-shadow.png)',
 				'mockup-img': 'url(../public/mockup.png)',
 				'hero2-img': 'url(../public/home/hero2-img.png)',
