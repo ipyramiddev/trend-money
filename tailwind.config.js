@@ -19,11 +19,11 @@ module.exports = {
 			gray: '#8492a6',
 			blac: '#000000',
 		},
+		
 		fontFamily: {
 			Poppins: ['Poppins', 'sans-serif'],
 			sans: ['Graphik', 'sans-serif'],
 			serif: ['Merriweather', 'serif'],
-			'press-start': ['"Press Start 2P"'],
 		},
 
 		extend: {
@@ -35,11 +35,6 @@ module.exports = {
 				'4xl': '2rem',
 			},
 			backgroundImage: {
-				'hero-img': 'url(../public/home/banner.png)',
-				'nav-img': 'url(../public/nav-shadow.png)',
-				'mockup-img': 'url(../public/mockup.png)',
-				'hero2-img': 'url(../public/home/hero2-img.png)',
-				'card-gif': 'url(../public/home/card.gif)',
 				"team-img": "url(../public/home/team-img.png)",
 				"team-box-img": "url(../public/home/team-box-img.png)",
 				"logos-img": "url(../public/home/logos-img.png)",

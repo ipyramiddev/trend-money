@@ -5,7 +5,7 @@
 export default function PoolShowcase(props) {
     return (
         <div className="p-3 transform ">
-            <p className="text-white  text-center text-3xl"> Simplified, fragmented deposits across top celo apps</p>
+            <p className="text-white  text-center text-3xl"> Simplified, fragmented deposits across top celo defi protocols</p>
             <div className="flex items-center text-white justify-center">
                 <div className="grid xl:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-2 xl:max-w-6xl max-w-4xl">
                     {props.apps.map((app, index) => {

@@ -1,49 +1,11 @@
 export default function Logo() {
     return (
-        <div className="box-content h-12 w-auto">
-            <svg width="300" height="62" viewBox="0 0 349 82" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <g filter="url(#filter0_i_220_20)">
-                    <path d="M15 56V48H7V40H23V48H47V32H15V24H7V8H15V0H55V8H63V16H47V8H23V24H55V32H63V48H55V56H15ZM98.2 56V32H90.2V24H82.2V0H98.2V24H114.2V0H130.2V24H122.2V32H114.2V56H98.2ZM141.4 56V0H157.4V8H165.4V16H173.4V24H181.4V0H197.4V56H181.4V40H173.4V32H165.4V24H157.4V56H141.4ZM232.6 56V8H216.6V0H264.6V8H248.6V56H232.6ZM275.8 56V0H291.8V24H315.8V0H331.8V56H315.8V32H291.8V56H275.8Z" fill="#FFF620" />
-                </g>
-                <g filter="url(#filter1_i_220_20)">
-                    <path d="M10 62V54H2V46H18V54H42V38H10V30H2V14H10V6H50V14H58V22H42V14H18V30H50V38H58V54H50V62H10ZM93.2 62V38H85.2V30H77.2V6H93.2V30H109.2V6H125.2V30H117.2V38H109.2V62H93.2ZM136.4 62V6H152.4V14H160.4V22H168.4V30H176.4V6H192.4V62H176.4V46H168.4V38H160.4V30H152.4V62H136.4ZM227.6 62V14H211.6V6H259.6V14H243.6V62H227.6ZM270.8 62V6H286.8V30H310.8V6H326.8V62H310.8V38H286.8V62H270.8Z" fill="#20FFFF" />
-                </g>
-                <g filter="url(#filter2_i_220_20)">
-                    <path d="M8 67V59H0V51H16V59H40V43H8V35H0V19H8V11H48V19H56V27H40V19H16V35H48V43H56V59H48V67H8ZM91.2 67V43H83.2V35H75.2V11H91.2V35H107.2V11H123.2V35H115.2V43H107.2V67H91.2ZM134.4 67V11H150.4V19H158.4V27H166.4V35H174.4V11H190.4V67H174.4V51H166.4V43H158.4V35H150.4V67H134.4ZM225.6 67V19H209.6V11H257.6V19H241.6V67H225.6ZM268.8 67V11H284.8V35H308.8V11H324.8V67H308.8V43H284.8V67H268.8Z" fill="#FF20E9" />
-                </g>
-                <defs>
-                    <filter id="filter0_i_220_20" x="7" y="0" width="324.8" height="60" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-                        <feFlood flood-opacity="0" result="BackgroundImageFix" />
-                        <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
-                        <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
-                        <feOffset dy="4" />
-                        <feGaussianBlur stdDeviation="2" />
-                        <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1" />
-                        <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0" />
-                        <feBlend mode="normal" in2="shape" result="effect1_innerShadow_220_20" />
-                    </filter>
-                    <filter id="filter1_i_220_20" x="2" y="6" width="324.8" height="60" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-                        <feFlood flood-opacity="0" result="BackgroundImageFix" />
-                        <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
-                        <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
-                        <feOffset dy="4" />
-                        <feGaussianBlur stdDeviation="2" />
-                        <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1" />
-                        <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0" />
-                        <feBlend mode="normal" in2="shape" result="effect1_innerShadow_220_20" />
-                    </filter>
-                    <filter id="filter2_i_220_20" x="0" y="11" width="324.8" height="60" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-                        <feFlood flood-opacity="0" result="BackgroundImageFix" />
-                        <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
-                        <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
-                        <feOffset dy="4" />
-                        <feGaussianBlur stdDeviation="2" />
-                        <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1" />
-                        <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0" />
-                        <feBlend mode="normal" in2="shape" result="effect1_innerShadow_220_20" />
-                    </filter>
-                </defs>
+        <div className=" w-auto">
+            <svg width="150" height="70" viewBox="0 0 296 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10.6 85.8L3.8 90.4C5.33333 93.4667 7.3 96.3667 9.7 99.1C12.1667 101.767 15 103.933 18.2 105.6C21.4667 107.2 25 108 28.8 108C31.6 108 34.2667 107.533 36.8 106.6C39.4 105.667 41.7 104.333 43.7 102.6C45.7667 100.867 47.3667 98.7667 48.5 96.3C49.7 93.8333 50.3 91.0667 50.3 88C50.3 84.8 49.7333 82.0667 48.6 79.8C47.4667 77.4667 46 75.5 44.2 73.9C42.4667 72.2333 40.5667 70.8667 38.5 69.8C36.4333 68.7333 34.4667 67.8667 32.6 67.2C28.5333 65.8 25.3 64.4 22.9 63C20.5667 61.5333 18.9 60 17.9 58.4C16.9 56.7333 16.4 54.9333 16.4 53C16.4 50.7333 17.2667 48.7 19 46.9C20.7333 45.0333 23.5 44.1 27.3 44.1C30.0333 44.1 32.3333 44.6333 34.2 45.7C36.1333 46.7667 37.7667 48.1333 39.1 49.8C40.4333 51.4667 41.5333 53.1667 42.4 54.9L49.7 50.7C48.5667 48.2333 47 45.9 45 43.7C43 41.4333 40.5667 39.6 37.7 38.2C34.9 36.7333 31.6 36 27.8 36C23.8667 36 20.3667 36.8 17.3 38.4C14.2333 39.9333 11.8333 42.0667 10.1 44.8C8.36667 47.5333 7.5 50.6333 7.5 54.1C7.5 57.3 8.1 60 9.3 62.2C10.5667 64.4 12.1667 66.2667 14.1 67.8C16.0333 69.2667 18.0667 70.5 20.2 71.5C22.3333 72.4333 24.2667 73.2 26 73.8C28.6667 74.7333 31.1667 75.8 33.5 77C35.9 78.1333 37.8333 79.6333 39.3 81.5C40.7667 83.3667 41.5 85.8667 41.5 89C41.5 92.2 40.3667 94.8333 38.1 96.9C35.8333 98.9667 32.8333 100 29.1 100C26.3 100 23.8 99.4 21.6 98.2C19.4 97 17.4 95.3333 15.6 93.2C13.8667 91.0667 12.2 88.6 10.6 85.8ZM58.5852 107V99.6L82.1852 70.1L59.5852 43.1V35.6H106.885V43.6H81.1852C79.7185 43.6 77.9185 43.6 75.7852 43.6C73.7185 43.6 72.1518 43.5667 71.0852 43.5L91.5852 67.8V70.5L68.8852 99C71.4185 99 73.8518 99 76.1852 99C78.5852 98.9333 81.1185 98.9 83.7852 98.9H108.085V107H58.5852ZM145.012 91.2L122.012 37H112.512L145.012 110.5L177.512 37H168.012L145.012 91.2ZM195.727 59.7L218.527 100.5L241.327 59.7L246.527 107H255.027L246.527 33.5L218.527 84.2L190.527 33.5L182.027 107H190.527L195.727 59.7Z" fill="white" />
+                <line x1="123.03" y1="57" x2="166.126" y2="57" stroke="white" stroke-width="10" />
             </svg>
+
         </div>
     );
 }

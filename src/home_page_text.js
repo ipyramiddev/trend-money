@@ -35,130 +35,92 @@ export const home_page_text = {
         ]
     },
 
-    filled_boxes: [
-        {
-            main: 'unstake at any time',
-            emoji: '📈',
-            color: 'purple'
-        },
-        {
-            main: '“simple cUSD deposits”',
-            secondary: 'just deposit in cUSD, and we handle the dispersement of your liquidity accross multiple pools',
-            emoji: '🔀',
-            color: 'purple'
-        },
-        {
-            main: 'Set and Forget',
-            secondary:"No need to be checking your positions night and day to ensure they are still there, with the diversification we provide your risk exposure is significantly reduced",
-            emoji: '💸',
-            color: 'yellow'
-        },
-    ],
-
-    hero_section1: {
-        "main": "A user friendly approach to liquidity pools, all represented as a single interest-bearing token”,        ",
-        "button_text": "Join Waitlist"
-    },
-
-    hero_section2: {
-        main: "diversified Yield Farming",
-        secondary: " Simply deposit your Defi Assets and begin earning between",
-        gradient_text: "10% - 20% APR",
-        button_text: "Launch App",
-        boxes: [
+    YTF: {
+        name: "4F-Stable",
+        yps: [
             {
-                text: "Unstake  at any time",
-                icon: (<FaClock className={gateway_icon_class} />),
+                name: "USDC (Optics V2)",
+                assets: ["USDC","USDT",],
+                apr: 0.129,
+                YTF_portion: 0.25,
+
             },
             {
-                text: "Cross chain deposit support",
-                icon: (<FaRandom className={gateway_icon_class} />),
+                name: "UST (Allbridge)",
+                platform: "Mobius",
+                assets: ["cUSD", "UST"],
+                pool_tvl: "$1,808,004",
+                weekly_volume: "$1,813",
+                apr: 0.279,
+                YTF_portion: 0.25,
+                tvl: 738040.33,
             },
             {
-                text: "Capitalizing on the power of compound interest",
-                icon: (<FaRegMoneyBillAlt className={gateway_icon_class} />),
-
+                name: "USDC (Optics V2)",
+                platform: "Mobius",
+                assets: ["cUSD", "UST"],
+                total_deposited: "$1,808,004",
+                weekly_volume: "$1,813",
+                apr: 0.279,
+                YTF_portion: 0.25,
+                tvl: 33330.00,
             },
-
+            {
+                name: "DAI (Optics V2)",
+                platform: "Mobius",
+                assets: ["cUSD", "DAI"],
+                total_deposited: "$2,880,004",
+                weekly_volume: "$1,333",
+                apr: 0.232,
+                YTF_portion: 0.25,
+                tvl: 1000000.00,
+            }
+        
         ]
     },
 
-    hero_section3: {
-        main: "Safe, Simple, Slick diversified yield",
-        secondary: "Use our various gateways, to deposit, withdraw, and manage your stablecoin yields",
+    
+    
 
 
-        boxes: [
-            {
-                main: "USSD",
-                secondary: "Use your mobile phone to deposit and withdraw your stablecoin assets, even without data or internet access",
-                icon: (<FaBroadcastTower className={icon_class} />),
-                button_text: "view guide",
-            },
-            {
-                main: "Mobile App",
-                secondary: "alternativly, use our mobile app's simple dashboard to manage your assets",
-                icon: (<FaMobile className={icon_class} />),
-                button_text: "learn more",
-            },
-            {
-                main: "Web App",
-                secondary: "Connect with valora, metamask and other browser bassed wallets to simplify your yield management",
-                icon: (<FaMobile className={icon_class} />),
-                button_text: "launch app",
-            },
-        ],
 
-    },
-    apps:[
-        {name:"ubeswap", description:"The mobile-first deFi exchange,Swaping and yeild solution", img_src:"./home/ubeswap.png"} ,
-        {name:"mobius" , description:"Celos first cross-chain stableswap exchange", img_src:"./home/mobius.png"} ,
-        {name:"pinnata", description:"leverage provider and yield farming pools ", img_src:"./home/pinnata.png"},
-        {name:"moolaMarkets", description:"Democratizing access to credit and yield", img_src:"./home/moolaMarkets.png"},
+    apps: [
+        { name: "ubeswap", description: "The mobile-first deFi exchange,Swaping and yeild solution", img_src: "../home/ubeswap.png" },
+        { name: "mobius", description: "Celos first cross-chain stableswap exchange", img_src: "../home/mobius.png" },
+        { name: "pinnata", description: "leverage provider and yield farming pools ", img_src: "../home/pinnata.png" },
+        // {name:"moolaMarkets", description:"Democratizing access to credit and yield", img_src:"./home/moolaMarkets.png"},
     ],
 
 
-            team : [
-                {
-                    emoji: '👲🏽',
-                    name: "J. Kell",
-                    roles: [
-                        "Full Stack",
-                        "Blockchain Dev",
-                    ]
+    team: [
+        {
+            emoji: '👲🏽',
+            name: "J. Kell",
+            roles: [
+                "Full Stack",
+                "Blockchain Dev",
+            ]
 
-                },
-                {
-                    emoji: '👲🏽',
-                    name: "M. Moha",
-                    roles: [
-                        "Full Stack",
-                        "Blockchain Dev",
-                    ]
+        },
+        {
+            emoji: '👲🏽',
+            name: "M. Moha",
+            roles: [
+                "Full Stack",
+                "Blockchain Dev",
+            ]
 
-                },
-                {
-                    emoji: '👲🏽',
-                    name: "M. Bett",
-                    roles: [
-                        "Tech Writer",
-                        "Blockchain Dev",
-                    ]
+        },
+        {
+            emoji: '👲🏽',
+            name: "M. Bett",
+            roles: [
+                "Tech Writer",
+                "Blockchain Dev",
+            ]
 
-                },
+        },
 
-            ],
+    ],
 
-            // LABELED AS q and a respec.
-            faq: [
-                {
-                    q: 'Why should I use stitch to manage my yield farming?',
-                    a: "Stitch makes it easy to diversify your yield positions,",
-                },
-                {
-                    q: 'Why should I use stitch to manage my yield farming?',
-                    a: "Stitch makes it easy to diversify your yield positions,",
-                },
-            ],
-    
 }

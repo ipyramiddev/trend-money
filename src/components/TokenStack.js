@@ -1,10 +1,12 @@
 export default function TokenStack(tokens) {
-    return (<div className="flex flex-col items-center justify-center w-screen h-screen space-y-6">
-        <div className="flex">
+    return (<div className="">
+        <div className={`flex flex-row gap gap-1`}>
+        {/* <img src={`../../../public/tokens/asset_DAI.png`} className="w-full h-full" alt="" /> */}
             {tokens.tokens.map(token => {return(
-            <img className="w-12 h-12 rounded-full border-4 border-white" src={`./tokens/${token.img}`} alt="" />
-            )})};
-            
+                // <div className={` h-10 bg-${token} p-1 bg-cover`}>
+                    <img className="w-10 h-10 rounded-full" src={`../tokens/asset_${token}.png`} alt="" />
+
+            )})}
         </div>
     </div>
     );
