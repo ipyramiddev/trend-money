@@ -4,32 +4,10 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
 
-.stack-item {
-    border-radius: 1rem;
-    /* width: 380px;
-    height:180px; */
-    width: 22rem;
-    height: 10rem;
-    align-self: end;
-    padding-top: 1rem;
-    margin-left: 2rem;
-}
 
-
-.stack-container{
-  width: 80%;
-  height: auto;
-  align-self: center;
+.container {
   align-items: center;
-
 }
-
-.label-text{
-  font-family: 'Poppins', sans-serif;
-  color: white;
-  opacity: 0.6;
-}
-
 .pool-stack{
   
   width:30rem;
@@ -39,28 +17,8 @@
   aspect-ratio: 5 / 2;
 }
 
-.stack-section-item {
-  
-  height: auto;
-  aspect-ratio: 2 / 1;
-
-  border-radius: 2rem;
-  align-self: left;
-  padding-top: 1.5rem;
-  /* margin-left:0rem; */
-  /* padding-bottom:0.5rem; */
-  padding-right: 1rem;
-}
 
 
-.nav-stack {
-    width: 10rem;
-    height: 3rem;
-    align-self: end;
-    border-radius: 1rem;
-    padding-top: 0.5rem;
-    margin-left: 0.5rem;
-}
 
 
 body {
@@ -71,12 +29,3 @@ body {
 }
 
 
-
-
-.hero-text{
-    color: #fff;
-    font-size: 22rem;
-    font-weight: bold;
-    text-align: center;
-    margin-bottom: 2rem;
-}
