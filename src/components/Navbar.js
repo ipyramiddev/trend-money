@@ -11,15 +11,15 @@ const nav_items = [
         name: 'About',
         path: '#features',
     },
+    {
+        name: 'docs',
+        path: '/docs',
+    },
     // {
     //     name: 'FAQ',
     //     path: '#faq',
     // }
 ];
-
-
-
-
 
 
 export default function Navbar(props) {

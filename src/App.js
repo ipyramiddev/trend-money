@@ -3,7 +3,8 @@ import React from "react";
 function App() {
   // HOME PAGE
   return (
-    <div className="p-5">
+    <div className="h-screen p-5 bg-blac">
+      d
     </div>
   );
 }

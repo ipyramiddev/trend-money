@@ -1,7 +1,4 @@
-// import logo from './logo.svg';
 import React from "react";
-// import OutlinedBox from "./components/OutlinedBox";
-// import { CryptoCards, Button } from 'web3uikit';
 import { home_page_text } from "../home_page_text";
 import { BiRightArrowAlt } from "react-icons/bi";
 import PoolShowcase from "../components/PoolShowcase";
@@ -9,8 +6,6 @@ import TokenStack from "../components/TokenStack";
 import { progress } from 'daisyui';
 function Home() {
     // HOME PAGE
-
-    // const style = { "--value": 70 } 
 
     return (
         <div className=" flex flex-col m-4 bg-blac text-white items-center">
