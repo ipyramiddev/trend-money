@@ -126,31 +126,45 @@ const pool_data = {
         }
     ],
 
-    pools: [
+    YETF:[
+        {
+            name: "USDC (Optics V2)",
+            assets: ["USDC","USDT",],
+            apr: 0.129,
+            YTF_portion: 0.25,
+
+        },
         {
             name: "UST (Allbridge)",
-            symbols: ["cUSD", "UST"],
-            total_deposited: "$1,808,004",
+            platform: "Mobius",
+            assets: ["cUSD", "cUSDT"],
+            pool_tvl: "$1,808,004",
             weekly_volume: "$1,813",
-            apr: 0.279,
+            apr: 0.12,
+            YTF_portion: 0.25,
             tvl: 738040.33,
         },
         {
             name: "USDC (Optics V2)",
-            symbols: ["cUSD", "UST"],
+            platform: "Mobius",
+            assets: ["cUSD", "cUSDT"],
             total_deposited: "$1,808,004",
             weekly_volume: "$1,813",
             apr: 0.279,
+            YTF_portion: 0.25,
             tvl: 33330.00,
         },
         {
             name: "DAI (Optics V2)",
-            symbols: ["cUSD", "DAI"],
+            platform: "Mobius",
+            assets: ["cUSD", "DAI"],
             total_deposited: "$2,880,004",
             weekly_volume: "$1,333",
             apr: 0.232,
+            YTF_portion: 0.25,
             tvl: 1000000.00,
         }
+    
     ]
 }
 export default pool_data;
