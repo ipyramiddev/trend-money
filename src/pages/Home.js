@@ -48,16 +48,11 @@ function Home() {
                                
                             </tr>)
                         })};
-
-
                         {/* </tr> */}
-
                     </tbody>
            
                 </table>
             </div>
-            {/* <PoolShowcase apps = {home_page_text.apps}/> */}
-            
             <div className=" ">
                 <p className=" text-white w-10 rounded-lg ">
                     <BiRightArrowAlt className="text-5xl text-center rounded-lg hover:text-blac hover:bg-white" />

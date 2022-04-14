@@ -3,8 +3,6 @@ import { PieChart, Pie, Sector, ResponsiveContainer } from 'recharts';
 import { RadialBarChart, RadialBar, Legend, Tooltip, LabelList } from 'recharts';
 
 
-
-
 function PiePool(props) {
     let data = [
         {'name':'CELO-mcUSD','value': 12, 'apr':0.26, 'fill': '#8884d8' },
@@ -12,7 +10,6 @@ function PiePool(props) {
         {'name':'CELO-mcEUR', 'apr':0.13, 'value': 25, 'fill': '#8884d8'},
         {'name': 'Group D', 'apr':0.13, 'value': 30, 'fill': '#8884d8'},
     ];
-
 
     return (
         <ResponsiveContainer width="100%" height={200}>

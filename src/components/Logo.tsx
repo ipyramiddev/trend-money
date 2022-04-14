@@ -1,4 +1,4 @@
-export default function Logo() {
+export const Logo: React.FC = () => {
     return (
         <div className=" w-auto">
             <svg width="150" height="70" viewBox="0 0 296 140" fill="none" xmlns="http://www.w3.org/2000/svg">
