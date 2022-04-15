@@ -1,5 +1,5 @@
 import React from 'react';
-import {Logo} from './Logo.tsx';
+import Logo from './Logo';
 import { FaGithub } from 'react-icons/fa';
 import { useState } from 'react';
 const nav_items = [
