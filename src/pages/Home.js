@@ -11,7 +11,7 @@ function Home() {
         <div className=" flex flex-col m-4 bg-blac text-white items-center">
             <p className="text-4xl text-center m-5"> Simple ETF-Style Yield</p>
             <p className="text-2xl text-center m-2">fragmented deposits across top celo defi protocols, Risk Adverse Yield Aggregate,</p>
-            <div className="m-4 p-4 rounded-lg">
+            <div className="m-4 p-4 roundeds-lg">
                 <p className="text-2xl text-center p-3"> {home_page_text.YTF.name}</p>
                 <table className="table self-center justify-center text-blac">
                     <thead className="">
@@ -24,33 +24,33 @@ function Home() {
                         </tr>
                     </thead>
                     <tbody className="">
-                        
+
                         {home_page_text.YTF.yps.map((yp, index) => {
                             return (<tr className="">
                                 <td>
-                                <div className="font-bold">{yp.name}</div>
+                                    <div className="font-bold">{yp.name}</div>
                                 </td>
                                 <td>
-                                    <div className="text-xl text-bold">{String(yp.apr*100).slice(0,4)}%</div>
+                                    <div className="text-xl text-bold">{String(yp.apr * 100).slice(0, 4)}%</div>
                                 </td>
                                 <td>
                                     <div className=""><TokenStack tokens={yp.assets} /></div>
                                 </td>
                                 <td className="">
-                                        <div className={`radial-progress progress-white text-blac bg-white `} style={{ "--value": (yp.YTF_portion * 100) }} >
-                                            <div>{String(yp.YTF_portion).slice(2)}%</div>
+                                    <div className={`radial-progress progress-white text-blac bg-white `} style={{ "--value": (yp.YTF_portion * 100) }} >
+                                        <div>{String(yp.YTF_portion).slice(2)}%</div>
                                     </div>
                                 </td>
 
                                 <td>
                                     {yp.platform}
                                 </td>
-                               
+
                             </tr>)
                         })};
                         {/* </tr> */}
                     </tbody>
-           
+
                 </table>
             </div>
             <div className=" ">

@@ -11,11 +11,9 @@ import React, { useState,useEffect } from "react";
 import { LineChart, Line } from 'recharts';
 import PiePool from './components/PiePool.js';
 import SeamPool from "./components/SeamPool.js";
-import pool_data from './pool_data.js';
-// import {ConnectButton} from "./components/ConnectButton";
-import {Helmet} from "react-helmet";
 
-  
+import pool_data from './pool_data.js';
+
 function App() {
 
   const [poolData, setPoolData] = useState({
@@ -26,10 +24,8 @@ function App() {
     poolTotalSupply: "",
   });
 
-  const [user, setUser] = useState({
-    userAddress: "",
-    depositsBalance: "",
-  });
+
+  const [walletConnected, setWalletConnected] = useState(false);
 
   const pieData = {
     labels: [
@@ -52,13 +48,12 @@ function App() {
   
   // HOME PAGE
   return (
-    <div className="p-5 bg-blac text-white">
-      <div className="flex flex-col items-center">
+    <div className="px-10 py-4 bg-blac text-white">
+      <div className="flex flex-col items-center ">
         <button className="rounded-lg w-70 font-2xl p-3 m-5 border-dashed border-white border-2 hover:bg-white hover:text-blac" >Connect Wallet</button>
-        {/* <p><ConnectButton/> </p> */}
         
 
-<p>{`Connection Status: `}</p>
+    {/* <p>Connection Status: {walletConnected? (<p className="text-green">"Connected"</p>) : (<p className="opacity-40 text-center">Not Connected</p>)}</p> */}
             
       </div>
 
@@ -66,16 +61,8 @@ function App() {
 
         <div className="rounded-xl p-1 border-dashed border-white border-2">
           <div className="rounded-xl p-3 border-dashed border-white border-2">
-            <h1 className="text-white text-3xl">YETF Pool</h1>
-            <div className="flex-cols-2">
-              <div>
-                <p className="opacity-70">Total deposits: </p>
-              </div>
-              <div>
-                {/* <PiePool /> */}
-              </div>
-            </div>
-              <SeamPool YETF={pool_data.YETF} user={user} />
+           
+              <SeamPool YETF={pool_data.YETF} />
           </div>
         </div>
       </div>
