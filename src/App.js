@@ -9,8 +9,8 @@
 
 import React, { useState,useEffect } from "react";
 import { LineChart, Line } from 'recharts';
-import PiePool from './components/PiePool.js';
-import SeamPool from "./components/SeamPool.js";
+import PiePool from './components/pool/PiePool.js';
+import SeamPool from "./components/pool/SeamPool.js";
 
 import pool_data from './pool_data.js';
 
@@ -59,13 +59,10 @@ function App() {
 
       <div className="flex-cols-2 ">
 
-        <div className="rounded-xl p-1 border-dashed border-white border-2">
-          <div className="rounded-xl p-3 border-dashed border-white border-2">
-           
+                   
               <SeamPool YETF={pool_data.YETF} />
           </div>
-        </div>
-      </div>
+        
     </div>
   );
 }
