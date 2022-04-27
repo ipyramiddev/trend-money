@@ -49,8 +49,11 @@ export default function Navbar(props) {
                         ))}
                         <h3>
                             <p className="text-white text-3xl p-2 m-3 rounded-xl hover:bg-white hover:text-blac ">
+                                <a href="https://github.com/Jack-kelly-22/seam">
                         <FaGithub className=" hover:text-blac " />
+                        </a>
                             </p>
+                            
                         </h3>
                         <a href="app">
                             <button className='bg-transparent m-2 hover:bg-white font-semibold outline outline-2 hover:text-blac  text-white py-2 px-4  rounded-2xl'>

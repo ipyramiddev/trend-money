@@ -26,7 +26,7 @@ struct SubPool {
     constructor(
         string memory _name,
         string memory _symbol,
-        address[] _farms
+        address[] memory _farms
     ) public {
         name = _name;
         symbol = _symbol;
