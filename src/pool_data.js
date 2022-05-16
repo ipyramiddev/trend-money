@@ -48,12 +48,14 @@ const pool_data = {
             apr: 0.12,
             YTF_portion: 0.25,
             tvl: 738040.33,
+            
         },
         {
-            name: "USDC (Optics V2)",
+            name: "USDC-ETH",
             platform: "uniswap",
-            assets: ["cUSD", "cUSDT"],
-            total_deposited: "$1,808,004",
+            assets: ["USDC", "ETH"],
+            yp_address:'0xb4e16d0168e52d35cacd2c6185b44281ec28c9dc',
+            total_deposited: "$200,808,004",
             weekly_volume: "$1,813",
             apr: 0.279,
             YTF_portion: 0.25,

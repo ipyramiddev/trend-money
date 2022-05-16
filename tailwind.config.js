@@ -8,16 +8,16 @@ module.exports = {
 			xl: '1440px',
 		},
 		colors: {
-			blue: '#20FFFF',
-			darkBlue :'#222642',
+			teal: '#20FFFF',
+			blue: '#32bae3',
 			pink: '#ff49db',
-			purple: '#391A51',
-			lightPurple: '#734C92',
+			purple: '#8e36d1',
 			green: '#34eb3d',
 			white: '#ffffff',
 			yellow: '#FFF620',
 			gray: '#8492a6',
 			blac: '#000000',
+			black: '#000000',
 		},
 		
 		fontFamily: {

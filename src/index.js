@@ -4,7 +4,7 @@ import Wrapper from './Wrapper';
 import reportWebVitals from './reportWebVitals';
 ReactDOM.render(
   <React.StrictMode>
-    <div className='bg-blac'>
+    <div className='bg-black'>
       <Wrapper/>
     </div>
 

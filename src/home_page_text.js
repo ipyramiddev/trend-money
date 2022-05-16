@@ -79,48 +79,4 @@ export const home_page_text = {
         ]
     },
 
-    
-    
-
-
-
-    apps: [
-        { name: "ubeswap", description: "The mobile-first deFi exchange,Swaping and yeild solution", img_src: "../home/ubeswap.png" },
-        { name: "mobius", description: "Celos first cross-chain stableswap exchange", img_src: "../home/mobius.png" },
-        { name: "pinnata", description: "leverage provider and yield farming pools ", img_src: "../home/pinnata.png" },
-        // {name:"moolaMarkets", description:"Democratizing access to credit and yield", img_src:"./home/moolaMarkets.png"},
-    ],
-
-
-    team: [
-        {
-            emoji: '👲🏽',
-            name: "J. Kell",
-            roles: [
-                "Full Stack",
-                "Blockchain Dev",
-            ]
-
-        },
-        {
-            emoji: '👲🏽',
-            name: "M. Moha",
-            roles: [
-                "Full Stack",
-                "Blockchain Dev",
-            ]
-
-        },
-        {
-            emoji: '👲🏽',
-            name: "M. Bett",
-            roles: [
-                "Tech Writer",
-                "Blockchain Dev",
-            ]
-
-        },
-
-    ],
-
 }
