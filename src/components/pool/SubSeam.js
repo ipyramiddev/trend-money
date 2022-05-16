@@ -1,49 +1,47 @@
 import { useState } from 'react';
 import TokenStack from '../TokenStack.js';
-function SubSeam(ss) {
+import UniIcon from '../UniIcon.js';
+import UbeIcon from '../UbeIcon.js';
+import MobiIcon from '../MobiIcon.js';
+function SubSeam(props) {
 
     const [collapse, setCollapse] = useState("0");
-
-    const toggle = () => {
-        if (collapse === "1") {
-            setCollapse("0");
-        } else {
-            setCollapse("1");
-        }
-    }
+    // const pool = props.pool;
+    // const assets = [pool.token0_name, pool.token1_name];
+    const yp = props.yp;
 
     return (
-        <div className="rounded-xl border-dotted border-white border-4 m-6" >
+        <div className="p-2 m-2 outline-dotted rounded-lg">
+            <div className="font-bold">{yp.name}</div>
+            <div className="text-xl text-bold">{String(yp.apr * 100).slice(0, 4)}%
+                {/* {pool.name} */}
+                {/* <p>{pool.name}</p> */}
+                {/* <p>token0_address: {pool.token0}</p> */}
+                {/* <p>token1_address: {pool.token1}</p> */}
+                {/* <p>{pool.token0_name}</p> */}
+                {/* <p>{pool.token1_name}</p> */}
+                {/* {pool.reserves ? (  <p>Reserves:</p>) : null} */}
 
-            <div class="collapse collapse-arrow rounded-box p-1 m-1">
-                <div class="collapse-title text-xl font-medium" onClick={toggle}>
-                    <div className="flex flex-row gap-2">
-                        <p className="font-bold p-1 text-2xl">{ss.name}</p>
-                        <TokenStack tokens={ss.assets} />
-                    </div>
-                </div>
-                {collapse === "1" ? (
-                    <div className="flex flex-row px-7 w-fit gap-5">
+                {/* <Token token={pool.token0_name} /> */}
+            </div>
+            <div>
+                <div className=""><TokenStack tokens={yp.assets} /></div>
+            </div>
+            <div>
+                {yp.platform==='mobius'? (
+                    <MobiIcon address={yp.yp_address}/>
+                ):null}
+                {yp.platform === "uniswap" ? (
+                    <UniIcon />) : null}
+                    {yp.platform === "ubeswap" ? (
                         <div>
-                            <p className=" font-light opacity-80">Apr</p>
-                            <p className="text-xl font-bold">{String(ss.apr * 100).slice(0, 4)}%</p>
-                        </div>
 
-                        <div>
-                            <p className=" font-light opacity-80">Pool</p>
-                            <p className="text-xl font-bold">{String(ss.apr * 100).slice(0, 4)}%</p>
-                        </div>
-                        <div>
-                            <p className=" font-light opacity-80">Y-TVL</p>
-                            <p className="text-xl font-bold">{String(ss.y_tvl * 100).slice(0, 4)}%</p>
-                        </div>
-                        <div>
-                            <p className=" font-light opacity-80">pool TVL</p>
-                            <p className="text-xl font-bold">{String(ss.pool_tvl * 100).slice(0, 4)}%</p>
-                        </div>
+                    <UbeIcon address={yp.yp_address}/>
                     </div>) : null}
+
             </div>
         </div>
+
     )
 }
 

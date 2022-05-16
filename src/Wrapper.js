@@ -9,7 +9,7 @@ export default function Wrapper(){
   
   return(
     
-        <div className='' > 
+        <div className='bg-black' > 
         <Navbar />
         
         <BrowserRouter>

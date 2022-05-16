@@ -1,32 +1,62 @@
 import { useState, useEffect } from 'react';
 import TokenStack from '../TokenStack.js';
 import SubSeam from './SubSeam.js';
+// import {progress} from 'daisyui';                                
 
 
 function SeamPool(props) {
 
     const [collapse, setCollapse] = useState("1");
+
+    const toggle = () => {
+        if (collapse === "1") {
+            setCollapse("0");
+        } else {
+            setCollapse("1");
+        }
+    }
     return (
         <div className="">
-            <div className="flex flex-row justify-between">
-                <div>
-                    <h1 className="text-white text-3xl">YETF Pool</h1>
-                    <div>
-                        <p className="opacity-70">Total deposits: </p>
+            
+
+            <div className="rounded-xl border-dashed border-white border-4 m-6" >
+
+                <div class="collapse collapse-arrow rounded-box p-1 m-1">
+                    <div class="collapse-title " onClick={toggle}>
+                        <div className='flex flex-row justify-between'>
+                            <div>
+                            <h1 className="text-3xl">YETF Pool</h1>
+                            <TokenStack tokens={props.all_assets} />
+
+                            </div>
+                            <div className='flex flex-row justify-end gap gap-4'>
+                                <div class="stat place-items-center">
+                                    <div class="stat-value">{props.avg_apr_24h}</div>
+                                    <div class="stat-title">apr 24h.</div>
+                                </div>
+                                <div class="stat place-items-center">
+                                    <div class="stat-value">{props.avg_apr_7d}</div>
+                                    <div class="stat-title">apr 7d.</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <p className="opacity-70">Total deposits: </p>
+                        </div>
                     </div>
+                    {collapse === "1" ? (
+                        <div>
+                            <div className="table self-center justify-center">
+
+                                <div className="flex flex-row gap-4">
+
+                                    {props.pools.map((yp, index) => {
+                                        return (<SubSeam yp={yp} />)
+                                    })};
+                                </div>
+                            </div>
+                        </div>) : null}
                 </div>
-                <div>
-                    <p className="text-white text-xl">{props.apy}</p>
-                    <p>apy</p>
-                </div>
-
-            </div>
-
-            {props.YETF.map((yp, index) => {
-                return (<SubSeam {...yp} />)
-
-            })}
-            <div className="flex flex-row gap-10 justify-between">
                 {/* <div>
                     <p>Your deposits:</p>
                     <p className="text-right">{props.user.depositsBalance}$</p>
@@ -35,9 +65,18 @@ function SeamPool(props) {
                     <p>Your Interest</p>
                     <p className="text-right">{props.user.interestEarned}$</p>
                 </div> */}
-                <div className="">
-                    <button className="px-3 py-1 button-2xl m-3 bg-black rounded-sm hover:bg-white hover:text-blac outline outline-dashed outline-2">Deposit</button>
-                    <button className="px-3 py-1 m-3 bg-black rounded-sm hover:bg-white hover:text-blac outline outline-dashed outline-2">Withdraw</button>
+                <div className='flex flex-row xs:flex-col justify-between'>
+                    <div>
+                        <p></p>
+                        <p>apr</p>
+                    </div>
+                    <div className="flex flex-row gap-10 justify-end">
+
+                        <div className="">
+                            <button className="px-3 py-1 button-2xl m-3 bg-black rounded-sm hover:bg-white hover:text-blac outline outline-dashed outline-2">Deposit</button>
+                            <button className="px-3 py-1 m-3 bg-black rounded-sm hover:bg-white hover:text-blac outline outline-dashed outline-2">Withdraw</button>
+                        </div>
+                    </div>
                 </div>
             </div>
 
