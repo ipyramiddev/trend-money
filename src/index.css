@@ -17,11 +17,30 @@
   aspect-ratio: 5 / 2;
 }
 
+.table{
+  background-color: black;
+}
 
+.seam-button{
+  background-color: transparent;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-radius: 8px;
+  color: white;
+  border: dashed 3px  #ffffff;
+}
+
+.seam-button:hover{
+  background-color: #ffffff;
+  color: black;
+}
 
 
 body {
   margin: 0;
+  background-color: black ;
   font-family: -apple-system, BlinkMacSystemFont, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

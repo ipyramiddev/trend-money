@@ -17,16 +17,13 @@ function SeamPool(props) {
     }
     return (
         <div className="">
-            
-
             <div className="rounded-xl border-dashed border-white border-4 m-6" >
-
                 <div class="collapse collapse-arrow rounded-box p-1 m-1">
                     <div class="collapse-title " onClick={toggle}>
                         <div className='flex flex-row justify-between'>
                             <div>
-                            <h1 className="text-3xl">YETF Pool</h1>
-                            <TokenStack tokens={props.all_assets} />
+                                <h1 className="text-3xl">YETF Pool</h1>
+                                <TokenStack tokens={props.all_assets} />
 
                             </div>
                             <div className='flex flex-row justify-end gap gap-4'>
@@ -57,14 +54,11 @@ function SeamPool(props) {
                             </div>
                         </div>) : null}
                 </div>
-                {/* <div>
-                    <p>Your deposits:</p>
-                    <p className="text-right">{props.user.depositsBalance}$</p>
-                </div>
                 <div>
-                    <p>Your Interest</p>
-                    <p className="text-right">{props.user.interestEarned}$</p>
-                </div> */}
+                    <p>Your deposits:</p>
+                    {/* <p className="text-right">{props.user.depositsBalance}$</p> */}
+                </div>
+                
                 <div className='flex flex-row xs:flex-col justify-between'>
                     <div>
                         <p></p>

@@ -13,6 +13,8 @@ contract SeamPool is Ownable{
 
 
     ISushiOperator private sushiOperator;
+    IUbeswapOperator private ubeswapOperator;
+
     string name;
     string symbol;
 
@@ -31,11 +33,11 @@ struct SubPool {
         name = _name;
         symbol = _symbol;
 
-        SubPool subPool = SubPool(
-            address(0x9F4AdBD0af281C69a582eB2E6fa2A594D4204CAe), // Mobius cUSD-UST pool
-            ["cUSD", "ust"],
-            25
-        );
+        // SubPool subPool = SubPool(
+        //     address(0x9F4AdBD0af281C69a582eB2E6fa2A594D4204CAe), // Mobius cUSD-UST pool
+        //     ["cUSD", "ust"],
+        //     25
+        // );
 
         // farms = new SeamPool[](3);
         // for(uint i = 0; i < 4; i++) {

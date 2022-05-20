@@ -1,7 +1,14 @@
-const ube_pool_data = {
-    pools: []
+export const ube_pool_data = {
+    "ube_celo_pool": {
+        "name": "UBE/CELO",
+        'platform': 'ubeswap',
+        'address': '0xe7b5ad135fa22678f426a381c7748f6a5f2c9e6c',
+    },
+    "factory": "0x62d5b84bE28a183aBB507E125B384122D2C25fAE"
+
 }
 
+// const 
 
 
 const pool_data = {
@@ -13,14 +20,20 @@ const pool_data = {
         vol_24h: 10344.00,
         total_interest: 2312,
     },
-    current_pool: {
-        name: "Cusdt - CUSD",
-        symbol: "cUSD",
-        duration: "1d",
-        apr: "8.50",
-    },
 
-
+    uniswapFactories: [
+        {
+            name: "Uniswap V2(ETH)",
+            chain_id: 1,
+            address: "0x8ad599c3a0ff1de082011efddc58f1908eb6e6d8",
+            // symbol: "ETH",
+        },
+        {
+            name: 'ubeswap (CELO)',
+            chain_id: 42220,
+            address: "0x62d5b84bE28a183aBB507E125B384122D2C25fAE",
+        }
+    ],
     YETF:{
         avg_apr_24h: 0.13,
         avg_apr_7d: 0.13,
