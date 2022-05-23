@@ -10,6 +10,7 @@ import UserHeader from "./components/UserHeader.js";
 import { getPool,cUSD_UST_pool } from "./hooks/useUni.js";
 import UniPool from "./components/pool/UniPool.js";
 import SubSeam from "./components/pool/SubSeam.js";
+import TokenPrices from "./components/TokenPrices";
 function App() {
 
   const [poolData, setPoolData] = useState(null);
@@ -88,6 +89,7 @@ function App() {
       </div>
 
       <div className="flex-cols-2 ">
+        <TokenPrices  />
         <SeamPool {...pool_data.YETF} />
         <button onClick={loadUbe}>Load Ube</button>
       </div>

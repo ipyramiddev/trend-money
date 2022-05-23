@@ -37,41 +37,23 @@ function SeamPool(props) {
                                 </div>
                             </div>
                         </div>
-                        <div>
-                            <p className="opacity-70">Total deposits: </p>
+                        <div className="flex flex-row gap-10 justify-end">
+
+                            <div className="">
+                                <button className="px-3 py-1 button-2xl m-3 bg-black rounded-sm hover:bg-white hover:text-blac outline outline-dashed outline-2">Deposit</button>
+                                <button className="px-3 py-1 m-3 bg-black rounded-sm hover:bg-white hover:text-blac outline outline-dashed outline-2">Withdraw</button>
+                            </div>
                         </div>
+
                     </div>
                     {collapse === "1" ? (
-                        <div>
-                            <div className="table self-center justify-center">
-
-                                <div className="flex flex-row gap-4">
-
+                                <div className="flex flex-col gap-2">
                                     {props.pools.map((yp, index) => {
                                         return (<SubSeam yp={yp} />)
                                     })};
-                                </div>
-                            </div>
                         </div>) : null}
                 </div>
-                <div>
-                    <p>Your deposits:</p>
-                    {/* <p className="text-right">{props.user.depositsBalance}$</p> */}
-                </div>
-                
-                <div className='flex flex-row xs:flex-col justify-between'>
-                    <div>
-                        <p></p>
-                        <p>apr</p>
-                    </div>
-                    <div className="flex flex-row gap-10 justify-end">
 
-                        <div className="">
-                            <button className="px-3 py-1 button-2xl m-3 bg-black rounded-sm hover:bg-white hover:text-blac outline outline-dashed outline-2">Deposit</button>
-                            <button className="px-3 py-1 m-3 bg-black rounded-sm hover:bg-white hover:text-blac outline outline-dashed outline-2">Withdraw</button>
-                        </div>
-                    </div>
-                </div>
             </div>
 
         </div>);

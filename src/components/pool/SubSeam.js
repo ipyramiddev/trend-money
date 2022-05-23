@@ -11,25 +11,15 @@ function SubSeam(props) {
     const yp = props.yp;
 
     return (
-        <div className="p-2 m-2 outline-dotted rounded-lg">
-            <div className="font-bold">{yp.name}</div>
-            <div className="text-xl text-bold">{String(yp.apr * 100).slice(0, 4)}%
-                {/* {pool.name} */}
-                {/* <p>{pool.name}</p> */}
-                {/* <p>token0_address: {pool.token0}</p> */}
-                {/* <p>token1_address: {pool.token1}</p> */}
-                {/* <p>{pool.token0_name}</p> */}
-                {/* <p>{pool.token1_name}</p> */}
-                {/* {pool.reserves ? (  <p>Reserves:</p>) : null} */}
-
-                {/* <Token token={pool.token0_name} /> */}
-            </div>
-            <div>
-                <div className=""><TokenStack tokens={yp.assets} /></div>
-            </div>
+        <div className="flex flex-cols gap-2 m-2 py-2 outline-dotted rounded-lg justify-between ">
+            <p className="text-xl  ">{yp.name}</p>
+            <p className="text-xl text-bold opacity-70">{String(yp.apr * 100).slice(0, 4)}%</p>
+                <TokenStack tokens={yp.assets} />
             <div>
                 {yp.platform==='mobius'? (
-                    <MobiIcon address={yp.yp_address}/>
+                    <div>
+                        <MobiIcon address={yp.yp_address}/>
+                    </div>
                 ):null}
                 {yp.platform === "uniswap" ? (
                     <UniIcon />) : null}
@@ -37,6 +27,7 @@ function SubSeam(props) {
                         <div>
 
                     <UbeIcon address={yp.yp_address}/>
+                    <p className='text-center'>ubeswap</p>
                     </div>) : null}
 
             </div>
