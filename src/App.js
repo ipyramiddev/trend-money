@@ -11,6 +11,7 @@ import { getPool,cUSD_UST_pool } from "./hooks/useUni.js";
 import UniPool from "./components/pool/UniPool.js";
 import SubSeam from "./components/pool/SubSeam.js";
 import TokenPrices from "./components/TokenPrices";
+import PlatformOverview from "./components/PlatformOverview";
 function App() {
 
   const [poolData, setPoolData] = useState(null);
@@ -58,6 +59,7 @@ function App() {
   return (
     <div className="px-10 py-4 h-full bg-black text-white">
       <div className="flex flex-col items-center ">
+        {/* <PlatformOverview/> */}
 
         {walletConnected ? null : (<button onClick={connectToMetamask} className="rounded-lg w-70 font-2xl p-3 m-5 border-dashed border-white border-2 hover:bg-white hover:text-blac" >Connect Wallet</button>)}
         {/* {walletAddress} */}
@@ -89,8 +91,10 @@ function App() {
       </div>
 
       <div className="flex-cols-2 ">
-        <TokenPrices  />
-        <SeamPool {...pool_data.YETF} />
+        {/* <TokenPrices  /> */}
+        {pool_data.seamPools.map((pool, index) => (
+        (<SeamPool {...pool} i={index} />)
+        ))}
         <button onClick={loadUbe}>Load Ube</button>
       </div>
 

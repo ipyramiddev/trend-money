@@ -76,7 +76,7 @@ function SubSeam(props) {
 
         return (
 
-            <div key={i} className="flex flex-col gap-2 m-2 p-2 outline-dotted rounded-lg  ">
+            <div key={i} className="flex flex-col gap-2 m-2 p-2 outline-dotted rounded-lg text-white ">
                 <div className='flex flex-row gap-2 p-1 justify-between'>
                     <div className='flex flex-col'>
                     <p className="text-xl  ">{yp.name}</p>
@@ -84,14 +84,14 @@ function SubSeam(props) {
                     </div>
                 <div className='flex flex-row gap-4 p-1'>
                 <div className="outline outline-2 outline-yellow rounded-lg items-center justify-center text-center h-14 w-auto">
-                    <p className={NumStyle("yellow")}>{format_large_number(pool.reserveCELO)}</p>
+                    <p className="text-xl font-bold text-yellow">{format_large_number(pool.reserveCELO)}</p>
                     <p className={labelStyle}> Celo reserves</p>
                 </div>
-                <div className={outlineStyle('green')}>
+                <div className="outline outline-2 outline-green rounded-lg items-center justify-center text-center h-14 w-auto">
                     <p className={NumStyle('green')}>${format_large_number(pool.volumeUSD)}</p>
                     <p className={labelStyle}> vol. USD (alltime) </p>
                 </div>
-                <div className={outlineStyle('blue')}>
+                <div className="outline outline-2 outline-blue rounded-lg items-center justify-center text-center h-14 w-auto">
                 <p className={NumStyle('blue')}>{format_large_number(pool.reserveUSD)}</p>
                 <p className={labelStyle}> tot. liquidity (USD)</p>
                 </div>

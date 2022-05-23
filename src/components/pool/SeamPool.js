@@ -50,7 +50,7 @@ function SeamPool(props) {
                                 <div className="flex flex-col gap-2">
                                     {props.pools.map((yp, index) => {
                                         return (<SubSeam yp={yp} />)
-                                    })};
+                                    })}
                         </div>) : null}
                 </div>
 
