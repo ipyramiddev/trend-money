@@ -4,36 +4,19 @@ import Docs from './pages/Docs';
 import Home from './pages/Home';
 import Navbar from './components/Navbar';
 import {Routes, Route, BrowserRouter} from 'react-router-dom';
-import { ApolloClient, InMemoryCache, gql } from '@apollo/client'
+import { ApolloClient, InMemoryCache,ApolloProvider } from '@apollo/client'
 
 const APIURL = 'https://api.studio.thegraph.com/query//<SUBGRAPH_NAME>/'
 
-const UBE_SUBGRAPH = ""
-const tokensQuery = `
-  query {
-      tokens(first: 10) {
-        id
-        symbol
-        name
-        decimals
-      }
-  }
-`
+const UBE_SUBGRAPH = "https://api.thegraph.com/subgraphs/name/ubeswap/ubeswap"
+
 
 const client = new ApolloClient({
-  uri: APIURL,
+  uri: UBE_SUBGRAPH,
   cache: new InMemoryCache(),
 })
 
-// client
-//   .query({
-//     query: gql(tokensQuery),
-//   })
-//   .then((data) => console.log('Subgraph data: ', data))
-//   .catch((err) => {
-//     console.log('Error fetching data: ', err)
-//   })
-
+// const getTokens = async (client) => {
 
 
 export default function Wrapper(){
@@ -55,6 +38,7 @@ export default function Wrapper(){
         <Navbar />
         
         <BrowserRouter>
+        <ApolloProvider client={client}>
         <Routes>
           {/* HOME PAGE */}
           <Route path="/" element={<Home/>} />
@@ -64,6 +48,7 @@ export default function Wrapper(){
           <Route path="/app" element={<App />} />
 
         </Routes>
+        </ApolloProvider>
       </BrowserRouter>
       </div>
 
