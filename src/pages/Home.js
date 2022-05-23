@@ -3,7 +3,7 @@ function Home() {
     const protocolIntegrations = [
         {name: 'Ubeswap', img: 'ube_logo.svg',},
         {name: 'Mobius', img: 'ube_logo.svg'},
-        // {name: 'Uniswap', img: 'ube_logo.svg'},
+        {name: 'Uniswap', img: 'ube_logo.svg'},
     ]
     // HOME PAGE
 

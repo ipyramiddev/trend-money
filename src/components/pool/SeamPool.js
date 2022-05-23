@@ -22,7 +22,7 @@ function SeamPool(props) {
                     <div class="collapse-title " onClick={toggle}>
                         <div className='flex flex-row justify-between'>
                             <div>
-                                <h1 className="text-3xl">YETF Pool</h1>
+                                <h1 className="text-3xl">{props.name}</h1>
                                 <TokenStack tokens={props.all_assets} />
 
                             </div>
