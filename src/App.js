@@ -11,7 +11,7 @@ import { getPool,cUSD_UST_pool } from "./hooks/useUni.js";
 import UniPool from "./components/pool/UniPool.js";
 import SubSeam from "./components/pool/SubSeam.js";
 import TokenPrices from "./components/TokenPrices";
-import PlatformOverview from "./components/PlatformOverview";
+// import PlatformOverview from "./components/PlatformOverview";
 function App() {
 
   const [poolData, setPoolData] = useState(null);

@@ -24,7 +24,6 @@ function SeamPool(props) {
                             <div>
                                 <h1 className="text-3xl">{props.name}</h1>
                                 <TokenStack tokens={props.all_assets} />
-
                             </div>
                             <div className='flex flex-row justify-end gap gap-4'>
                                 <div class="stat place-items-center">
@@ -37,11 +36,15 @@ function SeamPool(props) {
                                 </div>
                             </div>
                         </div>
+                        <div className='flex flex-row justify-between'>
+                            
+                            <p>TVL: </p>
                         <div className="flex flex-row gap-10 justify-end">
 
-                            <div className="">
-                                <button className="px-3 py-1 button-2xl m-3 bg-black rounded-sm hover:bg-white hover:text-blac outline outline-dashed outline-2">Deposit</button>
-                                <button className="px-3 py-1 m-3 bg-black rounded-sm hover:bg-white hover:text-blac outline outline-dashed outline-2">Withdraw</button>
+                            <div className="text-xl font-bold">
+                                <button className="px-3 py-1 button-2xl m-3 bg-black rounded-lg hover:bg-white hover:text-blac outline outline-dashed outline-2">Deposit</button>
+                                <button className="px-3 py-1 m-3 bg-black rounded-lg hover:bg-white hover:text-blac outline outline-dashed outline-2">Withdraw</button>
+                            </div>
                             </div>
                         </div>
 

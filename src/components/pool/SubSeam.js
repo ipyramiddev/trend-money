@@ -6,8 +6,12 @@ import MobiIcon from '../MobiIcon.js';
 import { useQuery } from '@apollo/react-hooks';
 import { format_large_number } from '../../hooks/formatting';
 import { gql } from '@apollo/client';
+// import { Bytes } from '@apollo/client/utilities';
 import { BigNumber } from 'ethers';
+import { formatBytes32String } from 'ethers/lib/utils';
 
+// const nByte = (n) => {
+//     return Bytes.fromHexString(n);
 const ube_QUERY = (pairAddress) => {
     return gql`
 query GetUbePool {
@@ -35,7 +39,23 @@ query GetUbePool {
                 derivedCUSD
             }
         }
+        pairDayDatas(first: 100, orderBy: date, orderDirection: asc,
+            where: {
+              pairAddress: "${pairAddress}",
+              date_gt: 1592505859
+            }) {
+        id
+        date
+        dailyVolumeUSD
+        token0{
+            id
+            name
+            symbol
+        }
+    
     }
+    }
+    
     
 `};
 const ube_fee = 0.0025 // 0.0025% fee that liquidity providers earn
@@ -52,7 +72,7 @@ const fees24hour = (vol24hUSD, totalLiquidity) => {
 const NumStyle = (color) => {
     return `text-xl font-bold text-center text-${color} px-2 pb-1`
 }
-const labelStyle = 
+const labelStyle =
     `text-xs opacity-90 px-2 pb-1`;
 
 const outlineStyle = (color) => {
@@ -63,55 +83,65 @@ function SubSeam(props) {
     const yp = props.yp;
     const q = ube_QUERY(yp.yp_address)
     const { loading, error, data } = useQuery(q);
+
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error :( {error.toString()}</p>;
 
 
     // const [collapse, setCollapse] = useState("0");
     // const pool = props.pool;
-    // const assets = [pool.token0_name, pool.token1_name];
+    // const assets = [pool.token0_name, pool.token1_name];\\
 
+    const pairData = data.pairDayDatas?.[0];
+
+    console.log(pairData)
 
     return data.pairs.map((pool, i) => {
-
+        const vol24hUSD = data.pairDayDatas[0].dailyVolumeUSD;
         return (
 
             <div key={i} className="flex flex-col gap-2 m-2 p-2 outline-dotted rounded-lg text-white ">
                 <div className='flex flex-row gap-2 p-1 justify-between'>
                     <div className='flex flex-col'>
-                    <p className="text-xl  ">{yp.name}</p>
-                    <TokenStack tokens={[pool.token0.symbol, pool.token1.symbol]} />
+                        <p className="text-xl  ">{yp.name}</p>
+                        <TokenStack tokens={[pool.token0.symbol, pool.token1.symbol]} />
+                        <p className='text-right inline-block text-align-bottom'> fees 24h: ~$ {fees24hour(pool.volumeUSD, pool.reserveUSD).usd_24h_fee}</p>
                     </div>
-                <div className='flex flex-row gap-4 p-1'>
-                <div className="outline outline-2 outline-yellow rounded-lg items-center justify-center text-center h-14 w-auto">
-                    <p className="text-xl font-bold text-yellow">{format_large_number(pool.reserveCELO)}</p>
-                    <p className={labelStyle}> Celo reserves</p>
-                </div>
-                <div className="outline outline-2 outline-green rounded-lg items-center justify-center text-center h-14 w-auto">
-                    <p className={NumStyle('green')}>${format_large_number(pool.volumeUSD)}</p>
-                    <p className={labelStyle}> vol. USD (alltime) </p>
-                </div>
-                <div className="outline outline-2 outline-blue rounded-lg items-center justify-center text-center h-14 w-auto">
-                <p className={NumStyle('blue')}>{format_large_number(pool.reserveUSD)}</p>
-                <p className={labelStyle}> tot. liquidity (USD)</p>
-                </div>
-                </div>
-                </div>
-                <div className='flex flex-row gap-2 p-1 justify-between'>
-                <p className='text-right inline-block text-align-bottom'> fees 24h: ~$ {fees24hour(pool.volumeUSD, pool.reserveUSD).usd_24h_fee}</p>
-                {yp.platform === 'mobius' ? (
-                        <div>
-                            <MobiIcon address={yp.yp_address} />
+                    <div className='flex flex-col'>
+                        <div className='flex flex-row gap-4 p-1'>
+                            <div className="outline outline-2 outline-yellow rounded-lg items-center justify-center text-center h-14 w-auto">
+                                <p className="text-xl font-bold text-yellow">{format_large_number(pool.reserveCELO)}</p>
+                                <p className={labelStyle}> Celo reserves</p>
+                            </div>
+                            <div className="outline outline-2 outline-green rounded-lg items-center justify-center text-center h-14 w-auto">
+                                <p className={NumStyle('green')}>${format_large_number(pool.volumeUSD)}</p>
+                                <p className={labelStyle}> vol. USD (alltime) </p>
+                            </div>
+                            <div className="outline outline-2 outline-green rounded-lg items-center justify-center text-center h-14 w-auto">
+                                <p className={NumStyle('green')}>${format_large_number(vol24hUSD)}</p>
+
+                                <p className={labelStyle}> vol 24h. USD</p>
+                            </div>
+                            <div className="outline outline-2 outline-blue rounded-lg items-center justify-center text-center h-14 w-auto">
+                                <p className={NumStyle('blue')}>{format_large_number(pool.reserveUSD)}</p>
+                                <p className={labelStyle}> tot. liquidity (USD)</p>
+                            </div>
                         </div>
-                    ) : null}
-                    {yp.platform === "uniswap" ? (
-                        <UniIcon />) : null}
-                    {yp.platform === "ubeswap" ? (
-                        <div>
-                            <UbeIcon address={yp.yp_address} />
-                        </div>) : null}
+                        <div className='flex flex-row justify-end p-2'>
+                            {yp.platform === 'mobius' ? (
+                                <div>
+                                    <MobiIcon address={yp.yp_address} />
+                                </div>
+                            ) : null}
+                            {yp.platform === "uniswap" ? (
+                                <UniIcon />) : null}
+                            {yp.platform === "ubeswap" ? (
+                                <div>
+                                    <UbeIcon address={yp.yp_address} />
+                                </div>) : null}
                         </div>
-                
+                    </div>
+                </div>
             </div>
         )
     }
