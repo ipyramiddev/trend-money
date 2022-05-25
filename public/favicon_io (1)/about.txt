@@ -1,0 +1,6 @@
+This favicon was generated using the following font:
+
+- Font Title: Iceland
+- Font Author: http://scripts.sil.org/OFL
+- Font Source: http://fonts.gstatic.com/s/iceland/v16/rax9HiuFsdMNOnWPWKxGADBbg0s.ttf
+- Font License: SIL Open Font License, 1.1 (http://scripts.sil.org/OFL))
