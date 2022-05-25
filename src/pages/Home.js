@@ -1,4 +1,5 @@
 import React from "react";
+import UniIcon from "../components/UniIcon";
 // import './index.css';
 function Home() {
     const protocolIntegrations = [
@@ -9,7 +10,7 @@ function Home() {
     // HOME PAGE
 
     return (
-        <div className="h-screen m-4 bg-black text-white items-center text-center justify-center img-center">
+        <div className="min-h-screen pb-10 m-4 bg-black text-white items-center text-center justify-center img-center">
             <p className="text-4xl text-center m-5"> Simple ETF-Style Yield</p>
             <p className="text-2xl text-center m-2 p-4">Bundled pools w/ fragmented deposits across top celo defi protocols, Risk Adverse Yield Aggregate,</p>
             <div className="flex flex-col items-center">
@@ -25,9 +26,8 @@ function Home() {
                 <p className="text-2xl text-white">
                     multi-pool yield stability via a single deposit
                 </p>
-
             </div>
-            <div className="flex flex-col justify-center m-3 p-2 items-center rounded-lg outline outline-2 outline-white bg-white-opacity-10">
+            <div className="flex flex-col justify-center m-3 p-2 mb-10 items-center rounded-lg outline outline-2 outline-white bg-white-opacity-10">
                 <p className="text-3xl font-bold ">Integrating with top celo Defi protocols</p>
                 <div className="flex flex-row gap-4 items-center text-center">
                     {protocolIntegrations.map((protocol, index) => {
@@ -41,9 +41,9 @@ function Home() {
 
 
                 </div>
-                <div>
-                    <img className="opacity-40" src="./uniswap.png" alt="" />
                     <p>coming soon...</p>
+                <div className="w-20 h-30 rounded-lg bg-pink bg-opacity-30">
+                    <UniIcon/>
                 </div>
             </div>
         </div>

@@ -11,7 +11,7 @@ import { getPool,cUSD_UST_pool } from "./hooks/useUni.js";
 import UniPool from "./components/pool/UniPool.js";
 import SubSeam from "./components/pool/SubSeam.js";
 import TokenPrices from "./components/TokenPrices";
-// import PlatformOverview from "./components/PlatformOverview";
+import PlatformOverview from "./components/PlatformOverview";
 function App() {
 
   const [poolData, setPoolData] = useState(null);
@@ -57,9 +57,13 @@ function App() {
 
   // HOME PAGE
   return (
-    <div className="px-10 py-4 h-full bg-black text-white">
+    <div className="static px-10 py-4 h-full bg-black text-white">
+      <div className="">
+      <TokenPrices  />
+      </div>
       <div className="flex flex-col items-center ">
         {/* <PlatformOverview/> */}
+        
 
         {walletConnected ? null : (<button onClick={connectToMetamask} className="rounded-lg w-70 font-2xl p-3 m-5 border-dashed border-white border-2 hover:bg-white hover:text-blac" >Connect Wallet</button>)}
         {/* {walletAddress} */}
@@ -67,9 +71,7 @@ function App() {
         {walletConnected ? (
           <div>
             <form className="text-black">
-              <label className="text-white p-2">
-                Select factory:
-                </label>
+              
                 <select onChange={(e) => setSelectedPool(e.target.value)}>
                   <option value={cUSD_UST_pool}>cUSD _ut</option>
                   <option value="UNI">UNI</option>
@@ -91,9 +93,8 @@ function App() {
       </div>
 
       <div className="flex-cols-2 ">
-        {/* <TokenPrices  /> */}
         {pool_data.seamPools.map((pool, index) => (
-        (<SeamPool {...pool} i={index} />)
+        (<SeamPool {...pool} i={index} key={index}/>)
         ))}
         <button onClick={loadUbe}>Load Ube</button>
       </div>

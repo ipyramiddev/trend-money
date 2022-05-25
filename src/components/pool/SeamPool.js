@@ -16,23 +16,23 @@ function SeamPool(props) {
         }
     }
     return (
-        <div className="">
+        <div key={props.i} className="">
             <div className="rounded-xl border-dashed border-white border-4 m-6" >
-                <div class="collapse collapse-arrow rounded-box p-1 m-1">
-                    <div class="collapse-title " onClick={toggle}>
+                <div className="collapse collapse-arrow rounded-box p-1 m-1">
+                    <div className="collapse-title " onClick={toggle}>
                         <div className='flex flex-row justify-between'>
                             <div>
                                 <h1 className="text-3xl">{props.name}</h1>
-                                <TokenStack tokens={props.all_assets} />
+                                <TokenStack tokens={props.all_assets} i={props.i}/>
                             </div>
                             <div className='flex flex-row justify-end gap gap-4'>
-                                <div class="stat place-items-center">
-                                    <div class="stat-value">{props.avg_apr_24h}</div>
-                                    <div class="stat-title">apr 24h.</div>
+                                <div className="stat place-items-center">
+                                    <div className="stat-value">{props.avg_apr_24h}</div>
+                                    <div className="stat-title">apr 24h.</div>
                                 </div>
-                                <div class="stat place-items-center">
-                                    <div class="stat-value">{props.avg_apr_7d}</div>
-                                    <div class="stat-title">apr 7d.</div>
+                                <div className="stat place-items-center">
+                                    <div className="stat-value">{props.avg_apr_7d}</div>
+                                    <div className="stat-title">apr 7d.</div>
                                 </div>
                             </div>
                         </div>
@@ -52,7 +52,7 @@ function SeamPool(props) {
                     {collapse === "1" ? (
                                 <div className="flex flex-col gap-2">
                                     {props.pools.map((yp, index) => {
-                                        return (<SubSeam yp={yp} />)
+                                        return (<SubSeam key={index} i={index} yp={yp} />)
                                     })}
                         </div>) : null}
                 </div>

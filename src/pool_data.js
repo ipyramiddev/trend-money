@@ -45,17 +45,17 @@ const pool_data = {
                 "UBE", "CELO",
                 "SOL", "mcEUR"],
             pools: [{
-                name: "UBE-CELO",
+                name: "CELO-mCUSD",
                 platform: "ubeswap",
-                yp_address: '0xe7b5ad135fa22678f426a381c7748f6a5f2c9e6c',
-                assets: ["UBE", "CELO",]
+                yp_address: '0xb460f9ae1fea4f77107146c1960bb1c978118816',
+                assets: ["CELO", "mCUSD"],
 
             },
             {
-                name: "CEL0-mCUSD",
+                name: "mCUSD-WBTC",
                 platform: "ubeswap",
-                assets: ["CELO", "mCUSD",],
-                yp_address: '0xb4e16d0168e52d35cacd2c6185b44281ec28c9dc',
+                assets: ["mCUSD", "WBTC",],
+                yp_address: '0x0448e99ab5f8230713a9f5d7e64ec2ab6e5952a3',
                 YTF_portion: 0.25,
             }, ,
             {
