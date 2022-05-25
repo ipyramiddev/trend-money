@@ -19,7 +19,18 @@ export const format_large_number = (num:number) => {
     if( num>=1000 ){
         return (num/1000).toFixed(1).replace(/\.0$/, '') + 'K';
     }
-    return num;
+        
+    if( num<1000 ){
+    return (num/1).toFixed(1)
+    };
+}
+
+export const format_date = (date:number) => {
+    if (date === null) {
+        return '-';
+    }
+    const d = new Date(date*1000);
+    return d.toLocaleDateString();
 }
 
 // export const format_apy(apy){
