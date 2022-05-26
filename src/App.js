@@ -59,7 +59,7 @@ function App() {
   return (
     <div className="static px-10 py-4 h-full bg-black text-white">
       <div className="">
-      <TokenPrices  />
+      {/* <TokenPrices  /> */}
       </div>
       <div className="flex flex-col items-center ">
         {/* <PlatformOverview/> */}
@@ -87,18 +87,13 @@ function App() {
 
           <p>{poolData.total}</p>
         </div>) : null}
-        <UserHeader walletAddress={walletAddress} walletBalance={walletBalance} />
-        {/* <p>Connection Status: {walletConnected? (<p className="text-green">"Connected"</p>) : (<p className="opacity-40 text-center">Not Connected</p>)}</p> */}
-
+        {walletAddress!==""?<UserHeader walletAddress={walletAddress} walletBalance={walletBalance} />:null}
       </div>
-
       <div className="flex-cols-2 ">
         {pool_data.seamPools.map((pool, index) => (
         (<SeamPool {...pool} i={index} key={index}/>)
         ))}
-        <button onClick={loadUbe}>Load Ube</button>
       </div>
-
     </div>
   );
 }

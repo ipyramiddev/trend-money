@@ -3,6 +3,7 @@ import TokenStack from '../TokenStack.js';
 import UniIcon from '../UniIcon.js';
 import UbeIcon from '../UbeIcon.js';
 import MobiIcon from '../MobiIcon.js';
+import AssetPrice from '../AssetPrice.js';
 import { useQuery } from '@apollo/react-hooks';
 import { format_large_number } from '../../hooks/formatting';
 import { fees24hour,yearlyReturnm, effective_cap_ratio } from '../../hooks/fin';
@@ -97,8 +98,8 @@ function SubSeam(props) {
         const token0Price = pool.token0Price;
         const liq = pool.reserveUSD;
         const assets = [
-            {'symbol':pool.token0.symbol, 'name':pool.token0.name, 'reserve':pool.reserve0},
-            {'symbol':pool.token1.symbol, 'name':pool.token1.name, 'reserve':pool.reserve1},
+            {'symbol':pool.token0.symbol, 'name':pool.token0.name, 'reserve':pool.reserve0, 'price':pool.token0Price, 'decimals':pool.token0.decimals, 'derivedCUSD':pool.token0.derivedCUSD},
+            {'symbol':pool.token1.symbol, 'name':pool.token1.name, 'reserve':pool.reserve1,     'price':pool.token1Price, 'decimals':pool.token1.decimals, 'derivedCUSD':pool.token1.derivedCUSD}
     ];
         
         return (
@@ -137,6 +138,9 @@ function SubSeam(props) {
                             <Stat name="24h fee" unit={'$'} format={true} value={fees24hour(vol24hUSD, pool.reserveUSD).usd_24h_return} />
                             <Stat name="24h fee" unit={'$'} format={true} value={fees24hour(vol24hUSD, pool.reserveUSD).usd_24h_return} />
                             <Stat key={i+i+i} format={true} unit="%"value={effective_cap_ratio(vol24hUSD,pool.reserveUSD)*100} name="24h cap." color="red" />
+                            {assets.map((asset, i) => {
+                                return (<AssetPrice key={i} token={asset.symbol} price={asset.price} />)
+                            })}
                         <div className='flex flex-row justify-end p-2'>
                             {yp.platform === 'mobius' ? (
                                 <div>
