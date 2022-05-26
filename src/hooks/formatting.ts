@@ -33,6 +33,14 @@ export const format_date = (date:number) => {
     return d.toLocaleDateString();
 }
 
+export const format_price = (price:number) => {
+    if (price === null) {
+        return '-';
+    }
+
+    return "$" + (price/1).toFixed(2);
+}
+
 // export const format_apy(apy){
 //     // Return apy as a percentage
 //     if (apy === null) {
