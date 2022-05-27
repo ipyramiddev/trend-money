@@ -8,8 +8,6 @@ export const ube_pool_data = {
 
 }
 
-// const 
-
 
 const pool_data = {
     stats:
@@ -41,7 +39,7 @@ const pool_data = {
             avg_apr_7d: 0.13,
             total_deposits: 0,
             all_assets: [
-                "USDC", "USDT",
+                "USDC", "mCUSD",
                 "UBE", "CELO",
                 "SOL", "mcEUR"],
             pools: [{
@@ -79,7 +77,7 @@ const pool_data = {
             avg_apr_7d: 0.13,
             total_deposits: 0,
             all_assets: [
-                'mCUSD', 'mcEUR', 'SOL', 'CELO',
+                'mCUSD', 'mcEUR', 'mcEUR', 'CELO',
             ],
             pools: [
                 {
@@ -93,14 +91,20 @@ const pool_data = {
                     name: 'CELO-mCEUR',
                     platform: "ubeswap",
                     assets: ["CELO", "mcEUR",],
-                    yp_address: '0x1e593f1fe7b61c53874b54ec0c59fd0d5eb8621e0x9f437509e61896738ea8cdb6cded618c0e509032',
+                    yp_address: '0x9f437509e61896738ea8cdb6cded618c0e509032',
 
                 },
                 {
                     name: 'CELO-cUSD',
                     platform: "ubeswap",
                     assets: ["CELO", "cUSD",],
-                    yp_address: '0x1e593f1fe7b61c53874b54ec0c59fd0d5eb8621e0x9f437509e61896738ea8cdb6cded618c0e509032',
+                    yp_address: '0x1e593f1fe7b61c53874b54ec0c59fd0d5eb8621e',
+                },
+                {
+                    name: 'mCUSD-mCEUR ',
+                    platform: "ubeswap",
+                    assets: ["mCUSD", "mCEUR",],
+                    yp_address: '0xf94fea0c87d2b357dc72b743b45a8cb682b0716e',
                 }
 
             ]

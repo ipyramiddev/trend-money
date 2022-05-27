@@ -7,6 +7,7 @@ import SubSeam from './SubSeam.js';
 function SeamPool(props) {
 
     const [collapse, setCollapse] = useState("1");
+    const [returns, setReturns] = useState([]);
 
     const toggle = () => {
         if (collapse === "1") {
@@ -39,6 +40,7 @@ function SeamPool(props) {
                         <div className='flex flex-row justify-between'>
                             
                             <p>TVL: </p>
+                            <p>Combined Pool TVL: </p>
                         <div className="flex flex-row gap-10 justify-end">
 
                             <div className="text-xl font-bold">
@@ -52,7 +54,7 @@ function SeamPool(props) {
                     {collapse === "1" ? (
                                 <div className="flex flex-col gap-2">
                                     {props.pools.map((yp, index) => {
-                                        return (<SubSeam key={index} i={index} yp={yp} />)
+                                        return (<SubSeam key={index} i={index} setReturns={setReturns} yp={yp} />)
                                     })}
                         </div>) : null}
                 </div>

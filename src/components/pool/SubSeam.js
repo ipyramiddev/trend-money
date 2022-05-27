@@ -42,10 +42,9 @@ query GetUbePool {
                 derivedCUSD
             }
         }
-        pairDayDatas(first: 1, orderBy: date, orderDirection: desc,
+        pairDayDatas(orderBy: date, orderDirection: desc, first: 2
             where: {
               pairAddress: "${pairAddress}",
-              date_gt: 1653350400
             }) {
         id
         date
@@ -90,11 +89,14 @@ function SubSeam(props) {
     // const assets = [pool.token0_name, pool.token1_name];\\
 
     const pairData = data.pairDayDatas?.[0];
+    const pairDatas = data.pairDayDatas;
 
     console.log(pairData)
 
     return data.pairs.map((pool, i) => {
         const vol24hUSD = pairData.dailyVolumeUSD;
+        const volDiff = pairDatas[0].dailyVolumeUSD - pairDatas[1].dailyVolumeUSD;
+        const volDiff_ratio = (volDiff / pairDatas[1].dailyVolumeUSD) * 100;
         const token0Price = pool.token0Price;
         const liq = pool.reserveUSD;
         const assets = [
@@ -106,12 +108,11 @@ function SubSeam(props) {
 
             <div key={i} className="flex flex-col gap-2 m-2 p-2 outline-dotted rounded-lg text-white ">
                 <div className='flex flex-row gap-2 p-1 justify-between'>
-                    <div className='flex flex-col'>
-                        <p className="text-xl  ">{yp.name}</p>
-                        <TokenStack tokens={[pool.token0.symbol, pool.token1.symbol]} i={i} />
-                        {/* <p className='text-right inline-block text-align-bottom'> return 24h: ~% {fees24hour(vol24hUSD, pool.reserveUSD).usd_24h_return}</p> */}
-                        {/* <p className='text-right inline-block text-align-bottom'> return 1y: ~% {yearlyReturn(vol24hUSD, pool.reserveUSD)}</p> */}
-
+                    <div className='flex flex-cols'>
+                        <div>
+                            <p className="text-xl  ">{yp.name}</p>
+                            <TokenStack tokens={[pool.token0.symbol, pool.token1.symbol]} i={i} />
+                        </div>
                     </div>
                     <div className='flex flex-col '>
                         <div className='flex flex-row gap-4 p-1'>
@@ -124,10 +125,12 @@ function SubSeam(props) {
                                 <p className={NumStyle('green')}>${format_large_number(pool.volumeUSD)}</p>
                                 <p className={labelStyle}> vol. USD (alltime) </p>
                             </div>
-                            <div className="outline outline-2 outline-green rounded-lg items-center justify-center text-center h-16 w-auto">
+                            <div className="outline outline-2 outline-green rounded-lg items-center justify-center text-center h-20 w-auto">
                                 <p className={NumStyle('green')}>${format_large_number(vol24hUSD)}</p>
-
                                 <p className={labelStyle}> vol 24h. USD</p>
+                                {/* <p className='text-xs '>{format_large_number(volDiff)}</p> */}
+                                
+                                <p className={`text-xs ${volDiff_ratio > 0 ? "text-green": "text-red"}`}> {volDiff_ratio > 0 ? "+": ""} {volDiff_ratio.toFixed(2)}%</p>
                             </div>
                             <div className="outline outline-2 outline-blue rounded-lg items-center justify-center text-center h-16 w-auto">
                                 <p className={NumStyle('blue')}>{format_large_number(pool.reserveUSD)}</p>
@@ -135,12 +138,12 @@ function SubSeam(props) {
                             </div>
                         </div>
                         <div className='flex flex-row gap-4 p-1'>
+                            {assets.map((asset, i) => {
+                                return (<AssetPrice key={i} token={asset.symbol} price={asset.derivedCUSD} />)
+                            })}
                             <Stat name="24h fee" unit={'$'} format={true} value={fees24hour(vol24hUSD, pool.reserveUSD).usd_24h_return} />
                             <Stat name="24h fee" unit={'$'} format={true} value={fees24hour(vol24hUSD, pool.reserveUSD).usd_24h_return} />
                             <Stat key={i+i+i} format={true} unit="%"value={effective_cap_ratio(vol24hUSD,pool.reserveUSD)*100} name="24h cap." color="red" />
-                            {assets.map((asset, i) => {
-                                return (<AssetPrice key={i} token={asset.symbol} price={asset.price} />)
-                            })}
                         <div className='flex flex-row justify-end p-2'>
                             {yp.platform === 'mobius' ? (
                                 <div>
@@ -164,3 +167,4 @@ function SubSeam(props) {
 }
 
 export default SubSeam;
+
