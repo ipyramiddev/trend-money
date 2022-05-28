@@ -54,7 +54,7 @@ function SeamPool(props) {
                     {collapse === "1" ? (
                                 <div className="flex flex-col gap-2">
                                     {props.pools.map((yp, index) => {
-                                        return (<SubSeam key={index} i={index} setReturns={setReturns} yp={yp} />)
+                                        return (<SubSeam key={index} i={index} setReturns={setReturns} yp={yp}  />)
                                     })}
                         </div>) : null}
                 </div>
