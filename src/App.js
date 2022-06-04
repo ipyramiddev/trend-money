@@ -1,16 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { ethers, BigNumber } from "ethers";
-import {getUbeInfo, getUbePoolInfo } from "./hooks/useUbe";
-// import PiePool from './components/pool/PiePool.js';
-import SeamPool from "./components/pool/SeamPool.js";
+import {getUbeInfo, getUbePoolInfo,loadU } from "./hooks/useUbe";
+import DepositModal from "./modals/DepositModal";
+import { gql } from '@apollo/client';
 
+import SeamPool from "./components/pool/SeamPool.js";
 import pool_data from './pool_data.js';
-import PvChart from "./components/graphs/LineChart.js";
 import UserHeader from "./components/UserHeader.js";
-import { getPool,cUSD_UST_pool } from "./hooks/useUni.js";
 import UniPool from "./components/pool/UniPool.js";
-import SubSeam from "./components/pool/SubSeam.js";
-import TokenPrices from "./components/TokenPrices";
 import PlatformOverview from "./components/PlatformOverview";
 function App() {
 
@@ -21,6 +18,7 @@ function App() {
   const [provider, setProvider] = useState(null);
   const [selectedPool, setSelectedPool ] = useState(null);
   const [tokenData, setTokenData ] = useState(null);
+  const [clients, setClients ] = useState(null);
 
   const connectToMetamask = async () => {
     if (!walletConnected) {
@@ -36,64 +34,31 @@ function App() {
     }
   }
 
-  const loadPoolData = async () => {
-    // const data = await getPool(provider, pool_address);
-    // const tokenData = await fetchTokenData();
-    const factoryData = await getUbeInfo(provider);
-    const poolData = await getUbePoolInfo(provider,cUSD_UST_pool);
-    setPoolData(factoryData);
-    // setTokenData(tokenData);
-
-  }
-
-  const loadUbe = async () => {
-    const factoryData = await getUbeInfo(provider);
-    const ube_celo_pool = await getUbePoolInfo(provider,cUSD_UST_pool);
-    console.log(ube_celo_pool)
-  }
 
 
-
-  const [selectedAsset, setSelectedAsset] = useState("CELO");
+  
   const [showDepositModal, setShowDepositModal] = useState(false);
+
+  const toggleDepositModal = () => {
+    setShowDepositModal(!showDepositModal);
+  }
 
   // HOME PAGE
   return (
     <div className="static px-10 py-4 h-full bg-black text-white">
       <div className="">
-      {/* <TokenPrices  /> */}
+        {showDepositModal? <DepositModal toggle={toggleDepositModal} />: null}
       </div>
       <div className="flex flex-col items-center ">
-        {/* <PlatformOverview/> */}
-        
-
         {walletConnected ? null : (<button onClick={connectToMetamask} className="rounded-lg w-70 font-2xl p-3 m-5 border-dashed border-white border-2 hover:bg-white hover:text-blac" >Connect Wallet</button>)}
-        {/* {walletAddress} */}
-
-        {walletConnected ? (
-          <div>
-            <form className="text-black">
-              
-                <select onChange={(e) => setSelectedPool(e.target.value)}>
-                  <option value={cUSD_UST_pool}>cUSD _ut</option>
-                  <option value="UNI">UNI</option>
-                  <option value="SUB">SUB</option>
-                </select>
-
-            </form>
-
-          <button onClick={loadPoolData} className="rounded-lg w-70 font-2xl p-3 m-5 border-dashed border-white border-2 hover:bg-white hover:text-blac" >Get Pools</button>
-          </div>
-          ) : null}
         {poolData != null ? (<div>
-
           <p>{poolData.total}</p>
         </div>) : null}
         {walletAddress!==""?<UserHeader walletAddress={walletAddress} walletBalance={walletBalance} />:null}
       </div>
-      <div className="flex-cols-2 ">
+      <div className="">
         {pool_data.seamPools.map((pool, index) => (
-        (<SeamPool {...pool} i={index} key={index} showDepositModal={(index)=>setShowDepositModal(index)} />)
+        (<SeamPool {...pool} i={index} key={index} toggleDepositModal={toggleDepositModal}/>)
         ))}
       </div>
     </div>

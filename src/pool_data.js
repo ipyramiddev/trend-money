@@ -42,8 +42,8 @@ const pool_data = {
                 "USDC", "mCUSD",
                 "UBE", "CELO",
                 "SOL", "mcEUR"],
-            pools: [{
-                name: "CELO-mCUSD",
+            pools: [
+                {name: "CELO-mCUSD",
                 platform: "ubeswap",
                 yp_address: '0xb460f9ae1fea4f77107146c1960bb1c978118816',
                 assets: ["CELO", "mCUSD"],
@@ -77,7 +77,7 @@ const pool_data = {
             avg_apr_7d: 0.13,
             total_deposits: 0,
             all_assets: [
-                'mCUSD', 'mcEUR', 'mcEUR', 'CELO',
+                'mCUSD', 'mcEUR', 'CELO',
             ],
             pools: [
                 {
