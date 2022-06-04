@@ -42,7 +42,7 @@ query GetUbePool {
                 derivedCUSD
             }
         }
-        pairDayDatas(orderBy: date, orderDirection: desc, first: 2
+        pairDayDatas(orderBy: date, orderDirection: desc, first: 5,
             where: {
               pairAddress: "${pairAddress}",
             }) {

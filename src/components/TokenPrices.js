@@ -12,8 +12,6 @@ const TOKEN_PRICES_QUERY = gql`
             pairDayDatas ( first:10 where: { date_gt: 1653350400 , dailyVolumeUSD_gt: 10}
                 orderBy: dailyVolumeUSD, 
               orderDirection: desc,
-              
-              
               limit: $topN) {
               date
               token0 {symbol}
@@ -26,12 +24,6 @@ const TOKEN_PRICES_QUERY = gql`
     }
 `;
 
-// name
-// decimals
-// derivedCUSD
-// tradeVolumeUSD
-
-
 
 function TokenPriceList(){
     // const { open, setOpen } = useState(true);
@@ -40,7 +32,7 @@ function TokenPriceList(){
     const { loading, error, data } = useQuery(TOKEN_PRICES_QUERY,
         { variables: { $day: time, $topN: 10 } });
         if (loading) return <p>Loading...</p>;
-    if (error) return <p>Error :( {error.toString()}</p>;
+    if (error) return <p>Error : {error.toString()}</p>;
     return data.pairDayDatas.slice(0,10).map((pairDayData,i) => {
         return (<div key={i} className="flex flex-row justify-between h-15 outline outline-dashed outline-2 my-2 mx-1 rounded-lg p-1 m-1">
             <div className="flex flex-row justify-start gap-3">
@@ -75,7 +67,7 @@ export default function TokenPrices(props) {
    
     return(
         <div className='flex flex-col max-w-2xl'>
-            <p>Ube Pair Overview</p>
+            <p className='text-3xl text-center p-3 '>Ube Pairs Overview</p>
             <TokenPriceList />
         </div>
     )

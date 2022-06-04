@@ -23,7 +23,7 @@ const nav_items = [
 
 
 export default function Navbar(props) {
-    const [isOpen, setIsOpen] = useState('');
+    const [isOpen, setIsOpen] = useState('hidden');
 
     const toggle = () => {
         setIsOpen(isOpen === '' ? 'hidden' : '');

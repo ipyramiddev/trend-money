@@ -21,3 +21,11 @@ export const effective_cap_ratio = (volume:number, reserve:number) => {
     return (volume / reserve).toFixed(2);
 }
 
+
+
+export const daily_return_annualized = (vol24hUSD:number, totalLiquidity:number) => {
+    const roi24h = (vol24hUSD * ube_fee) / totalLiquidity
+    const roi365 = (((roi24h+1) ** 365)-1)
+    return roi365.toFixed(6)
+}
+

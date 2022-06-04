@@ -53,7 +53,9 @@ function App() {
   }
 
 
+
   const [selectedAsset, setSelectedAsset] = useState("CELO");
+  const [showDepositModal, setShowDepositModal] = useState(false);
 
   // HOME PAGE
   return (
@@ -91,7 +93,7 @@ function App() {
       </div>
       <div className="flex-cols-2 ">
         {pool_data.seamPools.map((pool, index) => (
-        (<SeamPool {...pool} i={index} key={index}/>)
+        (<SeamPool {...pool} i={index} key={index} showDepositModal={(index)=>setShowDepositModal(index)} />)
         ))}
       </div>
     </div>

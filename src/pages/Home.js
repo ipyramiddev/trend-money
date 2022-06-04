@@ -1,4 +1,5 @@
 import React from "react";
+import PlatformOverview from "../components/PlatformOverview";
 import UniIcon from "../components/UniIcon";
 // import './index.css';
 function Home() {
@@ -11,8 +12,8 @@ function Home() {
 
     return (
         <div className="min-h-screen pb-10 m-4 bg-black text-white items-center text-center justify-center img-center">
-            <p className="text-4xl text-center m-5"> Simple ETF-Style Yield</p>
-            <p className="text-2xl text-center m-2 p-4">Bundled pools w/ fragmented deposits across top celo defi protocols, Risk Adverse Yield Aggregate,</p>
+            <p className="text-5xl text-center m-5"> Simple ETF-Style Yield</p>
+            <p className="text-2xl text-center m-2 p-4">Bundled pools w/ fragmented deposits across top celo defi protocols, Risk Adverse Yield Aggregate.</p>
             <div className="flex flex-col items-center">
                 <p className="text-9xl pl-2">Σ</p>
                 <img className="w-80" src="./Tokenfork.png" alt="" />
@@ -27,8 +28,8 @@ function Home() {
                     multi-pool yield stability via a single deposit
                 </p>
             </div>
-            <div className="flex flex-col justify-center m-3 p-2 mb-10 items-center rounded-lg outline outline-2 outline-white bg-white-opacity-10">
-                <p className="text-3xl font-bold ">Integrating with top celo Defi protocols</p>
+            <div className="flex flex-col justify-center m-3 p-3 mb-10 items-center rounded-lg border border-4 border-white bg-white-opacity-10">
+                <p className="text-3xl font-bold p-2">Integrating with top celo Defi protocols</p>
                 <div className="flex flex-row gap-4 items-center text-center">
                     {protocolIntegrations.map((protocol, index) => {
                         return (
@@ -41,11 +42,13 @@ function Home() {
 
 
                 </div>
-                    <p>coming soon...</p>
+                <p>coming soon...</p>
                 <div className="w-20 h-30 rounded-lg bg-pink bg-opacity-30">
-                    <UniIcon/>
+                    <UniIcon />
                 </div>
+                
             </div>
+                <PlatformOverview/>
         </div>
     );
 }
