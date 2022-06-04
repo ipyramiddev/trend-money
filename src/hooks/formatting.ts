@@ -30,7 +30,10 @@ export const format_date = (date:number) => {
         return '-';
     }
     const d = new Date(date*1000);
-    return d.toLocaleDateString();
+    // + d.toLocaleTimeString().slice(0, -3);
+    return  d.toLocaleDateString().slice(0, -5)
+    
+
 }
 
 export const format_price = (price:number) => {

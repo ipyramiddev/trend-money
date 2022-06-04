@@ -7,7 +7,7 @@ const UbeFactoryAbi = [
   'function allPairsLength() external view returns (uint)'
 ]
 
-const ubePoolAbi = [
+const ubePoolAbi_view = [
   'function name() external pure returns (string memory)',
   'function symbol() external pure returns (string memory)',
   'function token0() external view returns (address)',
@@ -18,6 +18,8 @@ const ubePoolAbi = [
   'function kLast() external view returns (uint256)'
 
 ]
+
+// const 
 
 export const poolAddress = '0xb4e16d0168e52d35cacd2c6185b44281ec28c9dc'
 export const cUSD_UST_pool= '0x19260b9b573569dDB105780176547875fE9fedA3'
@@ -40,7 +42,7 @@ export const getUbeInfo = async (provider) => {
 }
 
 export const getUbePoolInfo = async (provider,pool_address) => {
-  const poolContract = new ethers.Contract(ube_celo_pool, ubePoolAbi, provider);
+  const poolContract = new ethers.Contract(ube_celo_pool, ubePoolAbi_view, provider);
   const PoolImmutables = {
     token0: await poolContract.token0(),
     token1: await poolContract.token1(),
