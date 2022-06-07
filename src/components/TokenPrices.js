@@ -35,17 +35,16 @@ function TokenPriceList(){
     if (error) return <p>Error : {error.toString()}</p>;
     return data.pairDayDatas.slice(0,10).map((pairDayData,i) => {
         return (<div key={i} className="flex flex-row justify-between h-15 outline outline-dashed outline-2 my-2 mx-1 rounded-lg p-1 m-1">
-            <div className="flex flex-row justify-start gap-3">
-                <div className='px-3 '>
+            <div className="flex flex-row justify-start gap-2">
+                <div className='pl-3 pr-1 '>
                     <TokenStack tokens = {[pairDayData.token0.symbol,pairDayData.token1.symbol]} />
-                
                 </div>
             </div>
 
                     <Stat key={i} color="lightPurple" format={true} value={pairDayData.dailyVolumeUSD} name="Vol 24h. USD"  />
                     <Stat key={i} color="green" format={true} value={pairDayData.reserveUSD} name="liq. (usd)"  />
                     <Stat key={i+i} format={true} value={pairDayData.dailyTxns} name="daily txs." color="yellow" />
-                    <Stat key={i+i+i} format={false} unit="%"value={effective_cap_ratio(pairDayData.dailyVolumeUSD,pairDayData.reserveUSD)*100} name="24h cap." color="red" />
+                    <Stat key={i+i+i} format={true} unit="%"value={effective_cap_ratio(pairDayData.dailyVolumeUSD,pairDayData.reserveUSD)*100} name="24h cap." color="red" />
                     <Stat key={i+i+i+i} format={true} value={fees24hour(pairDayData.dailyVolumeUSD,pairDayData.reserveUSD).usd_24h_return} name="24h fees." color="green" />
                     <ViewPair pairAddress={pairDayData.pairAddress}/>
                 </div>)
