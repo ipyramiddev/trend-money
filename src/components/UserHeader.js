@@ -12,7 +12,6 @@ const UBE_USER_QUERY = gql`
 `;
 
 
-
 function UserHeader(user) {
     console.log("user address", user.address);
     const { loading, error, data } = useQuery(UBE_USER_QUERY, {

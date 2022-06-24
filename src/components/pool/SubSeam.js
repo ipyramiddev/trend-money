@@ -142,7 +142,6 @@ function SubSeam(props) {
                                 return (<AssetPrice key={i} token={asset.symbol} price={asset.derivedCUSD} />)
                             })}
                             <Stat name="24h fee" unit={'$'} format={true} value={fees24hour(vol24hUSD, pool.reserveUSD).usd_24h_return} />
-                            <Stat name="24h fee" unit={'$'} format={true} value={fees24hour(vol24hUSD, pool.reserveUSD).usd_24h_return} />
                             <Stat key={i+i+i} format={true} unit="%"value={effective_cap_ratio(vol24hUSD,pool.reserveUSD)*100} name="24h cap." color="red" />
                         <div className='flex flex-row justify-end p-2'>
                             {yp.platform === 'mobius' ? (

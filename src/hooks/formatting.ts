@@ -36,6 +36,11 @@ export const format_date = (date:number) => {
 
 }
 
+
+export const format_tvl = (price: number) =>{
+    return "$" + format_large_number(price)
+}
+
 export const format_price = (price:number) => {
     if (price === null) {
         return '-';
