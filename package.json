@@ -1,5 +1,5 @@
 {
-  "name": "stitch",
+  "name": "seam",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -15,7 +15,7 @@
     "apexcharts": "^3.35.0",
     "chart.js": "^3.7.1",
     "d3": "^7.4.0",
-    "daisyui": "^2.14.3",
+    "daisyui": "^2.17.0",
     "ethers": "^5.6.4",
     "graphql": "^16.5.0",
     "http": "^0.0.1-security",
