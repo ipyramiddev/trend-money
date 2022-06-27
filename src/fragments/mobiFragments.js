@@ -9,6 +9,13 @@ export const MOBI_TOKEN = gql`
     }
 `;
 
+export const MOBI_SWAP = gql`
+    fragment MobiPair on Swap {
+        id
+        
+    }
+`;
+
 export const MOBI_INFO = gql`
     fragment MobiInfo on SystemInfo {
         id
@@ -32,7 +39,5 @@ export const MOBI_PAIR = gql`
 ${MOBI_HOURLY_VOLUME}
     fragment MobiPair on Swap {
         id
-       
-
     }
     `

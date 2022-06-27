@@ -1,41 +1,37 @@
 import React, { useState, useEffect } from "react";
 import { ethers, BigNumber } from "ethers";
 import {getUbeInfo, getUbePoolInfo,loadU } from "./hooks/useUbe";
+import { connectToMetamask } from "./hooks/useWallet";
 import DepositModal from "./modals/DepositModal";
-import { gql } from '@apollo/client';
 
 import SeamPool from "./components/pool/SeamPool.js";
 import pool_data from './pool_data.js';
 import UserHeader from "./components/UserHeader.js";
 import UniPool from "./components/pool/UniPool.js";
 import PlatformOverview from "./components/PlatformOverview";
+import SwitchView from "./sections/SwitchView";
 function App() {
 
   const [poolData, setPoolData] = useState(null);
   const [walletConnected, setWalletConnected] = useState(false);
   const [walletAddress, setWalletAddress] = useState("");
-  const [walletBalance, setWalletBalance] = useState("");
+  const [walletBalance, setWalletBalances] = useState([]);
   const [provider, setProvider] = useState(null);
   const [selectedPool, setSelectedPool ] = useState(null);
   const [tokenData, setTokenData ] = useState(null);
   const [clients, setClients ] = useState(null);
 
-  const connectToMetamask = async () => {
+  const connectWallet = async () => {
     if (!walletConnected) {
       const provider = new ethers.providers.Web3Provider(window.ethereum)
-      const accounts = await provider.send("eth_requestAccounts", []);
-      const balance = await provider.getBalance(accounts[0]);
-      const balanceInEther = ethers.utils.formatEther(balance);
+      const user = await connectToMetamask(provider);
+      
       setWalletConnected(true);
       setProvider(provider);
-      setWalletAddress(accounts[0]);
-      setWalletBalance(balanceInEther);
-
+      setWalletAddress(user.walletAddress);
+      setWalletBalances(user.balances);
     }
   }
-
-
-
   
   const [showDepositModal, setShowDepositModal] = useState(false);
 
@@ -50,13 +46,17 @@ function App() {
         {showDepositModal? <DepositModal toggle={toggleDepositModal} />: null}
       </div>
       <div className="flex flex-col items-center ">
-        {walletConnected ? null : (<button onClick={connectToMetamask} className="rounded-lg w-70 font-2xl p-3 m-5 border-dashed border-white border-2 hover:bg-white hover:text-blac" >Connect Wallet</button>)}
+        {walletConnected ? null : (<button onClick={connectWallet} className="rounded-lg w-70 font-2xl p-3 m-5 border-dashed border-white border-2 hover:bg-white hover:text-blac" >Connect Wallet</button>)}
         {poolData != null ? (<div>
           <p>{poolData.total}</p>
         </div>) : null}
         {walletAddress!==""?<UserHeader walletAddress={walletAddress} walletBalance={walletBalance} />:null}
       </div>
       <div className="">
+          <div>
+            {/* <SwitchView /> */}
+          </div>
+
         {pool_data.seamPools.map((pool, index) => (
         (<SeamPool {...pool} i={index} key={index} toggleDepositModal={toggleDepositModal}/>)
         ))}

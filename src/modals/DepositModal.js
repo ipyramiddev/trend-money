@@ -10,11 +10,13 @@ function DepositModal(props) {
     <ModalWrapper open={open} setOpen={setOpen} cancelButtonRef={cancelButtonRef} title="tets">
 
       {/* show seam pool name */}
+      {/* DEPOSIT COIN(S) DEPOSIT AMOUNTs */}
 
       {/* small boxes each sub-pool  */}
       <p>content</p>
 
       {/* APPROVE SPEND Button */}
+      
 
       {/* DEPOSIT button */}
 

@@ -8,7 +8,6 @@ export const fees24hour = (vol24hUSD:number, totalLiquidity:number) => {
         "usd_24h_return": ((vol24hUSD*ube_fee)),
         "fee_percent": (ube_fee * 100).toFixed(2)
     }
-
 }
 export const yearlyReturn = (vol24hUSD:number, totalLiquidity:number) => {
     const fee24 = fees24hour(vol24hUSD, totalLiquidity)

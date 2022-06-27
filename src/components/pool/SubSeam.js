@@ -12,10 +12,11 @@ import { gql } from '@apollo/client';
 import { BigNumber } from 'ethers';
 import { formatBytes32String } from 'ethers/lib/utils';
 import Stat from '../Stat.js';
+// import { UBE_PAIR_QUERY } from '../../hooks/queries/ubeQueries';
 
 // const nByte = (n) => {
 //     return Bytes.fromHexString(n);
-const ube_QUERY = (pairAddress) => {
+const UBE_QUERY = (pairAddress) => {
     return gql`
 query GetUbePool {
     pairs(where: {id: "${pairAddress}"}) {
@@ -49,11 +50,7 @@ query GetUbePool {
         id
         date
         dailyVolumeUSD
-        token0{
-            id
-            name
-            symbol
-        }
+        
     
     }
     }
@@ -75,19 +72,21 @@ const outlineStyle = (color) => {
     return `outline outline-2 outline-${color} rounded-lg items-center justify-center text-center h-14 w-auto`
 }
 
+
+const storeSubSeam = (pool_id,subSeam) => {
+    localStorage.setItem(pool_id, JSON.stringify(subSeam));
+}
+
 function SubSeam(props) {
     const yp = props.yp;
-    const q = ube_QUERY(yp.yp_address)
+    const q = UBE_QUERY(yp.yp_address)
     const { loading, error, data } = useQuery(q);
 
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error :( {error.toString()}</p>;
 
-
-    // const [collapse, setCollapse] = useState("0");
-    // const pool = props.pool;
-    // const assets = [pool.token0_name, pool.token1_name];\\
-
+    const ubeSwapDayData = data.pairDayDatas;
+    storeSubSeam(yp.yp_address, ubeSwapDayData);
     const pairData = data.pairDayDatas?.[0];
     const pairDatas = data.pairDayDatas;
 

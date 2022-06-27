@@ -1,6 +1,14 @@
 import { BigNumber, ethers } from 'ethers'
 import {ube_pool_data } from '../pool_data';
+import {Token, Trade,Fetcher,TokenAmount,TradeType,Pair } from '@ubeswap/sdk';
 // 'function factory() external view returns (address)',
+
+export const poolAddress = '0xb4e16d0168e52d35cacd2c6185b44281ec28c9dc'
+export const cUSD_UST_pool= '0x19260b9b573569dDB105780176547875fE9fedA3'
+export const ube_celo_pool = '0xe7b5ad135fa22678f426a381c7748f6a5f2c9e6c'
+// export const poolAddress = '0xe7b5ad135fa22678f426a381c7748f6a5f2c9e6c';
+export const UNIV2_USDC_ETH_pool = '0x8ad599c3a0ff1de082011efddc58f1908eb6e6d8'
+
 const UbeFactoryAbi = [
   'function allPairs(uint256) external view returns (address pair)',
   // 'getPair(address tokenA, address tokenB) external view returns (address pair)',
@@ -16,16 +24,14 @@ const ubePoolAbi_view = [
   'function price0CumulativeLast() external view returns (uint256)',
   'function price1CumulativeLast() external view returns (uint256)',
   'function kLast() external view returns (uint256)'
-
 ]
 
 // const 
 
-export const poolAddress = '0xb4e16d0168e52d35cacd2c6185b44281ec28c9dc'
-export const cUSD_UST_pool= '0x19260b9b573569dDB105780176547875fE9fedA3'
-export const ube_celo_pool = '0xe7b5ad135fa22678f426a381c7748f6a5f2c9e6c'
-// export const poolAddress = '0xe7b5ad135fa22678f426a381c7748f6a5f2c9e6c';
-export const UNIV2_USDC_ETH_pool = '0x8ad599c3a0ff1de082011efddc58f1908eb6e6d8'
+export const getUbeTradeInfo = async (depositTokens,poolAddress) => {
+  const pair = await Fetcher.fetchPairData()
+
+}
 
 
 export const getUbeInfo = async (provider) => {
@@ -51,10 +57,13 @@ export const getUbePoolInfo = async (provider,pool_address) => {
     pool_address: pool_address,
     // pool_tvl: (await poolContract.getReserves())[0].toString(),
     // weekly_volume: (await poolContract.price0CumulativeLast()),
-
   }
   console.log("poolInfo(UBE)", PoolImmutables);
-  return PoolImmutables
+  return PoolImmutables;
 }
 
-// export const getUbeTokenInfo
+export const getUbeUserLiqidity = async (provider,pool_address,user_address) => {
+  return {
+
+  }
+}
