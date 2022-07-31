@@ -3,7 +3,7 @@ import App from './App';
 import Docs from './pages/Docs';
 import Home from './pages/Home';
 import Navbar from './components/Navbar';
-import TokenPrices from './components/TokenPrices';
+// import TokenPrices from './components/TokenPrices';
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import Drawer from './components/Drawer';
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client'
@@ -31,7 +31,7 @@ function PriceDrawer(props) {
       
     <Drawer isOpen={props.drawerOpen} setIsOpen={props.setDrawerOpen}>
       <div>
-        <TokenPrices/>
+        {/* <TokenPrices/> */}
       </div>
     </Drawer>
     </div>
@@ -40,18 +40,7 @@ function PriceDrawer(props) {
 
 
 export default function Wrapper() {
-  // const loadTokens = async (client) => {
-  //   await client
-  //     .query({
-  //       query: gql(tokensQuery),
-  //     })
 
-  //     .catch((err) => {
-  //       console.log('Error fetching data: ', err)
-  //     })
-  //     console.log('Subgraph data: ', data)
-  // return
-  // }
   const [drawerOpen, setDrawerOpen] = useState(false);
   return (
         <ApolloProvider client={client}>
