@@ -2,6 +2,7 @@ import './index.css';
 import App from './App';
 import Docs from './pages/Docs';
 import Home from './pages/Home';
+import Explorer from './pages/Explorer';
 import Navbar from './components/Navbar';
 // import TokenPrices from './components/TokenPrices';
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
@@ -19,35 +20,34 @@ const client = new ApolloClient({
 })
 
 
-function PriceDrawer(props) {  
-  
+function PriceDrawer(props) {
+
   return (
     <div className='absolute top-60 right-5'>
         <div className='flex justify-center items-center text-center px-6 py-3'>
-          <div onClick={() => props.setDrawerOpen(!props.drawerOpen)}  className='text-2xl font-bold bg-gradient-to-br from-green to-yellow bg-opacity-50 rounded-t-lg'>
+          {/* <div onClick={() => props.setDrawerOpen(!props.drawerOpen)}  className='text-2xl font-bold bg-gradient-to-br from-green to-yellow bg-opacity-50 rounded-t-lg'>
             Token prices ^
-          </div>
+          </div> */}
         </div>
       
-    <Drawer isOpen={props.drawerOpen} setIsOpen={props.setDrawerOpen}>
-      <div>
-        {/* <TokenPrices/> */}
-      </div>
-    </Drawer>
+
+      <Drawer isOpen={props.drawerOpen} setIsOpen={props.setDrawerOpen}>
+        <div>
+          {/* <TokenPrices /> */}
+        </div>
+      </Drawer>
     </div>
   )
 }
 
 
 export default function Wrapper() {
-
   const [drawerOpen, setDrawerOpen] = useState(false);
   return (
-        <ApolloProvider client={client}>
-    <div className='bg-black relative' >
-      <Navbar />
-
-      <BrowserRouter>
+    <ApolloProvider client={client}>
+      <div className='bg-black relative' >
+        <Navbar />
+        <BrowserRouter>
           <Routes>
             {/* HOME PAGE */}
             <Route path="/" element={<Home />} />
@@ -55,12 +55,12 @@ export default function Wrapper() {
             <Route path="docs" element={<Docs />} />
             {/* ADD ADDITONAL ROUTES here ex swap page */}
             <Route path="/app" element={<App />} />
-
+            <Route path="/explorer" element={<Explorer />} />
           </Routes>
-          <PriceDrawer drawerOpen={drawerOpen} setDrawerOpen={setDrawerOpen}/>
-      </BrowserRouter>
-    </div>
-        </ApolloProvider>
+          <PriceDrawer drawerOpen={drawerOpen} setDrawerOpen={setDrawerOpen} />
+        </BrowserRouter>
+      </div>
+    </ApolloProvider>
 
 
 
