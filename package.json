@@ -49,6 +49,7 @@
     "normalize.css": "^8.0.1",
     "rc-virtual-list": "^3.4.8",
     "react": "^18.1.0",
+    "react-apexcharts": "^1.4.0",
     "react-bubble-ui": "^1.1.2",
     "react-copy-to-clipboard": "^5.1.0",
     "react-dom": "^18.1.0",

@@ -28,12 +28,12 @@ export default function DappBubble(dapp: Dapp) {
 
 
     return (
-        <div className="items-center bubble-container outline outline-4 outline-white">
+        <div className="items-center bubble-container text-white outline outline-4 outline-white">
             <div className={` text-center hover:opacity-60`}>
             <div className="flex flex-col items-center">
 
-                <img className="rounded-3xl w-20 max-h-20 " src={dapp.image} alt="nft-image" />
-                <p className="text-pink-300">{dapp.name}</p>
+                {/* <img className="rounded-3xl w-20 max-h-20 " src={dapp.image} alt="nft-image" /> */}
+                <p className="text-4xl text-white">{dapp.name}</p>
                 <div className="flex flex-col items-center">
                     {/* {stats_template.map((stat) => {
                         return (
