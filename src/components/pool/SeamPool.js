@@ -2,10 +2,8 @@ import { useState, useEffect } from 'react';
 // import { loadUbeSubPools } from '../../hooks/useGraph';
 import TokenStack from '../TokenStack.js';
 import SubSeam from './SubSeam.js';
-// import { UBE_LIST_QUERY } from "../../hooks/useGraph";
 import { useQuery } from '@apollo/react-hooks';
-// import {progress} from 'daisyui';                                
-
+import BarChart from '../graphs/BarChart.js';
 
 const sumPoolInfo = async (poolData) => {
     let all_apr = [];
@@ -26,13 +24,9 @@ const sumPoolInfo = async (poolData) => {
 
 function SeamPool(props) {
 
-    // const { loading, error, data } = useQuery(UBE_LIST_QUERY,{
-    //     variables: {
-    //         $pairList: [props.pools[0].yp_address, props.pools[1].yp_address]
-    //     }
-    // });
     const [collapse, setCollapse] = useState("1");
     const [returns, setReturns] = useState([]);
+    const [tvl ,setTVL] = useState("0");
     const [tokens, setTokens] = useState([]);
     const toggle = () => {
         if (collapse === "1") {
@@ -40,10 +34,9 @@ function SeamPool(props) {
         } else {
             setCollapse("1");
         }
-    }
+    };
 
-    // if (loading) return <p>Loading...</p>;
-    // if (error) return <p>Error :( {error.toString()}</p>;
+
 
     return (
         <div key={props.i} className="">
@@ -56,6 +49,7 @@ function SeamPool(props) {
                                 <TokenStack tokens={props.all_assets} i={props.i} />
                             </div>
                             <div className='flex flex-row justify-end gap gap-4'>
+                                <BarChart/>
                                 <div className="stat place-items-center">
                                     <div className="stat-value">{props.avg_apr_24h}</div>
                                     <div className="stat-title">apr 24h.</div>
@@ -69,12 +63,13 @@ function SeamPool(props) {
                         <div className='flex flex-row justify-between'>
 
                             <p>TVL: </p>
-                            <p>Combined Pool TVL: </p>
+                            <p>Combined Pool TVL:{tvl} </p>
                             <div className="flex flex-row gap-10 justify-end">
-
+                                {/* {()=>loadPools(props.pools)} */}
                                 <div className="text-xl font-bold">
                                     <button onClick={()=>props.toggleDepositModal()} className="px-3 py-1 button-2xl m-3 bg-black rounded-lg hover:bg-white hover:text-blac outline outline-dashed outline-2">Deposit</button>
                                     <button className="px-3 py-1 m-3 bg-black rounded-lg hover:bg-white hover:text-blac outline outline-dashed outline-2">Withdraw</button>
+                                    
                                 </div>
                             </div>
                         </div>

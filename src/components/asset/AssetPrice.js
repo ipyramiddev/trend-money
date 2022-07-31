@@ -1,5 +1,5 @@
-import Token from './Token';
-import { format_price } from '../hooks/formatting';
+import Token from '../Token';
+import { format_price } from '../../hooks/formatting';
 function AssetPrice(props){
     return (
         <div key={`${props.asset}-${props.key}`}className="flex flex-row  h-14 items-left outline outline-2 rounded-lg px-2 py-1">

@@ -132,21 +132,14 @@ function PlatformOverview() {
     return (
         <div className=''>
             <p className='text-3xl'> Platform Overviews</p>
-            {/* {integrations.map((platform, i) => (
+            {integrations.map((platform, i) => (
             <Integration {...platform}/>
-            ))} */}
-            {/* <UbeOverview /> */}
+            ))}
+            <UbeOverview />
             {/* <MobiOverview /> */}
 
             <div>
-                {/* <p className='text-2xl p-2'> Mobius </p>
-                        <p>{ubeSwapDayData.id}</p>
-                        <p>{ubeSwapDayData.dailyVolumeUSD}</p> */}
-                {/* <p>{info.daily}</p> */}
-                {/* <p>{info.exchangeCount}</p> */}
-                {/* <p>{info.tokenCount}</p> */}
-                {/* <p>{info.updatedAtBlock}</p> */}
-                {/* <p>{info.totalLiquidityUSD}</p> */}
+                
 
             </div>
         </div>
