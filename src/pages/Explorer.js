@@ -2,8 +2,9 @@
 import React, { useState, useEffect } from 'react';
 
 // const fullNodes = [
-    import { AptosClient, AptosAccount, FaucetClient, BCS, TxnBuilderTypes } from "aptos";
-
+import { AptosClient, AptosAccount, FaucetClient, BCS, TxnBuilderTypes } from "aptos";
+import { dapps } from "../dapp_data";
+    import BubbleSection from '../sections/BubbleSection';
 // devnet is used here for testing
 const NODE_URL = "https://fullnode.devnet.aptoslabs.com";
 const FAUCET_URL = "https://faucet.devnet.aptoslabs.com";
@@ -34,6 +35,8 @@ const Explorer = () => {
                 <p>{toString(account)}</p>
                 {/* <p>{account.balance}</p> */}
             </div>}
+
+            <BubbleSection dapps={dapps}/>
         </div>
     </div>
         );

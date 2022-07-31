@@ -4,6 +4,7 @@ import Docs from './pages/Docs';
 import Home from './pages/Home';
 import Explorer from './pages/Explorer';
 import Navbar from './components/Navbar';
+// import TokenPrices from './components/TokenPrices';
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import Drawer from './components/Drawer';
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client'
@@ -23,11 +24,12 @@ function PriceDrawer(props) {
 
   return (
     <div className='absolute top-60 right-5'>
-      <div className=' sticky flex justify-center items-center text-center px-6 py-3'>
-        {/* <div onClick={() => props.setDrawerOpen(!props.drawerOpen)} className='text-2xl font-bold bg-white text-black rounded-t-lg'>
-          Token prices ^
-        </div> */}
-      </div>
+        <div className='flex justify-center items-center text-center px-6 py-3'>
+          {/* <div onClick={() => props.setDrawerOpen(!props.drawerOpen)}  className='text-2xl font-bold bg-gradient-to-br from-green to-yellow bg-opacity-50 rounded-t-lg'>
+            Token prices ^
+          </div> */}
+        </div>
+      
 
       <Drawer isOpen={props.drawerOpen} setIsOpen={props.setDrawerOpen}>
         <div>
