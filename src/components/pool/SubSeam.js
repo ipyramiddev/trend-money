@@ -3,7 +3,7 @@ import TokenStack from '../TokenStack.js';
 import UniIcon from '../UniIcon.js';
 import UbeIcon from '../UbeIcon.js';
 import MobiIcon from '../MobiIcon.js';
-import AssetPrice from '../AssetPrice.js';
+import AssetPrice from '../asset/AssetPrice.js';
 import { useQuery } from '@apollo/react-hooks';
 import { format_large_number } from '../../hooks/formatting';
 import { fees24hour,yearlyReturnm, effective_cap_ratio } from '../../hooks/fin';
@@ -14,8 +14,6 @@ import { formatBytes32String } from 'ethers/lib/utils';
 import Stat from '../Stat.js';
 // import { UBE_PAIR_QUERY } from '../../hooks/queries/ubeQueries';
 
-// const nByte = (n) => {
-//     return Bytes.fromHexString(n);
 const UBE_QUERY = (pairAddress) => {
     return gql`
 query GetUbePool {
@@ -46,21 +44,15 @@ query GetUbePool {
         pairDayDatas(orderBy: date, orderDirection: desc, first: 5,
             where: {
               pairAddress: "${pairAddress}",
-            }) {
+            })  {
         id
         date
         dailyVolumeUSD
-        
-    
+
     }
     }
-    
     
 `};
-
-
-// const to_1y
-// return vol24hUSD * price * ube_fee
 
 const NumStyle = (color) => {
     return `text-xl font-bold text-center text-${color} px-2 pb-1`
@@ -79,6 +71,7 @@ const storeSubSeam = (pool_id,subSeam) => {
 
 function SubSeam(props) {
     const yp = props.yp;
+
     const q = UBE_QUERY(yp.yp_address)
     const { loading, error, data } = useQuery(q);
 
@@ -109,12 +102,12 @@ function SubSeam(props) {
                 <div className='flex flex-row gap-2 p-1 justify-between'>
                     <div className='flex flex-cols'>
                         <div>
-                            <p className="text-xl  ">{yp.name}</p>
+                            <p className="text-xl">{yp.name}</p>
                             <TokenStack tokens={[pool.token0.symbol, pool.token1.symbol]} i={i} />
                         </div>
                     </div>
                     <div className='flex flex-col '>
-                        <div className='flex flex-row gap-4 p-1'>
+                        <div className='flex flex-row gap-2 p-1'>
                             {assets.map((asset, i) => {
                             return (<div className="outline outline-2 outline-yellow rounded-lg items-center justify-center text-center h-16 w-auto">
                                 <p className="text-xl font-bold text-yellow">{format_large_number(asset.reserve)}</p>

@@ -20,12 +20,12 @@ function TokenPriceList(){
 
     const { loading, error, data } = useQuery(UBE_OVERVIEW_QUERY,
         { variables: { $day: time, $topN: 10 } });
-        if (loading) return <p>Loading...</p>;
+        if (loading || data===undefined) return <p>Loading...</p>;
     if (error) return <p>Error : {error.toString()}</p>;
 
     const pairs = data.pairDayDatas;
     localStorage.setItem('ube_pairs', JSON.stringify(pairs));
-    return data.pairDayDatas.slice(0,10).map((pairDayData,i) => {
+    return data.pairDayDatas.map((pairDayData,i) => {
         return (<div key={i} className="flex flex-row justify-between h-15 outline outline-dashed outline-2 my-2 mx-1 rounded-lg p-1 m-1">
             <div className="flex flex-row justify-start gap-2">
                 <div className='pl-3 pr-1 '>

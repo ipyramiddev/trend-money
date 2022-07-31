@@ -25,7 +25,6 @@ function App() {
     if (!walletConnected) {
       const provider = new ethers.providers.Web3Provider(window.ethereum)
       const user = await connectToMetamask(provider);
-      
       setWalletConnected(true);
       setProvider(provider);
       setWalletAddress(user.walletAddress);
@@ -54,7 +53,7 @@ function App() {
       </div>
       <div className="">
           <div>
-            {/* <SwitchView /> */}
+            <SwitchView />
           </div>
 
         {pool_data.seamPools.map((pool, index) => (

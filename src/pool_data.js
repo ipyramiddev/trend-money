@@ -55,14 +55,7 @@ const pool_data = {
                 assets: ["mCUSD", "WBTC",],
                 yp_address: '0x0448e99ab5f8230713a9f5d7e64ec2ab6e5952a3',
                 YTF_portion: 0.25,
-            }, ,
-            {
-                name: 'CELO-mcEUR',
-                platform: "ubeswap",
-                assets: ["CELO", "mcEUR"],
-                yp_address: '0x1e593f1fe7b61c53874b54ec0c59fd0d5eb8621e0x9f437509e61896738ea8cdb6cded618c0e509032',
-
-            },
+            }, 
             {
                 name: 'SOL-CELO',
                 platform: "ubeswap",
