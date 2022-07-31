@@ -8,6 +8,10 @@ const nav_items = [
         path: '/'
     },
     {
+        name: 'Explorer',
+        path: '/explorer'
+    },
+    {
         name: 'About',
         path: '#features',
     },
