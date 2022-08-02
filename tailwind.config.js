@@ -32,9 +32,15 @@ module.exports = {
 				128: '32rem',
 				144: '36rem',
 			},
-			borderRadius: {
-				'4xl': '2rem',
-			},
+			// borderRadius: {
+			// 	'4xl': '2rem',
+			// },
+
+			// boarderColor: {
+				
+			// },
+
+
 			backgroundImage: {
 				"team-img": "url(../public/home/team-img.png)",
 				"team-box-img": "url(../public/home/team-box-img.png)",

@@ -1,5 +1,13 @@
 import { ethers, BigNumber } from "ethers";
 
+export const useWallet = () => {
+    if ("aptos" in window) {
+        return(window.aptos);
+    }
+    else {
+        return(null);
+    }
+}
 
 export const connectToMetamask = async (provider) => {
     const accounts = await provider.send("eth_requestAccounts", []);
