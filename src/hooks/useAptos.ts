@@ -47,7 +47,8 @@ export const loadCoinStore = async () => {
         deposit_count,
         withdraw_count,
         balance,
-        coin_txs_count
+        coin_txs_count,
+        coin_txs:[]
     }
     console.log(coins);
     return coins

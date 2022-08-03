@@ -15,22 +15,21 @@ declare global {
   }
 
   interface UserCoins {
-    coins: any[];
-    coin_count: any;
+    coins: any[]|null;
     balance: any;
     deposit_count: any;
     withdraw_count: any;
-    coin_txs: any[] | null;
+    coin_txs: any[] | undefined;
     coin_txs_count: any| null;
   }
   interface UserProps {
-    account: AptosAccount | null;
+    // account: AptosAccount | null;
     connected: boolean;
     user: User;
 }
 
 interface User {
-    balance: any;
+    // balance: any;
     address: string;
     nfts: UserNfts | null;
     coins: UserCoins | null;

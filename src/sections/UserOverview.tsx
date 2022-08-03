@@ -32,7 +32,7 @@ const UserOverview= ({connected, user}: UserProps) => {
 
             <p className="text-lg sm:text-xs opacity-70">Welcome back</p>
             <p className="text-2xl sm:text-lg text-yellow1">{user.address}</p>
-            <p className="text-4xl text-right">{user.balance}</p>
+            <p className="text-4xl text-right">{user.coins?.balance}</p>
             <p className="text-right text-sm opacity-30"> Aptos Tokens</p>
 
             <div className="flex flex-row justify-end gap gap-4">
