@@ -20,10 +20,11 @@ const client = new ApolloClient({
 })
 
 
-
-
 export default function Wrapper() {
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [connected, setConnected] = useState(false);
+
+  
   
   return (
     <ApolloProvider client={client}>
@@ -37,15 +38,12 @@ export default function Wrapper() {
             <Route path="docs" element={<Docs />} />
             {/* ADD ADDITONAL ROUTES here ex swap page */}
             <Route path="/app" element={<App />} />
-            <Route path="/explorer" element={<Explorer />} />
+            <Route path="/explorer" element={<Explorer/>}  />
           </Routes>
           {/* <PriceDrawer drawerOpen={drawerOpen} setDrawerOpen={setDrawerOpen} /> */}
         </BrowserRouter>
       </div>
     </ApolloProvider>
-
-
-
 
   );
 }

@@ -1,12 +1,15 @@
 // Create Explorer page to view tokens and their supply, unique wallets, and transactions
 import React, { useState, useEffect } from 'react';
-
+import '../index.css';
 // const fullNodes = [
-import { AptosClient, AptosAccount, FaucetClient, BCS, TxnBuilderTypes, HexString } from "aptos";
+import { AptosClient, AptosAccount, FaucetClient, BCS, TxnBuilderTypes, HexString, Types } from "aptos";
 import { dapps } from "../dapp_data";
 import BubbleSection from '../sections/BubbleSection';
 import UserOverview from '../sections/UserOverview';
 import { loadCoins, loadNfts, loadCoinStore, useFaucet, sendTransaction } from '../hooks/useAptos';
+import SplineSection from '../sections/SplineSection';
+import TxnList from 'sections/TxnList';
+import ModuleExplorer from 'sections/ModuleExplorer';
 // devnet is used here for testing
 const NODE_URL = "https://fullnode.devnet.aptoslabs.com";
 const FAUCET_URL = "https://faucet.devnet.aptoslabs.com";
@@ -14,77 +17,132 @@ const FAUCET_URL = "https://faucet.devnet.aptoslabs.com";
 const client = new AptosClient(NODE_URL);
 const faucetClient = new FaucetClient(NODE_URL, FAUCET_URL);
 
+interface Props {
+    isLoading: boolean;
+    isConnected: boolean;
+    // setConnected: (connected: boolean) => void;
+}
 
 const Explorer = () => {
-    const [txs, setTxs] = useState<any>([]);
+    const [txs, setTxs] = React.useState<Types.OnChainTransaction[]>([]);
     const [userProps, setUserProps] = useState<UserProps | null>(null);
-    
+    const [connected, setConnected] = useState<boolean>(false);
     
     const createAccount = async () => {
+        // const acct = 
         // const res = await (window as any).martian.connect();  
-        // const txs = await client.getTransactions({address:new HexString("0x1d40175352316901bb8306b29a919da75f8b305f9bb9fa265f308c67cb409270")}, { limit: 10 });
-        // const balance = await loadCoins("0x1d40175352316901bb8306b29a919da75f8b305f9bb9fa265f308c67cb409270");
+        // const txs = await client.getTransactions();
+        const balance = await loadCoins("0x1d40175352316901bb8306b29a919da75f8b305f9bb9fa265f308c67cb409270");
         const nfts = await loadNfts("0x1d40175352316901bb8306b29a919da75f8b305f9bb9fa265f308c67cb409270");
-        const coins = await loadCoinStore();
+        // const coins = await loadCoinStore();
         
-        // console.log(txs);
-        // const user_txs = [];
-        // for (const tx of txs) {
-        //     if (tx.type === "user_transaction") {
-        //         console.log(tx);
-        //         user_txs.push(tx);
-        //     }
-        // }
-        // setTxs(user_txs);
+        console.log(txs);
+        const user_txs = [];
+        for (const tx of txs) {
+            if (tx.type === "user_transaction") {
+                console.log(tx);
+                try {
+                    user_txs.push(tx as Types.OnChainTransaction);
+                }
+                catch (e) {
+                    console.log(e);
+                }
+
+            }
+        }
+        setTxs(user_txs);
         setUserProps({
             connected: true,
-            // account : null,s
             user: {
                 address: "0x1d40175352316901bb8306b29a919da75f8b305f9bb9fa265f308c67cb409270",
                 nfts: {
                     collection_count: nfts.collection_count,
                     minted_count : nfts.minted_count,
-                    collections: [],
+                    collections:nfts.collections,
                     nfts : [],
                 },
-                coins: coins
+                coins: {
+                    balance: balance,
+                },
+                // balance: balance,
+                txns: user_txs
             }
-
-
     });
 
 }
     useEffect(() => {
-        // createAccount();
+        if(!window.martian.isConnected())
+        console.log(" wallet not connected");
+        window.martian.connect().then(() => {
+            console.log("connected");
+            setConnected(true);
+        });
+        
+        createAccount();
     }, []);
 
+    const [modules, setModules] = React.useState<Types.MoveModule[]>([]);
+    
+    
+    const connect =  () => {
+        window.martian.connect().then(() => {
+            console.log("connected");
+            setConnected(true);
+        }).catch((err:any) => {
+            console.log(err);
+            setConnected(false);
+        })
+    }
 
 
+
+    const loadTxs = (address:string) => {
+        client.getAccountTransactions(address).then((txs: Types.OnChainTransaction[]) => {
+            
+            setTxs(txs.reverse());
+            console.log(txs);
+        }).catch((err:any) => {
+            console.log(err);
+        }).finally(() => {
+            console.log("done");
+        })
+    }
+
+
+
+    // const loadTokenRegistry = () => {
     return (<div>
         <p className="text-5xl text-center">Explorer</p>
         <div>
-            {userProps && <UserOverview {...userProps} />}
-            
-            {/* <UserOverview connected={true} user={userProps} /> */}
-            <button className="seam-button m-3" onClick={createAccount}>Create Account</button>
-            <button className="seam-button m-3" onClick={loadCoins}>load coins</button>
-            {/* <button className="seam-button m-3" onClick={loadNfts}>load Nfts</button> */}
-            <button className="seam-button m-3" onClick={sendTransaction}>load Nfts</button>
-            <h2>Tokens</h2>
-            {txs.map((tx:any) => {
-                return (<div className="seam-outline">
-                    <p>{tx.type}</p>
-                    <p> Gas Used: {tx.gas_used}</p>
-                    <p>{tx.payload.function}</p>
-                </div>)
-            }
-            )}
-            {/* Render all tokens */}
+            {connected ? <p>connected</p> : <p>not connected</p>}
 
-            <div className="flex flex-row justify-between">
-                <input type="text" placeholder="address"/>
+            {userProps ? 
+            <div className='flex flex-row w-full px-2'>
+            <UserOverview {...userProps} />
+            <TxnList txns={txs} address={"0x1d40175352316901bb8306b29a919da75f8b305f9bb9fa265f308c67cb409270"}/>
+            </div>:null}
+            {!connected ?<button className="seam-button m-3" onClick={connect}>Connect</button>
+            :
+            <div>
+                <button className="seam-button m-3" onClick={()=>loadTxs("0x1d40175352316901bb8306b29a919da75f8b305f9bb9fa265f308c67cb409270")}>Load user Txs</button>
+            {/* <button className="seam-button m-3" onClick={()=>loadModules("0x1")}>Load Modules</button> */}
+            </div>}
+            
+            {/* {modules.map((module, index) => {
+                if ((module as any).type as string === "0x1::account::Account") {
+                    console.log("here we go ");
+
+                }
+                return <div key={index}>0</div>
+            }
+            )} */}
+
+            
+            <div className=''>
+            <ModuleExplorer client={client} mod={modules}/>
+            <BubbleSection dapps={dapps}/>
             </div>
-            {/* <BubbleSection dapps={dapps}/> */}
+
         </div>
     </div>
     );

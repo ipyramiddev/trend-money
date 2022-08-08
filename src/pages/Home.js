@@ -1,8 +1,23 @@
 import React from "react";
 import PlatformOverview from "../components/PlatformOverview";
 import UniIcon from "../components/UniIcon";
-// import './index.css';
+import {dapps} from "../dapp_data";
+
+const DefiDappsNames = ["tsunami",]
+
+function Protocol(protocol){
+    return(
+    <div className="w-30 h-12 rounded-2xl">
+        <p>{protocol.name}</p>
+        <img source={'./dapps/' + protocol.image} className="w-20 h-20" />
+      
+    </div>
+    );
+}
+
+
 function Home() {
+
     const protocolIntegrations = [
         { name: 'Ubeswap', img: 'ube_logo.svg', color: 'lightPurple' },
         { name: 'Mobius', img: 'mobius.svg', color: 'blue' },
@@ -15,8 +30,18 @@ function Home() {
             <p className="text-5xl text-center m-5"> Simple ETF-Style Yield</p>
             <p className="text-2xl text-center m-2 p-4">Bundled pools w/ fragmented deposits across top celo defi protocols, Risk Adverse Yield Aggregate.</p>
             <div className="flex flex-col items-center">
+                <div className="m-4 pb-6">
                 <p className="text-9xl pl-2">Σ</p>
                 <img className="w-80" src="./Tokenfork.png" alt="" />
+                </div>
+
+                <div>
+                    {DefiDappsNames.map((protocolName, index) => {
+                        const protocol = dapps.find(dapp => dapp.name === protocolName)
+                        return(
+                        <Protocol integration={protocol} key={index} />)
+                    })}
+                </div>
             </div>
             <div className="flex flex-row justify-center m-5 p-2">
                 <a href="/app">
@@ -39,10 +64,7 @@ function Home() {
                             </div>
                         )
                     })}
-
-
                 </div>
-                <p>coming soon...</p>
                 <div className="w-20 h-30 rounded-lg bg-pink bg-opacity-30">
                     <UniIcon />
                 </div>

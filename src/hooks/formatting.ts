@@ -36,6 +36,13 @@ export const format_date = (date:number) => {
 
 }
 
+export const parsePayloadFunction = (funct:string) => {
+    if (funct === null) {
+        return '-';
+    }
+    const func = funct.split('::');
+    return { addr: shortenAddress(func[0]), mod:func[1], scr: func[2], };
+}
 
 export const format_tvl = (price: number) =>{
     return "$" + format_large_number(price)
@@ -66,9 +73,33 @@ export const shortenAddress = (
     if (!account) {
       return "0x????...????";
     }
+    if (account.slice(0, 2) !== "0x") {
+        return account;
+    }
     return (
       account.slice(0, truncation + 2) +
       ".." +
       account.slice(account.length - truncation - 1, account.length)
     );
   };
+
+export const formatParam = (param: string) => {
+    if (!param) {
+        return "0x";
+    }
+    if (param.length >= 20) {
+        return shortenAddress(param);
+    }
+    return param;
+}
+  export const TimeAgo = (timestamp: string) => {
+    // convert unix timestamp in microseconds to milliseconds
+    const date = new Date(parseInt(timestamp) / 1000);
+    // const date = new Date(timestamp);
+    const now = new Date();
+    const seconds = Math.round(Math.abs((now.getTime() - date.getTime()) / 1000));
+    // console.log("seconds",date);
+    const minutes = Math.round(Math.abs(seconds / 60));
+    const hours = Math.round(Math.abs(minutes / 60));
+    return hours + " hours ago";
+  }

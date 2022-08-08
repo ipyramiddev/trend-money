@@ -25,6 +25,30 @@
   padding: 1rem;
 }
 
+.icon:hover {
+  background-color: white;
+  color: black;
+}
+
+.link {
+  text-decoration: underline;
+}
+
+.link:hover {
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.addr-dropdown {
+  width: 100%;
+  height: 100%;
+  border: white;
+  border-radius: 0.5rem;
+  background-color: transparent;
+  outline: none;
+  cursor: pointer;
+}
+
 .seam-button{
   background-color: transparent;
   padding-left: 2rem;
@@ -40,10 +64,10 @@
   background-color: transparent;
   padding-left: 1rem;
   padding-right: 2rem;
-  padding-top: 2rem;
+  padding-top: 1rem;
   padding-bottom: 0.5rem;
-  margin-top: 3rem;
-  margin-bottom: 3rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
   border-radius: 8px;
   color: white;
   border: dashed 3px  #ffffff;
@@ -67,6 +91,46 @@
 
 }
 
+.param-outline{
+  background-color: transparent;
+  padding-left: 0.5rem;
+  padding-right: 1rem;
+  padding-top: 0.3rem;
+  padding-bottom: 0.3rem;
+  margin-top: 0.3rem;
+  margin-bottom: 0.3rem;
+  border-radius: 8px;
+  color: white;
+  border: solid 3px  #3f14dd;
+}
+
+.function-outline{
+  background-color: transparent;
+  padding-left: 0.5rem;
+  padding-right: 1rem;
+  padding-top: 0.3rem;
+  padding-bottom: 0.3rem;
+  margin-top: 0.3rem;
+  margin-bottom: 0.3rem;
+  border-radius: 8px;
+  border: solid 3px yellow;
+  /* color: yellow; */
+}
+
+.module-outline{
+  background-color: transparent;
+  padding-left: 0.5rem;
+  padding-right: 1rem;
+  padding-top: 0.3rem;
+  padding-bottom: 0.3rem;
+  margin-top: 0.3rem;
+  margin-bottom: 0.3rem;
+  border-radius: 8px;
+  border: solid 3px orange;
+  /* color: yellow; */
+}
+
+
 .attribute-box{
   padding: 4;
   background: #ffffff;
@@ -76,24 +140,35 @@
   align-items: center;
 }
 
-/* myComponent.css */
 
-.myBubbleUI {
-	width: 100%;
-	max-width: 1300px;
-	height: 800px;
-	border-radius: 50px
+
+.dappBubble{
+  align-items: center;
+  justify-content: center;
+  justify-items: center;
+  width: 15rem;
 }
 
-.bubble-container{
-  width: 100%;
-  height: 100%;
-  border-radius: '50px';
-  /* background: #0a98da; */
-  text-align: middle;
-  padding-top: 15%;
-
+.scrollable{
+  overflow-x: scroll;
+  overflow-y: hidden;
+  height: 200px;
 }
+
+.txScroller{
+  overflow-x: hidden;
+  overflow-y: scroll;
+  height: 400px;
+}
+
+.fnScroller{
+  overflow-x: hidden;
+  overflow-y: scroll;
+  height: 250px;
+  width: 280px
+}
+
+
 
 body {
   margin: 0;

@@ -17,9 +17,7 @@ function App() {
   const [walletAddress, setWalletAddress] = useState("");
   const [walletBalance, setWalletBalances] = useState([]);
   const [provider, setProvider] = useState(null);
-  const [selectedPool, setSelectedPool ] = useState(null);
-  const [tokenData, setTokenData ] = useState(null);
-  const [clients, setClients ] = useState(null);
+  
 
   const connectWallet = async () => {
     if (!walletConnected) {

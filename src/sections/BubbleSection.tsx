@@ -6,22 +6,22 @@ import DappBubble from "../components/dapps/DappBubble";
 import { Dapp } from "components/dapps/types";
 
 interface Props {
-	  dapps: Dapp[];
+	dapps: Dapp[];
 }
-const BubbleSection = ({dapps}:Props) =>{
-	const children = dapps.map((dapp:Dapp, i:number) => {
+const BubbleSection = ({ dapps }: Props) => {
+	const children = dapps.map((dapp: Dapp, i: number) => {
 		return (
-			<DappBubble {...dapp}  key={i} />
+			<DappBubble {...dapp} key={i} />
 		);
 	});
 
-	// return (<BubbleUI options={options} className="myBubbleUI bg-blue">
-	// {children}
-	// </BubbleUI>)
-
-return (<div className="myBubbleUI bg-blue">
-{children}
-</div>)
+	return (<div className="">
+		<div className="">
+			<div className="flex flex-row gap-2 scrollable">
+		{children}
+		</div>
+		</div>
+	</div>)
 };
 
 export default BubbleSection;

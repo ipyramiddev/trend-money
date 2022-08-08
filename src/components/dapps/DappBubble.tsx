@@ -6,7 +6,7 @@ interface Stat {
     name: string;
     value: string;
 }
-const BubbleStat = ({name, value}: Stat) => {
+const BubbleStat = ({ name, value }: Stat) => {
     return (
         <div className="flex flex-col">
             <p className="text-pink-500 text-2xl">{value}</p>
@@ -14,38 +14,34 @@ const BubbleStat = ({name, value}: Stat) => {
         </div>
     );
 }
+const Tag = ({ name }: { name: string }) => {
+    return (
+        <div className="rounded-lg text-sm px-3 py-1 outline outline-1 outline-white opacity-75">
+            <p className="font-light">{name}</p>
+        </div>
+    )
+}
+
+const Tags = ({ tags }: { tags: string[] }) => (
+        <div className="pl-2 flex flex-row gap gap-2">
+            {tags.map((tag, i) => (<Tag key={i} name={tag} />))}
+        </div>
+    )
+
 
 
 export default function DappBubble(dapp: Dapp) {
-    
-    const stats_template = [
-        
-        // { "name": "market cap", "value": format_market_cap(nft.market_cap_quote) },
-        // { "name": "volume", "value": nft.volume_24h },
-        // { "name": "circulating supply", "value": nft.circulating_supply },
-        // { "name": "floor 7d", "value": format_floor({floor_price_quote_7d:nft.floor_price_quote_7d, quote_currency:"usd"}) }
-    ];
-
 
     return (
-        <div className=" p-2 m-5 text-black rounded-xl border-white border-4">
-            <div className={` text-center hover:opacity-60`}>
-            <div className="flex flex-row items-center">
-
-                <img className=" rounded-lg m-3 w-20 max-h-20 " src={`./dapps/${dapp.image}`} alt="nft-image" />
-                <p className="text-3xl font-bold">{dapp.name}</p>
-                <Icons discordUrl={dapp.discord} twitterUrl={dapp.twitter} githubUrl={dapp.github}/>
-                <div className="flex flex-col items-center">
-                    {/* {stats_template.map((stat) => {
-                        return (
-                            <BubbleStat {...stat} />
-                            );
-                    })} */}
-
+        <div className="flex flex-col my-2 rounded-2xl border-white border-4 dappBubble">
+            <div className={`items-center`}>
+                <div className="flex flex-row justify-between">
+                    <div><p className="p-2 text-3xl font-bold align-baseline">{dapp.name}</p>
+                        <Tags tags={dapp.tags as string[]} />
+                    </div>
+                    <img className="rounded-lg m-3 w-12 " src={`./dapps/${dapp.image}`} alt="nft-image" />
                 </div>
-
-
-            </div>
+                <Icons discordUrl={dapp.discord} twitterUrl={dapp.twitter} githubUrl={dapp.github} />
             </div>
         </div>
     );

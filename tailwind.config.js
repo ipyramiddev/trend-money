@@ -9,6 +9,7 @@ module.exports = {
 		},
 		colors: {
 			blue2: '#4dbbfa',
+			blue: '#00bcd4',
 			pink: '#ff49db',
 			purple: '#391A51',
 			lightPurple: '#8933f5',
@@ -28,10 +29,10 @@ module.exports = {
 		},
 
 		extend: {
-			spacing: {
-				128: '32rem',
-				144: '36rem',
-			},
+			// spacing: {
+			// 	128: '32rem',
+			// 	144: '36rem',
+			// },
 			// borderRadius: {
 			// 	'4xl': '2rem',
 			// },
@@ -54,5 +55,5 @@ module.exports = {
 			}),
 		},
 	},
-	plugins: [require('daisyui')],
+	plugins: [require('daisyui'),require('tailwindcss-gradients'),],
 };

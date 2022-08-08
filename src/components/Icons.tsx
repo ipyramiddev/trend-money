@@ -9,7 +9,7 @@ interface Props {
 
 const Icons = ({discordUrl, githubUrl, twitterUrl}:Props) => {
     return (
-        <div className="flex flex-row gap gap-6 px-4 py-2 my-4 rounded-3xl text-3xl bg-white">
+        <div className="flex flex-row gap gap-4 px-3 py-2 rounded-xl text-2xl">
             <a href={discordUrl} className="icon rounded-full">
                 <FaDiscord />
             </a>

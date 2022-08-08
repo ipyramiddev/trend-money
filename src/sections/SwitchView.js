@@ -1,23 +1,37 @@
 import {useState} from 'react';
 import TokenView from './TokenView';
 import UbeTokenPrices from '../components/UbeTokenPrices';
+import AptosPools from './AptosPools';
+
+const tabs = [
+    {name: 'Aptos Pools', id: 'aptos'},
+    {name: 'Celo Pools', id: 'celo'},
+    {name: 'Uniswap Pools', id: 'uniswap'},
+]
 
 function SwitchView(props) {
     const [view, setView] = useState("token-prices");
 
+    const switchTab = (tab) => {
+        if (tab!==view) {
+            setView(tab);
+        }
+    }
+    
     return (
         <div className="flex flex-col items-center justify-center">
             <div className="flex flex-row gap-2">
                 <div className="tabs">
-                    <a className="tab tab-bordered outline outline-2" onClick={()=>setView('token-prices')}><p classname="text-underlined">Token Prices</p></a>
-                    <a className="tab tab-bordered" onClick={()=>setView('top-pairs')}>Top Pairs</a>
-                    <a className="tab tab-bordered">Platform View</a>
+                    {tabs.map((tab, index) => {
+                        return (<a className={`tab tab-bordered ${view===tab.name ? 'bg-white text-black' : 'border-gray'}`} onClick={()=>setView(tab.name)}>
+                            <p classname="text-2xl">{tab.name}</p>
+                            </a>)
+                    })
+                }
                 </div>
 
-                {view === "token-prices" && <UbeTokenPrices />}
-                {/* {view === "top-pairs" && <TopPairs />} */}
-                {/* {view === "platform-view" && <PlatformView />} */}
-
+                {view === "Aptos Pools" && <AptosPools />}
+                
             </div>
         </div>
     )
