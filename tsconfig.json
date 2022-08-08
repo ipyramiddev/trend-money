@@ -16,6 +16,6 @@
       "jsx": "react-jsx",
       "baseUrl": "src"
     },
-    "include": ["src/**/*", "types/**/*", "scripts/**/*"],
+    "include": ["src/**/*", "types/**/*", "scripts/**/*","src/*"],
     "exclude": ["node_modules", "**/*.spec.ts"]
   }
