@@ -98,16 +98,16 @@ export const dapps = [
           "image": "pontemNetwork.jpeg",
         },
         
-        {
-          "name": "Hanson",
-          "tags": ["DeFi"],
-          "description": "",
-          "discord": "",
-          "twitter": "https://twitter.com/hansondotso",
-          "status": "TBA",
-          "image": "",
-          "github": "",
-        },
+        // {
+        //   "name": "Hanson",
+        //   "tags": ["DeFi"],
+        //   "description": "",
+        //   "discord": "",
+        //   "twitter": "https://twitter.com/hansondotso",
+        //   "status": "TBA",
+        //   "image": "",
+        //   "github": "",
+        // },
         // {
         //   "name": "Laminar",
         //   "tags": ["DEX", "Orderbook"],
@@ -151,6 +151,19 @@ export const dapps = [
         //   "Npm": "",
         //   "k": "ORACLE"
         // },
+
+        {
+          "name": "Econia",
+          "description": "",
+          "tags": ["DeFi", "Orderbook"],
+          "discord": "https://discord.gg/ydAeGtrW",
+          "twitter": "https://twitter.com/EconiaLabs",
+          "image": "econia.jpg",
+          "status": "TBA",
+          "github": "https://github.com/econia-labs",
+          "docs": "https://www.econia.dev/",
+          "address":"0xb1d4c0de8bc24468608637dfdbff975a0888f8935aa63338a44078eec5c7b6c7",
+        },
         {
           "name": "Vial Protocol",
           "description": "",
@@ -162,20 +175,19 @@ export const dapps = [
           "image": "vial.png",
           "github": "",
           "docs": "",
+          "address":"0x1b6f1d8319f3f3b9649a4b2215a29c9184cb885c94e7eb51232a38ed6b28482c"
         },
-        // {
-        //   "name": "names.aptos",
-        //   "tags": "Name Service, Tools",
-        //   "discord": "",
-        //   "Published": "Jul 19, 2022 6:28 AM",
-        //   "twitter": "https://twitter.com/aptosnames",
-        //   "status": "Testnet",
-        //   "image": "",
-        //   "github": "",
-        //   "Docs": "",
-        //   "Npm": "",
-        //   "k": "NFTIdentity"
-        // },
+        {
+          "name": "names.aptos",
+          "tags": ["Name Service", "Tools"],
+          "discord": "",
+          "Published": "Jul 19, 2022 6:28 AM",
+          "twitter": "https://twitter.com/aptosnames",
+          "status": "Testnet",
+          "github": "",
+          "image": "aptosnames.svg",
+          "address":"0x7afc898f57883b146900d57c461daec0b044567e2c3d34d9270c84a28c33550f"
+        },
         {
           "name": "Hippo Labs",
           "tags": ["Aggregator", "DeFi", "Tools"],
@@ -186,6 +198,20 @@ export const dapps = [
           "image": "hippoLabs.jpeg",
           "github": "https://github.com/hippospace",
           "docs": "",
+          "address":"a61e1e86e9f596e483283727d2739ba24b919012720648c29380f9cd0a96c11a"
+        },
+        {
+          "name": "Souffl3",
+          "tags": ["NFT"],
+          "description": "",
+          "discord": "",
+          "twitter": "https://twitter.com/souffl3",
+          "status": "",
+          "image": "souffl3.jpg",
+          "github": "",
+          "docs": "",
+          "address":"0xf6994988bd40261af9431cd6dd3fcf765569719e66322c7a05cc78a89cd366d4"
+
         },
         {
           "name": "Aries Market ",
@@ -199,17 +225,7 @@ export const dapps = [
           "github": "",
           "docs": "",
         },
-        {
-          "name": "Fewcha",
-          "tags": ["Wallet","Tools"],
-          "description": "",
-          "discord": "https://discord.gg/HRbMWmhm",
-          "twitter": "https://twitter.com/FewchaWallet",
-          "status": "Testnet",
-          "image": "fewcha.svg",
-          "github": "",
-          "docs": "",
-        },
+        
         // {
         //   "name": "Mariana Exchange",
         //   "tags": "DeFi, Exchange",
@@ -224,17 +240,6 @@ export const dapps = [
         //   "k": "DEXDEFI"
         // },
         {
-          "name": "Econia",
-          "description": "",
-          "tags": ["DeFi", "Orderbook"],
-          "discord": "https://discord.gg/ydAeGtrW",
-          "twitter": "https://twitter.com/EconiaLabs",
-          "image": "econia.jpg",
-          "status": "TBA",
-          "github": "https://github.com/econia-labs",
-          "docs": "https://www.econia.dev/",
-        },
-        {
           "name": "Martian - trusted Aptos wallet",
           "tags": ["Wallet"],
           "discord": "https://discord.gg/MQDnAjPN",
@@ -243,6 +248,17 @@ export const dapps = [
           "logo": "",
           "github": "",
           "image":"martian.png",
+          "docs": "",
+        },
+        {
+          "name": "Fewcha",
+          "tags": ["Wallet","Tools"],
+          "description": "",
+          "discord": "https://discord.gg/HRbMWmhm",
+          "twitter": "https://twitter.com/FewchaWallet",
+          "status": "Testnet",
+          "image": "fewcha.svg",
+          "github": "",
           "docs": "",
         },
         // {

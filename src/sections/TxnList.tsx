@@ -23,7 +23,7 @@ const TxnList = ({ txns, address }: TxnListProps) => {
 
 
     return (
-        <div className="h-full">
+        <div className="h-full container">
             <h1>Transactions for { }</h1>
             <select className="addr-dropdown" onChange={(event) => switchAddress(event.target.value)}>
 
@@ -62,7 +62,7 @@ const TxnPayload = ({ payload }: UserTransaction) => {
             const pay = parsePayloadFunction(payload.function);
             return (
                 <div>
-                    <div className="flex flex-row justify-between">
+                    <div className="">
                         <div className="">
                             <p className="text-bold text-xl">{formatParam(payload.function)}</p>
                             <div className="flex flex-row gap-2">

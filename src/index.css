@@ -40,9 +40,10 @@
 }
 
 .addr-dropdown {
-  width: 100%;
-  height: 100%;
+  width: auto;
+  /* height: 100%; */
   border: white;
+  border-width: 5px;
   border-radius: 0.5rem;
   background-color: transparent;
   outline: none;
@@ -91,6 +92,8 @@
 
 }
 
+
+
 .param-outline{
   background-color: transparent;
   padding-left: 0.5rem;
@@ -130,6 +133,19 @@
   /* color: yellow; */
 }
 
+.account-outline{
+  background-color: transparent;
+  padding-left: 0.5rem;
+  padding-right: 1rem;
+  padding-top: 0.3rem;
+  padding-bottom: 0.3rem;
+  margin-top: 0.3rem;
+  margin-bottom: 0.3rem;
+  border-radius: 8px;
+  border: solid 3px orange;
+  /* color: yellow; */
+}
+
 
 .attribute-box{
   padding: 4;
@@ -155,10 +171,41 @@
   height: 200px;
 }
 
+.label{
+  font-size: 1.5rem;
+  opacity: 0.5;
+}
+
+.dappBadge{
+  align-items: center;
+  /* flex: ; */
+  color: white;
+  /* background-color: #9a008d; */
+  justify-content: center;
+  justify-items: center;
+  width: 10rem;
+  height: 2rem;
+}
+
+.dappScroll{
+  overflow-x: scroll;
+  overflow-y: hidden;
+  height: 140px;
+  width: 400px;
+}
+.dappBadge-img{
+  
+  width: 4rem;
+  height: 4rem;
+
+}
+
 .txScroller{
   overflow-x: hidden;
   overflow-y: scroll;
   height: 400px;
+  width: 600px;
+  scrollbar-color: #ffffff #000000;
 }
 
 .fnScroller{
@@ -168,15 +215,22 @@
   width: 280px
 }
 
-
+.modScroller{
+  overflow-x: hidden;
+  overflow-y: scroll;
+  height: 250px;
+  width: 300px
+}
 
 body {
-  margin: 0;
+  /* margin: 2rem; */
   background-color: black ;
   color: #ffffff;
   font-family: -apple-system, BlinkMacSystemFont, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+
 
 

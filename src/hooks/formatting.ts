@@ -73,7 +73,9 @@ export const shortenAddress = (
     if (!account) {
       return "0x????...????";
     }
-    if (account.slice(0, 2) !== "0x") {
+    
+
+    if (account.slice(0, 2) !== "0x" && account.slice(0, 3) !== "&0x") {
         return account;
     }
     return (
@@ -87,7 +89,15 @@ export const formatParam = (param: string) => {
     if (!param) {
         return "0x";
     }
-    if (param.length >= 20) {
+    if (param.slice(0, 2) === "0x" || param.slice(0,3)=== "&0x") {
+        // split on ::
+        const split = param.split("::");
+        if(split.length !== 1){
+            return shortenAddress(split[0]) + "::" + split[1] + "::" + split[2];   
+        }
+        return shortenAddress(param);
+    }
+    if (param.length >= 30) {
         return shortenAddress(param);
     }
     return param;
