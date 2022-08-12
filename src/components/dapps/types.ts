@@ -1,7 +1,7 @@
 
 export type Dapp = {
     name: string;
-
+    address?: string;
     // description: string | undefined;
     url?: string;
     image?: string | undefined;
