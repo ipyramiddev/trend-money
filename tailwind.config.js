@@ -56,5 +56,5 @@ module.exports = {
 			}),
 		},
 	},
-	plugins: [require('daisyui'),require('tailwindcss-gradients'),],
+	plugins: [require('daisyui'),require('tailwindcss-gradients'),require('tailwind-scrollbar')],
 };
