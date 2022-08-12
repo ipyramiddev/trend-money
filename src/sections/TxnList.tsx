@@ -11,7 +11,6 @@ interface TxnListProps {
 
 }
 
-// function isUserTransaction(Types.Transaction txn) {
 
 const TxnList = ({ txns, address }: TxnListProps) => {
     const [selectedAddress, setSelectedAddress] = useState<string | null>(address);
@@ -36,11 +35,11 @@ const TxnList = ({ txns, address }: TxnListProps) => {
                     </option>
                 ))}
             </select>
-            <div className="txScroller">
+            <div className="txScroller px-4">
             {txns.map((tx: Types.OnChainTransaction) => {
                 if (tx.type === "user_transaction") {
                     tx = tx as Types.UserTransaction;
-                    return (<div className="seam-outline" >
+                    return (<div className="seam-outline mx-4 my-3" >
                         <TxnPayload {...tx as UserTransaction} />
                         <TxnFooter {...tx as UserTransaction} />
                     </div>)
@@ -54,28 +53,37 @@ const TxnList = ({ txns, address }: TxnListProps) => {
 
 const TxnPayload = ({ payload }: UserTransaction) => {
     const { type } = payload;
-
+    
     console.log("payload", type);
     switch (type) {
         case "script_function_payload":
             payload = payload as Types.ScriptFunctionPayload;
-            const pay = parsePayloadFunction(payload.function);
+            const {addr, mod, scr} = parsePayloadFunction(payload.function);
             return (
                 <div>
                     <div className="">
-                        <div className="">
-                            <p className="text-bold text-xl">{formatParam(payload.function)}</p>
-                            <div className="flex flex-row gap-2">
-                                {payload.type_arguments.map((type_arg, index) => {
-                                    return <p key={index}>{formatParam(type_arg)}</p>
-                                })}
+                        <div className="text-center">
+                            <div className="flex flex-row gap gap-2 m-1">
+                            <p className="account-outline text-bold text-xl">{addr}</p>
+                            <p className="module-outline text-bold text-xl">{mod}</p>
+                            <p className="function-outline text-xl">{scr}</p>
+
                             </div>
                         </div>
-                        <div className="outline outline-2 p-2 pb-2 rounded-md bg-opacity-40">
+                        <div className="flex flex-row m-2 justify-between outline outline-2  rounded-md bg-opacity-40">
+                            <div className="p-2">
                             <p className="text-center text-xl font-semibold">script args</p>
                             {payload.arguments.map((arg, index) => {
                                 return <p key={index}>{formatParam(arg)}</p>
                             })}
+                            </div>
+                            <div className=" bg-white p-2 text-black opacity-80">
+                            <p className="text-center text-xl font-semibold">arg types</p>
+                                {payload.type_arguments.map((type_arg, index) => {
+                                    return <p key={index}>{formatParam(type_arg)}</p>
+                                })}
+                                
+                            </div>
                         </div>
                     </div>
                 </div>

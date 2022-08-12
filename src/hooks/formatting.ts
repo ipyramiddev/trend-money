@@ -37,9 +37,7 @@ export const format_date = (date:number) => {
 }
 
 export const parsePayloadFunction = (funct:string) => {
-    if (funct === null) {
-        return '-';
-    }
+    
     const func = funct.split('::');
     return { addr: shortenAddress(func[0]), mod:func[1], scr: func[2], };
 }

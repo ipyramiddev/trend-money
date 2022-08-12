@@ -111,13 +111,13 @@ const Explorer = () => {
 
 
     // const loadTokenRegistry = () => {
-    return (<div>
-        <p className="text-5xl text-center">Explorer</p>
-        <div>
-            {connected ? <p>connected</p> : <p>not connected</p>}
+    return (<div className="items-center justify-center">
+        <p className="text-5xl text-center">Account Explorer</p>
+        <div className="flex flex-col items-center justify-center">
+            {connected ? <p className="px-2 py-1 rounded-sm bg-green1 bg-opacity-40 m-2">connected</p> : <p>not connected</p>}
 
             {userProps ? 
-            <div className='flex flex-row w-full px-2'>
+            <div className='flex flex-row items-center justify-center px-2'>
             <UserOverview {...userProps} />
             <TxnList txns={txs} address={"0x1d40175352316901bb8306b29a919da75f8b305f9bb9fa265f308c67cb409270"}/>
             </div>:null}
@@ -127,17 +127,7 @@ const Explorer = () => {
                 <button className="seam-button m-3" onClick={()=>loadTxs("0x1d40175352316901bb8306b29a919da75f8b305f9bb9fa265f308c67cb409270")}>Load user Txs</button>
             {/* <button className="seam-button m-3" onClick={()=>loadModules("0x1")}>Load Modules</button> */}
             </div>}
-            
-            {/* {modules.map((module, index) => {
-                if ((module as any).type as string === "0x1::account::Account") {
-                    console.log("here we go ");
-
-                }
-                return <div key={index}>0</div>
-            }
-            )} */}
-
-            
+      
             <div className=''>
             <ModuleExplorer client={client} mod={modules}/>
             <BubbleSection dapps={dapps}/>

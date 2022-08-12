@@ -40,7 +40,7 @@
 }
 
 .addr-dropdown {
-  width: auto;
+  width: 50%;
   /* height: 100%; */
   border: white;
   border-width: 5px;
@@ -52,6 +52,7 @@
 
 .seam-button{
   background-color: transparent;
+  margin: 0.5rem;
   padding-left: 2rem;
   padding-right: 2rem;
   padding-top: 0.5rem;
@@ -104,6 +105,7 @@
   margin-bottom: 0.3rem;
   border-radius: 8px;
   color: white;
+  width: 100%;
   border: solid 3px  #3f14dd;
 }
 
@@ -117,10 +119,12 @@
   margin-bottom: 0.3rem;
   border-radius: 8px;
   border: solid 3px yellow;
+  width: 100%;
   /* color: yellow; */
 }
 
-.module-outline{
+
+.mOutline{
   background-color: transparent;
   padding-left: 0.5rem;
   padding-right: 1rem;
@@ -129,7 +133,23 @@
   margin-top: 0.3rem;
   margin-bottom: 0.3rem;
   border-radius: 8px;
-  border: solid 3px orange;
+  border: solid 3px  #3f14dd;
+  width: 100%;
+  /* color: white; */
+}
+
+.module-outline{
+  background-color: transparent;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  padding-top: 0.3rem;
+  padding-bottom: 0.3rem;
+  margin-top: 0.3rem;
+  margin-bottom: 0.3rem;
+  border-radius: 8px;
+  border: solid 3px  #3f14dd;
+  width: 100%;
+  
   /* color: yellow; */
 }
 
@@ -172,31 +192,57 @@
 }
 
 .label{
-  font-size: 1.5rem;
+  font-size: 0.8rem;
   opacity: 0.5;
 }
 
 .dappBadge{
   align-items: center;
-  /* flex: ; */
-  color: white;
-  /* background-color: #9a008d; */
   justify-content: center;
   justify-items: center;
-  width: 10rem;
-  height: 2rem;
+  height: 80%;
+  /* width: 100%; */
+  padding: 0.4rem;
+  margin-top: 1rem;
+  margin-left: 0.3rem;
+  margin-right: 0.3rem;
+  border-radius: 0.5rem;
 }
 
 .dappScroll{
   overflow-x: scroll;
   overflow-y: hidden;
-  height: 140px;
-  width: 400px;
-}
-.dappBadge-img{
+  flex-direction: row;
+  height: 240px;
+  width: 30%;
+  scrollbar-width: thin;
+  scrollbar-color: #ffffff #ffffff;
   
-  width: 4rem;
-  height: 4rem;
+}
+
+.modOverview{
+  align-items: center;
+  flex: 1;
+  margin: 1.5rem;
+  justify-content: center;
+  justify-items: center;
+  width: 70%;
+}
+
+.dapps{
+  align-items: center;
+  justify-content: center;
+  justify-items: center;
+
+  width: 80%;
+}
+
+.dappBadge-img{
+  width: 5rem;
+  height: 5rem;
+  /* width:80%; */
+  aspect-ratio: 1 / 1;
+  padding: 0.5rem
 
 }
 
@@ -205,21 +251,28 @@
   overflow-y: scroll;
   height: 400px;
   width: 600px;
-  scrollbar-color: #ffffff #000000;
+  
 }
 
 .fnScroller{
   overflow-x: hidden;
   overflow-y: scroll;
   height: 250px;
-  width: 280px
+  width: 80%;
+}
+
+.cc{
+  align-items: center;
+  justify-content: center;
+  justify-items: center;
 }
 
 .modScroller{
   overflow-x: hidden;
   overflow-y: scroll;
   height: 250px;
-  width: 300px
+  width: 90%
+  
 }
 
 body {

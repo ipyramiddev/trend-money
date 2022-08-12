@@ -13,7 +13,7 @@ module.exports = {
 			pink: '#ff49db',
 			purple: '#391A51',
 			lightPurple: '#8933f5',
-			green: '#34eb3d',
+			green1: '#34eb3d',
 			white: '#ffffff',
 			yellow: '#fff620',
 			orange: '#ffa726',
@@ -30,10 +30,10 @@ module.exports = {
 		},
 
 		extend: {
-			// spacing: {
-			// 	128: '32rem',
-			// 	144: '36rem',
-			// },
+			spacing: {
+				128: '32rem',
+				144: '36rem',
+			},
 			// borderRadius: {
 			// 	'4xl': '2rem',
 			// },
