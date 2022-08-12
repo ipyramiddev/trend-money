@@ -1,5 +1,5 @@
 module.exports = {
-	content: ['./src/**/*.{js,jsx}', './public/index.html'],
+	content: ['./src/**/*.{js,jsx,tsx,ts}','./src/*.{js,ts,tsx}', './public/index.html'],
 	theme: {
 		screens: {
 			sm: '480px',
