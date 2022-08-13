@@ -13,28 +13,11 @@ interface TxnListProps {
 
 
 const TxnList = ({ txns, address }: TxnListProps) => {
-    const [selectedAddress, setSelectedAddress] = useState<string | null>(address);
-    const [addressList, setAddressList] = useState<string[]>([address, "0x1d40175352316901bb8306b29a919da75f8b305f9bb9fa265f308c67cb409270","0x1"]);
-
-    const switchAddress = (address: string) => {
-        setSelectedAddress(address);
-    }
-
 
     return (
         <div className="h-full container">
-            <h1>Transactions for { }</h1>
-            <select className="addr-dropdown" onChange={(event) => switchAddress(event.target.value)}>
+            <h1>Transactions for {address}</h1>
 
-                {/* <option value={chains[0]} onChange={(event)=>connect(event.target.value.id){</select>}>Select a chain</option> */}
-                {addressList.map((addr) => (
-                    <option value={addr}>
-                        <div className="flex flex-row justify-between p-2 p-1">
-                            <p>{addr}</p>
-                        </div>
-                    </option>
-                ))}
-            </select>
             <div className="txScroller px-4">
             {txns.map((tx: Types.OnChainTransaction) => {
                 if (tx.type === "user_transaction") {
@@ -94,7 +77,7 @@ const TxnPayload = ({ payload }: UserTransaction) => {
 
     return (
         <div>
-            {/* <p>{payload.data}</p> */}
+            <p>Non user txn</p>
         </div>
     )
 }

@@ -1,5 +1,5 @@
+import { OnChainTransaction } from "aptos/dist/api/data-contracts";
 export {};
-
 declare global {
   interface Window {
     aptos: any;
@@ -8,6 +8,7 @@ declare global {
 
   interface UserNfts {
     collections?: any[];
+    sent_count?: number;
     collection_count?: any;
     minted_count?: any;
     nfts?: any[];
@@ -38,7 +39,7 @@ declare global {
   interface UserProps {
     // account: AptosAccount | null;
     connected: boolean;
-    user: User | undefined;
+    user: User;
 }
 
 interface User {
@@ -46,7 +47,7 @@ interface User {
     address: string;
     nfts?: UserNfts;
     coins?: UserCoins;
-    txns: any[] | null;
+    txns: OnChainTransaction[];
 }
 
 }

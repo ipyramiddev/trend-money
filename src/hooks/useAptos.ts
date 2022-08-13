@@ -56,21 +56,43 @@ export const loadNfts = async (address:string) => {
     
     const resources = await client.getAccountResources(address) as Types.AccountResource[];
     console.log("NFT Resources: ", resources);
-    const collections = (resources.find((r:Types.AccountResource) => r.type === "0x3::token::Collections")) as Types.AccountResource;
-    
-    const minted_count = ((collections.data as any).create_token_data_events).counter as number;
-    const collection_count = ((collections.data as any).create_collection_events as any).counter as number;
+    try{
+    const collections = resources.find(r => r.type === "0x3::token::TokenStore") as Types.AccountResource
+    const data = collections.data as any;
+    console.log("Collections: ", collections);
+    const minted_count = (data.deposit_events as any).counter as number;
+    const deposit_count = ((collections.data as any).deposit_events as any).counter as number;
+    const sent_count = ((collections.data as any).withdraw_events as any).counter as number;
     const collection_data = (collections.data as any).collections as any[];
-    console.log(`Collection count: ${collection_count}`);
-    // console.log(collection_resources);
+    
     return  {
         collections: collection_data,
-        collection_count: collection_count,
+        collection_count: 0,
+        sent_count: sent_count,
         minted_count: minted_count,
-        received_count: 0,
+        received_count: deposit_count,
         nfts: []
 }
+    }catch(e){
+        console.log(e);
+        return  {
+            collections: [],
+            collection_count: 0,
+            minted_count: 0,
+            received_count: 0,
+            nfts: []
+    }
+    }
+
 }
+
+
+// export const mintWagmi = async (account: AptosAccount) => {
+//     const payload = {
+//         type: "script_function_payload",
+//         function: `${WAGGY_ADDY},
+//     }
+
 
 export const sendTransaction= async (toAddr:string) =>{
 // Generate a transaction

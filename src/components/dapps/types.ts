@@ -10,5 +10,4 @@ export type Dapp = {
     github?: string | "";
     tags: string[] | undefined;
     // github: string | undefined;
-
 }

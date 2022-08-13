@@ -41,7 +41,7 @@
 
 .addr-dropdown {
   width: 50%;
-  /* height: 100%; */
+  
   border: white;
   border-width: 5px;
   border-radius: 0.5rem;
@@ -60,6 +60,15 @@
   border-radius: 8px;
   color: white;
   border: dashed 3px  #ffffff;
+}
+
+.module-container{
+  width: 70%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .seam-outline{
@@ -91,6 +100,11 @@
   /* color: black; */
   border: dashed 3px  #ffffff;
 
+}
+
+.stat-val{
+  color: white;
+  font-size: 2rem;
 }
 
 
@@ -213,10 +227,9 @@
   overflow-x: scroll;
   overflow-y: hidden;
   flex-direction: row;
-  height: 240px;
-  width: 30%;
+  height: 200px;
   scrollbar-width: thin;
-  scrollbar-color: #ffffff #ffffff;
+  
   
 }
 
@@ -233,7 +246,7 @@
   align-items: center;
   justify-content: center;
   justify-items: center;
-
+  flex-direction: column;
   width: 80%;
 }
 

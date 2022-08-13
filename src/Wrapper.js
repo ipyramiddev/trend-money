@@ -28,19 +28,18 @@ export default function Wrapper() {
   
   return (
     <ApolloProvider client={client}>
-      <div className='bg-black relative' >
+      <div className='' >
         <Navbar />
         <BrowserRouter>
           <Routes>
             {/* HOME PAGE */}
             <Route path="/" element={<Home />} />
             <Route path="/home" element={<Home />} />
-            <Route path="docs" element={<Docs />} />
+            <Route path="/docs" element={<Docs />} />
             {/* ADD ADDITONAL ROUTES here ex swap page */}
             <Route path="/app" element={<App />} />
             <Route path="/explorer" element={<Explorer/>}  />
           </Routes>
-          {/* <PriceDrawer drawerOpen={drawerOpen} setDrawerOpen={setDrawerOpen} /> */}
         </BrowserRouter>
       </div>
     </ApolloProvider>

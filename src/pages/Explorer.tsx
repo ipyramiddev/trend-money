@@ -10,6 +10,7 @@ import { loadCoins, loadNfts, loadCoinStore, useFaucet, sendTransaction } from '
 import SplineSection from '../sections/SplineSection';
 import TxnList from 'sections/TxnList';
 import ModuleExplorer from 'sections/ModuleExplorer';
+import UserExplorer from 'sections/UserExplorer';
 // devnet is used here for testing
 const NODE_URL = "https://fullnode.devnet.aptoslabs.com";
 const FAUCET_URL = "https://faucet.devnet.aptoslabs.com";
@@ -30,17 +31,22 @@ const Explorer = () => {
     
     const createAccount = async () => {
         // const acct = 
-        // const res = await (window as any).martian.connect();  
-        // const txs = await client.getTransactions();
-        const balance = await loadCoins("0x1d40175352316901bb8306b29a919da75f8b305f9bb9fa265f308c67cb409270");
-        const nfts = await loadNfts("0x1d40175352316901bb8306b29a919da75f8b305f9bb9fa265f308c67cb409270");
+        const res = await (window as any).martian.connect();  
+        console.log("RES",res);
+        const address = res.address;
+        const txs = await client.getTransactions();
+        const balance = await loadCoins(address);
+        const nfts = await loadNfts(address);
+        const resources =  (await window.martian.getAccountResources(address)) as Types.AccountResource[];
+        console.log("RESOURCES",resources);
+        // const nfts = resources.find(r => r.type === "0x3::token::TokenStore") as Types.AccountResource;
         // const coins = await loadCoinStore();
         
         console.log(txs);
         const user_txs = [];
         for (const tx of txs) {
             if (tx.type === "user_transaction") {
-                console.log(tx);
+                // console.log(tx);
                 try {
                     user_txs.push(tx as Types.OnChainTransaction);
                 }
@@ -54,13 +60,8 @@ const Explorer = () => {
         setUserProps({
             connected: true,
             user: {
-                address: "0x1d40175352316901bb8306b29a919da75f8b305f9bb9fa265f308c67cb409270",
-                nfts: {
-                    collection_count: nfts.collection_count,
-                    minted_count : nfts.minted_count,
-                    collections:nfts.collections,
-                    nfts : [],
-                },
+                address: address,
+                nfts: nfts,
                 coins: {
                     balance: balance,
                 },
@@ -85,7 +86,7 @@ const Explorer = () => {
     
     
     const connect =  () => {
-        window.martian.connect().then(() => {
+        window.martian.connect().then((res:any) => {
             console.log("connected");
             setConnected(true);
         }).catch((err:any) => {
@@ -110,28 +111,24 @@ const Explorer = () => {
 
 
 
-    // const loadTokenRegistry = () => {
     return (<div className="items-center justify-center">
-        <p className="text-5xl text-center">Account Explorer</p>
+        <p className="text-3xl text-center">Explorer</p>
         <div className="flex flex-col items-center justify-center">
-            {connected ? <p className="px-2 py-1 rounded-sm bg-green1 bg-opacity-40 m-2">connected</p> : <p>not connected</p>}
+            {connected ? <p className="px-2 py-1 rounded-sm text-green1 outline-2 outline-green1 m-2">connected</p> : <p>not connected</p>}
 
             {userProps ? 
-            <div className='flex flex-row items-center justify-center px-2'>
-            <UserOverview {...userProps} />
-            <TxnList txns={txs} address={"0x1d40175352316901bb8306b29a919da75f8b305f9bb9fa265f308c67cb409270"}/>
-            </div>:null}
+            
+            <UserExplorer userProps={userProps}/>:null}
             {!connected ?<button className="seam-button m-3" onClick={connect}>Connect</button>
             :
             <div>
                 <button className="seam-button m-3" onClick={()=>loadTxs("0x1d40175352316901bb8306b29a919da75f8b305f9bb9fa265f308c67cb409270")}>Load user Txs</button>
-            {/* <button className="seam-button m-3" onClick={()=>loadModules("0x1")}>Load Modules</button> */}
             </div>}
       
-            <div className=''>
+            <div className='module-container '>
             <ModuleExplorer client={client} mod={modules}/>
-            <BubbleSection dapps={dapps}/>
             </div>
+            {/* <BubbleSection dapps={dapps}/> */}
 
         </div>
     </div>

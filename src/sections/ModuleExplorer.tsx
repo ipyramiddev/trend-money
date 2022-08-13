@@ -89,38 +89,38 @@ const ModuleExplorer = ({ client }: ModExploreProps) => {
         , [selectedAddress]);
 
     return (
-        <div className="text-center">
+        <div className="flex flex-col text-center items-center justify-center">
             <p className="text-2xl ">Module Overview</p>
-                
-                        <div className="flex flex-col seam-outline items-center justify-center">
-                        <p>Select An account</p>
-                        <select className="addr-dropdown px-4 text-green bg-white bg-opacity-30 " onChange={(event) => switchAddress(event.target.value)}>
-                            {addressList.map((addr) => (
-                                <option value={addr}>
-                                    <div className="flex flex-row justify-between p-2">
-                                        <p>{addr}</p>
-                                        <p></p>
-                                    </div>
-                                </option>
-                            ))}
-                        </select>
-                            <p>or Select a Dapp</p>
-                            <div className="flex flex-row items-center justify-center gap gap-4 dappScroll">
-                                {dapps.map((dapp: Dapp) => (
-                                    <DappBadge dapp={dapp} setSelectedAddress={switchAddress} isSelected={dapp.address ? (dapp.address===selectedAddress) : false}/>
-                                )
-                                )}
+
+            <div className="flex flex-col w-128 seam-outline">
+                <p>Select An account</p>
+                <select className="addr-dropdown px-4 text-green " onChange={(event) => switchAddress(event.target.value)}>
+                    {addressList.map((addr) => (
+                        <option value={addr}>
+                            <div className="flex flex-row justify-between p-2">
+                                <p>{addr}</p>
+                                <p></p>
+                            </div>
+                        </option>
+                    ))}
+                </select>
+                <p>or Select a Dapp</p>
+                <div className="flex flex-row items-center  scrollbar scrollbar-thumb-blue  gap gap-4 dappScroll">
+                    {dapps.map((dapp: Dapp) => (
+                        <DappBadge dapp={dapp} setSelectedAddress={switchAddress} isSelected={dapp.address ? (dapp.address === selectedAddress) : false} />
+                    )
+                    )}
 
 
-                    </div>
-                            <span className="flex justify-center items-center p-1 m-1">
-                                <p className="text-2xl text-white">Selected address: </p>
-                                <p className=" text-2xl account-outline">{formatParam(selectedAddress)}</p>
-                            </span>
                 </div>
-                <div className="flex flex-col gap gap-3">
-                    {/* {selectedModule !== undefined ? <ModuleTypes module={selectedModule} /> : null} */}
-                </div>
+                <span className="flex justify-center items-center p-1 m-1">
+                    <p className="text-2xl text-white">Selected address: </p>
+                    <p className=" text-2xl account-outline">{formatParam(selectedAddress)}</p>
+                </span>
+            </div>
+            <div className="flex flex-col gap gap-3">
+                {/* {selectedModule !== undefined ? <ModuleTypes module={selectedModule} /> : null} */}
+            </div>
             <div className="flex flex-row items-center justify-center gap-4">
                 <div className="bg-white bg-opacity-20 rounded-xl p-4">
                     <p className="text-2xl text-center p-2">Account Modules</p>
@@ -132,7 +132,6 @@ const ModuleExplorer = ({ client }: ModExploreProps) => {
                         }
                         )}
                     </div>
-
                 </div>
                 <div>
                     {selectedModule !== undefined ?
@@ -143,14 +142,12 @@ const ModuleExplorer = ({ client }: ModExploreProps) => {
             <div className="flex items-center seam-outline">
                 <p className="text-3xl p-2">Use Module</p>
                 <div className="flex flex-row items-center gap gap-3">
-                    {/* <p className="text-2xl">UseTransaction(</p> */}
                     <p className="account-outline text-2xl">{formatParam(selectedAddress)}</p>
                     <p className="text-3xl">::</p>
 
                     {selectedModule !== undefined ? <p className="text-2xl module-outline"> {selectedModule.abi?.name}</p> : <p className="text-2xl"></p>}
                     <p className="text-3xl">::</p>
                     <p className="function-outline text-2xl">{selectedFunction?.name}</p>
-                    {/* <p className="text-2xl"></p> */}
                 </div>
                 <button className="seam-button ">Send</button>
             </div>
@@ -169,7 +166,7 @@ const Module = (mod: Types.MoveModule) => {
             <p className="font-bold">{mod.abi?.name}</p>
             <div className="seam-outline fnScroller">
                 {mod.abi?.exposed_functions.map((func: MoveFunction) => (
-                    <div className="flex flex-row justify-between p-2 p-1 bg-blue2 bg-opacity-40">
+                    <div className="flex flex-row justify-between p-2 bg-blue2 bg-opacity-40">
                         <p className="function-outline">{func.name}</p>
                     </div>
                 ))}
