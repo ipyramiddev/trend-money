@@ -34,8 +34,8 @@ const UserOverview = ({ connected, user }: UserProps) => {
             </div>
 
             <UserNfts {...user.nfts} />
+            <input className=" m-3 text-black" type="text" value={sendAddr} onChange={(e) => setSendAddr(e.target.value)} />
             <button className="seam-button m-3" onClick={() => sendTransaction(sendAddr)}>Send coins:</button>
-
         </div>
     )
 }

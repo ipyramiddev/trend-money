@@ -6,7 +6,7 @@ import ReactTooltip from "react-tooltip";
 import { useEffect, useState } from "react";
 import { loadModules } from "hooks/useAptos";
 import { divide } from "lodash";
-import FunctionInfo from "./FunctionInfo";
+import FunctionInfo from "./functions/FunctionInfo";
 import ModuleTypes from "./ModuleTypes";
 import { dapps } from "dapp_data";
 import { Dapp } from "components/dapps/types";

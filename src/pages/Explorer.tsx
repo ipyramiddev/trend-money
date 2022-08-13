@@ -9,8 +9,8 @@ import UserOverview from '../sections/UserOverview';
 import { loadCoins, loadNfts, loadCoinStore, useFaucet, sendTransaction } from '../hooks/useAptos';
 import SplineSection from '../sections/SplineSection';
 import TxnList from 'sections/TxnList';
-import ModuleExplorer from 'sections/ModuleExplorer';
-import UserExplorer from 'sections/UserExplorer';
+import ModuleExplorer from '../sections/modules/ModuleExplorer';
+import UserExplorer from '../sections/UserExplorer';
 // devnet is used here for testing
 const NODE_URL = "https://fullnode.devnet.aptoslabs.com";
 const FAUCET_URL = "https://faucet.devnet.aptoslabs.com";
