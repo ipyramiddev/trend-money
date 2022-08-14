@@ -1,12 +1,13 @@
 import { Types } from "aptos";
-import { UserTransaction } from "aptos/dist/api/data-contracts";
+
 import { formatParam, parsePayloadFunction, shortenAddress, TimeAgo } from "hooks/formatting";
 import { aptosTxnLink } from "hooks/useExplorer";
 import ReactTooltip from "react-tooltip";
 import { useState } from "react";
+import { UserTransaction } from "aptos/dist/generated";
 interface TxnListProps {
     // isLoading: boolean;
-    txns: Types.OnChainTransaction[];
+    txns: Types.Transaction[];
     address: string;
 
 }
@@ -19,9 +20,9 @@ const TxnList = ({ txns, address }: TxnListProps) => {
             <h1>Transactions for {address}</h1>
 
             <div className="txScroller px-4">
-            {txns.map((tx: Types.OnChainTransaction) => {
+            {txns.map((tx: Types.Transaction) => {
                 if (tx.type === "user_transaction") {
-                    tx = tx as Types.UserTransaction;
+                    // tx = tx as UserTransaction;
                     return (<div className="seam-outline mx-4 my-3" >
                         <TxnPayload {...tx as UserTransaction} />
                         <TxnFooter {...tx as UserTransaction} />
@@ -40,7 +41,7 @@ const TxnPayload = ({ payload }: UserTransaction) => {
     console.log("payload", type);
     switch (type) {
         case "script_function_payload":
-            payload = payload as Types.ScriptFunctionPayload;
+            payload = payload as Types.TransactionPayload_ScriptFunctionPayload;
             const {addr, mod, scr} = parsePayloadFunction(payload.function);
             return (
                 <div>

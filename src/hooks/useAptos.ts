@@ -1,5 +1,6 @@
 import { AptosClient, AptosAccount, FaucetClient, BCS, Types, TxnBuilderTypes, HexString, TokenClient } from "aptos";
-// import { AccountResource } from "aptos/dist/api/data-contracts";
+import { MoveModule, MoveModuleBytecode, MoveResource } from "aptos/dist/generated";
+
 import { BaseContract } from "ethers";
 const NODE_URL = "https://fullnode.devnet.aptoslabs.com";
 const FAUCET_URL = "https://faucet.devnet.aptoslabs.com";
@@ -12,7 +13,6 @@ const WAGGY_ADDY = '0x84BCEA0377544E7B6ACB57CE120A74EF0D72C2F312138A99D42E46D2A4
 export const useFaucet = async (account: AptosAccount) => {
     console.log("Fauceting account...");
     // const re = await faucetClient.
-
 }
 
 
@@ -30,14 +30,12 @@ export const loadCoinStore = async () => {
     const resources  = await client.getAccountResources(new HexString("0x1d40175352316901bb8306b29a919da75f8b305f9bb9fa265f308c67cb409270"));
 
     
-    // const coinEvents = resources[1] as Types.AccountResource;
-    const aptCoin = resources[0] as Types.AccountResource;
-    const coinEvents = resources.find((r) => (r.type as string)==="0x1::coin::CoinEvents") as Types.AccountResource;
+    const coinEvents = resources.find((r) => (r.type as string)==="0x1::coin::CoinEvents") as any;
 
     const coin_txs_count = ((coinEvents.data as any).register_events as any).counter as number;
 
-    const deposit_count =0// ((aptCoin.data as any).deposit_events as any).counter as number;
-    const withdraw_count =0// ((aptCoin.data?.withdraw_events as any).counter as number;
+    const deposit_count = 0 // ((aptCoin.data as any).deposit_events as any).counter as number;
+    const withdraw_count = 0 // ((aptCoin.data?.withdraw_events as any).counter as number;
     const balance = (resources[0].data as any).coin.value;
     const coins = {
         coins: [],
@@ -54,10 +52,10 @@ export const loadCoinStore = async () => {
 
 export const loadNfts = async (address:string) => {
     
-    const resources = await client.getAccountResources(address) as Types.AccountResource[];
+    const resources = await client.getAccountResources(address) as MoveResource[];
     console.log("NFT Resources: ", resources);
     try{
-    const collections = resources.find(r => r.type === "0x3::token::TokenStore") as Types.AccountResource
+    const collections = resources.find(r => r.type === "0x3::token::TokenStore") as MoveResource;
     const data = collections.data as any;
     console.log("Collections: ", collections);
     const minted_count = (data.deposit_events as any).counter as number;
@@ -87,11 +85,12 @@ export const loadNfts = async (address:string) => {
 }
 
 
-// export const mintWagmi = async (account: AptosAccount) => {
-//     const payload = {
-//         type: "script_function_payload",
-//         function: `${WAGGY_ADDY},
-//     }
+export const mintWagmi = async (account: AptosAccount) => {
+    const payload = {
+        type: "script_function_payload",
+        function: `${WAGGY_ADDY}`,
+    }
+}
 
 
 export const sendTransaction= async (toAddr:string) =>{
@@ -116,7 +115,7 @@ export const stringToHex= (text: string) => {
   }
 
 export const loadModules = async (address: string) => {
-    const modules = await client.getAccountModules(address) as Types.MoveModule[];
+    const modules = await client.getAccountModules(address) as MoveModuleBytecode[];
     return modules;
 
 }

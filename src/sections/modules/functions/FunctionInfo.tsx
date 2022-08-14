@@ -1,5 +1,6 @@
 import { Types } from "aptos";
-import { MoveTypeId } from "aptos/dist/api/data-contracts";
+import { MoveType } from "aptos/dist/generated";
+
 import { formatParam } from "hooks/formatting";
 
 const FunctionInfo = ({ function: func }: { function: Types.MoveFunction }) => {
@@ -24,7 +25,7 @@ const FunctionInfo = ({ function: func }: { function: Types.MoveFunction }) => {
             <div>
                 <p className="label">Return Type:</p>
                 {func.return.length === 0 ? <p>No return type</p> : null}
-            {func.return.map((ret: MoveTypeId, i) => {
+            {func.return.map((ret: MoveType, i) => {
                     return (
                         <div key={ret+i} className=" param-outline justify-center">
                         <p className="">{ret}:</p>

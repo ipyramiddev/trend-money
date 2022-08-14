@@ -1,7 +1,7 @@
 import { Types } from "aptos";
 import { formatParam } from "hooks/formatting";
 
-const ModuleTypes = ({ module }: { module: Types.MoveModule }) => {
+const ModuleTypes = ({ module }: { module: Types.MoveModuleBytecode }) => {
     const { abi } = module;
     return (
         <div><p className="text-center text-2xl p-2">Module Types(structs)</p>

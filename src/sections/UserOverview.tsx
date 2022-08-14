@@ -1,5 +1,5 @@
 import { AptosClient, AptosAccount, FaucetClient, TokenClient, BCS, TxnBuilderTypes } from "aptos";
-import { AccountResource } from "aptos/dist/api/data-contracts";
+
 // import Stat from "components/Stat";
 import { format_large_number, shortenAddress } from "hooks/formatting";
 import { loadCoins, loadNfts, sendTransaction } from "hooks/useAptos";
@@ -35,6 +35,7 @@ const UserOverview = ({ connected, user }: UserProps) => {
 
             <UserNfts {...user.nfts} />
             <input className=" m-3 text-black" type="text" value={sendAddr} onChange={(e) => setSendAddr(e.target.value)} />
+            <button className="seam-button m-3" onClick={() => sendTransaction(sendAddr)}>Send coins:</button>
             <button className="seam-button m-3" onClick={() => sendTransaction(sendAddr)}>Send coins:</button>
         </div>
     )

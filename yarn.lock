@@ -1660,6 +1660,19 @@
     "@ethersproject/properties" "^5.6.0"
     "@ethersproject/strings" "^5.6.1"
 
+"@fewcha/aptos@^0.1.16":
+  version "0.1.16"
+  resolved "https://registry.yarnpkg.com/@fewcha/aptos/-/aptos-0.1.16.tgz#dbbcefa5ec76462b63c5085e452bab97eb155d22"
+  integrity sha512-7C//fU59+ezDkdHutVZzn8v9h5k8oybTEzmrwvEhzMKryURQABSK850MgdmYddVW42T0cpCpifX6i+qJJEoL4Q==
+  dependencies:
+    "@vespaiach/axios-fetch-adapter" "^0.3.0"
+    axios "^0.26.1"
+    buffer "^6.0.3"
+    js-sha3 "^0.8.0"
+    tweetnacl "^1.0.3"
+    typescript-memoize "^1.1.0"
+    yarn "^1.22.18"
+
 "@fewcha/web3@^0.1.13":
   version "0.1.13"
   resolved "https://registry.yarnpkg.com/@fewcha/web3/-/web3-0.1.13.tgz#b177d2a81a555b60ab7958dbfaaa6022dde96aa5"
@@ -3050,6 +3063,11 @@
   integrity sha512-MJQ5q/huXIER3st3bsmuWA7lxcdwZd28KJoBPFPNxKFenjF47smaiCCf+dLjUBiTV0DiIYAN4pXK19KxwfnUgg==
   dependencies:
     "@use-gesture/core" "10.2.18"
+
+"@vespaiach/axios-fetch-adapter@^0.3.0":
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/@vespaiach/axios-fetch-adapter/-/axios-fetch-adapter-0.3.0.tgz#abbd23478260a317165d0c52297306af9d39bb24"
+  integrity sha512-X3U9VANu+8R4Wu/77bAUiUSqgeTelDFZeJcGZDe63DiFcPI6onjrMWrG3py/N4Qf8qCU3YLq+wO2d8V6ftYcaw==
 
 "@web3-react/abstract-connector@^6.0.7":
   version "6.0.7"

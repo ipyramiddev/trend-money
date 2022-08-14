@@ -25,7 +25,7 @@ interface Props {
 }
 
 const Explorer = () => {
-    const [txs, setTxs] = React.useState<Types.OnChainTransaction[]>([]);
+    const [txs, setTxs] = React.useState<Types.Transaction[]>([]);
     const [userProps, setUserProps] = useState<UserProps | null>(null);
     const [connected, setConnected] = useState<boolean>(false);
     
@@ -37,7 +37,7 @@ const Explorer = () => {
         const txs = await client.getTransactions();
         const balance = await loadCoins(address);
         const nfts = await loadNfts(address);
-        const resources =  (await window.martian.getAccountResources(address)) as Types.AccountResource[];
+        const resources =  (await window.martian.getAccountResources(address)) as Types.MoveResource[];
         console.log("RESOURCES",resources);
         // const nfts = resources.find(r => r.type === "0x3::token::TokenStore") as Types.AccountResource;
         // const coins = await loadCoinStore();
@@ -48,7 +48,7 @@ const Explorer = () => {
             if (tx.type === "user_transaction") {
                 // console.log(tx);
                 try {
-                    user_txs.push(tx as Types.OnChainTransaction);
+                    user_txs.push(tx as Types.Transaction);
                 }
                 catch (e) {
                     console.log(e);
@@ -82,7 +82,7 @@ const Explorer = () => {
         createAccount();
     }, []);
 
-    const [modules, setModules] = React.useState<Types.MoveModule[]>([]);
+    const [modules, setModules] = React.useState<Types.MoveModuleBytecode[]>([]);
     
     
     const connect =  () => {
@@ -98,7 +98,7 @@ const Explorer = () => {
 
 
     const loadTxs = (address:string) => {
-        client.getAccountTransactions(address).then((txs: Types.OnChainTransaction[]) => {
+        client.getAccountTransactions(address).then((txs: Types.Transaction[]) => {
             
             setTxs(txs.reverse());
             console.log(txs);

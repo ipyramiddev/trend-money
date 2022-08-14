@@ -1,5 +1,6 @@
 import { AptosAccount, BCS, TxnBuilderTypes } from "aptos";
-import { MoveFunction, MoveModuleABI, MoveTypeId } from "aptos/dist/api/data-contracts";
+import { MoveFunction, MoveModule, MoveModuleBytecode, MoveType } from "aptos/dist/generated";
+// import { MoveFunction, MoveModuleABI, MoveTypeId, AccountResource } from "aptos/dist/api/data-contracts";
 import { TransactionPayloadScriptFunction } from "aptos/dist/transaction_builder/aptos_types";
 import { useEffect, useRef, useState } from "react";
 import ModalWrapper from "./ModalWrapper";
@@ -9,7 +10,7 @@ interface txnModalProps {
     client: AptosAccount;
     address: string
     func: MoveFunction;
-    module: MoveModuleABI;
+    module: MoveModule;
     params: any[];
     args: any[];
     arg_types: string[];
@@ -19,8 +20,8 @@ interface txnModalProps {
 
 
 
-const createPayload = (sender: string, address:string, client: AptosAccount, module: MoveModuleABI, func: MoveFunction, params: any[], args: any[], arg_types: string[]) => {
-    const serializedArgs = args.map((param:MoveTypeId, index) => {
+const createPayload = (sender: string, address:string, client: AptosAccount, module: MoveModule, func: MoveFunction, params: any[], args: any[], arg_types: string[]) => {
+    const serializedArgs = args.map((param:MoveType, index) => {
         // return generic_serialize(param, arg_types, args[index]);
         {}
     }) as any[]

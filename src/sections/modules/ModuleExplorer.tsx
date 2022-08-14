@@ -1,5 +1,5 @@
 import { AptosClient, Types } from "aptos";
-import { MoveFunction, MoveModule, UserTransaction } from "aptos/dist/api/data-contracts";
+// import { MoveFunction, MoveModule, UserTransaction } from "aptos/dist/api/data-contracts";
 import { formatParam, parsePayloadFunction, shortenAddress, TimeAgo } from "hooks/formatting";
 import { aptosTxnLink } from "hooks/useExplorer";
 import ReactTooltip from "react-tooltip";
@@ -11,24 +11,25 @@ import ModuleTypes from "./ModuleTypes";
 import { dapps } from "dapp_data";
 import { Dapp } from "components/dapps/types";
 import DappBadge from "components/DappBadge";
+import { MoveFunction } from "aptos/dist/generated";
 interface ModExploreProps {
     // isLoading: boolean;
     // txns: Types.OnChainTransaction[];
     client: AptosClient;
-    mod: Types.MoveModule[];
+    mod: Types.MoveModuleBytecode[];
 
 }
 
 const ModuleExplorer = ({ client }: ModExploreProps) => {
     const [selectedAddress, setSelectedAddress] = useState<string>("0x1");
-    const [selectedModule, setSelectedModule] = useState<Types.MoveModule>();
+    const [selectedModule, setSelectedModule] = useState<Types.MoveModuleBytecode>();
     const [selectedFunction, setSelectedFunction] = useState<Types.MoveFunction | null>(null);
-    const [modules, setModules] = useState<Types.MoveModule[]>([]);
+    const [modules, setModules] = useState<Types.MoveModuleBytecode[]>([]);
     const [error, setError] = useState<string | null>(null);
     const [addressList, setAddressList] = useState<string[]>(["0x1", "0xb1d4c0de8bc24468608637dfdbff975a0888f8935aa63338a44078eec5c7b6c7", "0xa0df1c4ce26953ad991ac5be3c93bfed002920d8da02ec8292799c720db1d021"]);
     // const [selectedFunction, setSelectedFunction] = useState<Types.MoveFunction | null>(null);
 
-    const ModuleInfo = ({ module }: { module: Types.MoveModule }) => {
+    const ModuleInfo = ({ module }: { module: Types.MoveModuleBytecode }) => {
         const { abi } = module;
 
         return (
@@ -67,9 +68,9 @@ const ModuleExplorer = ({ client }: ModExploreProps) => {
 
 
     const switchAddress = async (address: string) => {
-        loadModules(address).then((modules: Types.MoveModule[]) => {
+        loadModules(address).then((modules: Types.MoveModuleBytecode[]) => {
             setModules(modules);
-            setSelectedFunction(modules[0].abi?.exposed_functions[0] || null);
+            // setSelectedFunction(modules[0].abi?.exposed_functions[0] || null);
             setSelectedAddress(address);
 
             setSelectedModule(modules[0]);
@@ -125,7 +126,7 @@ const ModuleExplorer = ({ client }: ModExploreProps) => {
                 <div className="bg-white bg-opacity-20 rounded-xl p-4">
                     <p className="text-2xl text-center p-2">Account Modules</p>
                     <div className="fnScroller seam-outline p-2">
-                        {modules.map((mod: Types.MoveModule) => {
+                        {modules.map((mod: Types.MoveModuleBytecode) => {
                             return (<div className="items-center justify-center">
                                 <button className=" module-outline" onClick={() => setSelectedModule(mod)}>{mod.abi?.name}</button>
                             </div>)
@@ -160,7 +161,7 @@ const ModuleExplorer = ({ client }: ModExploreProps) => {
 
 
 
-const Module = (mod: Types.MoveModule) => {
+const Module = (mod: Types.MoveModuleBytecode) => {
     return (
         <div>
             <p className="font-bold">{mod.abi?.name}</p>
