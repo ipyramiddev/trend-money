@@ -7,7 +7,7 @@ const FAUCET_URL = "https://faucet.devnet.aptoslabs.com";
 const client = new AptosClient(NODE_URL);
 const faucetClient = new FaucetClient(NODE_URL, FAUCET_URL);
 const tokenClient = new TokenClient(client);
-
+const WAGGY_ADDY = '0x84BCEA0377544E7B6ACB57CE120A74EF0D72C2F312138A99D42E46D2A4656F86';
 
 export const useFaucet = async (account: AptosAccount) => {
     console.log("Fauceting account...");
