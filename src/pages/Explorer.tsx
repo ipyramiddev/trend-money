@@ -28,12 +28,15 @@ const Explorer = () => {
     const [txs, setTxs] = React.useState<Types.Transaction[]>([]);
     const [userProps, setUserProps] = useState<UserProps | null>(null);
     const [connected, setConnected] = useState<boolean>(false);
-    
+    const [userAccount, setUserAccount] = useState<Types.AccountData | null>(null);
     const createAccount = async () => {
         // const acct = 
         const res = await (window as any).martian.connect();  
         console.log("RES",res);
+        const act =  (await client.getAccount(res.address)) as Types.AccountData;
+
         const address = res.address;
+
         const txs = await client.getTransactions();
         const balance = await loadCoins(address);
         const nfts = await loadNfts(address);
@@ -57,6 +60,7 @@ const Explorer = () => {
             }
         }
         setTxs(user_txs);
+        // setUserAccount(act)
         setUserProps({
             connected: true,
             user: {
@@ -72,12 +76,15 @@ const Explorer = () => {
 
 }
     useEffect(() => {
-        if(!window.martian.isConnected())
+        if(!window.martian.isConnected()){
         console.log(" wallet not connected");
         window.martian.connect().then(() => {
             console.log("connected");
             setConnected(true);
+            
         });
+        return;
+    }
         
         createAccount();
     }, []);
@@ -111,7 +118,7 @@ const Explorer = () => {
 
 
 
-    return (<div className="items-center justify-center">
+    return (<div className="items-center w-full justify-center">
         <p className="text-3xl text-center">Explorer</p>
         <div className="flex flex-col items-center justify-center">
             {connected ? <p className="px-2 py-1 rounded-sm text-green1 outline-2 outline-green1 m-2">connected</p> : <p>not connected</p>}
@@ -125,12 +132,14 @@ const Explorer = () => {
                 <button className="seam-button m-3" onClick={()=>loadTxs("0x1d40175352316901bb8306b29a919da75f8b305f9bb9fa265f308c67cb409270")}>Load user Txs</button>
             </div>}
       
-            <div className='module-container '>
-            <ModuleExplorer client={client} mod={modules}/>
-            </div>
             {/* <BubbleSection dapps={dapps}/> */}
 
         </div>
+            <div className='module-container '>
+                {userProps!=null ?
+            <ModuleExplorer client={client} mod={modules}/>
+            :null}
+            </div>
     </div>
     );
 
