@@ -1,4 +1,4 @@
-import { AptosClient, Types } from "aptos";
+import { AptosAccount, AptosClient, Types } from "aptos";
 // import { MoveFunction, MoveModule, UserTransaction } from "aptos/dist/api/data-contracts";
 import { formatParam, parsePayloadFunction, shortenAddress, TimeAgo } from "hooks/formatting";
 import { aptosTxnLink } from "hooks/useExplorer";
@@ -13,17 +13,20 @@ import { Dapp } from "components/dapps/types";
 import DappBadge from "components/DappBadge";
 import { MoveFunction } from "aptos/dist/generated";
 import TxnPreview from "./TxnPreview";
+import TransactionModal from "modals/TransactionModal";
 interface ModExploreProps {
     // isLoading: boolean;
     // txns: Types.OnChainTransaction[];
     client: AptosClient;
+    // userAccount : AptosAccount;
+
     mod: Types.MoveModuleBytecode[];
 
 }
 
-const ModuleExplorer = ({ client }: ModExploreProps) => {
+const ModuleExplorer = ({ client,mod }: ModExploreProps) => {
     const [selectedAddress, setSelectedAddress] = useState<string>("0x1");
-    const [selectedModule, setSelectedModule] = useState<Types.MoveModuleBytecode>();
+    const [selectedModule, setSelectedModule] = useState<Types.MoveModuleBytecode>(mod[0]);
     const [selectedFunction, setSelectedFunction] = useState<Types.MoveFunction | null>(null);
     const [modules, setModules] = useState<Types.MoveModuleBytecode[]>([]);
     const [error, setError] = useState<string | null>(null);
@@ -35,15 +38,15 @@ const ModuleExplorer = ({ client }: ModExploreProps) => {
         const { abi } = module;
 
         return (
-            <div className="text-center" >
-                <div className="flex flex-row p-2">
+            <div className="text-center w-full h-full" >
+                <div className="flex  flex-row p-2">
                     <div className=" px-2 bg-lightPurple bg-opacity-30 rounded-xl">
                         <p className="text-2xl p-1">Module</p>
                         <div className="inline-block align-baseline">
                             <p className="text-sm">Module name: </p>
                             {abi?.name !== undefined ? <h1 className="module-outline">{abi.name}</h1> : <h1>No name</h1>}
                         </div>
-                        {abi?.exposed_functions !== undefined ? <h2 className="text-center">{abi.exposed_functions.length} exposed functions</h2> : <h2>No exposed functions</h2>}
+                        {abi?.exposed_functions !== undefined ? <h2 className="text-center opacity-70">{abi.exposed_functions.length} exposed function(s)</h2> : <h2>No exposed functions</h2>}
                         {/* <div> */}
                         <div className="modScroller outline-dashed rounded-xl outline-white p-1">
                             {abi?.exposed_functions.map((func: Types.MoveFunction) => {
@@ -72,7 +75,7 @@ const ModuleExplorer = ({ client }: ModExploreProps) => {
     const switchAddress = async (address: string) => {
         loadModules(address).then((modules: Types.MoveModuleBytecode[]) => {
             setModules(modules);
-            // setSelectedFunction(modules[0].abi?.exposed_functions[0] || null);
+            setSelectedFunction(modules[0].abi?.exposed_functions[0] || null);
             setSelectedAddress(address);
 
             setSelectedModule(modules[0]);
@@ -125,7 +128,7 @@ const ModuleExplorer = ({ client }: ModExploreProps) => {
                 {/* {selectedModule !== undefined ? <ModuleTypes module={selectedModule} /> : null} */}
             </div>
             <div className="flex flex-row items-center justify-center gap-4">
-                <div className="bg-white bg-opacity-20 rounded-xl p-4">
+                <div className="bg-white bg-opacity-20 rounded-xl p-4 items-center justify-center">
                     <p className="text-2xl text-center p-2">Account Modules</p>
                     <div className="fnScroller seam-outline p-2">
                         {modules.map((mod: Types.MoveModuleBytecode) => {
@@ -134,7 +137,10 @@ const ModuleExplorer = ({ client }: ModExploreProps) => {
                             </div>)
                         }
                         )}
+
+
                     </div>
+                    
                 </div>
                 <div>
                     {selectedModule !== undefined ?
@@ -142,15 +148,20 @@ const ModuleExplorer = ({ client }: ModExploreProps) => {
                         : <div>No modules found</div>}
                 </div>
             </div>
+            {selectedModule && selectedFunction && showTxnModal ? <TransactionModal sender={"0x1d40175352316901bb8306b29a919da75f8b305f9bb9fa265f308c67cb409270"} client={client} address={selectedAddress}  setIsOpen={setShowTxnModal} module={selectedModule} isOpen={showTxnModal} func={selectedFunction}  /> : null}
             {selectedModule && selectedFunction ?
 
             <TxnPreview
                 address={selectedAddress}
+                // account={userAccount}
                 module={selectedModule}
                 func={selectedFunction}
                 params={selectedFunction?.params}
+                setShowTxnModal={setShowTxnModal}
+                client={client}
                 />
             :null}
+
         </div>
     );
 }

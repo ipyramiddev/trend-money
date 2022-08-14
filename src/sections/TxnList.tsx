@@ -5,6 +5,7 @@ import { aptosTxnLink } from "hooks/useExplorer";
 import ReactTooltip from "react-tooltip";
 import { useState } from "react";
 import { UserTransaction } from "aptos/dist/generated";
+import TxnHeader from "components/txn/TxnHeader";
 interface TxnListProps {
     // isLoading: boolean;
     txns: Types.Transaction[];
@@ -38,7 +39,7 @@ const TxnList = ({ txns, address }: TxnListProps) => {
 const TxnPayload = ({ payload }: UserTransaction) => {
     const { type } = payload;
     
-    console.log("payload", type);
+    // console.log("payload", type);
     switch (type) {
         case "script_function_payload":
             payload = payload as Types.TransactionPayload_ScriptFunctionPayload;
@@ -46,14 +47,15 @@ const TxnPayload = ({ payload }: UserTransaction) => {
             return (
                 <div>
                     <div className="">
-                        <div className="text-center">
+                        <TxnHeader address={addr} module_name={mod} func_name={scr} />
+                        {/* <div className="text-center">
                             <div className="flex flex-row gap gap-2 m-1">
                             <p className="account-outline text-bold text-xl">{addr}</p>
                             <p className="module-outline text-bold text-xl">{mod}</p>
                             <p className="function-outline text-xl">{scr}</p>
 
                             </div>
-                        </div>
+                        </div> */}
                         <div className="flex flex-row m-2 justify-between outline outline-2  rounded-md bg-opacity-40">
                             <div className="p-2">
                             <p className="text-center text-xl font-semibold">script args</p>
@@ -66,6 +68,9 @@ const TxnPayload = ({ payload }: UserTransaction) => {
                                 {payload.type_arguments.map((type_arg, index) => {
                                     return <p key={index}>{formatParam(type_arg)}</p>
                                 })}
+                                {/* {payload.arguments.map((arg, index) => {
+                                    return (<p key={arg}>{formatParam(arg)}</p>)
+                                })} */}
                                 
                             </div>
                         </div>
