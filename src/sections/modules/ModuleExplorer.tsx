@@ -12,6 +12,7 @@ import { dapps } from "dapp_data";
 import { Dapp } from "components/dapps/types";
 import DappBadge from "components/DappBadge";
 import { MoveFunction } from "aptos/dist/generated";
+import TxnPreview from "./TxnPreview";
 interface ModExploreProps {
     // isLoading: boolean;
     // txns: Types.OnChainTransaction[];
@@ -26,6 +27,7 @@ const ModuleExplorer = ({ client }: ModExploreProps) => {
     const [selectedFunction, setSelectedFunction] = useState<Types.MoveFunction | null>(null);
     const [modules, setModules] = useState<Types.MoveModuleBytecode[]>([]);
     const [error, setError] = useState<string | null>(null);
+    const [showTxnModal, setShowTxnModal] = useState<boolean>(false);
     const [addressList, setAddressList] = useState<string[]>(["0x1", "0xb1d4c0de8bc24468608637dfdbff975a0888f8935aa63338a44078eec5c7b6c7", "0xa0df1c4ce26953ad991ac5be3c93bfed002920d8da02ec8292799c720db1d021"]);
     // const [selectedFunction, setSelectedFunction] = useState<Types.MoveFunction | null>(null);
 
@@ -140,18 +142,15 @@ const ModuleExplorer = ({ client }: ModExploreProps) => {
                         : <div>No modules found</div>}
                 </div>
             </div>
-            <div className="flex items-center seam-outline">
-                <p className="text-3xl p-2">Use Module</p>
-                <div className="flex flex-row items-center gap gap-3">
-                    <p className="account-outline text-2xl">{formatParam(selectedAddress)}</p>
-                    <p className="text-3xl">::</p>
+            {selectedModule && selectedFunction ?
 
-                    {selectedModule !== undefined ? <p className="text-2xl module-outline"> {selectedModule.abi?.name}</p> : <p className="text-2xl"></p>}
-                    <p className="text-3xl">::</p>
-                    <p className="function-outline text-2xl">{selectedFunction?.name}</p>
-                </div>
-                <button className="seam-button ">Send</button>
-            </div>
+            <TxnPreview
+                address={selectedAddress}
+                module={selectedModule}
+                func={selectedFunction}
+                params={selectedFunction?.params}
+                />
+            :null}
         </div>
     );
 }
