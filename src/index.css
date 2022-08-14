@@ -63,9 +63,9 @@
 }
 
 .module-container{
-  width: 70%;
+  width: 90%;
   height: 100%;
-  display: flex;
+  /* display: flex; */
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -121,6 +121,20 @@
   color: white;
   width: 100%;
   border: solid 3px  #3f14dd;
+}
+
+.return-outline{
+  background-color: transparent;
+  padding-left: 0.5rem;
+  padding-right: 1rem;
+  padding-top: 0.3rem;
+  padding-bottom: 0.3rem;
+  margin-top: 0.3rem;
+  margin-bottom: 0.3rem;
+  border-radius: 8px;
+  color: white;
+  width: 100%;
+  border: solid 3px  #dd14c9;
 }
 
 .function-outline{
@@ -271,7 +285,7 @@
   overflow-x: hidden;
   overflow-y: scroll;
   height: 250px;
-  width: 80%;
+  width: 100%;
 }
 
 .cc{
@@ -284,7 +298,7 @@
   overflow-x: hidden;
   overflow-y: scroll;
   height: 250px;
-  width: 90%
+  width: 100%
   
 }
 

@@ -1,3 +1,17 @@
+<!-- 
+
+                            
+ ####  ######   ##   #    # 
+#      #       #  #  ##  ## 
+ ####  #####  #    # # ## # 
+     # #      ###### #    # 
+#    # #      #    # #    # 
+ ####  ###### #    # #    #                        
+                 
+    
+ -->
+
+
 # Seam
 
 Your Simple, diverse and distributed yield gateway 
