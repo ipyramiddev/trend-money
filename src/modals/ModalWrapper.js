@@ -25,7 +25,7 @@ function ModalWrapper(props) {
                         leaveFrom="opacity-100"
                         leaveTo="opacity-0"
                     >
-                        <Dialog.Overlay className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
+                        <Dialog.Overlay className="fixed  top-0 bg-white inset-0 w bg-opacity-75 transition-opacity" />
                     </Transition.Child>
 
                     {/* This element is to trick the browser into centering the modal contents. */}
@@ -48,7 +48,7 @@ function ModalWrapper(props) {
             transform transition-all 
             "
                         >
-                            <div className="bg-black seam-outlinw text-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                            <div className="bg-black seam-outline text-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                                 <div className="sm:flex sm:items-center">
 
                                     <div className="mt-3 text-center">

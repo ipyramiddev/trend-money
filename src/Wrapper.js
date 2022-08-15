@@ -28,7 +28,7 @@ export default function Wrapper() {
   
   return (
     <ApolloProvider client={client}>
-      <div className='' >
+      <div >
         <Navbar />
         <BrowserRouter>
           <Routes>

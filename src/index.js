@@ -5,7 +5,7 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 ReactDOM.render(
   <React.StrictMode>
-    <div className='bg-black'>
+    <div className='bg-black '>
       <Wrapper/>
     </div>
 

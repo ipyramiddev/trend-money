@@ -18,7 +18,6 @@ interface ModExploreProps {
     // isLoading: boolean;
     // txns: Types.OnChainTransaction[];
     client: AptosClient;
-    // userAccount : AptosAccount;
 
     mod: Types.MoveModuleBytecode[];
 
@@ -26,12 +25,13 @@ interface ModExploreProps {
 
 const ModuleExplorer = ({ client,mod }: ModExploreProps) => {
     const [selectedAddress, setSelectedAddress] = useState<string>("0x1");
+    const [appSelected, setAppSelected] = useState<boolean>(false)
     const [selectedModule, setSelectedModule] = useState<Types.MoveModuleBytecode>(mod[0]);
     const [selectedFunction, setSelectedFunction] = useState<Types.MoveFunction | null>(null);
     const [modules, setModules] = useState<Types.MoveModuleBytecode[]>([]);
     const [error, setError] = useState<string | null>(null);
     const [showTxnModal, setShowTxnModal] = useState<boolean>(false);
-    const [addressList, setAddressList] = useState<string[]>(["0x1", "0xb1d4c0de8bc24468608637dfdbff975a0888f8935aa63338a44078eec5c7b6c7", "0xa0df1c4ce26953ad991ac5be3c93bfed002920d8da02ec8292799c720db1d021"]);
+    const [addressList, setAddressList] = useState<string[]>(["0x1", "0x3", "0xa0df1c4ce26953ad991ac5be3c93bfed002920d8da02ec8292799c720db1d021"]);
     // const [selectedFunction, setSelectedFunction] = useState<Types.MoveFunction | null>(null);
 
     const ModuleInfo = ({ module }: { module: Types.MoveModuleBytecode }) => {
@@ -87,29 +87,46 @@ const ModuleExplorer = ({ client,mod }: ModExploreProps) => {
         )
 
     }
-    // const loadModules = async (address: string) => {
+    const setUserAccount = async () => {
+        try {
+            if (await window.martian.isConnected()){
+                const res = await (window as any).martian.connect();
+                setSelectedAddress(res.address);
+            }
+        
+        } catch (err) {
+            console.log("not authed")
+        }
+    }
 
     useEffect(() => {
-        // switchAddress(selectedAddress);
+        switchAddress(selectedAddress);
     }
         , [selectedAddress]);
 
     return (
-        <div className="flex flex-col text-center items-center justify-center">
+        <div className="flex flex-col w-full items-center justify-center">
+            {selectedModule && selectedFunction && showTxnModal ? <TransactionModal sender={"0x1d40175352316901bb8306b29a919da75f8b305f9bb9fa265f308c67cb409270"} client={client} address={selectedAddress}  setIsOpen={setShowTxnModal} module={selectedModule} isOpen={showTxnModal} func={selectedFunction}  /> : null}
             <p className="text-2xl ">Module Overview</p>
 
-            <div className="flex flex-col w-128 seam-outline">
+            <div className="flex flex-col w-1/2 seam-outline">
+                <div className="bg-white bg-opacity-30 p-2 m-2">
                 <p>Select An account</p>
-                <select className="addr-dropdown px-4 text-green " onChange={(event) => switchAddress(event.target.value)}>
+                <div className="flex row w-1/2 outline justify-between text-black outline-white rounded-lg bg-white bg-opacity-80">
+                <select className="addr-dropdown   px-4  " onChange={(event) => switchAddress(event.target.value)}>
                     {addressList.map((addr) => (
                         <option value={addr}>
-                            <div className="flex flex-row justify-between p-2">
-                                <p>{addr}</p>
-                                <p></p>
-                            </div>
+                                <p className="">{addr}</p>
                         </option>
                     ))}
                 </select>
+                </div>
+                <button 
+                onClick={() => setUserAccount()}
+                className="seam-button">
+                    Your Account
+                </button>
+                </div>
                 <p>or Select a Dapp</p>
                 <div className="flex flex-row items-center  scrollbar scrollbar-thumb-blue  gap gap-4 dappScroll">
                     {dapps.map((dapp: Dapp) => (
@@ -124,11 +141,21 @@ const ModuleExplorer = ({ client,mod }: ModExploreProps) => {
                     <p className=" text-2xl account-outline">{formatParam(selectedAddress)}</p>
                 </span>
             </div>
-            <div className="flex flex-col gap gap-3">
-                {/* {selectedModule !== undefined ? <ModuleTypes module={selectedModule} /> : null} */}
-            </div>
+
+            {selectedModule && selectedFunction ?
+
+<TxnPreview
+    address={selectedAddress}
+    // account={userAccount}
+    module={selectedModule}
+    func={selectedFunction}
+    params={selectedFunction?.params}
+    setShowTxnModal={setShowTxnModal}
+    client={client}
+    />
+:null}
             <div className="flex flex-row items-center justify-center gap-4">
-                <div className="bg-white bg-opacity-20 rounded-xl p-4 items-center justify-center">
+                <div className="rounded-xl p-4 items-center justify-center">
                     <p className="text-2xl text-center p-2">Account Modules</p>
                     <div className="fnScroller seam-outline p-2">
                         {modules.map((mod: Types.MoveModuleBytecode) => {
@@ -148,19 +175,11 @@ const ModuleExplorer = ({ client,mod }: ModExploreProps) => {
                         : <div>No modules found</div>}
                 </div>
             </div>
-            {selectedModule && selectedFunction && showTxnModal ? <TransactionModal sender={"0x1d40175352316901bb8306b29a919da75f8b305f9bb9fa265f308c67cb409270"} client={client} address={selectedAddress}  setIsOpen={setShowTxnModal} module={selectedModule} isOpen={showTxnModal} func={selectedFunction}  /> : null}
-            {selectedModule && selectedFunction ?
-
-            <TxnPreview
-                address={selectedAddress}
-                // account={userAccount}
-                module={selectedModule}
-                func={selectedFunction}
-                params={selectedFunction?.params}
-                setShowTxnModal={setShowTxnModal}
-                client={client}
-                />
-            :null}
+            <div className="flex flex-row w-1/2 justify-center items-center gap gap-3">
+                {selectedModule !== undefined ? <ModuleTypes module={selectedModule} /> : null}
+            </div>
+            
+            
 
         </div>
     );

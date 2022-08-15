@@ -5,10 +5,10 @@ const ModuleTypes = ({ module }: { module: Types.MoveModuleBytecode }) => {
     const { abi } = module;
     return (
         <div><p className="text-center text-2xl p-2">Module Types(structs)</p>
-            <div className="fnScroller">
+            <div className="dappScroller flex flex-row">
                 {abi?.structs.map((struct: Types.MoveStruct) => {
                     return (
-                        <div className="outline rounded-xl m-2 px-2">
+                        <div className="outline w -full rounded-xl m-2 px-2">
                             <div className="flex flex-row gap gap-1">
                                 <h3 className="text-2xl">{struct.name}</h3>
                                 <p className="label">:struct</p>
