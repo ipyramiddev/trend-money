@@ -14,29 +14,40 @@
 
 # Seam
 
-Your Simple, diverse and distributed yield gateway 
+ ## building Aptos ecosystem tooling and providing distributed yield + dapp gateway 
 
 ## What Problem does seam solve?
 
-Although it would be comfortable to believe, inherent risks come with yield farming. Seam aims to solve this by mitigating risk through fragmenting deposits across top Celo defi protocols
+users need a single interface to view their account info(resources,tokens,modules) and view their transactions across dapps on aptos
+
+users should be able to create an
 
 ## The vision
 
-**we want to provide users with high fielding risk adverse pools fragmented across top cell deli protocols. Allowing users to hold an interest accumulating token representing secured deposits across protocols.**
+seam aims to be an efficient transaction and defi gateway for the aptos ecosystem.
+the Parallelization structure of aptos expands the realm of ways it makes sense to propose txns to the network
 
 ## What is Seam?
 
-Our project serves as a one stop shop for passive DeFi users. Actively researching pools and doing due diligence can take time, so our solution reduces the steps necessary to make this happen. 
+- tooling + custodial defi composites 
 
-## The Protocol
+Our project serves as a one stop shop for passive DeFi users. Actively researching pools and doing due diligence can take time, so our solution reduces the steps necessary to make this happen. overview of dapps will be provided as long with stats about usage of the protocols.
 
-### Single Token In
+## The plan (stage 1)
 
-Deposit Celo Dollars and we’ll take care of the rest
+[x] build an interface to parse modules and functions of accounts and dapps
 
-$$
+[x] provide interface for account overview, user txns,nfts, dapps used, resources etc.
 
-$$
+[] use this to provide interface to submit txn for any app
+
+[] create composite defi flows to fragment positions, and create custodial POD.
+
+[] extend txn interface to use multiple nodes for queueing and batched txns
+
+[] use parsed txns of protocols to show versioning of modules and verify account of module
+
+## The plan (stage 2)
 
 ## How is Seam different from other yield aggregators?
 

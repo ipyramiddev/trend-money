@@ -1,5 +1,6 @@
 import TxnList from "./TxnList";
 import UserOverview from "./UserOverview";
+import WagMemeContainer from "./WagMemeContainer";
 
 interface Props {
     userProps: UserProps;
@@ -13,7 +14,10 @@ const UserExplorer = ({userProps}:Props) => {
         <h1>User Explorer</h1>
             <div className='flex flex-row items-center justify-center px-2'>
             <UserOverview {...userProps} />
-            <TxnList txns={userProps.user.txns} address={"0x1d40175352316901bb8306b29a919da75f8b305f9bb9fa265f308c67cb409270"}/>
+            <TxnList txns={userProps.user.txns} address={userProps.user.address}/>
+
+            <WagMemeContainer />
+            
             </div>
         </div>
     );

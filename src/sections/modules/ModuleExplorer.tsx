@@ -31,7 +31,7 @@ const ModuleExplorer = ({ client,mod }: ModExploreProps) => {
     const [modules, setModules] = useState<Types.MoveModuleBytecode[]>([]);
     const [error, setError] = useState<string | null>(null);
     const [showTxnModal, setShowTxnModal] = useState<boolean>(false);
-    const [addressList, setAddressList] = useState<string[]>(["0x1", "0x3", "0xa0df1c4ce26953ad991ac5be3c93bfed002920d8da02ec8292799c720db1d021"]);
+    const [addressList, setAddressList] = useState<string[]>(["0x1", "0x3",]);
     // const [selectedFunction, setSelectedFunction] = useState<Types.MoveFunction | null>(null);
 
     const ModuleInfo = ({ module }: { module: Types.MoveModuleBytecode }) => {
