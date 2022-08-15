@@ -119,11 +119,3 @@ export const loadModules = async (address: string) => {
     return modules;
 
 }
-
-
-
-// export const hexToString= (hex: string) => {
-//     const decoder = new TextDecoder();
-//     const bytes = hex.match(/.{2}/g).map((h) => parseInt(h, 16));
-//     return decoder.decode(new Uint8Array(bytes));
-//   }
