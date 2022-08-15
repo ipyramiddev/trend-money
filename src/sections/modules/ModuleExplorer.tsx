@@ -154,10 +154,10 @@ const ModuleExplorer = ({ client,mod }: ModExploreProps) => {
     client={client}
     />
 :null}
-            <div className="flex flex-row items-center justify-center gap-4">
-                <div className="rounded-xl p-4 items-center justify-center">
+            <div className="flex flex-row items-start justify-center gap-4">
+                <div className="rounded-xl p-4 items-start justify-start">
                     <p className="text-2xl text-center p-2">Account Modules</p>
-                    <div className="fnScroller seam-outline p-2">
+                    <div className="fnScroller justify-start seam-outline p-2">
                         {modules.map((mod: Types.MoveModuleBytecode) => {
                             return (<div className="items-center justify-center">
                                 <button className=" module-outline" onClick={() => setSelectedModule(mod)}>{mod.abi?.name}</button>
