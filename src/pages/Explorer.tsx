@@ -11,12 +11,20 @@ import SplineSection from '../sections/SplineSection';
 import TxnList from 'sections/TxnList';
 import ModuleExplorer from '../sections/modules/ModuleExplorer';
 import UserExplorer from '../sections/UserExplorer';
+import { AccountContextProvider } from 'contexts/AccountContext';
 // devnet is used here for testing
 const NODE_URL = "https://fullnode.devnet.aptoslabs.com";
 const FAUCET_URL = "https://faucet.devnet.aptoslabs.com";
 
 const client = new AptosClient(NODE_URL);
 const faucetClient = new FaucetClient(NODE_URL, FAUCET_URL);
+
+const temp_context = {
+    client: client,
+    connected: false,
+    account: null
+
+}
 
 interface Props {
     isLoading: boolean;
@@ -77,7 +85,7 @@ const Explorer = () => {
 
     }
     useEffect(() => {
-        if (!window.martian.isConnected()) {
+        if (!connected) {
             console.log(" wallet not connected");
             window.martian.connect().then(() => {
                 console.log("connected");
@@ -118,7 +126,8 @@ const Explorer = () => {
 
     const tabs = [
         {name:'Modules + Dapps',id:'ModuleExplorer'},
-        {name:'User Account ', id:'UserExplorer'}
+        {name:'User Account ', id:'UserExplorer'},
+        {name:'Node Overview ', id:'NodeExplorer'}
     ]
 
     const [view, setView] = useState("ModuleExplorer");
@@ -128,7 +137,11 @@ const Explorer = () => {
             setView(tab);
         }
     }
-    return (<div className="items-center justify-center">
+    
+
+    return (
+    <AccountContextProvider value={temp_context}>
+    <div className="items-center justify-center">
         <p className="text-3xl text-center">Explorer</p>
 
         <div className="flex flex-row items-center justify-center">
@@ -158,6 +171,7 @@ const Explorer = () => {
                 </div>
         </div>
     </div>
+    </AccountContextProvider>
     );
 
 }

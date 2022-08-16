@@ -2,9 +2,10 @@ import { AptosClient, AptosAccount, FaucetClient, TokenClient, BCS, TxnBuilderTy
 
 // import Stat from "components/Stat";
 import { format_large_number, shortenAddress } from "hooks/formatting";
-import { loadCoins, loadNfts, sendTransaction } from "hooks/useAptos";
 import { useState, useEffect } from "react";
 import UserNfts from "./user/UserNfts";
+
+
 
 
 
@@ -14,6 +15,10 @@ const UserOverview = ({ connected, user }: UserProps) => {
     if (user === undefined) {
         return null;
     }
+
+    // const 
+
+
     return (
         <div className="flex flex-col p-3 m-3 rounded-lg text-left items-start justify-start">
             <p className="text-lg sm:text-sm opacity-80">Welcome back {shortenAddress(user.address)}</p>

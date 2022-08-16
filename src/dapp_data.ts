@@ -30,7 +30,7 @@ export const dapps = [
 
   {
     "name": "Econia",
-    "description": "",
+    "description": "hyper-parallelized on-chain order book for the aptos blockchain",
     "tags": ["DeFi", "Orderbook"],
     "discord": "https://discord.gg/ydAeGtrW",
     "twitter": "https://twitter.com/EconiaLabs",
