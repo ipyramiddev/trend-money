@@ -42,37 +42,30 @@ function ModalWrapper(props) {
                         leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
                     >
                         <div
-                            className="inline-block align-top bg-black seam-outline bg-opacity-90 rounded-lg
+                            className="inline-block align-top rounded-lg
                text-left 
             overflow-hidden shadow-xl 
-            transform transition-all 
+            transform transition-all bg-black
             "
                         >
-                            <div className="bg-black seam-outline text-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-                                <div className="sm:flex sm:items-center">
+                            <div className="seam-outline bg-black  text-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                                <div className="sm:flex  bg-black sm:items-center">
 
                                     <div className="mt-3 text-center">
-                                        {/* <p className="text-2xl font-medium ">
-                                            {props.title}
-                                        </p> */}
-                                        <div className="mt-2">
-                                            
-                                            <div>
-                                                {props.children}
-                                                <button
-                                                    type="button"
-                                                    className="px-3 inline-flex justify-center"
-                                                    onClick={() => props.setOpen(false)}
-                                                    ref={props.cancelButtonRef}
-                                                >
-                                                    Cancel
-                                                </button>
-                                            </div>
+                                        <div>
+                                            {props.children}
+                                            <button
+                                                type="button"
+                                                className="px-3 inline-flex justify-center"
+                                                onClick={() => props.setOpen(false)}
+                                                ref={props.cancelButtonRef}
+                                            >
+                                                Cancel
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                     </Transition.Child>
                 </div>

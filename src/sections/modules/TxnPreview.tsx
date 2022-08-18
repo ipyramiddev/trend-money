@@ -15,9 +15,7 @@ interface TxnPreviewProps {
 const TxnPreview = ({address, module, func, params,setShowTxnModal,client } : TxnPreviewProps) => {
     return (
         <div className="flex items-center opacity-50 seam-outline">
-            {/* {showTxnModal ?
-                <TransactionModal account={account} client={client} address={address} module={module} isOpen={true} func={func}  />
-                : null} */}
+            
                 <p className="text-3xl p-2 " >Use Module</p>
                 <div className="flex flex-row items-center gap gap-3">
                     <p className="account-outline text-2xl">{formatParam(address)}</p>

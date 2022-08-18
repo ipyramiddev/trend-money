@@ -3,6 +3,7 @@ import { AptosClient, AptosAccount, FaucetClient, TokenClient, BCS, TxnBuilderTy
 // import Stat from "components/Stat";
 import { format_large_number, shortenAddress } from "hooks/formatting";
 import { useState, useEffect } from "react";
+import AccountResources from "./account/AccountResources";
 import UserNfts from "./user/UserNfts";
 
 
@@ -39,6 +40,7 @@ const UserOverview = ({ connected, user }: UserProps) => {
             </div>
 
             <UserNfts {...user.nfts} />
+            <AccountResources/>
             {/* <input className=" m-3 bg-opacity-30 outline outline-white outline-2 text-black" type="text" value={sendAddr} onChange={(e) => setSendAddr(e.target.value)} /> */}
             {/* <button className="seam-button m-3" onClick={() => sendTransaction(sendAddr)}>Send coins:</button> */}
             {/* <button className="seam-button m-3" onClick={() => sendTransaction(sendAddr)}>Send coins:</button> */}

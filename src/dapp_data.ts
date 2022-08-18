@@ -62,7 +62,7 @@ export const dapps = [
     "status": "Testnet",
     "github": "",
     "image": "aptosnames.svg",
-    "address":"0x7afc898f57883b146900d57c461daec0b044567e2c3d34d9270c84a28c33550f"
+    "address":"0xf4eb1f3e838411ab992f81cabb25f29ea4eb2406cd167261273da587c3615792"
   },
   {
     "name": "Hippo Labs",
@@ -74,7 +74,7 @@ export const dapps = [
     "image": "hippoLabs.jpeg",
     "github": "https://github.com/hippospace",
     "docs": "",
-    "address":"a61e1e86e9f596e483283727d2739ba24b919012720648c29380f9cd0a96c11a"
+    "address":"0xa61e1e86e9f596e483283727d2739ba24b919012720648c29380f9cd0a96c11a"
   },
   {
     "name": "Souffl3",

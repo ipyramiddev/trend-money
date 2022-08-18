@@ -27,7 +27,10 @@ interface txnModalProps {
 const createPayload = (address:string, client: AptosClient, module: MoveModuleBytecode, func: MoveFunction, params: any[], args: any[], arg_types: string[]) => {
     const serializedArgs = args.map((param:MoveType, index) => {
         const arg = args[index];
-        return generic_serialize(arg);
+        const serializedArgs = generic_serialize(arg)
+        console.log("serializedArgs", serializedArgs)
+
+        return serializedArgs
         // {}
     }) as any[]
 

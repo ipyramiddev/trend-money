@@ -85,14 +85,10 @@ const Explorer = () => {
 
     }
     useEffect(() => {
-        if (!connected) {
+        if (window.martian) {
             console.log(" wallet not connected");
-            window.martian.connect().then(() => {
-                console.log("connected");
-                setConnected(true);
-
-            });
-            return;
+            connect();
+            // return;
         }
 
         createAccount();
@@ -104,6 +100,8 @@ const Explorer = () => {
     const connect = () => {
         window.martian.connect().then((res: any) => {
             console.log("connected");
+            console.log('res', res)
+            setUserAccount(res);
             setConnected(true);
         }).catch((err: any) => {
             console.log(err);
@@ -114,7 +112,6 @@ const Explorer = () => {
 
     const loadTxs = (address: string) => {
         client.getAccountTransactions(address).then((txs: Types.Transaction[]) => {
-
             setTxs(txs.reverse());
             console.log(txs);
         }).catch((err: any) => {
@@ -145,13 +142,13 @@ const Explorer = () => {
         <p className="text-3xl text-center">Explorer</p>
 
         <div className="flex flex-row items-center justify-center">
-            <div className="flex tabs flex-row seam-outline bg-white bg-opacity-80">
+            <div className="flex tabs flex-row seam-outline">
                 {tabs.map((tab:any, index) => {
                     return (
                         <div 
                         onClick={() => setView(tab.id)}
-                        className={`tab px-2  m-2 py-1 rounded-xl ${view === tab.id ? 'bg-white text-black' : 'outline outline-2 outline-white text-white'}`}>
-                        <p className="text-2xl">{tab.name}</p>
+                        className={`px-2 m-2 py-1 rounded-xl ${view === tab.id ? 'bg-white text-black' : 'outline outline-2 outline-white text-white'}`}>
+                        <p className="text-2xl px-2 m-1 py-1 text-center justify-center">{tab.name}</p>
                         </div>)
                 })
                 }
@@ -161,7 +158,7 @@ const Explorer = () => {
 
         <div className="flex flex-col  w-full items-center justify-start">
             {connected ? <p className="px-2 py-1 rounded-sm text-green1 outline-2 outline-green1 m-2">connected</p> : <p>not connected</p>}
-            {!connected && !!userProps ? <button className="seam-button m-3" onClick={connect}>Connect</button>
+            {!connected && !!userProps ? <button className="seam-button m-3" onClick={()=>connect()}>Connect</button>
                 :
                 null}
             {view === "ModuleExplorer" ? <ModuleExplorer client={client} mod={modules}  />:null}
