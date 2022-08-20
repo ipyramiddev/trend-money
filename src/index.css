@@ -243,8 +243,6 @@
   flex-direction: row;
   height: 200px;
   scrollbar-width: thin;
-  
-  
 }
 
 .modOverview{
@@ -310,7 +308,4 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
-
-
 

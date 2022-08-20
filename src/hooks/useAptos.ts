@@ -30,12 +30,12 @@ export const loadCoinStore = async () => {
     const resources  = await client.getAccountResources(new HexString("0x1d40175352316901bb8306b29a919da75f8b305f9bb9fa265f308c67cb409270"));
 
     
-    const coinEvents = resources.find((r) => (r.type as string)==="0x1::coin::CoinEvents") as any;
+    const coinEvents = resources.find((r) => (r.type as string)==="0x1::coin::CoinStore<0x1::aptos_coin::AptosCoin>") as any;
 
     const coin_txs_count = ((coinEvents.data as any).register_events as any).counter as number;
 
-    const deposit_count = 0 // ((aptCoin.data as any).deposit_events as any).counter as number;
-    const withdraw_count = 0 // ((aptCoin.data?.withdraw_events as any).counter as number;
+    const deposit_count =  ((coinEvents.data as any).deposit_events as any).counter as number;
+    const withdraw_count =(coinEvents.data?.withdraw_events as any).counter as number;
     const balance = (resources[0].data as any).coin.value;
     const coins = {
         coins: [],
@@ -65,7 +65,7 @@ export const loadNfts = async (address:string) => {
     
     return  {
         collections: collection_data,
-        collection_count: 0,
+        collection_count: collection_data?.length||0,
         sent_count: sent_count,
         minted_count: minted_count,
         received_count: deposit_count,
@@ -103,10 +103,12 @@ const payload = {
     type_arguments: ["0x1::aptos_coin::AptosCoin"],
     arguments: [toAddr, "5000"]
 };
-const transactionRequest = await window.martian.generateTransaction("0x1d40175352316901bb8306b29a919da75f8b305f9bb9fa265f308c67cb409270", payload);
-const txnHash = await window.martian.signAndSubmitTransaction(transactionRequest);
-console.log(transactionRequest);
+// const transactionRequest = await window.martian.generateTransaction("0x1d40175352316901bb8306b29a919da75f8b305f9bb9fa265f308c67cb409270", payload);
+// const txnHash = await window.martian.signAndSubmitTransaction(transactionRequest);
+// console.log(transactionRequest);
 };
+
+
 
 export const stringToHex= (text: string) => {
     const encoder = new TextEncoder();

@@ -105,9 +105,10 @@ export const formatParam = (param: string) => {
     const date = new Date(parseInt(timestamp) / 1000);
     // const date = new Date(timestamp);
     const now = new Date();
-    const seconds = Math.round(Math.abs((now.getTime() - date.getTime()) / 1000));
+    const seconds = Math.round(Math.abs((now.getTime() - date.getTime())));
     // console.log("seconds",date);
     const minutes = Math.round(Math.abs(seconds / 60));
     const hours = Math.round(Math.abs(minutes / 60));
+    console.log("hours", minutes)
     return hours + " hours ago";
   }

@@ -85,11 +85,11 @@ const Explorer = () => {
 
     }
     useEffect(() => {
-        if (window.martian) {
-            console.log(" wallet not connected");
-            connect();
-            // return;
-        }
+        // if (window.martian) {
+        //     console.log(" wallet not connected");
+        //     connect();
+        //     // return;
+        // }
 
         createAccount();
     }, []);

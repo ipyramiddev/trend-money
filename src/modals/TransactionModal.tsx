@@ -111,9 +111,9 @@ const txnHash = await window.martian.signAndSubmitTransaction(transactionRequest
         <TxnHeader func_name={func.name} module_name={module_name||"err"} address={address}/>
         {params.map((param:MoveType, index) => {
             return (
-              <span key={index} className="flex flex-row outline outline-2 outline-white">
+              <span key={index} className="flex flex-row px-2 py-1 m-1 outline outline-2 bg-white bg-opacity-40">
                 <p>{param}</p>
-                <input className="bg-black" type="text" onChange={(event)=>updateArg(index,event.target.value)}/>
+                <input className="" type="text" onChange={(event)=>updateArg(index,event.target.value)}/>
               </span>
             )
         } )}
@@ -121,7 +121,6 @@ const txnHash = await window.martian.signAndSubmitTransaction(transactionRequest
 
   
         {/* APPROVE SPEND Button */}
-        
   
         {/* DEPOSIT button */}
         <button className="seam-button" onClick={()=>sendTxn()}>Send Txn</button>
@@ -129,4 +128,3 @@ const txnHash = await window.martian.signAndSubmitTransaction(transactionRequest
     );
   }
   export default TransactionModal;
-  
