@@ -14,6 +14,7 @@ import Web3Provider from "@fewcha/web3-react";
 import { useState } from 'react';
 import { GlobalStateProvider } from 'GlobalState';
 import {WalletProvider } from './context/wallet';
+import WalletModal from 'modals/walletModal';
 const APIURL = 'https://api.studio.thegraph.com/query//<SUBGRAPH_NAME>/'
 
 const UBE_SUBGRAPH = "https://api.thegraph.com/subgraphs/name/ubeswap/ubeswap"
@@ -27,17 +28,18 @@ const client = new ApolloClient({
 
 export default function Wrapper() {
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [walletModalOpen, setWalletModal] = useState(false);
   const [connected, setConnected] = useState(false);
 
   
   
   return (
     <ApolloProvider client={client}>
-      {/* <Web3Provider> */}
+      <Web3Provider>
       <GlobalStateProvider>
         <WalletProvider>
       <div >
-        <Navbar />
+        <Navbar showConnectModal={setWalletModal}/>
         <BrowserRouter>
           <Routes>
             {/* HOME PAGE */}
@@ -49,10 +51,11 @@ export default function Wrapper() {
             <Route path="/explorer" element={<Explorer/>}  />
           </Routes>
         </BrowserRouter>
+        {walletModalOpen ? <WalletModal isOpen={walletModalOpen} setIsOpen={setWalletModal}/>: null}
       </div>
       </WalletProvider>
       </GlobalStateProvider>
-      {/* </Web3Provider> */}
+      </Web3Provider>
     </ApolloProvider>
 
   );

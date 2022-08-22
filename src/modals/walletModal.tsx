@@ -9,35 +9,32 @@ import {useWalletContext } from '../context/wallet/context';
 import { ConnectWallet, useWeb3 } from "@fewcha/web3-react";
 import ModalWrapper from "./ModalWrapper";
 
-interface txnModalProps {
-    client: AptosClient;
+interface walletModalProps {
+    // client: AptosClient;
     isOpen: boolean;
     setIsOpen: (isOpen: boolean) => void;
 
 }
 
-
-
-
-const WalletModal = ({isOpen,setIsOpen}: txnModalProps) =>{
+const WalletModal = ({isOpen,setIsOpen}: walletModalProps) =>{
     const [open, setOpen] = useState(isOpen);
     const [argList, setArgList] = useState<any[]>([]);
     const cancelButtonRef = useRef(null);
     const walletContext = useWalletContext()
-    const { account, balance, isConnected, network, fewcha, martian, currentWallet } = useWeb3();
-
-    
-    
+    const { account, balance, isConnected,disconnect, network, fewcha, martian, currentWallet } = useWeb3();
     return (
       <ModalWrapper open={isOpen} setOpen={setIsOpen} cancelButtonRef={cancelButtonRef} title="tets">
-            
-
-
+        <p className="text-white">{account?.address}</p>
 {!isConnected && <ConnectWallet type="list" />}
-
-fewcha...
+{isConnected && (
+<div>
+  <p>Connected with {currentWallet} <img src={`./dapps/${currentWallet}`}/></p>
+<button className="seam-button" onClick={()=>disconnect()}>disconnect</button>)
+</div>)
+}
+{/* fewcha...
 fewcha.sdk...
-fewcha.token...
+fewcha.token... */}
 
 
             {/* <button className="" onClick={connectMartian}> Martian wallet</button> */}

@@ -1,6 +1,7 @@
 import React from 'react';
 import Logo from './Logo';
 import { FaGithub } from 'react-icons/fa';
+import {useWeb3 } from '@fewcha/web3-react';
 import { useState } from 'react';
 const nav_items = [
     {
@@ -19,16 +20,13 @@ const nav_items = [
         name: 'docs',
         path: '/docs',
     },
-    // {
-    //     name: 'FAQ',
-    //     path: '#faq',
-    // }
+    
 ];
 
 
 export default function Navbar(props) {
     const [isOpen, setIsOpen] = useState('hidden');
-
+    const { account, balance, isConnected, network, fewcha, martian, currentWallet } = useWeb3();
     const toggle = () => {
         setIsOpen(isOpen === '' ? 'hidden' : '');
     }
@@ -59,6 +57,8 @@ export default function Navbar(props) {
                             </p>
                             
                         </h3>
+                         
+                        <button className="seam-button m-3" onClick={()=>props.showConnectModal(true)}>{!isConnected?"Connect":"Connected"}</button>
                         <a href="app">
                             <button className='bg-transparent m-2 hover:bg-white font-semibold outline outline-2 hover:text-blac  text-white py-2 px-4  rounded-2xl'>
                                 Launch app

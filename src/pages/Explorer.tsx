@@ -17,6 +17,7 @@ import Pools from '../sections/pools/Pools';
 import DappsView from 'sections/dapps/DappsView';
 import { loadTxs } from 'hooks/useTransaction';
 import Validators from '../sections/staking/Validators';
+import { useWeb3 } from '@fewcha/web3-react';
 // devnet is used here for testing
 const NODE_URL = "https://fullnode.devnet.aptoslabs.com";
 const FAUCET_URL = "https://faucet.devnet.aptoslabs.com";
@@ -38,14 +39,15 @@ interface Props {
 }
 
 const Explorer = () => {
-    const [txs, setTxs] = React.useState<Types.Transaction[]>([]);
+    
     const [userProps, setUserProps] = useState<UserProps | null>(null);
     const [connected, setConnected] = useState<boolean>(false);
-    
+    const { account, balance, isConnected, network,currentWallet } = useWeb3();
     const [userAccount, setUserAccount] = useState<Types.AccountData | null>(null);
     const createAccount = async () => {
         // const acct = 
         const res = await (window as any).martian.connect();
+        // const res = 
         console.log("RES", res);
         const act = (await client.getAccount(res.address)) as Types.AccountData;
 
@@ -56,10 +58,8 @@ const Explorer = () => {
         const resources = (await window.martian.getAccountResources(address)) as Types.MoveResource[];
         console.log("RESOURCES", resources);
 
-        const txs = await loadTxs(address,client);
-        setTxs(txs);
+        const txs = await loadTxs(account?.address,client);
 
-        // setUserAccount(act)
         setUserProps({
             connected: true,
             user: {
@@ -74,52 +74,12 @@ const Explorer = () => {
         });
     }
     useEffect(() => {
-        // if (window.martian) {
-        //     console.log(" wallet not connected");
-        //     connect();
-        //     // return;
-        // }
-
+        
+            
         createAccount();
     }, []);
 
     const [modules, setModules] = React.useState<Types.MoveModuleBytecode[]>([]);
-
-
-    const connect = () => {
-        window.aptos.connect().then((res: any) => {
-            console.log("connected");
-            console.log('res', res)
-            setUserAccount(res);
-            setConnected(true);
-            return;
-        }).catch((err: any) => {
-            console.log(err);
-            setConnected(false);
-        })
-        // connectToWallet()
-        if(window.martian && !window.martian.isConnected()){
-            window.martian.connect().then((res: any) => {
-                console.log("connected");
-                console.log('res', res)
-                setUserAccount(res);
-                setConnected(true);
-                return;
-            });
-
-        } else {
-            console.log("wallet already connected");
-            window.martian.account().then((res: any) => {
-                console.log("connected");
-                console.log('res', res)
-                // setTxs(await loadTxs(res.address,client));
-                setUserAccount(res);
-                setConnected(true);
-                return;
-            });
-        }
-            
-        }
 
     const tabs = [
         {name:'Modules + Dapps',id:'ModuleExplorer'},
@@ -133,7 +93,7 @@ const Explorer = () => {
     const [view, setView] = useState("ModuleExplorer");
 
     return (
-    <AccountContextProvider value={temp_context}>
+    // <AccountContextProvider value={temp_context}>
     <div className="items-center justify-center">
         <p className="text-3xl text-center">Explorer</p>
 
@@ -153,21 +113,19 @@ const Explorer = () => {
         </div>
 
         <div className="flex flex-col  w-full items-center justify-start">
-            {connected ? <p className="px-2 py-1 rounded-sm text-green1 outline-2 outline-green1 m-2">connected</p> : <p>not connected</p>}
-            {!connected || !userProps ? <button className="seam-button m-3" onClick={()=>connect()}>Connect</button>
-                :
-                null}
+                <p>{account?.address}</p>
+            {isConnected ? <p className="px-2 py-1 rounded-sm text-green1 outline-2 outline-green1 m-2">connected</p> : <p>not connected</p>}
+            
             {view === "ModuleExplorer" ? <ModuleExplorer client={client} mod={modules}  />:null}
-            {view === "UserExplorer" && userProps ? <UserExplorer userProps={userProps} /> :null}
+            {view === "UserExplorer" && userProps ? <UserExplorer userProps={userProps} client={client}/> :null}
             {view === "Pools" ? <Pools client={client} /> :null}
             {view === "Dapps" ? <DappsView /> :null}
             {view === "Validators" ? <Validators /> :null}
             <div>
-                    <button className="seam-button m-3" onClick={() => loadTxs(userProps?.user.address ||'0x1',client)}>Load user Txs</button>
                 </div>
         </div>
     </div>
-    </AccountContextProvider>
+    // </AccountContextProvider>
     );
 
 }
