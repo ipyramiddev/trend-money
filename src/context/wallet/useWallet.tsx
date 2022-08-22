@@ -1,23 +1,26 @@
+import { AptosAccount } from "aptos";
 import {useState, useEffect} from "react";
 import {
   connectToWallet,
   getAccountAddress,
-  getAptosWallet,
+
   isUpdatedVersion,
   isAccountCreated,
   isWalletConnected,
 } from "../../hooks/wallet";
 import {WalletNetworks} from "./context";
 
-export function useWallet() {
-  const [isInstalled, setAptosWallet] = useState<boolean>(false);
+
+
+export function useWallet(useConnect:() => Promise<any>,getWallet:()=>Promise<boolean>) {
+  const [isInstalled, setWallet] = useState<boolean>(false);
   const [isAccountSet, setIsAccountSet] = useState<boolean>(false);
   const [isConnected, setIsConnected] = useState<boolean>(false);
   const [accountAddress, setAccountAddress] = useState<string | null>(null);
   const [walletNetwork, setWalletNetwork] = useState<WalletNetworks>("Devnet");
 
   useEffect(() => {
-    setAptosWallet(getAptosWallet());
+    // getWallet.then((res)=>setWallet(res));
   }, []);
 
   useEffect(() => {

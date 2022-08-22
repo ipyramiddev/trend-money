@@ -32,7 +32,6 @@
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
     "@types/yup": "^0.29.14",
-    "@ubeswap/sdk": "^2.1.2",
     "@web3-react/core": "^6.1.9",
     "antd": "^4.20.5",
     "apexcharts": "^3.35.0",

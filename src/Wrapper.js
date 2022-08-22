@@ -8,6 +8,9 @@ import Navbar from './components/Navbar';
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import Drawer from './components/Drawer';
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client'
+import Web3Provider from "@fewcha/web3-react";
+
+
 import { useState } from 'react';
 import { GlobalStateProvider } from 'GlobalState';
 import {WalletProvider } from './context/wallet';
@@ -30,6 +33,7 @@ export default function Wrapper() {
   
   return (
     <ApolloProvider client={client}>
+      {/* <Web3Provider> */}
       <GlobalStateProvider>
         <WalletProvider>
       <div >
@@ -48,6 +52,7 @@ export default function Wrapper() {
       </div>
       </WalletProvider>
       </GlobalStateProvider>
+      {/* </Web3Provider> */}
     </ApolloProvider>
 
   );

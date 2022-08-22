@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { ethers, BigNumber } from "ethers";
-import {getUbeInfo, getUbePoolInfo,loadU } from "./hooks/useUbe";
 import { connectToMetamask } from "./hooks/useWallet";
 import DepositModal from "./modals/DepositModal";
 

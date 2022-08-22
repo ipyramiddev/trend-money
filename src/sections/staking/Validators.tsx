@@ -1,8 +1,6 @@
 import React, {useEffect} from "react";
 import useSubmitStake from "../../hooks/useStake";
 
-import TransactionResponseSnackbar from "../../components/snackbar/TransactionResponseSnackbar";
-import LoadingModal from "../../components/LoadingModal";
 
 export function StakePage() {
 //   const {isConnected: isWalletConnected} = useWalletContext();
@@ -39,10 +37,7 @@ export function StakePage() {
 
   return (
     <>
-      <TransactionResponseSnackbar
-        transactionResponse={transactionResponse}
-      />
-      <LoadingModal open={transactionInProcess} />
+      
       <div>
         <div>
           <div>

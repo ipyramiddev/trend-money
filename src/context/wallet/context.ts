@@ -1,4 +1,5 @@
 import {createContext, useContext} from "react";
+import { AptosAccount } from "aptos";
 import {NetworkName} from "../../constants";
 import {assertNever} from "../../util/aptosUtils";
 
@@ -8,7 +9,7 @@ export interface walletContext {
   isAccountSet: boolean;
   walletNetwork: WalletNetworks;
   accountAddress: string | null;
-  connect: () => Promise<void>;
+  connect: () => Promise<any>;
 }
 
 export const walletContext = createContext<walletContext | null>(null);

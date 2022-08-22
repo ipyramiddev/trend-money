@@ -5,9 +5,7 @@ import {
   TransactionResponseOnError,
 } from "./useTransaction";
 
-export const getAptosWallet = (): boolean => {
-  return "aptos" in window;
-};
+
 
 export const isWalletConnected = async (): Promise<boolean> => {
   try {
@@ -31,6 +29,30 @@ export const isAccountCreated = async (): Promise<boolean> => {
   return false;
 };
 
+export const connectPetra = async (): Promise<any> => {
+  if(window.aptos){
+    console.log('petra wallet found')
+    const result = await window.aptos?.connect?.();
+    console.log("result",result);
+    return result;
+  }
+}
+
+export const getPetra = async () : Promise<boolean>  => {
+  return isWalletConnected();
+}
+
+export const connectMartian = async (): Promise<any> => {
+  if(window.martian && !window.martian?.isConnected()){
+      console.log("martian not connected trying to connect")
+      const res = await window.martian.account();
+      return res;
+  }
+  return {"error": "not fount"};
+}
+
+
+
 export const connectToWallet = async (): Promise<boolean> => {
   try {
     const result = await window.aptos?.connect?.();
@@ -39,6 +61,7 @@ export const connectToWallet = async (): Promise<boolean> => {
         if(!window.martian.isConnected()) {
             window.martian.connect().then((res:any) => {
                 console.log(res);
+                // const account = 
                 return true
             });
         }

@@ -2,6 +2,7 @@ import { AptosAccount, AptosClient, BCS, TxnBuilderTypes } from "aptos";
 import { MoveFunction, MoveModule, MoveModuleBytecode, MoveType, MoveValue, TransactionPayload } from "aptos/dist/generated";
 // import { MoveFunction, MoveModuleABI, MoveTypeId, AccountResource } from "aptos/dist/api/data-contracts";
 import { TransactionPayloadScript } from "aptos/dist/transaction_builder/aptos_types";
+import TxnHeader from "components/txn/TxnHeader";
 import { useEffect, useRef, useState } from "react";
 import { generic_serialize } from "util/aptosUtils";
 import ModalWrapper from "./ModalWrapper";
