@@ -15,12 +15,13 @@ function serializeVectorBool(vecBool: boolean[]) {
     return serializer.getBytes();
   }
   
-  const NUMBER_MAX: number = 9007199254740991;
-//   const client = new AptosClient(NODE_URL);
+  const NUMBER_MAX: number = 1000;
   /** Creates a new collection within the specified account */
+
   async function createCollection(client:AptosClient, account: AptosAccount, name: string, description: string, uri: string) {
-    const scriptFunctionPayload = new TxnBuilderTypes.TransactionPayloadScriptFunction(
-      TxnBuilderTypes.ScriptFunction.natural(
+    const scriptFunctionPayload = new TxnBuilderTypes.TransactionPayloadEntryFunction
+    (
+      TxnBuilderTypes.EntryFunction.natural(
         "0x3::token",
         "create_collection_script",
         [],

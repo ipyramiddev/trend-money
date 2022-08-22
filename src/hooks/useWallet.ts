@@ -1,3 +1,5 @@
+import { Web3Provider } from "@ethersproject/providers";
+import { AptosClient, Types } from "aptos";
 import { ethers, BigNumber } from "ethers";
 
 export const useWallet = () => {
@@ -9,7 +11,9 @@ export const useWallet = () => {
     }
 }
 
-export const connectToMetamask = async (provider) => {
+
+
+export const connectToMetamask = async (provider:Web3Provider) => {
     const accounts = await provider.send("eth_requestAccounts", []);
     const balance = await provider.getBalance(accounts[0]);
     const balanceInEther = ethers.utils.formatEther(balance);

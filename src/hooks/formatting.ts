@@ -39,7 +39,7 @@ export const format_date = (date:number) => {
 export const parsePayloadFunction = (funct:string) => {
     
     const func = funct.split('::');
-    return { addr: shortenAddress(func[0]), mod:func[1], scr: func[2], };
+    return { addr: func[0], mod:func[1], scr: func[2], };
 }
 
 export const format_tvl = (price: number) =>{
@@ -53,16 +53,6 @@ export const format_price = (price:number) => {
 
     return "$" + (price/1).toFixed(2);
 }
-
-// export const format_apy(apy){
-//     // Return apy as a percentage
-//     if (apy === null) {
-//         return '-';
-//     }
-//     return apy.toFixed(2)*100 + "%";
-
-
-// }
 
 export const shortenAddress = (
     account: string | null,

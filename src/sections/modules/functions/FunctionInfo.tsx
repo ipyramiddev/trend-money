@@ -4,7 +4,6 @@ import { MoveAbility, MoveFunctionGenericTypeParam, MoveType } from "aptos/dist/
 import { formatParam } from "hooks/formatting";
 
 const FunctionInfo = ({ function: func }: { function: Types.MoveFunction }) => {
-    // const FunctionInfo = (function: Types.MoveFunction) => {
     return (
         <div className="items-center justify-center bg-purple bg-opacity-50 p-1 m-2 rounded-xl">
             <p className="text-center text-2xl p-2">Function Info</p>
@@ -24,7 +23,7 @@ const FunctionInfo = ({ function: func }: { function: Types.MoveFunction }) => {
 
 {func.generic_type_params.map((param: MoveFunctionGenericTypeParam,i:number) => {
                     return (
-                        <div key={"move"+i} className=" text-yellow justify-center">
+                        <div key={"move"+i} className=" text-green1 justify-center">
                             {param.constraints.map((constraint: MoveAbility,index) => {
                                 return (
                                     <div className="bg-white" key={constraint+index}>

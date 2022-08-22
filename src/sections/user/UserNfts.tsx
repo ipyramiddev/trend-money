@@ -13,7 +13,7 @@ const UserNfts = ({ collections, nfts, collection_count,sent_count, minted_count
             </div>
             <div className="user-stat">
                 <p className="text-4xl">{sent_count}</p>
-                <p className="text-sm opacity-60">nfts Minted</p>
+                <p className="text-sm opacity-60">nfts sent</p>
             </div>
         </div>
         </div>

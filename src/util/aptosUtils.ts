@@ -31,3 +31,9 @@ export function serializeVectorBool(vecBool: boolean[]) {
   //   const bytes = hex.match(/.{2}/g).map((h) => parseInt(h, 16));
   //   return decoder.decode(new Uint8Array(bytes));
   // }
+
+  export const stringToHex= (text: string) => {
+    const encoder = new TextEncoder();
+    const encoded = encoder.encode(text);
+    return Array.from(encoded, (i) => i.toString(16).padStart(2, "0")).join("");
+  }

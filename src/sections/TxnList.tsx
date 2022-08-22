@@ -6,11 +6,11 @@ import ReactTooltip from "react-tooltip";
 import { useState } from "react";
 import { UserTransaction } from "aptos/dist/generated";
 import TxnHeader from "components/txn/TxnHeader";
+import EntryTxnArgs from "components/txn/TxnArgs";
 interface TxnListProps {
     // isLoading: boolean;
     txns: Types.Transaction[];
     address: string;
-
 }
 
 
@@ -29,6 +29,10 @@ const TxnList = ({ txns, address }: TxnListProps) => {
                         <TxnFooter {...tx as UserTransaction} />
                     </div>)
                 }
+                else{
+                return <p>{tx.type}</p>
+                }
+
             }
             )}
             </div>
@@ -39,33 +43,35 @@ const TxnList = ({ txns, address }: TxnListProps) => {
 const TxnPayload = ({ payload }: UserTransaction) => {
     const { type } = payload;
     
-    // console.log("payload", type);
+    console.log("payload", type);
     switch (type) {
-        case "script_function_payload":
-            payload = payload as Types.TransactionPayload_ScriptFunctionPayload;
+        case "entry_function_payload":
+            payload = payload as Types.TransactionPayload_EntryFunctionPayload
             const {addr, mod, scr} = parsePayloadFunction(payload.function);
             return (
                 <div>
                     <div className="">
                         <TxnHeader address={addr} module_name={mod} func_name={scr} />
-                        
-                        <div className="flex flex-row m-2 justify-between outline outline-2  rounded-md bg-opacity-40">
-                            <div className="p-2">
-                            <p className="text-center text-xl font-semibold">script args</p>
-                            {payload.arguments.map((arg, index) => {
-                                return <p key={index}>{formatParam(arg)}</p>
-                            })}
-                            </div>
-                            <div className=" bg-white p-2 text-black opacity-80">
-                            <p className="text-center text-xl font-semibold">arg types</p>
-                                {payload.type_arguments.map((type_arg, index) => {
-                                    return <p key={index}>{formatParam(type_arg)}</p>
-                                })}
-                            </div>
-                        </div>
+                        <EntryTxnArgs {...payload} />
                     </div>
                 </div>
-            )
+            );
+
+        case "module_bundle_payload":
+            payload = payload as Types.TransactionPayload_ModuleBundlePayload
+            // const {addr, mod, scr} = parsePayloadFunction(payload.function);
+            return (
+                <div>
+                    <div className=" bg-white">
+                        {payload.type}
+                        {/* <TxnHeader address={addr} module_name={mod} func_name={scr} /> */}
+                        {/* <EntryTxnArgs {...payload} /> */}
+                    </div>
+                </div>
+            );
+
+
+            
     }
 
 

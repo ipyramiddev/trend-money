@@ -14,13 +14,10 @@ import DappBadge from "components/DappBadge";
 import { MoveFunction } from "aptos/dist/generated";
 import TxnPreview from "./TxnPreview";
 import TransactionModal from "modals/TransactionModal";
+import TxnList from "sections/TxnList";
 interface ModExploreProps {
-    // isLoading: boolean;
-    // txns: Types.OnChainTransaction[];
     client: AptosClient;
-
     mod: Types.MoveModuleBytecode[];
-
 }
 
 const ModuleExplorer = ({ client, mod }: ModExploreProps) => {
@@ -36,6 +33,7 @@ const ModuleExplorer = ({ client, mod }: ModExploreProps) => {
 
     const ModuleInfo = ({ module }: { module: Types.MoveModuleBytecode }) => {
         const { abi } = module;
+
 
         return (
             <div className="text-center w-full h-full" >
@@ -60,13 +58,12 @@ const ModuleExplorer = ({ client, mod }: ModExploreProps) => {
                             {/* </div> */}
                         </div>
                     </div>
+                    <div>
                     {selectedFunction !== null ?
                         <FunctionInfo function={selectedFunction} />
                         : <div>No function selected</div>}
-
+                        </div>
                 </div>
-
-
             </div>
         )
     }
@@ -77,26 +74,12 @@ const ModuleExplorer = ({ client, mod }: ModExploreProps) => {
             setModules(modules);
             setSelectedFunction(modules[0].abi?.exposed_functions[0] || null);
             setSelectedAddress(address);
-
             setSelectedModule(modules[0]);
-            // setSelectedFunction(modules[0].functions[0]);
         }).catch((err: any) => {
             console.log(err);
             setError(err);
         }
         )
-
-    }
-    const setUserAccount = async () => {
-        try {
-            if (await window.martian.isConnected()) {
-                const res = await (window as any).martian.connect();
-                setSelectedAddress(res.address);
-            }
-
-        } catch (err) {
-            console.log("not authed")
-        }
     }
 
     useEffect(() => {
@@ -117,7 +100,7 @@ const ModuleExplorer = ({ client, mod }: ModExploreProps) => {
                 <div className="bg-white bg-opacity-30 p-2 m-2">
                     <p>Select An account</p>
                     <div className="flex row w-1/2 outline justify-between text-black outline-white rounded-lg bg-white bg-opacity-80">
-                        <select className="addr-dropdown   px-4  " onChange={(event) => switchAddress(event.target.value)}>
+                        <select className="addr-dropdown  px-4  " onChange={(event) => switchAddress(event.target.value)}>
                             {addressList.map((addr) => (
                                 <option value={addr}>
                                     <p className="">{addr}</p>
@@ -125,11 +108,11 @@ const ModuleExplorer = ({ client, mod }: ModExploreProps) => {
                             ))}
                         </select>
                     </div>
-                    <button
+                    {/* <button
                         onClick={() => setUserAccount()}
                         className="seam-button">
                         Your Account
-                    </button>
+                    </button> */}
                 </div>
                 <p>or Select a Dapp</p>
                 <div className="flex flex-row items-center  scrollbar scrollbar-thumb-blue  gap gap-4 dappScroll">
@@ -175,14 +158,13 @@ const ModuleExplorer = ({ client, mod }: ModExploreProps) => {
                     {selectedModule !== undefined ?
                         <ModuleInfo module={selectedModule} />
                         : <div>No modules found</div>}
+                
                 </div>
+                {/* <TxnList /> */}
             </div>
             <div className="flex w-1/2 dappScroller justify-center items-center gap gap-3">
-                {selectedModule !== undefined ? <ModuleTypes module={selectedModule} /> : null}
+                    {selectedModule !== undefined ? <ModuleTypes module={selectedModule} /> : null}
             </div>
-
-
-
         </div>
     );
 }
