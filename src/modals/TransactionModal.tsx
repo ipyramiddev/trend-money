@@ -1,8 +1,7 @@
 import { AptosAccount, AptosClient, BCS, TxnBuilderTypes } from "aptos";
 import { MoveFunction, MoveModule, MoveModuleBytecode, MoveType, MoveValue, TransactionPayload } from "aptos/dist/generated";
 // import { MoveFunction, MoveModuleABI, MoveTypeId, AccountResource } from "aptos/dist/api/data-contracts";
-import { TransactionPayloadScriptFunction } from "aptos/dist/transaction_builder/aptos_types";
-import TxnHeader from "components/txn/TxnHeader";
+import { TransactionPayloadScript } from "aptos/dist/transaction_builder/aptos_types";
 import { useEffect, useRef, useState } from "react";
 import { generic_serialize } from "util/aptosUtils";
 import ModalWrapper from "./ModalWrapper";
@@ -34,8 +33,8 @@ const createPayload = (address:string, client: AptosClient, module: MoveModuleBy
         // {}
     }) as any[]
 
-    const scriptFunctionPayload =  new TxnBuilderTypes.TransactionPayloadScriptFunction(
-      TxnBuilderTypes.ScriptFunction.natural(
+    const scriptFunctionPayload =  new TxnBuilderTypes.TransactionPayloadEntryFunction(
+      TxnBuilderTypes.EntryFunction.natural(
         address+'::'+module.abi?.name,
         func.name,
         [],
@@ -76,7 +75,7 @@ const TransactionModal = ({isOpen,sender,client, address,module,setIsOpen, func}
         const payload = {
           type: "script_function_payload",
           function: (address+'::'+module.abi?.name+'::'+func.name) as string,
-          // type_arguments: ["0x1:string:String"],
+          type_arguments: ["0x1:string:String"],
           arguments: [generic_serialize("d")] as any[]
       } as TransactionPayload;
       console.log("Payload",payload);
@@ -95,7 +94,8 @@ const TransactionModal = ({isOpen,sender,client, address,module,setIsOpen, func}
         //   new TxnBuilderTypes.ChainId(chainId),
         // );
         const transactionRequest = await window.martian.generateTransaction("0x1d40175352316901bb8306b29a919da75f8b305f9bb9fa265f308c67cb409270", payload);
-const txnHash = await window.martian.signAndSubmitTransaction(transactionRequest);
+        const txnHash = await window.martian.signAndSubmitTransaction(transactionRequest);
+        console.log("txnHash", txnHash);
       
         // const bcsTxn = AptosClient.generateBCSTransaction(account, rawTxn);
         // const pendingTxn = await client.submitSignedBCSTransaction(bcsTxn);

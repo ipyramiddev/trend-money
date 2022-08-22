@@ -35,6 +35,15 @@ export const connectToWallet = async (): Promise<boolean> => {
   try {
     const result = await window.aptos?.connect?.();
     if ("address" in result) return true;
+    if(window.martian) {
+        if(!window.martian.isConnected()) {
+            window.martian.connect().then((res:any) => {
+                console.log(res);
+                return true
+            });
+        }
+
+    }
   } catch (error) {
     console.log(error);
   }

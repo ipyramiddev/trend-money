@@ -9,9 +9,9 @@ interface Props {
 const DappBadge = ({ dapp, setSelectedAddress, isSelected }: Props) => {
     return (<div onClick={() => setSelectedAddress(dapp.address)}
         
-        className={`outline outline-white outline-2 dappBadge items-center justify-center  ${isSelected ? 'bg-white bg-opacity-20' :''}`} key={dapp.name}>
+        className={`outline outline-white  outline-2 dappBadge items-center justify-center  ${isSelected ? 'bg-white bg-opacity-100 text-black' :''}`} key={dapp.name}>
         <img
-            className="object-fill dappBadge-img"
+            className="object-contain dappBadge-img rounded-3xl"
             src={`../dapps/${dapp.image}`} alt={dapp.name} />
         <p className="font-bold ">{dapp.name}</p>
     </div>)

@@ -1,3 +1,6 @@
+import { shortenAddress } from "hooks/formatting";
+import copy from "copy-to-clipboard";
+
 interface Props {
     address: string;
     module_name: string;
@@ -5,14 +8,21 @@ interface Props {
 }
 
 const TxnHeader = ({ address, module_name, func_name }: Props) => {
+
+    const copyToClipboard = (copyText:string) => {
+        copy(copyText);
+        // alert(`You have copied "${copyText}"`);
+     }
+
     return (
-        <div className="flex flex-row justify-between items-center">
+        <div className="flex flex-row text-center text-xl justify-between gap gap-2 items-center">
             {/* Address */}
-            <p className="account-outline text-bold text-xl">{address}</p>
+            <button onClick={()=>copyToClipboard(address)} className="account-outline text-bold">{shortenAddress(address)}</button>
+            <p className="text-bold text-3xl">::</p>
 
             {/* Module */}
-            <p className="module-outline text-bold text-xl">{module_name}</p>
-
+            <p className="module-outline text-bold ">{module_name}</p>
+            <p className="text-bold text-3xl">::</p>
             {/* Function */}
             <p className="function-outline">{func_name}</p>
         </div>

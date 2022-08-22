@@ -9,6 +9,8 @@ import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import Drawer from './components/Drawer';
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client'
 import { useState } from 'react';
+import { GlobalStateProvider } from 'GlobalState';
+import {WalletProvider } from './context/wallet';
 const APIURL = 'https://api.studio.thegraph.com/query//<SUBGRAPH_NAME>/'
 
 const UBE_SUBGRAPH = "https://api.thegraph.com/subgraphs/name/ubeswap/ubeswap"
@@ -28,6 +30,8 @@ export default function Wrapper() {
   
   return (
     <ApolloProvider client={client}>
+      <GlobalStateProvider>
+        <WalletProvider>
       <div >
         <Navbar />
         <BrowserRouter>
@@ -42,6 +46,8 @@ export default function Wrapper() {
           </Routes>
         </BrowserRouter>
       </div>
+      </WalletProvider>
+      </GlobalStateProvider>
     </ApolloProvider>
 
   );

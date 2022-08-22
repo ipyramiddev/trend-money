@@ -51,7 +51,7 @@ export const dapps = [
     "image": "vial.png",
     "github": "",
     "docs": "",
-    "address":"0x1b6f1d8319f3f3b9649a4b2215a29c9184cb885c94e7eb51232a38ed6b28482c"
+    "address":"0xc30587eb23418ea650ffa1f78b37124d0897a78ffb2cce5c072f0d659b8cba2"
   },
   {
     "name": "names.aptos",
@@ -62,7 +62,7 @@ export const dapps = [
     "status": "Testnet",
     "github": "",
     "image": "aptosnames.svg",
-    "address":"0xf4eb1f3e838411ab992f81cabb25f29ea4eb2406cd167261273da587c3615792"
+    "address":"0x315e03842577fde27923732c20ea9bc8dc8d49268c5a2c1e2d60ac67dc161f6c"
   },
   {
     "name": "Hippo Labs",
@@ -90,7 +90,7 @@ export const dapps = [
 
   },
   {
-    "name": "Aries Market ",
+    "name": "Aries",
     "description": "Decentralised Margin Trading",
     "tags": ["DeFi"],
     "url": "https://aries.market/",
@@ -211,21 +211,21 @@ export const dapps = [
         //   "image": "",
         //   "github": "",
         // },
-        // {
-        //   "name": "Laminar",
-        //   "tags": ["DEX", "Orderbook"],
-        //   "description": "",
-        //   "discord": "https://discord.gg/h6Kx9pkp",
-        //   "Published": "Jul 19, 2022 5:48 AM",
-        //   "twitter": "https://twitter.com/LaminarMarkets",
-        //   "status": "TBA",
-        //   "logo": "",
+        {
+          "name": "Laminar",
+          "tags": ["DEX", "Orderbook"],
+          "description": "",
+          "discord": "https://discord.gg/h6Kx9pkp",
+          "Published": "Jul 19, 2022 5:48 AM",
+          "twitter": "https://twitter.com/LaminarMarkets",
+          "status": "TBA",
+          "logo": "",
 
-        //   "github": "",
-        //   "Docs": "",
-        //   "Npm": "",
-        //   "k": "DEXORDER"
-        // },
+          "github": "",
+          "Docs": "",
+          "Npm": "",
+          "k": "DEXORDER"
+        },
         
         // {
         //   "name": "Mariana Exchange",
@@ -246,9 +246,8 @@ export const dapps = [
           "discord": "https://discord.gg/MQDnAjPN",
           "twitter": "https://twitter.com/martian_wallet",
           "status": "Testnet",
-          "logo": "",
           "github": "",
-          "image":"martian.png",
+          "image": "martian.png",
           "docs": "",
         },
         {

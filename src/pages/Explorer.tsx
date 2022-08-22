@@ -11,7 +11,12 @@ import SplineSection from '../sections/SplineSection';
 import TxnList from 'sections/TxnList';
 import ModuleExplorer from '../sections/modules/ModuleExplorer';
 import UserExplorer from '../sections/UserExplorer';
-import { AccountContextProvider } from 'contexts/AccountContext';
+import {connectToWallet} from '../hooks/wallet';
+import { AccountContextProvider } from 'context/AccountContext';
+import Pools from '../sections/pools/Pools';
+import DappsView from 'sections/dapps/DappsView';
+import { loadTxs } from 'hooks/useTransaction';
+import Validators from '../sections/staking/Validators';
 // devnet is used here for testing
 const NODE_URL = "https://fullnode.devnet.aptoslabs.com";
 const FAUCET_URL = "https://faucet.devnet.aptoslabs.com";
@@ -46,29 +51,14 @@ const Explorer = () => {
 
         const address = res.address;
 
-        const txs = await client.getTransactions();
         const balance = await loadCoins(address);
         const nfts = await loadNfts(address);
         const resources = (await window.martian.getAccountResources(address)) as Types.MoveResource[];
         console.log("RESOURCES", resources);
-        // const nfts = resources.find(r => r.type === "0x3::token::TokenStore") as Types.AccountResource;
-        // const coins = await loadCoinStore();
 
-        console.log(txs);
-        const user_txs = [];
-        for (const tx of txs) {
-            if (tx.type === "user_transaction") {
-                // console.log(tx);
-                try {
-                    user_txs.push(tx as Types.Transaction);
-                }
-                catch (e) {
-                    console.log(e);
-                }
+        const txs = await loadTxs(address,client);
+        setTxs(txs);
 
-            }
-        }
-        setTxs(user_txs);
         // setUserAccount(act)
         setUserProps({
             connected: true,
@@ -79,10 +69,9 @@ const Explorer = () => {
                     balance: balance,
                 },
                 // balance: balance,
-                txns: user_txs
+                txns: txs
             }
         });
-
     }
     useEffect(() => {
         // if (window.martian) {
@@ -98,43 +87,50 @@ const Explorer = () => {
 
 
     const connect = () => {
-        window.martian.connect().then((res: any) => {
+        window.aptos.connect().then((res: any) => {
             console.log("connected");
             console.log('res', res)
             setUserAccount(res);
             setConnected(true);
+            return;
         }).catch((err: any) => {
             console.log(err);
             setConnected(false);
         })
-    }
+        // connectToWallet()
+        if(window.martian && !window.martian.isConnected()){
+            window.martian.connect().then((res: any) => {
+                console.log("connected");
+                console.log('res', res)
+                setUserAccount(res);
+                setConnected(true);
+                return;
+            });
 
-
-    const loadTxs = (address: string) => {
-        client.getAccountTransactions(address).then((txs: Types.Transaction[]) => {
-            setTxs(txs.reverse());
-            console.log(txs);
-        }).catch((err: any) => {
-            console.log(err);
-        }).finally(() => {
-            console.log("done");
-        })
-    }
+        } else {
+            console.log("wallet already connected");
+            window.martian.account().then((res: any) => {
+                console.log("connected");
+                console.log('res', res)
+                // setTxs(await loadTxs(res.address,client));
+                setUserAccount(res);
+                setConnected(true);
+                return;
+            });
+        }
+            
+        }
 
     const tabs = [
         {name:'Modules + Dapps',id:'ModuleExplorer'},
         {name:'User Account ', id:'UserExplorer'},
-        {name:'Node Overview ', id:'NodeExplorer'}
+        {name:'Node Overview ', id:'NodeExplorer'},
+        {name:'Pools', id:'Pools'},
+        {name:'Dapps', id:'Dapps'},
+        {name:'Validators+staking', id:'Validators'},
     ]
 
     const [view, setView] = useState("ModuleExplorer");
-
-    const switchTab = (tab:string) => {
-        if (tab!==view) {
-            setView(tab);
-        }
-    }
-    
 
     return (
     <AccountContextProvider value={temp_context}>
@@ -158,13 +154,16 @@ const Explorer = () => {
 
         <div className="flex flex-col  w-full items-center justify-start">
             {connected ? <p className="px-2 py-1 rounded-sm text-green1 outline-2 outline-green1 m-2">connected</p> : <p>not connected</p>}
-            {!connected && !!userProps ? <button className="seam-button m-3" onClick={()=>connect()}>Connect</button>
+            {!connected || !userProps ? <button className="seam-button m-3" onClick={()=>connect()}>Connect</button>
                 :
                 null}
             {view === "ModuleExplorer" ? <ModuleExplorer client={client} mod={modules}  />:null}
             {view === "UserExplorer" && userProps ? <UserExplorer userProps={userProps} /> :null}
+            {view === "Pools" ? <Pools client={client} /> :null}
+            {view === "Dapps" ? <DappsView /> :null}
+            {view === "Validators" ? <Validators /> :null}
             <div>
-                    <button className="seam-button m-3" onClick={() => loadTxs(userProps?.user.address ||'0x1')}>Load user Txs</button>
+                    <button className="seam-button m-3" onClick={() => loadTxs(userProps?.user.address ||'0x1',client)}>Load user Txs</button>
                 </div>
         </div>
     </div>

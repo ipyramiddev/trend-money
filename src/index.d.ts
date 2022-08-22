@@ -15,6 +15,12 @@ declare global {
 
   }
 
+  interface Dapp {
+    address?: string;
+    name: string;
+    image: string;
+    description?: string;
+  }
   interface Stat {
     name: string;
     value: string;
