@@ -1,21 +1,25 @@
 import { AptosAccount, AptosClient, BCS, TxnBuilderTypes } from "aptos";
-import { MoveFunction, MoveModule, MoveModuleBytecode, MoveType, MoveValue, TransactionPayload } from "aptos/dist/generated";
+import { MoveFunction, MoveFunctionGenericTypeParam, MoveModule, MoveModuleBytecode, MoveType, MoveValue, TransactionPayload } from "aptos/dist/generated";
 // import { MoveFunction, MoveModuleABI, MoveTypeId, AccountResource } from "aptos/dist/api/data-contracts";
 import { TransactionPayloadScript } from "aptos/dist/transaction_builder/aptos_types";
 import TxnHeader from "components/txn/TxnHeader";
 import { useEffect, useRef, useState } from "react";
 import { generic_serialize } from "util/aptosUtils";
 import ModalWrapper from "./ModalWrapper";
+import Web3 from "@fewcha/web3";
+import { useWeb3 } from "@fewcha/web3-react";
+// import { MoveResource } from "aptos/dist/generated";
 
+const web3 = new Web3();
 interface txnModalProps {
     client: AptosClient;
     address: string,
-    sender: string,
+    // sender: string,
     func: MoveFunction;
     module: MoveModuleBytecode;
-    // module_name: string;
+    type_arguments: string[],
     
-    // args?: any[];
+    args: any[];
     // arg_types?: string[];
     isOpen: boolean;
     setIsOpen: (isOpen: boolean) => void;
@@ -24,39 +28,12 @@ interface txnModalProps {
 
 
 
-const createPayload = (address:string, client: AptosClient, module: MoveModuleBytecode, func: MoveFunction, params: any[], args: any[], arg_types: string[]) => {
-    const serializedArgs = args.map((param:MoveType, index) => {
-        const arg = args[index];
-        const serializedArgs = generic_serialize(arg)
-        console.log("serializedArgs", serializedArgs)
-
-        return serializedArgs
-        // {}
-    }) as any[]
-
-    const scriptFunctionPayload =  new TxnBuilderTypes.TransactionPayloadEntryFunction(
-      TxnBuilderTypes.EntryFunction.natural(
-        address+'::'+module.abi?.name,
-        func.name,
-        [],
-        [ 
-          // B(name),
-          // BCS.bcsSerializeStCS.bcsSerializeStrr(description),
-          // BCS.bcsSerializeStr(uri),
-          // BCS64.bcsSerializeUint(NUMBER_MAX),
-          // serializeVectorBool([false, false, false]),
-        ],
-      ),
-    );
-    return scriptFunctionPayload;
-  }
-
-
-const TransactionModal = ({isOpen,sender,client, address,module,setIsOpen, func}: txnModalProps) =>{
+const TransactionModal = ({isOpen,client, address,module, type_arguments, args, setIsOpen, func}: txnModalProps) =>{
     const [open, setOpen] = useState(isOpen);
     const [argList, setArgList] = useState<any[]>([]);
     const cancelButtonRef = useRef(null);
-    
+    const { account, balance, isConnected, network,currentWallet } = useWeb3()
+
     const params = func.params as MoveType[]
     const module_name = module.abi?.name;
     
@@ -72,35 +49,22 @@ const TransactionModal = ({isOpen,sender,client, address,module,setIsOpen, func}
     }
 
     const sendTxn = async () => {
-        // const payload = createPayload(address, client, module, func, params, argList, []);
-        const payload = {
-          type: "script_function_payload",
-          function: (address+'::'+module.abi?.name+'::'+func.name) as string,
-          type_arguments: ["0x1:string:String"],
-          arguments: [generic_serialize("d")] as any[]
-      } as TransactionPayload;
+        
+      const payload = {
+        type: "entry_function_payload",
+        function: address+'::'+module_name+"::"+func.name,
+        type_arguments: type_arguments,
+        arguments: args,
+      };
       console.log("Payload",payload);
-        const [{ sequence_number: sequenceNumber }, chainId] = await Promise.all([
-          client.getAccount("0x1d40175352316901bb8306b29a919da75f8b305f9bb9fa265f308c67cb409270"),
-          client.getChainId(),
-        ]);
+      // const req = await web3.action.generateTransaction(payload)
+      // const tx = await web3.action.signTransaction(req.data)
+      const act = await window.martian.account()
+      const transactionRequest = await window.martian.generateTransaction(act.address, payload);
+const txnHash = await window.martian.signAndSubmitTransaction(transactionRequest);
+console.log(transactionRequest);
       
-        // const rawTxn = new TxnBuilderTypes.RawTransaction(
-        //   TxnBuilderTypes.AccountAddress.fromHex("0x1d40175352316901bb8306b29a919da75f8b305f9bb9fa265f308c67cb409270"),
-        //   BigInt(sequenceNumber),
-        //   payload,
-        //   BigInt(1000),
-        //   BigInt(1),
-        //   BigInt(Math.floor(Date.now() / 1000) + 10),
-        //   new TxnBuilderTypes.ChainId(chainId),
-        // );
-        const transactionRequest = await window.martian.generateTransaction("0x1d40175352316901bb8306b29a919da75f8b305f9bb9fa265f308c67cb409270", payload);
-        const txnHash = await window.martian.signAndSubmitTransaction(transactionRequest);
-        console.log("txnHash", txnHash);
-      
-        // const bcsTxn = AptosClient.generateBCSTransaction(account, rawTxn);
-        // const pendingTxn = await client.submitSignedBCSTransaction(bcsTxn);
-        // await client.waitForTransaction(pendingTxn.hash);
+        // console.log("txnHash", txnHash);
 
     }
 

@@ -218,6 +218,13 @@
   height: 200px;
 }
 
+.scrollY{
+  overflow-x: hidden;
+  overflow-y: scroll;
+  height: 500px;
+
+}
+
 .label{
   font-size: 0.8rem;
   opacity: 0.5;

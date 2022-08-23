@@ -20,7 +20,7 @@ const FunctionInfo = ({ function: func }: { function: Types.MoveFunction }) => {
                 }
                 )}
             </div>
-
+<div>
 {func.generic_type_params.map((param: MoveFunctionGenericTypeParam,i:number) => {
                     return (
                         <div key={"move"+i} className=" text-green1 justify-center">
@@ -37,7 +37,7 @@ const FunctionInfo = ({ function: func }: { function: Types.MoveFunction }) => {
                     )
                 }
                 )}
-
+</div>
             <div>
                 <p className="label">Return Type:</p>
                 {func.return.length === 0 ? <p>No return type</p> : null}

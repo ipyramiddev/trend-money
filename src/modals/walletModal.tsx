@@ -20,27 +20,25 @@ const WalletModal = ({isOpen,setIsOpen}: walletModalProps) =>{
     const [open, setOpen] = useState(isOpen);
     const [argList, setArgList] = useState<any[]>([]);
     const cancelButtonRef = useRef(null);
-    const walletContext = useWalletContext()
     const { account, balance, isConnected,disconnect, network, fewcha, martian, currentWallet } = useWeb3();
+
+    const onDisconnect = ()=>{
+      disconnect()
+      setIsOpen(false);
+    }
     return (
       <ModalWrapper open={isOpen} setOpen={setIsOpen} cancelButtonRef={cancelButtonRef} title="tets">
         <p className="text-white">{account?.address}</p>
 {!isConnected && <ConnectWallet type="list" />}
 {isConnected && (
 <div>
-  <p>Connected with {currentWallet} <img src={`./dapps/${currentWallet}`}/></p>
-<button className="seam-button" onClick={()=>disconnect()}>disconnect</button>)
+  <p>Connected with {currentWallet} <img src={`./dapps/${currentWallet}.png`}/></p>
+  <button className="seam-button" onClick={onDisconnect}>disconnect</button>
 </div>)
 }
 {/* fewcha...
 fewcha.sdk...
 fewcha.token... */}
-
-
-            {/* <button className="" onClick={connectMartian}> Martian wallet</button> */}
-
-
-        {/* show input for each of the params and store them in argList */}
        
       </ModalWrapper>
     );

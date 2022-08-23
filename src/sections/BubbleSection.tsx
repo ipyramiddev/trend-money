@@ -15,11 +15,11 @@ const BubbleSection = ({ dapps }: Props) => {
 		);
 	});
 
-	return (<div className="">
-		<div className="">
-			<div className="flex flex-row gap-2 scrollable">
-		{children}
-		</div>
+	return (<div className="flex flex-col">
+		<div className="scrollY scrollbar scrollbar-track-blue scrollbar-thumb-pink p-2 m-1">
+			<div className="flex flex-col p-3  gap-2 ">
+				{children}
+			</div>
 		</div>
 	</div>)
 };

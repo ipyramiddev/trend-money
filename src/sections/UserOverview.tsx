@@ -5,7 +5,7 @@ import { format_large_number, shortenAddress } from "hooks/formatting";
 import { resolveName } from "hooks/integrations/useANS";
 import { sendTransaction } from "hooks/useAptos";
 import { useState, useEffect } from "react";
-import AccountResources from "./account/AccountResources";
+
 import UserNfts from "./user/UserNfts";
 // import { AccountContext, AccountContextConsumer } from "../context/AccountContext";
 
@@ -39,16 +39,12 @@ const UserOverview = ({ connected, user }: UserProps) => {
                     <p> withdrawls </p>
                 </div>
             </div>
-
             <UserNfts {...user.nfts} />
-            <AccountResources/>
             <input className=" m-3 bg-opacity-30 outline outline-white outline-2 text-black" type="text" value={sendAddr} onChange={(e) => setSendAddr(e.target.value)} />
             <button className="seam-button m-3" onClick={() => sendTransaction(sendAddr)}>Send coins:</button>
-            {/* <button className="seam-button m-3" onClick={() => resolveName(account,client)}>Load Name</button> */}
         </div>
     )
 }
-
 
 
 export default UserOverview;

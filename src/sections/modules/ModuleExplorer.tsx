@@ -15,6 +15,7 @@ import { MoveFunction } from "aptos/dist/generated";
 import TxnPreview from "./TxnPreview";
 import TransactionModal from "modals/TransactionModal";
 import TxnList from "sections/TxnList";
+import AccountResources from "sections/account/AccountResources";
 interface ModExploreProps {
     client: AptosClient;
     mod: Types.MoveModuleBytecode[];
@@ -29,6 +30,7 @@ const ModuleExplorer = ({ client, mod }: ModExploreProps) => {
     const [error, setError] = useState<string | null>(null);
     const [showTxnModal, setShowTxnModal] = useState<boolean>(false);
     const [addressList, setAddressList] = useState<string[]>(["0x1", "0x3",]);
+    const [typeArgs, setTypeArgs] =useState<string[]>(["0x1::aptos_coin::AptosCoin"]);
     // const [selectedFunction, setSelectedFunction] = useState<Types.MoveFunction | null>(null);
 
     const ModuleInfo = ({ module }: { module: Types.MoveModuleBytecode }) => {
@@ -89,7 +91,20 @@ const ModuleExplorer = ({ client, mod }: ModExploreProps) => {
 
     return (
         <div className="flex flex-col w-full items-center justify-center">
-            {selectedModule && selectedFunction && showTxnModal ? <TransactionModal sender={"0x1d40175352316901bb8306b29a919da75f8b305f9bb9fa265f308c67cb409270"} client={client} address={selectedAddress} setIsOpen={setShowTxnModal} module={selectedModule} isOpen={showTxnModal} func={selectedFunction} /> : null}
+            {selectedModule && selectedFunction && showTxnModal ?
+             <TransactionModal 
+                // sender={account?.address} 
+                client={client} 
+                address={selectedAddress} 
+                setIsOpen={setShowTxnModal} 
+                module={selectedModule}
+                type_arguments={typeArgs}
+                args={["0x5f710fc4d9e00cacc2b6c8f81efde0fd9395de0c33c0fd60a4b8800513053fd8",
+                "10000"]}
+
+                isOpen={showTxnModal} 
+                func={selectedFunction} />
+                 : null}
             <p className="text-2xl ">Module Overview</p>
 
             <div className="flex flex-col w-1/2 seam-outline">
@@ -100,7 +115,7 @@ const ModuleExplorer = ({ client, mod }: ModExploreProps) => {
                 <div className="bg-white bg-opacity-30 p-2 m-2">
                     <p>Select An account</p>
                     <div className="flex row w-1/2 outline justify-between text-black outline-white rounded-lg bg-white bg-opacity-80">
-                        <select className="addr-dropdown  px-4  " onChange={(event) => switchAddress(event.target.value)}>
+                        <select className="addr-dropdown px-4 " onChange={(event) => switchAddress(event.target.value)}>
                             {addressList.map((addr) => (
                                 <option value={addr}>
                                     <p className="">{addr}</p>
@@ -149,29 +164,24 @@ const ModuleExplorer = ({ client, mod }: ModExploreProps) => {
                             </div>)
                         }
                         )}
-
-
                     </div>
-
                 </div>
                 <div>
                     {selectedModule !== undefined ?
                         <ModuleInfo module={selectedModule} />
                         : <div>No modules found</div>}
-                
                 </div>
-                {/* <TxnList /> */}
             </div>
-            <div className="flex w-1/2 dappScroller justify-center items-center gap gap-3">
-                    {selectedModule !== undefined ? <ModuleTypes module={selectedModule} /> : null}
+                <div className="flex flex-row w-1/2 items-center justify-center gap gap-4">
+                        {/* <AccountResources address={selectedAddress}/> */}
+                        {selectedModule !== undefined ? <ModuleTypes module={selectedModule} /> : null}
+                        {/* <TxnList /> */}
+                </div>
+            <div className="flex flex-col w-1/2  justify-center items-center gap gap-3">
             </div>
         </div>
     );
 }
-
-
-
-
 
 
 const Module = (mod: Types.MoveModuleBytecode) => {

@@ -1,5 +1,5 @@
 import { AptosAccount, AptosClient } from "aptos";
-import { MoveFunction, MoveModuleBytecode } from "aptos/dist/generated";
+import { MoveFunction, MoveFunctionGenericTypeParam, MoveModuleBytecode } from "aptos/dist/generated";
 import { formatParam } from "hooks/formatting";
 import TransactionModal from "modals/TransactionModal";
 
@@ -24,6 +24,7 @@ const TxnPreview = ({address, module, func, params,setShowTxnModal,client } : Tx
                     {module !== undefined ? <p className="text-2xl module-outline"> {module.abi?.name}</p> : <p className="text-2xl"></p>}
                     <p className="text-3xl">::</p>
                     <p className="function-outline text-2xl">{func?.name}</p>
+                    
                 </div>
                 <button onClick={()=>setShowTxnModal(true)} className="seam-button ">Create Txn</button>
             </div>

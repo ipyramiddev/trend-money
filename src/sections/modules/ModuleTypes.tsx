@@ -4,8 +4,8 @@ import { formatParam } from "hooks/formatting";
 const ModuleTypes = ({ module }: { module: Types.MoveModuleBytecode }) => {
     const { abi } = module;
     return (
-        <div><p className="text-center text-2xl p-2">Module Types(structs)</p>
-            <div className="dappScroller flex flex-row">
+        <div className="flex flex-col"><p className="text-center text-2xl p-2">Module Types(structs)</p>
+            <div className="flex flex-row items-center scrollbar dappScroll ">
                 {abi?.structs.map((struct: Types.MoveStruct) => {
                     return (
                         <div className="outline w -full rounded-xl m-2 px-2">
