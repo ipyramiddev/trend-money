@@ -262,6 +262,7 @@ export const dapps = [
           "twitter": "https://twitter.com/FewchaWallet",
           "status": "Testnet",
           "image": "fewcha.svg",
+          "url": "https://fewcha.app/",
           "github": "",
           "docs": "",
         },

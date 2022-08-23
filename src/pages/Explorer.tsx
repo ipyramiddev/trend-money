@@ -66,10 +66,10 @@ const Explorer = () => {
     const tabs = [
         {name:'Modules + Dapps',id:'ModuleExplorer'},
         {name:'User Account ', id:'UserExplorer'},
-        {name:'Node Overview ', id:'NodeExplorer'},
-        {name:'Pools', id:'Pools'},
+        // {name:'Node Overview ', id:'NodeExplorer'},
+        // {name:'Pools', id:'Pools'},
         {name:'Dapps', id:'Dapps'},
-        {name:'Validators+staking', id:'Validators'},
+        // {name:'Validators+staking', id:'Validators'},
     ]
     const [view, setView] = useState("ModuleExplorer");
     return (
@@ -94,9 +94,9 @@ const Explorer = () => {
             {isConnected ? <p className="px-2 py-1 rounded-sm text-green1 outline-2 outline-green1 m-2">connected</p> : <p>not connected</p>}
             {view === "ModuleExplorer" ? <ModuleExplorer client={client} mod={modules}  />:null}
             {view === "UserExplorer" && userProps ? <UserExplorer userProps={userProps} client={client}/> :null}
-            {view === "Pools" ? <Pools client={client} /> :null}
+            {/* {view === "Pools" ? <Pools client={client} /> :null} */}
             {view === "Dapps" ? <DappsView /> :null}
-            {view === "Validators" ? <Validators /> :null}
+            {/* {view === "Validators" ? <Validators /> :null} */}
             <div>
                 </div>
         </div>
