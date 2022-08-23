@@ -92,8 +92,12 @@ const useSubmitTransaction = () => {
 export default useSubmitTransaction;
 
 
+const NODE_URL = "https://fullnode.devnet.aptoslabs.com";
+const FAUCET_URL = "https://faucet.devnet.aptoslabs.com";
 
-export const loadTxs = async (address: string,client:AptosClient):Promise<Types.Transaction[]> =>  {
+const defaultClient = new AptosClient(NODE_URL);
+
+export const loadTxs = async (address: string,client:AptosClient=defaultClient):Promise<Types.Transaction[]> =>  {
     const txs = await client.getAccountTransactions(address)
         
         return txs.reverse()

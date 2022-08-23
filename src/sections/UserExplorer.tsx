@@ -14,6 +14,7 @@ interface Props {
 const UserExplorer = ({userProps,client}:Props) => {
     const { account,isConnected } =useWeb3();
     const [txs, setTxs] = useState<Types.Transaction[]>([]);
+    // const [txs, setTxs] = useState<Types.Transaction[]>([]);
     useEffect(()=>{
         if(isConnected){
         loadTxs(account.address,client).then((res)=>{setTxs(res)

@@ -76,6 +76,7 @@ export const dapps = [
     "status": "",
     "image": "hippoLabs.jpeg",
     "github": "https://github.com/hippospace",
+    "url": "https://hippo.space/",
     "docs": "",
     "address":"0xa61e1e86e9f596e483283727d2739ba24b919012720648c29380f9cd0a96c11a"
   },
