@@ -8,6 +8,7 @@ import { generic_serialize } from "util/aptosUtils";
 import {useWalletContext } from '../context/wallet/context';
 import { ConnectWallet, useWeb3 } from "@fewcha/web3-react";
 import ModalWrapper from "./ModalWrapper";
+import copy from "copy-to-clipboard";
 
 interface walletModalProps {
     // client: AptosClient;
@@ -26,9 +27,16 @@ const WalletModal = ({isOpen,setIsOpen}: walletModalProps) =>{
       disconnect()
       setIsOpen(false);
     }
+
+    const copyToClipboard = (copyText:string) => {
+      copy(copyText);
+      // alert(`You have copied "${copyText}"`);
+   }
     return (
       <ModalWrapper open={isOpen} setOpen={setIsOpen} cancelButtonRef={cancelButtonRef} title="tets">
-        <p className="text-white">{account?.address}</p>
+        {isConnected?? <div className="flex flex-row justify-between"> <p className="text-white">{account?.address}</p>
+        <button className='seam-button' onClick={()=>copy}> Copy </button>
+        </div>}
 {!isConnected && <ConnectWallet type="list" />}
 {isConnected && (
 <div>
@@ -39,6 +47,7 @@ const WalletModal = ({isOpen,setIsOpen}: walletModalProps) =>{
   {currentWallet=='fewcha'?
   <img className="w-32 h-24 p-2 bg-white rounded-2xl" src={`./dapps/fewcha.svg`} alt={currentWallet}/>:null}
   </div>
+  <button className='seam-button' onClick={()=>copy}> Copy </button>
   <button className="seam-button" onClick={onDisconnect}>disconnect</button>
 </div>)
 }

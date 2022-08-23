@@ -18,8 +18,8 @@ const TxnList = ({ txns, address }: TxnListProps) => {
 
     return (
         <div className="h-full container">
-            <h1>Transactions for {address}</h1>
-
+            <span className="flex justify-center items-center "><p>Transactions for</p> {AddrClickable(address)}</span>
+            
             <div className="txScroller px-4">
             {txns.map((tx: Types.Transaction) => {
                 if (tx.type === "user_transaction") {
@@ -96,12 +96,26 @@ const HashLink = (hash: string) => {
         </a>
     )
 }
+const AddrClickable = (addr:string) => {
+    return(
+        <button className="px-2 account-outline m-1">
+            {shortenAddress(addr)}
+        </button>
+       
+    );
+}
 
 
-const TxnFooter = ({ success, sender, timestamp, version, hash, gas_used }: UserTransaction) => {
+const TxnFooter = ({ success, sender, timestamp, version, hash, gas_used,events,event_root_hash }: UserTransaction) => {
     return (
         <div className="flex flex-row justify-between">
-            <p>gas cost: {gas_used}</p>
+            <div className="">
+                <button className="text-underline">repeat tx </button>
+                <p>gas cost: {gas_used}</p>
+            </div>
+            <div className=""> 
+                <p className="text-bold">{events?.length} events</p>
+            </div>
             <div>
                 {HashLink(hash)}
                 {VersionLink(version)}
