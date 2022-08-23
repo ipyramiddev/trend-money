@@ -6,12 +6,13 @@ import DappBubble from "../components/dapps/DappBubble";
 import { Dapp } from "components/dapps/types";
 
 interface Props {
-	dapps: Dapp[];
+	dapps: any[];
+	onSelect: (dapp:Dapp)=>void;
 }
-const BubbleSection = ({ dapps }: Props) => {
+const BubbleSection = ({ dapps, onSelect }: Props) => {
 	const children = dapps.map((dapp: Dapp, i: number) => {
 		return (
-			<DappBubble {...dapp} key={i} />
+			<DappBubble dapp={dapp}  onSelect={onSelect}  />
 		);
 	});
 

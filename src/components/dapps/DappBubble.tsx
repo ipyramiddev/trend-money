@@ -23,26 +23,34 @@ const Tag = ({ name }: { name: string }) => {
 }
 
 const Tags = ({ tags }: { tags: string[] }) => (
-        <div className="pl-2 flex flex-row gap gap-2">
-            {tags.map((tag, i) => (<Tag key={i} name={tag} />))}
-        </div>
-    )
+    <div className="pl-2 flex flex-row gap gap-2">
+        {tags.map((tag, i) => (<Tag key={i} name={tag} />))}
+    </div>
+)
+
+interface Props {
+    dapp: Dapp
+    onSelect: (dapp: Dapp) => void;
+
+}
 
 
-
-export default function DappBubble(dapp: Dapp) {
+const DappBubble = ({ dapp, onSelect }: Props) => {
 
     return (
-        <div className="flex flex-col my-2 rounded-2xl border-white border-4 dappBubble">
-            <div className={`items-center`}>
-                <div className="flex flex-row justify-between">
+        <div className="flex flex-col justify-center items-center my-2 rounded-2xl border-white border-4 dappBubble">
+            <div className=" justify-center items-center">
+                <div className="flex flex-row justify-start">
                     <div><p className="p-2 text-3xl font-bold align-baseline">{dapp.name}</p>
                         <Tags tags={dapp.tags as string[]} />
                     </div>
-                    <img className="rounded-lg m-3 w-12 " src={`./dapps/${dapp.image}`} alt="nft-image" />
+                    <img className="rounded-lg w-12 h-12 " src={`./dapps/${dapp.image}`} alt="nft-image" />
                 </div>
                 <Icons discordUrl={dapp.discord} twitterUrl={dapp.twitter} githubUrl={dapp.github} />
             </div>
+            <button className='seam-button p-2 m-2' onClick={() => onSelect(dapp)}>Open Dapp</button>
         </div>
     );
 }
+
+export default DappBubble;
