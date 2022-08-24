@@ -1,3 +1,4 @@
+import copy from "copy-to-clipboard";
 export const truncateAddress = (address) => {
     if (!address) return "No Account";
     const match = address.match(
@@ -11,5 +12,10 @@ export const truncateAddress = (address) => {
     const val = Number(num);
     return "0x" + val.toString(16);
   };
+
+  
+  export const useCopy= (txt) =>{
+    copy(txt);
+  }
   
   export const UBE_SUBGRAPH = "https://api.thegraph.com/subgraphs/name/ubeswap/ubeswap";

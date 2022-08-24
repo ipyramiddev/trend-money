@@ -74,11 +74,11 @@ console.log(transactionRequest);
 
         {/* show input for each of the params and store them in argList */}
         <TxnHeader func_name={func.name} module_name={module_name||"err"} address={address}/>
-        {params.map((param:MoveType, index) => {
+        {params.map((param:MoveType, index:number) => {
             return (
-              <span key={index} className="flex flex-row px-2 py-1 m-1 outline outline-2 bg-white bg-opacity-40">
+              <span key={index} className="flex flex-row px-2 py-1 m-1 outline outline-2 text-white">
                 <p>{param}</p>
-                <input className="" type="text" onChange={(event)=>updateArg(index,event.target.value)}/>
+                <input className="" type="text" placeholder={args[index]} value={args[0]} onChange={(event)=>updateArg(index,event.target.value)}/>
               </span>
             )
         } )}
