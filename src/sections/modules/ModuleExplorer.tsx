@@ -131,7 +131,7 @@ const ModuleExplorer = ({ client, mod }: ModExploreProps) => {
                 </div>
                 <p>or Select a Dapp</p>
                 <div className="flex flex-row items-center  scrollbar scrollbar-thumb-blue  gap gap-4 dappScroll">
-                    {dapps.map((dapp: Dapp) => (
+                    {dapps.map((dapp: any) => (
                         <DappBadge dapp={dapp} setSelectedAddress={switchAddress} isSelected={dapp.address ? (dapp.address === selectedAddress) : false} />
                     )
                     )}
