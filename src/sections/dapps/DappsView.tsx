@@ -1,17 +1,18 @@
 import DappBubble from "components/dapps/DappBubble";
 import { dapps } from "dapp_data";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import BubbleSection from "sections/BubbleSection";
 import { ImShuffle} from 'react-icons/im';
 import { Types } from "aptos";
 import { loadTxs } from "hooks/useTransaction";
 import TxnList from "sections/TxnList";
+import DappFrame from "./DappFrame";
 
 function shuffle(array:any[]) {
     let currentIndex = array.length,  randomIndex;
   
     // While there remain elements to shuffle.
-    while (currentIndex != 0) {
+    while (currentIndex !== 0) {
   
       // Pick a remaining element.
       randomIndex = Math.floor(Math.random() * currentIndex);
@@ -28,27 +29,50 @@ function shuffle(array:any[]) {
 const DappsView = () => {
     
     const [selectedDapp, setSelectedDapp] = useState<any>(dapps[5]);
-    const [recentOpen, setRecentOpen] = useState<any[]>(dapps.slice(0,5));
+    const [recentOpen, setRecentOpen] = useState<any[]>(dapps.slice(0,3));
     const [orderedDapps,setOrderedDapps] = useState<any[]>(shuffle(dapps));
     const [txns, setTxns] = useState<Types.Transaction[]|null>(null);
 
+    const [dappStack, setDappStack] = useState<any[]>([]);
+
+    const pushDapp = (curr:any) => {
+        
+        const newStack = [curr,...dappStack]
+        setDappStack(newStack);
+        
+    }
+
+    // const renderRecents = () => {
+        
+    //     const current = (<iframe className="scrollbar rounded-xl  scrollbar-thumb-pink scrollbar-track-blue" title="host" src={selectedDapp.url} width="93%"/>)
+    //     setDappStack([current, ...dappStack])
+    // }
+    useEffect(()=>{
+        
+        renderRecents();
+    },[selectedDapp,orderedDapps])
+
+
     const loadDapp = (dapp:any) => {
-        setSelectedDapp(dapp);
-        addRecent(dapp);
-        if(dapp.address){
-            loadTxs(dapp.address).then((txs)=>setTxns(txs))
+        // if(dapp.name in dappStack.entries)
+        if(dapp.url && !(dapp.name in recentOpen.keys)){
+
+            pushDapp(<DappFrame dapp={dapp}/>);
+        } else {
+            
         }
-        // setSelcted
+        // popDapp();
+        setSelectedDapp(dapp);
         return;
     }
-    const addRecent = (dapp: Dapp) =>{
-        const newRecent = [dapp, ...recentOpen]
-        setRecentOpen(newRecent);
+    const renderRecents = () => {
+        const recents = recentOpen.map((recent) => <DappFrame dapp={recent}/>);
+        // setDappStack(recents);
     }
     const reshuffle = () => setOrderedDapps(shuffle(orderedDapps));
 
     return (
-        <div className="h-screen w-screen p-6 relative items-start justify-start ">
+        <div className="min-h-screen w-screen p-6 relative items-start justify-start ">
         <p className="text-3xl">Dapps</p>
         {/* < */}
         <div className="flex flex-row gap-2 justify-start">
@@ -63,16 +87,12 @@ const DappsView = () => {
         
     }
     </div>
-    {/* <button className="seam-button" onClick={reshuffle}><ImShuffle/></button> */}
     </div>
         <BubbleSection dapps={orderedDapps as Dapp[]} onSelect={loadDapp}/>
         </div>
-        <iframe className="scrollbar scrollbar-thumb-pink scrollbar-track-blue" title="host" src={selectedDapp.url} width="80%"/>
-{/*         
-    </div>
-    </div> */}
+        {dappStack[0]}
         </div>
-        {txns?.length!=0 ? <TxnList txns={txns||[]} address={selectedDapp.address}/> : null}
+        {/* {txns?.length!==0 ? <TxnList txns={txns||[]} address={selectedDapp.address}/> : null} */}
         </div>
     );
     }
