@@ -31,14 +31,15 @@ const Tags = ({ tags }: { tags: string[] }) => (
 interface Props {
     dapp: Dapp
     onSelect: (dapp: Dapp) => void;
+    key:number;
 
 }
 
 
-const DappBubble = ({ dapp, onSelect }: Props) => {
+const DappBubble = ({ dapp, onSelect,key }: Props) => {
 
     return (
-        <div className="flex flex-col justify-center items-center my-2 rounded-2xl border-white border-4 dappBubble">
+        <div key={key} className="flex flex-col justify-center items-center my-2 rounded-2xl border-white border-4 dappBubble">
             <div className=" justify-center items-center">
                 <div className="flex flex-row justify-start">
                     <div><p className="p-2 text-3xl font-bold align-baseline">{dapp.name}</p>

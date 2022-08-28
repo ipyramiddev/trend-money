@@ -43,15 +43,15 @@ function ModalWrapper(props) {
                     >
                         <div
                             className="inline-block align-top rounded-lg
-               text-left 
-            overflow-hidden shadow-xl 
-            transform transition-all bg-black
-            "
-                        >
-                            <div className="seam-outline bg-black  text-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                                        text-left 
+                                        overflow-hidden shadow-xl 
+                                        transform transition-all bg-black
+                                        "
+                            >
+                            <div className="seam-outline bg-black  text-white px-4 pt-3 pb-4 sm:p-6 sm:pb-4">
                                 <div className="sm:flex  bg-black sm:items-center">
 
-                                    <div className="mt-3 text-center">
+                                    <div className="mt-1 text-center">
                                         <div>
                                             {props.children}
                                             <button

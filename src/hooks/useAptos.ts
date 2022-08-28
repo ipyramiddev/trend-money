@@ -26,17 +26,13 @@ export const loadCoins = async (account:string) => {
     return balance;
 }
 
-export const loadCoinStore = async () => {
-    const resources  = await client.getAccountResources(new HexString("0x1d40175352316901bb8306b29a919da75f8b305f9bb9fa265f308c67cb409270"));
-
+export const loadCoinStore = async (coinStore:any) => {
     
-    const coinEvents = resources.find((r) => (r.type as string)==="0x1::coin::CoinStore<0x1::aptos_coin::AptosCoin>") as any;
+    const coin_txs_count = (coinStore.register_events as any).counter as number;
 
-    const coin_txs_count = ((coinEvents.data as any).register_events as any).counter as number;
-
-    const deposit_count =  ((coinEvents.data as any).deposit_events as any).counter as number;
-    const withdraw_count =(coinEvents.data?.withdraw_events as any).counter as number;
-    const balance = (resources[0].data as any).coin.value;
+    const deposit_count =  (coinStore.deposit_events as any).counter as number;
+    const withdraw_count =(coinStore.data as any).counter as number;
+    const balance = coinStore.coin.value;
     const coins = {
         coins: [],
         deposit_count,
@@ -57,7 +53,7 @@ export const loadNfts = async (address:string) => {
     try{
     const collections = resources.find(r => r.type === "0x3::token::TokenStore") as MoveResource;
     const data = collections.data as any;
-    console.log("Collections: ", collections);
+    // console.log("Collections: ", collections);
     const minted_count = (data.deposit_events as any).counter as number;
     const deposit_count = ((collections.data as any).deposit_events as any).counter as number;
     const sent_count = ((collections.data as any).withdraw_events as any).counter as number;

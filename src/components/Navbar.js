@@ -1,7 +1,7 @@
 import React from 'react';
 import Logo from './Logo';
-import { FaGithub } from 'react-icons/fa';
-import {useWeb3 } from '@fewcha/web3-react';
+import { FaGithub, FaTwitter } from 'react-icons/fa';
+import { useWeb3 } from '@fewcha/web3-react';
 import { useState } from 'react';
 const nav_items = [
     {
@@ -13,14 +13,18 @@ const nav_items = [
         path: '/explorer'
     },
     {
-        name: 'About',
-        path: '#features',
+        name: 'strategies',
+        path: '/app'
+    },
+    {
+        name: 'staking',
+        path: '/staking',
     },
     {
         name: 'docs',
         path: '/docs',
     },
-    
+
 ];
 
 
@@ -33,8 +37,8 @@ export default function Navbar(props) {
     return (
         <nav className=" px-2 sm:px-4 py-2.5 text-white">
             <div className="container flex flex-wrap justify-between items-center mx-auto">
-                <a href="https://seam.money" className="flex items-center">
-                    <Logo/>
+                <a href="https://www.seam.money" className="flex items-center">
+                    <Logo />
                 </a>
                 <button data-collapse-toggle="mobile-menu" type="button" onClick={() => toggle()} className="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="mobile-menu" aria-expanded="false">
                     <span className="sr-only">Open main menu</span>
@@ -49,21 +53,24 @@ export default function Navbar(props) {
                                 <a href={item.path} className=" ">{item.name}</a>
                             </li>
                         ))}
-                        <h3>
+                        <div>
                             <p className="text-white text-3xl p-2 m-3 rounded-xl hover:bg-white hover:text-blac ">
-                                <a href="https://github.com/Jack-kelly-22/seam">
-                        <FaGithub className=" hover:text-blac " />
-                        </a>
+                                <a href="https://github.com/SeamMoney/seam">
+                                    <FaGithub className=" hover:text-blac " />
+                                </a>
                             </p>
-                            
-                        </h3>
-                         
-                        <button className="seam-button m-3" onClick={()=>props.showConnectModal(true)}>{!isConnected?"Connect":"Connected"}</button>
-                        <a href="app">
+                        </div>
+                            <p className="text-white text-3xl p-2 m-3 rounded-xl hover:bg-white hover:text-blac ">
+                                <a href="https://twitter.com/SeamMoney">
+                                    <FaTwitter className=" hover:text-blac " />
+                                </a>
+                            </p>
+                        <button className="seam-button m-3" onClick={() => props.showConnectModal(true)}>{!isConnected ? "Connect" : "Connected"}</button>
+                        {/* <a href="app">
                             <button className='bg-transparent m-2 hover:bg-white font-semibold outline outline-2 hover:text-blac  text-white py-2 px-4  rounded-2xl'>
                                 Launch app
                             </button>
-                        </a>
+                        </a> */}
                     </ul>
                 </div>
             </div>

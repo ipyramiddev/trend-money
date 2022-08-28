@@ -44,7 +44,7 @@ function Home() {
                 <p className="text-9xl pl-2">Σ</p>
                 <img className="w-80" src="./Tokenfork.png" alt="" />
                 </div>
-            <div className="m-2 ">
+            <div className="m-2">
                 <p className="text-2xl text-white">
                     multi-pool yield stability via a single deposit
                 </p>

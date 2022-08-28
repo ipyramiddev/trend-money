@@ -40,24 +40,24 @@ const Explorer = () => {
         if (account.address){
         // const res = await (window as any).martian.connect();
         // console.log("RES", res);
-        const act = (await client.getAccount(account.address)) as Types.AccountData;
-        const address = account.address;
-        const balance = await loadCoins(address);
-        const nfts = await loadNfts(address);
-        const resources = (await window.martian.getAccountResources(address)) as Types.MoveResource[];
+        // const act = (await client.getAccount(account.address)) as Types.AccountData;
+        // const address = account.address;
+        // const balance = await loadCoins(address);
+        // const nfts = await loadNfts(address);
+        // const resources = (await window.martian.getAccountResources(address)) as Types.MoveResource[];
         // console.log("RESOURCES", resources);
-        const txs = await loadTxs(account?.address,client);
-        setUserProps({
-            connected: true,
-            user: {
-                address: address,
-                nfts: nfts,
-                coins: {
-                    balance: balance,
-                },
-                txns: txs
-            }
-        });
+        // const txs = await loadTxs(account?.address,client);
+        // setUserProps({
+        //     connected: true,
+        //     user: {
+        //         address: address,
+        //         nfts: nfts,
+        //         coins: {
+        //             balance: balance,
+        //         },
+        //         txns: txs
+        //     }
+        // });
         }
     }
     useEffect(() => {
@@ -91,11 +91,11 @@ const Explorer = () => {
         </div>
 
         <div className="flex flex-col  w-full items-center justify-start">
-                <p>{account?.address}</p>
+                <p>{account?.address||""}</p>
             {isConnected ? <p className="px-2 py-1 rounded-sm text-green1 outline-2 outline-green1 m-2">connected</p> : <p>not connected</p>}
             {view === "ModuleExplorer" ? <ModuleExplorer client={client} mod={modules}  />:null}
-            {view === "UserExplorer" && userProps ? <UserExplorer userProps={userProps} client={client}/> :null}
-            {/* {view === "Pools" ? <Pools client={client} /> :null} */}
+            {view === "UserExplorer"&&isConnected ? <UserExplorer account={account} client={client}/> :null}
+            {view === "Pools" ? <Pools client={client} /> :null}
             {view === "Dapps" ? <DappsView /> :null}
             {/* {view === "Validators" ? <Validators /> :null} */}
             <div>
