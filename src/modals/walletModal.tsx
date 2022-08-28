@@ -44,7 +44,7 @@ const WalletModal = ({isOpen,setIsOpen}: walletModalProps) =>{
   <p>Connected with </p>
   {currentWallet==='martian'??
   <img className="w-32 h-10" src={`./dapps/${currentWallet}.png`} alt={currentWallet}/>}
-  {currentWallet=='fewcha'?
+  {currentWallet==='fewcha'?
   <img className="w-32 h-24 p-2 bg-white rounded-2xl" src={`./dapps/fewcha.svg`} alt={currentWallet}/>:null}
   </div>
   <button className='seam-button' onClick={()=>copy}> Copy </button>

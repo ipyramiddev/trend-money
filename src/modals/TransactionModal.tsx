@@ -26,13 +26,11 @@ interface txnModalProps {
 
 }
 
-
-
 const TransactionModal = ({isOpen,client, address,module, type_arguments, args, setIsOpen, func}: txnModalProps) =>{
     const [open, setOpen] = useState(isOpen);
     const [argList, setArgList] = useState<any[]>([]);
     const cancelButtonRef = useRef(null);
-    const { account, balance, isConnected, network,currentWallet } = useWeb3()
+    const { account, balance, isConnected, network,currentWallet,martian,fewcha } = useWeb3()
 
     const params = func.params as MoveType[]
     const module_name = module.abi?.name;
@@ -57,38 +55,32 @@ const TransactionModal = ({isOpen,client, address,module, type_arguments, args, 
         arguments: args,
       };
       console.log("Payload",payload);
-      // const req = await web3.action.generateTransaction(payload)
-      // const tx = await web3.action.signTransaction(req.data)
-      const act = await window.martian.account()
-      const transactionRequest = await window.martian.generateTransaction(act.address, payload);
-const txnHash = await window.martian.signAndSubmitTransaction(transactionRequest);
-console.log(transactionRequest);
-      
-        // console.log("txnHash", txnHash);
+      const req = await web3.action.generateTransaction(payload)
+      const tx = await web3.action.signAndSubmitTransaction(req.data)
+      // const r = await web3.action.submitTransaction(tx)
+      // const transactionRequest = await window.martian.generateTransaction(account.address, payload);
+      // const txn = await window.martian.sig
+      // const txnHash = await window.martian.signTransaction(transactionRequest);
+      // const txnsubmit = await window.martian.submitTransactions(txnHash);
+      // console.log(transactionRequest);
+        console.log("txnHash", tx);
+        // console.log("submit", txnsubmit);
 
     }
 
     return (
       <ModalWrapper open={isOpen} setOpen={setIsOpen} cancelButtonRef={cancelButtonRef} title="tets">
-  
-
-        {/* show input for each of the params and store them in argList */}
         <p className="pt-0 text-3xl pb-2"> Create Txn</p>
         <TxnHeader func_name={func.name} module_name={module_name||"err"} address={address}/>
         {params.map((param:MoveType, index:number) => {
             return (
-              <span key={index} className="flex flex-row items-center justify-center px-2 py-3 m-3 bg-white bg-opacity-40 rounded-xl text-white">
-                <p className="items-ce">{param}</p>
-                <input className="bg-transparent px-3 py-2 rounded-xl outline outline-2" type="text" placeholder={args[index]} value={args[index]} onChange={(event)=>updateArg(index,event.target.value)}/>
+              <span key={index} className="flex flex-row items-center justify-center px-2 py-3 m-3 rounded-xl text-white">
+                <p className="text-sm text-bold text-right">{param}</p>
+                <input className="px-3 py-2 rounded-xl outline outline-2" type="text" placeholder={args[index]} value={args[index]} onChange={(event)=>updateArg(index,event.target.value)}/>
               </span>
             )
         } )}
-        <button className="seam-button" onClick={()=>verifyArgs()}>verify params</button>
 
-  
-        {/* APPROVE SPEND Button */}
-  
-        {/* DEPOSIT button */}
         <button className="seam-button" onClick={()=>sendTxn()}>Send Txn</button>
       </ModalWrapper>
     );
