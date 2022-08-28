@@ -13,9 +13,7 @@ export const truncateAddress = (address) => {
     return "0x" + val.toString(16);
   };
 
-  
-  export const useCopy= (txt) =>{
+  export const textCopy= (txt) =>{
     copy(txt);
   }
   
-  export const UBE_SUBGRAPH = "https://api.thegraph.com/subgraphs/name/ubeswap/ubeswap";
