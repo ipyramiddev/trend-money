@@ -17,7 +17,6 @@ export default function IRL() {
         <pre data-prefix=">>>" data-suffix=">>>"><code>Your opto hosts</code>  </pre>
 
         </div>
-
       
       <iframe title="host" src={`http://opto0:${port}/vnc.html?host=opto0&port=${port}`} width="auto" />
       

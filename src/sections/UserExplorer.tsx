@@ -6,36 +6,39 @@ import { useEffect, useState } from "react";
 import { AptosClient, Types } from "aptos";
 import { loadTxs } from "hooks/useTransaction";
 import AccountResources from "./account/AccountResources";
+import { loadAccount } from "hooks/loadAptos";
 interface Props {
-    userProps: UserProps;
+    account:any;
     client: AptosClient;
 }
 
-const UserExplorer = ({userProps,client}:Props) => {
-    const { account,isConnected } =useWeb3();
+const UserExplorer = ({account,client}:Props) => {
+    // const { account,isConnected } =useWeb3();
     const [txs, setTxs] = useState<Types.Transaction[]>([]);
     // const [txs, setTxs] = useState<Types.Transaction[]>([]);
     useEffect(()=>{
-        if(isConnected){
+        // if(isConnected){
+            // loadAccount(account,client);
         loadTxs(account.address,client).then((res)=>{setTxs(res)
         console.log("just loaded ", res);
         }
         );
+        // const act = (await client.getAccount(account.address)) as Types.AccountData;
         // load
     }
-    },[isConnected,account]);
+    ,[account]);
 
     return (
         <div>
         <h1>User Explorer</h1>
             <div className='flex flex-row items-center justify-center px-2'>
-            <UserOverview{...userProps} />
-            {isConnected && account?.address ?
+            {/* <UserOverview  /> */}
+            {account?.address ?(<AccountResources address={account?.address}/>):<p>no resources</p>}
+            {account?.address ?
             <TxnList txns={txs} address={account?.address}/>
             :<p>please connect</p>}
             <WagMemeContainer />
             </div>
-            {isConnected && account?.address ?(<AccountResources address={account.address}/>):<p>no resources</p>}
         </div>
     );
     }
