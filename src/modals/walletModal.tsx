@@ -25,6 +25,7 @@ const WalletModal = ({isOpen,setIsOpen}: walletModalProps) =>{
 
     const onDisconnect = ()=>{
       disconnect()
+      setOpen(false);
       setIsOpen(false);
     }
 
@@ -43,7 +44,7 @@ const WalletModal = ({isOpen,setIsOpen}: walletModalProps) =>{
   <div className="flex flex-row justify-center items-center gap gap-3 p-2 m-2">
   <p>Connected with </p>
   {currentWallet==='martian'??
-  <img className="w-32 h-10" src={`./dapps/${currentWallet}.png`} alt={currentWallet}/>}
+  <img className="w-32 h-10" src={`./dapps/martian.png`} alt={currentWallet}/>}
   {currentWallet==='fewcha'?
   <img className="w-32 h-24 p-2 bg-white rounded-2xl" src={`./dapps/fewcha.svg`} alt={currentWallet}/>:null}
   </div>

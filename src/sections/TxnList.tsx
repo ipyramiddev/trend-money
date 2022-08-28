@@ -42,7 +42,7 @@ const TxnList = ({ txns, address }: TxnListProps) => {
 const TxnPayload = ({ payload }: UserTransaction) => {
     const { type } = payload;
     
-    console.log("payload", type);
+    // console.log("payload", type);
     switch (type) {
         case "entry_function_payload":
             payload = payload as Types.TransactionPayload_EntryFunctionPayload

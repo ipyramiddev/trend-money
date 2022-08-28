@@ -9,7 +9,7 @@ const Staking = () => {
 
 const StakingPool = () => {
     return (<div className="w-full seam-outline roundex-2xl text-white">
-
+        
     </div>);
 }
 

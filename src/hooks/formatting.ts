@@ -61,11 +61,13 @@ export const shortenAddress = (
     if (!account) {
       return "0x????...????";
     }
-    
-
-    if (account.slice(0, 2) !== "0x" && account.slice(0, 3) !== "&0x") {
-        return account;
+    if(account.length<4){
+        return account
     }
+
+    // if (account.slice(0, 2) === "0x" || account.slice(0, 3) !== "&0x") {
+    //     return account;
+    // }
     return (
       account.slice(0, truncation + 2) +
       ".." +
