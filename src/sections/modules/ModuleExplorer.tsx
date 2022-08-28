@@ -16,6 +16,8 @@ import TxnPreview from "./TxnPreview";
 import TransactionModal from "modals/TransactionModal";
 import TxnList from "sections/TxnList";
 import AccountResources from "sections/account/AccountResources";
+import { FaClipboard, FaRegClipboard } from "react-icons/fa";
+import { textCopy } from "utils";
 interface ModExploreProps {
     client: AptosClient;
     mod: Types.MoveModuleBytecode[];
@@ -30,43 +32,40 @@ const ModuleExplorer = ({ client, mod }: ModExploreProps) => {
     const [error, setError] = useState<string | null>(null);
     const [showTxnModal, setShowTxnModal] = useState<boolean>(false);
     const [addressList, setAddressList] = useState<string[]>(["0x1", "0x3",]);
-    const [typeArgs, setTypeArgs] =useState<string[]>(["0x1::aptos_coin::AptosCoin"]);
-    // const [selectedFunction, setSelectedFunction] = useState<Types.MoveFunction | null>(null);
+    const [typeArgs, setTypeArgs] = useState<string[]>(["0x1::aptos_coin::AptosCoin"]);
+    const [tempArgs, setTempArg] = useState<string[]>([]);
 
     const ModuleInfo = ({ module }: { module: Types.MoveModuleBytecode }) => {
         const { abi } = module;
 
 
         return (
-            <div className="text-center w-full h-full" >
-                <div className="flex  flex-row p-2">
-                    <div className=" px-2 bg-lightPurple bg-opacity-30 rounded-xl">
-                        <p className="text-2xl p-1">Module</p>
-                        <div className="inline-block align-baseline">
-                            <p className="text-sm">Module name: </p>
-                            {abi?.name !== undefined ? <h1 className="module-outline">{abi.name}</h1> : <h1>No name</h1>}
-                        </div>
-                        {abi?.exposed_functions !== undefined ? <h2 className="text-center opacity-70">{abi.exposed_functions.length} exposed function(s)</h2> : <h2>No exposed functions</h2>}
-                        {/* <div> */}
-                        <div className="modScroller outline-dashed rounded-xl outline-white p-1">
-                            {abi?.exposed_functions.map((func: Types.MoveFunction) => {
-                                return (
-                                    <div className="flex cc px-4">
-                                        <button className="function-outline" onClick={() => setSelectedFunction(func)}>{func.name}</button>
-                                    </div>
-                                )
-                            })
-                            }
-                            {/* </div> */}
-                        </div>
+            <div className="flex flex-row">
+            <div className=" px-2 rounded-xl">
+                    <div className="flex flex-row p-2">
+                    <p className="text-2xl p-1">Module</p>
+                        {abi?.name !== undefined ? <h1 className="module-outline">{abi.name}</h1> : <h1>No name</h1>}
                     </div>
-                    <div>
+                    
+                    {abi?.exposed_functions !== undefined ? <h2 className="text-center opacity-70">{abi.exposed_functions.length} exposed function(s)</h2> : <h2>No exposed functions</h2>}
+                    <div className="modScroller outline-dashed rounded-xl outline-white p-1">
+                        {abi?.exposed_functions.map((func: Types.MoveFunction) => {
+                            return (
+                                <div className="flex cc px-4">
+                                    <button className="function-outline" onClick={() => setSelectedFunction(func)}>{func.name}</button>
+                                </div>
+                            )
+                        })
+                        }
+                    </div>
+                </div>
+                <div>
                     {selectedFunction !== null ?
                         <FunctionInfo function={selectedFunction} />
                         : <div>No function selected</div>}
-                        </div>
                 </div>
             </div>
+
         )
     }
 
@@ -92,70 +91,66 @@ const ModuleExplorer = ({ client, mod }: ModExploreProps) => {
     return (
         <div className="flex flex-col w-full items-center justify-center">
             {selectedModule && selectedFunction && showTxnModal ?
-             <TransactionModal 
-                // sender={account?.address} 
-                client={client} 
-                address={selectedAddress} 
-                setIsOpen={setShowTxnModal} 
-                module={selectedModule}
-                type_arguments={typeArgs}
-                args={["0x5f710fc4d9e00cacc2b6c8f81efde0fd9395de0c33c0fd60a4b8800513053fd8",
-                "10000"]}
-
-                isOpen={showTxnModal} 
-                func={selectedFunction} />
-                 : null}
-            <p className="text-2xl ">Module Overview</p>
-
-            <div className="flex flex-col w-1/2 seam-outline">
-                <div className="flex flex-row ">
-                    {/* create an input for account address and update the state on change */}
-                    <input className="w-full p-2 outline outline-2 outline-white bg-black border-2xl" type="text" placeholder="Enter address" value={selectedAddress} onChange={(e) => setSelectedAddress(e.target.value)} />
-                </div>
-                <div className="bg-white bg-opacity-30 p-2 m-2">
-                    <p>Select An account</p>
-                    <div className="flex row w-1/2 outline justify-between text-black outline-white rounded-lg bg-white bg-opacity-80">
-                        <select className="addr-dropdown px-4 " onChange={(event) => switchAddress(event.target.value)}>
-                            {addressList.map((addr) => (
-                                <option value={addr}>
-                                    <p className="">{addr}</p>
-                                </option>
-                            ))}
-                        </select>
-                    </div>
-                    {/* <button
-                        onClick={() => setUserAccount()}
-                        className="seam-button">
-                        Your Account
-                    </button> */}
-                </div>
-                <p>or Select a Dapp</p>
-                <div className="flex flex-row items-center  scrollbar scrollbar-thumb-blue  gap gap-4 dappScroll">
-                    {dapps.map((dapp: any) => (
-                        <DappBadge dapp={dapp} setSelectedAddress={switchAddress} isSelected={dapp.address ? (dapp.address === selectedAddress) : false} />
-                    )
-                    )}
-                </div>
-                <span className="flex justify-center items-center p-1 m-1">
-                    <p className="text-2xl text-white">Selected address: </p>
-                    <p className=" text-2xl account-outline">{formatParam(selectedAddress)}</p>
-                </span>
-            </div>
-
-            {selectedModule && selectedFunction ?
-
-                <TxnPreview
-                    address={selectedAddress}
-                    // account={userAccount}
-                    module={selectedModule}
-                    func={selectedFunction}
-                    params={selectedFunction?.params}
-                    setShowTxnModal={setShowTxnModal}
+                <TransactionModal
+                    // sender={account?.address} 
                     client={client}
-                />
+                    address={selectedAddress}
+                    setIsOpen={setShowTxnModal}
+                    module={selectedModule}
+                    type_arguments={typeArgs}
+                    args={tempArgs}
+                    isOpen={showTxnModal}
+                    func={selectedFunction} />
                 : null}
-            <div className="flex flex-row items-start justify-center gap-4">
-                <div className="rounded-xl p-4 items-start justify-start">
+            <div className="flex flex-row">
+
+                <div className="flex flex-col w-3/4 seam-outline">
+                    <div className="flex flex-row text-black gap gap-2">
+                        <input className="w-full py-2 px-4 outline outline-2 outline-white rounded-2xl" type="text" placeholder="Enter address" value={selectedAddress} onChange={(e) => setSelectedAddress(e.target.value)} />
+                        <button className="btn m-1 text-white" onClick={() => textCopy(selectedAddress)}> <FaClipboard /></button>
+                    </div>
+                    <div className="bg-white bg-opacity-30 p-2 m-2">
+                        <p>load system account</p>
+                        <div className="flex row w-1/2 outline justify-between text-black outline-white rounded-lg bg-white bg-opacity-80">
+                            <select className="addr-dropdown px-4 " placeholder={"enter an address"} onChange={(event) => switchAddress(event.target.value)}>
+                                {addressList.map((addr) => (
+                                    <option value={addr}>
+                                        <p className="">{addr}</p>
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
+
+                    </div>
+                    <p>or Select a Dapp</p>
+                    <div className="flex flex-row items-center scrollbar scrollbar-thumb-blue  gap gap-4 dappScroll">
+                        {dapps.filter((dapp: any) => (dapp.address)).map((dapp: any) => (
+                            <DappBadge dapp={dapp} setSelectedAddress={switchAddress} isSelected={dapp.address ? (dapp.address === selectedAddress) : false} />
+                        )
+                        )}
+                    </div>
+                    <span className="flex justify-center items-center p-1 m-1">
+                        <p className="text-2xl text-white">Selected address: </p>
+                        <p className=" text-2xl account-outline">{formatParam(selectedAddress)}</p>
+                    </span>
+                </div>
+                <div>
+                    {selectedModule && selectedFunction ?
+
+                        <TxnPreview
+                            address={selectedAddress}
+                            // account={userAccount}
+                            module={selectedModule}
+                            func={selectedFunction}
+                            params={selectedFunction?.params}
+                            setShowTxnModal={setShowTxnModal}
+                            client={client}
+                        />
+                        : null}
+                </div>
+            </div>
+            <div className="flex flex-row w-full items-start justify-center gap-4">
+                <div className="rounded-xl p-2 items-start justify-start">
                     <p className="text-2xl text-center p-2">Account Modules</p>
                     <div className="fnScroller justify-start seam-outline p-2">
                         {modules.map((mod: Types.MoveModuleBytecode) => {
@@ -165,6 +160,9 @@ const ModuleExplorer = ({ client, mod }: ModExploreProps) => {
                         }
                         )}
                     </div>
+                    <div>
+                    {selectedModule !== undefined ? <ModuleTypes module={selectedModule} /> : null}
+                    </div>
                 </div>
                 <div>
                     {selectedModule !== undefined ?
@@ -172,12 +170,10 @@ const ModuleExplorer = ({ client, mod }: ModExploreProps) => {
                         : <div>No modules found</div>}
                 </div>
             </div>
-                <div className="flex flex-row w-1/2 items-center justify-center gap gap-4">
-                        {/* <AccountResources address={selectedAddress}/> */}
-                        {selectedModule !== undefined ? <ModuleTypes module={selectedModule} /> : null}
-                        {/* <TxnList /> */}
-                </div>
-            <div className="flex flex-col w-1/2  justify-center items-center gap gap-3">
+            <div className="flex flex-row w-1/2 items-center justify-center gap gap-4">
+                {/* <AccountResources address={selectedAddress}/> */}
+                
+                {/* <TxnList /> */}
             </div>
         </div>
     );

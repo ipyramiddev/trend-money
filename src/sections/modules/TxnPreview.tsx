@@ -14,9 +14,10 @@ interface TxnPreviewProps {
 
 const TxnPreview = ({address, module, func, params,setShowTxnModal,client } : TxnPreviewProps) => {
     return (
+        <div>
+                <p className="text-3xl p-2 " >Use Module</p>
         <div className="flex items-center opacity-50 seam-outline">
             
-                <p className="text-3xl p-2 " >Use Module</p>
                 <div className="flex flex-row items-center gap gap-3">
                     <p className="account-outline text-2xl">{formatParam(address)}</p>
                     <p className="text-3xl">::</p>
@@ -26,8 +27,9 @@ const TxnPreview = ({address, module, func, params,setShowTxnModal,client } : Tx
                     <p className="function-outline text-2xl">{func?.name}</p>
                     
                 </div>
-                <button onClick={()=>setShowTxnModal(true)} className="seam-button ">Create Txn</button>
             </div>
+                <button onClick={()=>setShowTxnModal(true)} className="seam-button ">Create Txn</button>
+        </div>
     )
 }
 
