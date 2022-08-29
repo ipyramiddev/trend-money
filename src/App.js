@@ -33,7 +33,6 @@ function App() {
         {showDepositModal? <DepositModal toggle={toggleDepositModal} />: null}
       </div>
       <div className="flex flex-col items-center ">
-        {/* {walletConnected ? null : (<button onClick={connectWallet} className="rounded-lg w-70 font-2xl p-3 m-5 border-dashed border-white border-2 hover:bg-white hover:text-blac" >Connect Wallet</button>)} */}
         {walletAddress!==""?<UserHeader walletAddress={walletAddress} walletBalance={walletBalance} />:null}
       </div>
       <div className="">
