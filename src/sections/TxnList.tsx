@@ -1,5 +1,6 @@
 import { Types } from "aptos";
-
+import React from "react";
+import { ReactDOM } from "react";
 import { formatParam, parsePayloadFunction, shortenAddress, TimeAgo } from "hooks/formatting";
 import { aptosTxnLink } from "hooks/useExplorer";
 import ReactTooltip from "react-tooltip";
@@ -25,16 +26,20 @@ const TxnList = ({ txns, address }: TxnListProps) => {
                 if (tx.type === "user_transaction") {
                     // tx = tx as UserTransaction;
                     return (<div className="seam-outline mx-4 my-3" >
+                        <p data-tip="type of txn (ex)">{tx.type}
+                        <ReactTooltip place="top" textColor="white" multiline={true}/>
+                        </p>
                         <TxnPayload {...tx as UserTransaction} />
                         <TxnFooter {...tx as UserTransaction} />
                     </div>)
                 }
                 else{
-                return <p>{tx.type}</p>
+                return <p data-tip="type of txn (ex)">{tx.type}</p>
                 }
             }
             )}
             </div>
+            {/* <ReactTooltip place="top" textColor="white" multiline={true}/> */}
         </div>
     );
 }
@@ -58,7 +63,6 @@ const TxnPayload = ({ payload }: UserTransaction) => {
 
         case "module_bundle_payload":
             payload = payload as Types.TransactionPayload_ModuleBundlePayload
-            // const {addr, mod, scr} = parsePayloadFunction(payload.function);
             return (
                 <div>
                     <div className=" bg-white">
@@ -115,6 +119,14 @@ const TxnFooter = ({ success, sender, timestamp, version, hash, gas_used,events,
             </div>
             <div className=""> 
                 <p className="text-bold">{events?.length} events</p>
+                {events?.map((event: Types.Event)=> {
+                    return (
+                        <div>
+                            <p>{event.key}</p>
+                            <p>{event.type}</p>
+                        </div>
+                    );
+                })}
             </div>
             <div>
                 {HashLink(hash)}

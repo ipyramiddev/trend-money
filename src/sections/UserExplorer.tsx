@@ -12,17 +12,17 @@ interface Props {
     client: AptosClient;
 }
 
-const UserExplorer = ({account,client}:Props) => {
-    // const { account,isConnected } =useWeb3();
+const UserExplorer = ({client}:Props) => {
+    const { account,isConnected } =useWeb3();
     const [txs, setTxs] = useState<Types.Transaction[]>([]);
-    // const [txs, setTxs] = useState<Types.Transaction[]>([]);
     useEffect(()=>{
-        // if(isConnected){
-            // loadAccount(account,client);
+        if(isConnected && account){
+            loadAccount(account.address,client);
         loadTxs(account.address,client).then((res)=>{setTxs(res)
         console.log("just loaded ", res);
         }
         );
+    }
         // const act = (await client.getAccount(account.address)) as Types.AccountData;
         // load
     }

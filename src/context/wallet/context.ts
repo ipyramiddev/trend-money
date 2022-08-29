@@ -23,7 +23,7 @@ export const useWalletContext = () => {
   return context;
 };
 
-export type WalletNetworks = "Devnet" | "Localhost" | "Testnet" | "Sherry";
+export type WalletNetworks = "Devnet" | "Localhost" | "Testnet" | "AIT3";
 
 export const walletExplorerNetworkMap = (
   walletNetwork: WalletNetworks,
@@ -33,12 +33,11 @@ export const walletExplorerNetworkMap = (
       return "devnet";
     case "Localhost":
       return "local";
-    case "Testnet":
-      return "test";
-    case "Sherry":
-      return "test2";
+    case "AIT3":
+      return "ait3";
+    
     default:
-      return assertNever(walletNetwork);
+      return "devnet";
   }
 };
 

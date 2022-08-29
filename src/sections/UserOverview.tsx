@@ -14,19 +14,15 @@ import UserNfts from "./user/UserNfts";
 
 const UserOverview = ({ connected, user }: UserProps) => {
     const [sendAddr, setSendAddr] = useState<string>("");
-    
-
     if (user === undefined) {
         return null;
     }
-
     return (
-        
         <div className="flex flex-col p-3 m-3 rounded-lg text-left items-start justify-start">
             <p className="text-lg sm:text-sm opacity-80">Welcome back {shortenAddress(user.address)}</p>
             <div className="outline rounded-lg w-full p-2 m-1">
             <p className="text-4xl font-bold">{format_large_number(user.coins?.balance)}</p>
-            <p className="text text-sm opacity-70"> Aptos Tokens</p>
+            <p className="text text-sm opacity-70">Aptos Tokens</p>
             </div>
             <div className="flex flex-row justify-start gap gap-4">
 

@@ -36,32 +36,11 @@ const Explorer = () => {
     const [userProps, setUserProps] = useState<UserProps | null>(null);
     const [connected, setConnected] = useState<boolean>(false);
     const { account, balance, isConnected, network,currentWallet } = useWeb3();
-    const createAccount = async () => {
-        if (account.address){
-        // const res = await (window as any).martian.connect();
-        // console.log("RES", res);
-        // const act = (await client.getAccount(account.address)) as Types.AccountData;
-        // const address = account.address;
-        // const balance = await loadCoins(address);
-        // const nfts = await loadNfts(address);
-        // const resources = (await window.martian.getAccountResources(address)) as Types.MoveResource[];
-        // console.log("RESOURCES", resources);
-        // const txs = await loadTxs(account?.address,client);
-        // setUserProps({
-        //     connected: true,
-        //     user: {
-        //         address: address,
-        //         nfts: nfts,
-        //         coins: {
-        //             balance: balance,
-        //         },
-        //         txns: txs
-        //     }
-        // });
-        }
-    }
+    // const createAccount = async () => {
+        
+    // }
     useEffect(() => {
-        createAccount();
+        // createAccount();
     }, [account,isConnected]);
     const [modules, setModules] = React.useState<Types.MoveModuleBytecode[]>([]);
     const tabs = [
@@ -97,9 +76,7 @@ const Explorer = () => {
             {view === "UserExplorer"&&isConnected ? <UserExplorer account={account} client={client}/> :null}
             {view === "Pools" ? <Pools client={client} /> :null}
             {view === "Dapps" ? <DappsView /> :null}
-            {/* {view === "Validators" ? <Validators /> :null} */}
-            <div>
-                </div>
+            
         </div>
     </div>
     );

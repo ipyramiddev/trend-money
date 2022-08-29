@@ -12,7 +12,7 @@ interface Props {
 const BubbleSection = ({ dapps, onSelect }: Props) => {
 	const children = dapps.map((dapp: Dapp, i: number) => {
 		return (
-			<DappBubble dapp={dapp}  onSelect={onSelect}  />
+			<DappBubble dapp={dapp}  key={i} onSelect={onSelect}  />
 		);
 	});
 

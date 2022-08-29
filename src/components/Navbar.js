@@ -30,7 +30,7 @@ const nav_items = [
 
 export default function Navbar(props) {
     const [isOpen, setIsOpen] = useState('hidden');
-    const { account, balance, isConnected, network, fewcha, martian, currentWallet } = useWeb3();
+    const { account, balance, isConnected, network, fewcha, martian, currentWallet,disconnect } = useWeb3();
     const toggle = () => {
         setIsOpen(isOpen === '' ? 'hidden' : '');
     }
