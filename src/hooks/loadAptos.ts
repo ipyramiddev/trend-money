@@ -7,6 +7,6 @@ export const loadAccount = async (account:string,client:AptosClient) => {
     const txs = (await loadTxs(account,client));
     console.log("Act",act)
     return;
-    // const coin = 
+
 
 }
