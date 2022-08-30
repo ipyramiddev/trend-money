@@ -10,34 +10,24 @@ const FunctionInfo = ({ function: func }: { function: Types.MoveFunction }) => {
             <p className="label"> function name:</p>
             <p className="function-outline">{func.name}</p>
             <p className="label"> Visibility: {func.visibility}</p>
-            <div className="seam-outline cc modScroller">
-                {func.params.map((param: string,i) => {
+            
+            <div>
+                {func.generic_type_params.map((param: MoveFunctionGenericTypeParam, i: number) => {
                     return (
-                        <div key={param+i} className=" param-outline justify-center">
-                            <p className="">{formatParam(param)}:</p>
+                        <div key={"move" + i} className=" text-green1 justify-center">
+                            {param.constraints.map((constraint: MoveAbility, index) => {
+                                return (
+                                    <div className="bg-white" key={constraint + index}>
+                                        <p className="text-2xl">{constraint}:</p>
+                                    </div>
+                                )
+                            })
+                            }
                         </div>
                     )
                 }
                 )}
             </div>
-<div>
-{func.generic_type_params.map((param: MoveFunctionGenericTypeParam,i:number) => {
-                    return (
-                        <div key={"move"+i} className=" text-green1 justify-center">
-                            {param.constraints.map((constraint: MoveAbility,index) => {
-                                return (
-                                    <div className="bg-white" key={constraint+index}>
-                                        <p className="text-2xl">{constraint}:</p>
-                                        {/* <p className="">{constraint.type}</p> */}
-                                        </div>
-                                )
-                            })
-                        }
-                        </div>
-                    )
-                }
-                )}
-</div>
             <div>
                 <p className="label">Return Type:</p>
                 {func.return.length === 0 ? <p>No return type</p> : null}
@@ -50,8 +40,6 @@ const FunctionInfo = ({ function: func }: { function: Types.MoveFunction }) => {
                 }
                 )}
             </div>
-
-
         </div>
     )
 }

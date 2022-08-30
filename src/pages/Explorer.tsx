@@ -32,28 +32,18 @@ interface Props {
 }
 
 const Explorer = () => {
-    
-    const [userProps, setUserProps] = useState<UserProps | null>(null);
-    const [connected, setConnected] = useState<boolean>(false);
     const { account, balance, isConnected, network,currentWallet } = useWeb3();
-    // const createAccount = async () => {
-        
-    // }
     useEffect(() => {
-        // createAccount();
     }, [account,isConnected]);
     const [modules, setModules] = React.useState<Types.MoveModuleBytecode[]>([]);
     const tabs = [
         {name:'Modules + Dapps',id:'ModuleExplorer'},
         {name:'User Account ', id:'UserExplorer'},
-        // {name:'Node Overview ', id:'NodeExplorer'},
-        // {name:'Pools', id:'Pools'},
         {name:'Dapps', id:'Dapps'},
-        // {name:'Validators+staking', id:'Validators'},
     ]
     const [view, setView] = useState("ModuleExplorer");
     return (
-    <div className="items-center justify-center">
+    <div className="p-3 m-4 items-center justify-center">
         <p className="text-3xl text-center">Explorer</p>
         <div className="flex flex-row items-center justify-center">
             <div className="flex tabs flex-row seam-outline">
@@ -76,7 +66,6 @@ const Explorer = () => {
             {view === "UserExplorer"&&isConnected ? <UserExplorer account={account} client={client}/> :null}
             {view === "Pools" ? <Pools client={client} /> :null}
             {view === "Dapps" ? <DappsView /> :null}
-            
         </div>
     </div>
     );
@@ -84,5 +73,3 @@ const Explorer = () => {
 }
 
 export default Explorer;
-
-
