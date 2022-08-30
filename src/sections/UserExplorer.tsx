@@ -23,8 +23,7 @@ const UserExplorer = ({client}:Props) => {
         }
         );
     }
-        // const act = (await client.getAccount(account.address)) as Types.AccountData;
-        // load
+
     }
     ,[account]);
 
