@@ -67,7 +67,7 @@ export const shortenAddress = (
 
     // if (account.slice(0, 2) === "0x" || account.slice(0, 3) !== "&0x") {
     //     return account;
-    // }
+    // }   
     return (
       account.slice(0, truncation + 2) +
       ".." +

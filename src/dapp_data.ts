@@ -181,17 +181,19 @@ export const dapps = [
           "Docs": "",
           "Npm": "",
         },
+        
         {
-          "name": "Pontem",
+          "name": "liquidswap(pontem)",
           "description": "",
-          "tags": ["DEX", "DeFi", "Infrastructure", "Tools"],
+          "tags": ["DEX"],
           "discord": "https://discord.gg/kHWnQpBq",
           "twitter": "https://twitter.com/PontemNetwork",
-          "status": "Testnet",
+          "status": "mainnet",
           "logo": "",
           "github": "",
           "url": "https://pontem.network/",
           "image": "pontemNetwork.jpg",
+          "address": "pontemNetwork.jpg",
         },
 
         {

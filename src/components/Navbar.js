@@ -1,6 +1,6 @@
 import React from 'react';
 import Logo from './Logo';
-import { FaGithub, FaTwitter } from 'react-icons/fa';
+import { FaBookOpen, FaGithub, FaTwitter } from 'react-icons/fa';
 import { useWeb3 } from '@fewcha/web3-react';
 import { useState } from 'react';
 const nav_items = [
@@ -20,17 +20,17 @@ const nav_items = [
         name: 'staking',
         path: '/staking',
     },
-    {
-        name: 'docs',
-        path: '/docs',
-    },
+    // {
+    //     name: 'docs',
+    //     path: '/docs',
+    // },
 
 ];
 
 
 export default function Navbar(props) {
     const [isOpen, setIsOpen] = useState('hidden');
-    const { account, balance, isConnected, network, fewcha, martian, currentWallet,disconnect } = useWeb3();
+    const { isConnected, network } = useWeb3();
     const toggle = () => {
         setIsOpen(isOpen === '' ? 'hidden' : '');
     }
@@ -65,12 +65,12 @@ export default function Navbar(props) {
                                     <FaTwitter className=" hover:text-blac " />
                                 </a>
                             </p>
+                            <p className="text-white text-3xl p-2 m-3 rounded-xl hover:bg-white hover:text-blac ">
+                                <a href="https://docs.seam.money/">
+                                    <FaBookOpen className=" hover:text-blac " />
+                                </a>
+                            </p>
                         <button className="seam-button m-3" onClick={() => props.showConnectModal(true)}>{!isConnected ? "Connect" : "Connected"}</button>
-                        {/* <a href="app">
-                            <button className='bg-transparent m-2 hover:bg-white font-semibold outline outline-2 hover:text-blac  text-white py-2 px-4  rounded-2xl'>
-                                Launch app
-                            </button>
-                        </a> */}
                     </ul>
                 </div>
             </div>

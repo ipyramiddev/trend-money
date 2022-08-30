@@ -5,23 +5,6 @@ import SubSeam from './SubSeam.js';
 import { useQuery } from '@apollo/react-hooks';
 import BarChart from '../graphs/BarChart.js';
 
-const sumPoolInfo = async (poolData) => {
-    let all_apr = [];
-    let all_total_supply = [];
-
-    for (let i = 0; i < poolData.pairs.length; i++) {
-        let pool = poolData.pairs[i];
-        all_apr.push(pool.apr);
-        all_total_supply.push(pool.total_supply);
-    }
-    let avg_apr_24h = all_apr.reduce((a, b) => a + b, 0) / all_apr.length;
-    console.log(avg_apr_24h);
-    return {
-        avg_apr_24h: avg_apr_24h,
-    }
-}
-
-
 function SeamPool(props) {
 
     const [collapse, setCollapse] = useState("1");
@@ -35,8 +18,6 @@ function SeamPool(props) {
             setCollapse("1");
         }
     };
-
-
 
     return (
         <div key={props.i} className="">
@@ -61,13 +42,11 @@ function SeamPool(props) {
                             </div>
                         </div>
                         <div className='flex flex-row justify-between'>
-
                             <p>TVL: </p>
                             <p>Combined Pool TVL:{tvl} </p>
                             <div className="flex flex-row gap-10 justify-end">
-                                {/* {()=>loadPools(props.pools)} */}
                                 <div className="text-xl font-bold">
-                                    <button onClick={()=>props.toggleDepositModal()} className="px-3 py-1 button-2xl m-3 bg-black rounded-lg hover:bg-white hover:text-blac outline outline-dashed outline-2">Deposit</button>
+                                    <button onClick={()=>props.toggleStakeModal()} className="px-3 py-1 button-2xl m-3 bg-black rounded-lg hover:bg-white hover:text-blac outline outline-dashed outline-2">Stake</button>
                                     <button className="px-3 py-1 m-3 bg-black rounded-lg hover:bg-white hover:text-blac outline outline-dashed outline-2">Withdraw</button>
                                     
                                 </div>

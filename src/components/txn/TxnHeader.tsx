@@ -21,10 +21,10 @@ const TxnHeader = ({ address, module_name, func_name }: Props) => {
             <p className="text-bold text-3xl">::</p>
 
             {/* Module */}
-            <p  data-tip="Copy address" className="module-outline text-bold ">{module_name}</p>
+            <p  data-tip="Module name" className="module-outline text-bold ">{module_name}</p>
             <p className="text-bold text-3xl">::</p>
             {/* Function */}
-            <p className="function-outline">{func_name}</p>
+            <p  data-tip="function name" className="function-outline">{func_name}</p>
         </div>
     );
 };
