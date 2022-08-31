@@ -5,29 +5,32 @@ const ModuleTypes = ({ module }: { module: Types.MoveModuleBytecode }) => {
     const { abi } = module;
     return (
         <div>
-        <p className="text-center text-2xl p-2">Module Types(structs)</p>
-        <div className="flex flex-col scrollbar w-60 scrollbar-thumb-blue2 dappScroll">
-            {ModuleStructs(module)}
+            <p className="text-center text-2xl p-2">Module Types(structs)</p>
+            <div className="flex flex-col scrollbar w-60 scrollbar-thumb-blue2 dappScroll">
+                {ModuleStructs(module)}
+            </div>
+            <div className="flex flex-col scrollbar w-60 scrollbar-thumb-blue2 dappScroll">
+                {module.abi?.
         </div>
         </div>
     );
 }
 
 
-const ModuleStructs = (module:Types.MoveModuleBytecode) => {
-    const {abi } = module;
+const ModuleStructs = (module: Types.MoveModuleBytecode) => {
+    const { abi } = module;
     return (
         <div className="flex flex-row items-center   ">
-                {abi?.structs.map((struct: Types.MoveStruct) => {
-                    return ModuleStruct(struct);
-                })}
+            {abi?.structs.map((struct: Types.MoveStruct) => {
+                return ModuleStruct(struct);
+            })}
 
-            </div>
+        </div>
     )
 }
 
 
-const ModuleStruct = (struct:Types.MoveStruct)=>{
+const ModuleStruct = (struct: Types.MoveStruct) => {
     return (
         <div className="outline w-full rounded-xl m-2 px-2">
             <div className="flex flex-row gap gap-1">
