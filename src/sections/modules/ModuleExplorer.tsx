@@ -89,7 +89,7 @@ const ModuleExplorer = ({ client, mod }: ModExploreProps) => {
         , [selectedAddress]);
 
     return (
-        <div className="items-center justify-center">
+        <div className="w-full items-center justify-center">
             {selectedModule && selectedFunction && showTxnModal ?
                 <TransactionModal
                     // sender={account?.address} 
@@ -102,9 +102,9 @@ const ModuleExplorer = ({ client, mod }: ModExploreProps) => {
                     isOpen={showTxnModal}
                     func={selectedFunction} />
                 : null}
-            <div className="flex flex-row">
+            <div className="flex flex-row w-3/4">
 
-                <div className="w-128 seam-outline">
+                <div className=" seam-outline">
                     <div className="flex flex-row text-black gap gap-2">
                         <input className="w-1/2 py-2 px-4 outline outline-2 outline-white rounded-2xl" type="text" placeholder="Enter address" value={selectedAddress} onChange={(e) => setSelectedAddress(e.target.value)} />
                         <button className="btn m-1 text-white" onClick={() => textCopy(selectedAddress)}> <FaClipboard /></button>

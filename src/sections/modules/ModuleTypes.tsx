@@ -10,7 +10,7 @@ const ModuleTypes = ({ module }: { module: Types.MoveModuleBytecode }) => {
                 {ModuleStructs(module)}
             </div>
             <div className="flex flex-col scrollbar w-60 scrollbar-thumb-blue2 dappScroll">
-                {module.abi?.
+                {/* {module.abi?. */}
         </div>
         </div>
     );

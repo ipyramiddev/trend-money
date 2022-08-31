@@ -111,6 +111,9 @@ const AddrClickable = (addr:string) => {
 
 
 const TxnFooter = ({ success, sender, timestamp, version, hash, gas_used,events,event_root_hash }: UserTransaction) => {
+
+    // const event_html
+
     return (
         <div className="flex flex-row justify-between">
             <div className="">
@@ -118,20 +121,20 @@ const TxnFooter = ({ success, sender, timestamp, version, hash, gas_used,events,
                 <p>gas cost: {gas_used}</p>
             </div>
             <div className=""> 
-                <p className="text-bold">{events?.length} events</p>
-                {events?.map((event: Types.Event)=> {
+                <p className="text-bold" data-tip>{events?.length} events</p>
+                {/* {events?.map((event: Types.Event)=> {
                     return (
                         <div>
                             <p>{event.key}</p>
                             <p>{event.type}</p>
                         </div>
                     );
-                })}
+                })} */}
             </div>
             <div>
                 {HashLink(hash)}
                 {VersionLink(version)}
-                <p data-tip="hello-worl" className="text-left">
+                <p data-tip={`timestamp:${timestamp}`} className="text-left">
                     {TimeAgo(timestamp)} from @ {shortenAddress(sender)}
                 </p>
             </div>

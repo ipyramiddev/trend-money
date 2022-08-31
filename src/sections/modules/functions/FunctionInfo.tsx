@@ -5,8 +5,8 @@ import { formatParam } from "hooks/formatting";
 
 const FunctionInfo = ({ function: func }: { function: Types.MoveFunction }) => {
     return (
-        <div className="items-center justify-center bg-purple bg-opacity-50 p-1 m-2 rounded-xl">
-            <p className="text-center text-2xl p-2">Function Info</p>
+        <div className="items-center justify-center p-1 m-2 rounded-xl">
+            <p className="text-center text-2xl pb-2">Function Info</p>
             <p className="label"> function name:</p>
             <p className="function-outline">{func.name}</p>
             <p className="label"> Visibility: {func.visibility}</p>

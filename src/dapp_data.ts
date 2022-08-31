@@ -60,13 +60,13 @@ export const dapps = [
     "name": "names.aptos",
     "tags": ["Name Service", "Tools"],
     "discord": "",
-    "Published": "Jul 19, 2022 6:28 AM",
+    "published": "Jul 19, 2022 6:28 AM",
     "twitter": "https://twitter.com/aptosnames",
     "status": "Testnet",
     "github": "",
     "url": "https://www.aptosnames.com/",
     "image": "aptosnames.svg",
-    "address":"0x315e03842577fde27923732c20ea9bc8dc8d49268c5a2c1e2d60ac67dc161f6c"
+    "address":"0xa814959bfce66346bd028cf4a5d9e212216bb8acb66ca0fb1d0a8ec8c4f767ab"
   },
   {
     "name": "Hippo Labs",
@@ -193,7 +193,7 @@ export const dapps = [
           "github": "",
           "url": "https://pontem.network/",
           "image": "pontemNetwork.jpg",
-          "address": "pontemNetwork.jpg",
+          "address": "0x43417434fd869edee76cca2a4d2301e528a1551b1d719b75c350c3c97d15b8b9",
         },
 
         {
@@ -210,6 +210,19 @@ export const dapps = [
           "Docs": "",
           "Npm": "",
           "k": "DEXORDER"
+        },
+        {
+          "name": "Mojito",
+          "tags": ["Prediction market"],
+          "description": "",
+          
+          "twitter": "https://twitter.com/LaminarMarkets",
+          "status": "TBA",
+          "logo": "",
+          "url": "https://app.mojito.markets",
+          "github": "",
+          "docs": "",
+          "address": "0xd60732df368517cf6c1b9155c97f022c961e8a7b30430d4a3ab143c88d684825",
         },
 
         {
@@ -242,9 +255,10 @@ export const dapps = [
           "twitter": "https://twitter.com/TopazMarket",
           "status": "Testnet",
           "image": "topaz.png",
+          "address":"0xaea7e219aa758cc115c8fba5e7323b6d17ed1a8b5ceb70900bdeb821cb2f75d2",
           "url":'https://www.topaz.so/',
           "github": "",
           "docs": "",
-          "Npm": "",
+          "npm": "",
         }
 ]
