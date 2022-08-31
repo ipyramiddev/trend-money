@@ -18,6 +18,7 @@ import DappsView from 'sections/dapps/DappsView';
 import { loadTxs } from 'hooks/useTransaction';
 import Validators from '../sections/staking/Validators';
 import { useWeb3 } from '@fewcha/web3-react';
+import { formatParam } from 'hooks/formatting';
 // devnet is used here for testing
 const NODE_URL = "https://fullnode.devnet.aptoslabs.com";
 const FAUCET_URL = "https://faucet.devnet.aptoslabs.com";
@@ -43,9 +44,9 @@ const Explorer = () => {
     ]
     const [view, setView] = useState("ModuleExplorer");
     return (
-    <div className="p-3 m-4 items-center justify-center">
+    <div className="flex flex-col w-full p-3 m-2 items-center justify-center">
         <p className="text-3xl text-center">Explorer</p>
-        <div className="flex flex-row items-center justify-center">
+        <div className="flex flex-row items-start start">
             <div className="flex tabs flex-row seam-outline">
                 {tabs.map((tab:any, index) => {
                     return (
@@ -58,9 +59,8 @@ const Explorer = () => {
                 }
             </div>
         </div>
-
         <div className="flex flex-col  w-full items-center justify-start">
-                <p>{account?.address||""}</p>
+                <p className="account-outline">{formatParam(account?.address||'')}</p>
             {isConnected ? <p className="px-2 py-1 rounded-sm text-green1 outline-2 outline-green1 m-2">connected</p> : <p>not connected</p>}
             {view === "ModuleExplorer" ? <ModuleExplorer client={client} mod={modules}  />:null}
             {view === "UserExplorer"&&isConnected ? <UserExplorer account={account} client={client}/> :null}
