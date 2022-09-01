@@ -18,8 +18,8 @@ interface TxnListProps {
 const TxnList = ({ txns, address }: TxnListProps) => {
 
     return (
-        <div className="h-full container">
-            <span className="flex justify-center items-center "><p>Transactions for</p> {AddrClickable(address)}</span>
+        <div className="h-full items-start ">
+            <div className="flex flex-row justify-start items-start "><p>Transactions for</p> <p>{AddrClickable(address)}</p></div>
             
             <div className="txScroller px-4">
             {txns.map((tx: Types.Transaction) => {

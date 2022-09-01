@@ -11,7 +11,7 @@ import Web3Provider from "@fewcha/web3-react";
 
 import { useState } from 'react';
 import { GlobalStateProvider } from 'GlobalState';
-// import {WalletProvider } from '@manahippo/aptos-wallet-adapter';
+import {MyWalletProvider } from './context/wallet/provider';
 import WalletModal from 'modals/walletModal';
 import Staking from './pages/Staking';
 
@@ -26,7 +26,7 @@ export default function Wrapper() {
     // <ApolloProvider client={client}>
       <Web3Provider>
       <GlobalStateProvider>
-        {/* <WalletProvider> */}
+        <MyWalletProvider>
       <div >
         <Navbar showConnectModal={setWalletModal}/>
         <BrowserRouter>
@@ -43,7 +43,7 @@ export default function Wrapper() {
         </BrowserRouter>
         {walletModalOpen ? <WalletModal isOpen={walletModalOpen} setIsOpen={setWalletModal}/>: null}
     </div>
-      {/* </WalletProvider> */}
+      </MyWalletProvider>
       </GlobalStateProvider>
       </Web3Provider>
     // </ApolloProvider>

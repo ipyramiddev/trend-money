@@ -1,21 +1,39 @@
-import { connectPetra, getPetra } from "hooks/wallet";
+// import { connectPetra, getPetra } from "hooks/wallet";
 import React from "react";
-import {walletContext} from "./context";
-import {useWallet} from "./useWallet";
+
+
+import {
+  WalletProvider,
+  HippoWalletAdapter,
+  AptosWalletAdapter,
+  HippoExtensionWalletAdapter,
+  MartianWalletAdapter,
+  FewchaWalletAdapter,
+  // PontemWalletAdapter
+} from '@manahippo/aptos-wallet-adapter';
 
 interface WalletProviderProps {
   children: React.ReactNode;
 }
-
-export const WalletProvider: React.FC<WalletProviderProps> = ({
+export const MyWalletProvider: React.FC<WalletProviderProps> = ({
   children,
 }: WalletProviderProps) => {
-  const value = useWallet(connectPetra,getPetra);
+  const wallets = [
+    new HippoWalletAdapter(),
+    new MartianWalletAdapter(),
+    new AptosWalletAdapter(),
+    new FewchaWalletAdapter(),
+    new HippoExtensionWalletAdapter(),
+    // new PontemWalletAdapter()
+  ];
+  const value = wallets;
   
 
   // const wallets:walletContext[] = [petraWallet]
   return (
-    <walletContext.Provider value={value}>{children}</walletContext.Provider>
+    <WalletProvider wallets={value} onError={(error: Error) => {
+      console.log('Handle Error Message', error)
+    }} >{children}</WalletProvider>
   );
 };
 

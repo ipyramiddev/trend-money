@@ -2,9 +2,9 @@ import Validators from "sections/staking/Validators";
 
 const Staking = () => {
     return (
-        <div className="w-full h-full items-start">
+        <div className="w-full h-screen items-start">
             <p>Staking</p>
-            {/* <Validators/>         */}
+            <Validators/>        
         </div>
     )
 

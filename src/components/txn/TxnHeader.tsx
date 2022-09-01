@@ -15,16 +15,20 @@ const TxnHeader = ({ address, module_name, func_name }: Props) => {
      }
 
     return (
-        <div className="flex flex-row text-center text-xl justify-between gap gap-2 items-center">
+        <div>
+        <div className="flex flex-row overflow-auto text-center text-xl justify-between gap gap-2 items-center">
             {/* Address */}
             <button data-tip="Copy address" onClick={()=>copyToClipboard(address)} className="account-outline text-bold">{shortenAddress(address)}</button>
-            <p className="text-bold text-3xl">::</p>
+            <p className="text-bold text-2xl">::</p>
 
             {/* Module */}
             <p  data-tip="Module name" className="module-outline text-bold ">{module_name}</p>
             <p className="text-bold text-3xl">::</p>
             {/* Function */}
+        </div>
+        <div className="flex flex-row  w-1/2 px-3">
             <p  data-tip="function name" className="function-outline">{func_name}</p>
+            </div>
         </div>
     );
 };
