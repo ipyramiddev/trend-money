@@ -17,11 +17,14 @@ function safeGetSelectedNetworkName(): NetworkName {
 export type GlobalState = {
   network_name: NetworkName;
   network_value: string;
+  connected:boolean;
+  
 };
 
 const defaultGlobalState: GlobalState = {
   network_name: selected_network,
   network_value: networks[selected_network],
+  connected: false
 };
 
 function reducer(state: GlobalState, newValue: GlobalState): GlobalState {

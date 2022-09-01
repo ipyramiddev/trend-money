@@ -18,6 +18,8 @@ import TxnList from "sections/TxnList";
 import AccountResources from "sections/account/AccountResources";
 import { FaClipboard, FaRegClipboard } from "react-icons/fa";
 import { textCopy } from "utils";
+import { loadTxs } from "hooks/useTransaction";
+import { useWeb3 } from "@fewcha/web3-react";
 interface ModExploreProps {
     client: AptosClient;
     mod: Types.MoveModuleBytecode[];
@@ -34,7 +36,8 @@ const ModuleExplorer = ({ client, mod }: ModExploreProps) => {
     const [addressList, setAddressList] = useState<string[]>(["0x1", "0x3",]);
     const [typeArgs, setTypeArgs] = useState<string[]>(["0x1::aptos_coin::AptosCoin"]);
     const [tempArgs, setTempArg] = useState<string[]>([]);
-
+    const { account,isConnected } =useWeb3();
+    const [txs, setTxs] = useState<Types.Transaction[]>([]);
     const ModuleInfo = ({ module }: { module: Types.MoveModuleBytecode }) => {
         const { abi } = module;
 
@@ -81,6 +84,15 @@ const ModuleExplorer = ({ client, mod }: ModExploreProps) => {
             setError(err);
         }
         )
+       
+
+            if(isConnected && account){
+                loadTxs(address,client).then((res)=>{setTxs(res)
+            console.log("just loaded ", res);
+            }
+            )
+        };
+    
     }
 
     useEffect(() => {
@@ -104,7 +116,7 @@ const ModuleExplorer = ({ client, mod }: ModExploreProps) => {
                 : null}
             <div className="flex flex-row w-full justify-center">
                 {/* <div> */}
-                <div className="w-96 seam-outline">
+                <div className="w-1/2 seam-outline">
                     <div className="flex flex-row text-black gap gap-2">
                         <input className="w-1/2 py-2 px-4 outline outline-2 outline-white rounded-2xl" type="text" placeholder="Enter address" value={selectedAddress} onChange={(e) => setSelectedAddress(e.target.value)} />
                         <button className="btn m-1 text-white" onClick={() => textCopy(selectedAddress)}> <FaClipboard /></button>
@@ -133,15 +145,15 @@ const ModuleExplorer = ({ client, mod }: ModExploreProps) => {
                 {/* </div> */}
 
 
-                <div>
+                <div className="flex w-1/2">
                     {selectedModule !== undefined ?
                         <ModuleInfo module={selectedModule} />
                         : <div>No modules found</div>}
                 </div>
-                    {selectedModule !== undefined ? <ModuleTypes module={selectedModule} /> : null}
             </div>
-            {/* <div className="flex flex-row items-start justify-start gap gap-4"> */}
-                {selectedModule && selectedFunction ?
+                        {selectedModule !== undefined ? <ModuleTypes module={selectedModule} /> : null}
+
+                {/* {selectedModule && selectedFunction ?
 
                     <TxnPreview
                         address={selectedAddress}
@@ -152,11 +164,10 @@ const ModuleExplorer = ({ client, mod }: ModExploreProps) => {
                         setShowTxnModal={setShowTxnModal}
                         client={client}
                     />
-                    : null}
-                {/* <AccountResources address={selectedAddress}/> */}
+                    : null} */}
+                    
 
-                {/* <TxnList /> */}
-            {/* </div> */}
+                {/* {txs ?<TxnList txns={txs} address={selectedAddress}/>:null} */}
         </div>
     );
 }

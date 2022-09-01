@@ -1,9 +1,8 @@
 import { AptosAccount, AptosClient, BCS, TxnBuilderTypes } from "aptos";
 import { MoveFunction, MoveFunctionGenericTypeParam, MoveModule, MoveModuleBytecode, MoveType, MoveValue, TransactionPayload } from "aptos/dist/generated";
-// import { MoveFunction, MoveModuleABI, MoveTypeId, AccountResource } from "aptos/dist/api/data-contracts";
 import { TransactionPayloadScript } from "aptos/dist/transaction_builder/aptos_types";
 import TxnHeader from "components/txn/TxnHeader";
-import { useEffect, useRef, useState } from "react";
+import {useRef, useState } from "react";
 import { generic_serialize } from "util/aptosUtils";
 import ModalWrapper from "./ModalWrapper";
 import Web3 from "@fewcha/web3";
@@ -49,15 +48,12 @@ const TransactionModal = ({isOpen,client, address,module, type_arguments, args, 
     const sendTxn = async () => {
       
       const payload = {
-        type: "script_function_payload",
+        type: "entry_function_payload",
         function: address+'::'+module_name+"::"+func.name,
-        type_arguments: [],
-        arguments: [],
+        type_arguments: type_arguments,
+        arguments: argList,
       };
       console.log("Payload",payload);
-      // const req = await window.martian.generateTransaction(account.address, payload)
-      // const tx = await window.martian.signAndSubmitTransaction(req.data)
-      // const r = await web3.action.submitTransaction(tx)
       const transactionRequest = await window.martian.generateTransaction(account.address, payload);
       // const txn = await window.martian.sig
       const txnHash = await window.martian.signTransaction(transactionRequest);
@@ -76,7 +72,7 @@ const TransactionModal = ({isOpen,client, address,module, type_arguments, args, 
             return (
               <span key={index} className="flex flex-row items-center justify-center px-2 py-3 m-3 rounded-xl text-white">
                 <p className="text-sm text-bold text-right">{param}</p>
-                <input className="px-3 py-2 rounded-xl outline outline-2" type="text" placeholder={args[index]} value={args[index]} onChange={(event)=>updateArg(index,event.target.value)}/>
+                <input className="px-3 py-2 rounded-xl text-black outline outline-2" type="text" placeholder={args[index]} value={args[index]} onChange={(event)=>updateArg(index,event.target.value)}/>
               </span>
             )
         } )}

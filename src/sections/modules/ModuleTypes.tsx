@@ -4,14 +4,12 @@ import { formatParam } from "hooks/formatting";
 const ModuleTypes = ({ module }: { module: Types.MoveModuleBytecode }) => {
     const { abi } = module;
     return (
-        <div>
-            <p className="text-center text-2xl p-2">Module Types(structs)</p>
-            <div className="flex flex-col scrollbar w-60 scrollbar-thumb-blue2 dappScroll">
+        <div className="flex flex-col w-full px-6 py-4 ">
+            <p className="text-center text-2xl ">Module Types</p>
+            <div className="flex flex-col scrollbar  scrollbar-thumb-blue2 w-full mx-6 py-5">
                 {ModuleStructs(module)}
             </div>
-            <div className="flex flex-col scrollbar w-60 scrollbar-thumb-blue2 dappScroll">
-                {/* {module.abi?. */}
-        </div>
+            
         </div>
     );
 }
@@ -20,7 +18,7 @@ const ModuleTypes = ({ module }: { module: Types.MoveModuleBytecode }) => {
 const ModuleStructs = (module: Types.MoveModuleBytecode) => {
     const { abi } = module;
     return (
-        <div className="flex flex-row items-center   ">
+        <div className="flex flex-row gap gap-2 items-start">
             {abi?.structs.map((struct: Types.MoveStruct) => {
                 return ModuleStruct(struct);
             })}
