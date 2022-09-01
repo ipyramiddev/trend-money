@@ -25,12 +25,12 @@ const UserExplorer = ({client}:Props) => {
     }
 
     }
-    ,[account]);
+    ,[]);
 
     return (
-        <div>
-        <h1>User Explorer</h1>
-            <div className='flex flex-row items-center justify-center px-2'>
+        <div className="w-full mx-6">
+        <p className="text-3xl font-semibold">User Explorer</p>
+            <div className='flex flex-row w-full items-start justify-center'>
             {/* <UserOverview  /> */}
             {account?.address ?(<AccountResources address={account?.address}/>):<p>no resources</p>}
             {account?.address ?

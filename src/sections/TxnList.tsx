@@ -1,7 +1,7 @@
 import { Types } from "aptos";
 import React from "react";
 import { ReactDOM } from "react";
-import { formatParam, parsePayloadFunction, shortenAddress, TimeAgo } from "hooks/formatting";
+import { formatParam, formatType, parsePayloadFunction, shortenAddress, TimeAgo } from "hooks/formatting";
 import { aptosTxnLink } from "hooks/useExplorer";
 import ReactTooltip from "react-tooltip";
 import { useState } from "react";
@@ -113,6 +113,12 @@ const AddrClickable = (addr:string) => {
 const TxnFooter = ({ success, sender, timestamp, version, hash, gas_used,events,event_root_hash }: UserTransaction) => {
 
     // const event_html
+    const event_txt ="<div>"+ events.map((event)=> {
+        return "<p>"+formatType(event.type)+"</p>";
+        // return event_txt;
+    }) + "</div>";
+    
+    
 
     return (
         <div className="flex flex-row justify-between">
@@ -121,7 +127,7 @@ const TxnFooter = ({ success, sender, timestamp, version, hash, gas_used,events,
                 <p>gas cost: {gas_used}</p>
             </div>
             <div className=""> 
-                <p className="text-bold" data-tip>{events?.length} events</p>
+                <p className="text-bold" data-tip={`<p>${event_txt}</p>`}>{events?.length} events</p>
                 {/* {events?.map((event: Types.Event)=> {
                     return (
                         <div>
@@ -130,6 +136,7 @@ const TxnFooter = ({ success, sender, timestamp, version, hash, gas_used,events,
                         </div>
                     );
                 })} */}
+                <ReactTooltip place="top" textColor="white" html={true} multiline={true}/>
             </div>
             <div>
                 {HashLink(hash)}

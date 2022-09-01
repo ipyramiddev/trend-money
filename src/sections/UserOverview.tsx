@@ -24,7 +24,7 @@ const UserOverview = ({ connected, user }: UserProps) => {
             <p className="text-4xl font-bold">{format_large_number(user.coins?.balance)}</p>
             <p className="text text-sm opacity-70">Aptos Tokens</p>
             <span className="bg-white">
-            <img src="./public/tokens/asset_APT.svg" className="w-auto h-auto p-3"/>
+            <img src="../public/tokens/asset_APT.svg" className="w-auto h-auto p-3"/>
             </span>
             </div>
             <div className="flex flex-row justify-start gap gap-4">

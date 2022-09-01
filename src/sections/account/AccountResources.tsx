@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Web3 from "@fewcha/web3";
 import { MoveResource } from "aptos/dist/generated";
 import { Types } from "aptos";
-import { format_large_number, shortenAddress } from "hooks/formatting";
+import { formatType, format_large_number, shortenAddress } from "hooks/formatting";
 
 const web3 = new Web3();
 const AccountResources = ({ address }: { address: string }) => {
@@ -21,8 +21,8 @@ const AccountResources = ({ address }: { address: string }) => {
     );
     return (
         <div>
-            <h1>Account Resources</h1>
-            <div className="modScroll p-2 flex flex-col">
+            
+            <div className="modScroll p-2 flex flex-col max-w-2xl ">
                 {resources && resources.length != 0 ? (ResourceList(resources)) : <p>no resources</p>}
             </div>
             <p>
@@ -44,8 +44,8 @@ const Resource = (resource: MoveResource) => {
     }
 
     return (
-        <div className="p-2 m-2 outline outline-2 ">
-            <p>{resource.type}</p>
+        <div className="p-2 m-2 outline outline-2 overflow-hidden">
+            <p>{formatType(resource.type)}</p>
             {/* <p>{resource.data}</p> */}
         </div>
     )
@@ -57,9 +57,12 @@ const CoinStore = (coins: any) => {
 
 
     return (<div className="flex flex-col p-3 m-3 rounded-lg text-left items-start justify-start">
-        <div className="outline rounded-lg w-full p-2 m-1">
+        <div className="outline flex-row justify-between rounded-lg w-full p-2 m-1">
+            <div>
             <p className="text-4xl font-bold">{format_large_number(coins.coin?.value)}</p>
             <p className="text text-sm opacity-70">Aptos Tokens</p>
+            </div>
+            {/* <img src="./public/tokens/asset_APT.svg" className="w-auto h-auto p-3"/> */}
         </div>
         <div className="flex flex-row justify-start gap gap-4">
 
@@ -73,8 +76,6 @@ const CoinStore = (coins: any) => {
             </div>
         </div>
         {/* <UserNfts {...user.nfts} /> */}
-        {/* <input className=" m-3 bg-opacity-30 outline outline-white outline-2 text-black" type="text" value={sendAddr} onChange={(e) => setSendAddr(e.target.value)} /> */}
-        {/* <button className="seam-button m-3" onClick={() => sendTransaction(sendAddr)}>Send coins:</button> */}
     </div>);
 }
 
