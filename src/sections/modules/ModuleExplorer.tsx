@@ -163,7 +163,7 @@ const ModuleExplorer = ({ client, mod }: ModExploreProps) => {
                     
                     <div className="flex flex-col gap gap-2 p-2 ">
                 {txs ?<TxnList txns={txs} address={selectedAddress}/>:null}
-                {selectedAddress? <AccountResources address={selectedAddress}/>:null}
+                {/* {selectedAddress? <AccountResources address={selectedAddress}/>:null} */}
                 </div>
         </div>
     );
