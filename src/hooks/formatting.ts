@@ -88,10 +88,10 @@ export const formatParam = (param:string) => {
     // try{
     if (param && param.length>1) {
         // split on ::
-        const splitt = param.split("::");
-        if(splitt.length !== 1){
-            return shortenAddress(splitt[0]) + "::" + splitt[1] + "::" + splitt[2];   
-        }
+        // const splitt = param.split("::");
+        // if(splitt.length !== 1){
+        //     return shortenAddress(splitt[0]) + "::" + splitt[1] + "::" + splitt[2];   
+        // }
         return shortenAddress(param);
     }
     if (param.length >= 30) {
