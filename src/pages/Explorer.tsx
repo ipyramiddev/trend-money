@@ -59,7 +59,7 @@ const Explorer = () => {
                 }
             </div>
         </div>
-        <div className="flex flex-col  w-full items-center justify-start">
+        <div className="flex flex-col w-full items-center justify-start">
                 <p className="account-outline">{formatParam(account?.address||'')}</p>
             {isConnected ? <p className="px-2 py-1 rounded-sm text-green1 outline-2 outline-green1 m-2">connected</p> : <p>not connected</p>}
             {view === "ModuleExplorer" ? <ModuleExplorer client={client} mod={modules}  />:null}

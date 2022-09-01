@@ -6,6 +6,8 @@
 //     return "$" + tvl;
 // }
 
+import { slice } from "lodash";
+
 export const format_large_number = (num:number) => {
     if (num === null) {
         return '-';
@@ -64,6 +66,9 @@ export const shortenAddress = (
     if(account.length<4){
         return account
     }
+    if(account.slice(0,2)!=='0x'){
+        return account
+    }
 
     // if (account.slice(0, 2) === "0x" || account.slice(0, 3) !== "&0x") {
     //     return account;
@@ -92,9 +97,29 @@ export const formatParam = (param: string) => {
     }
     return param;
 }
+
+export const formatType = (type:string)=>{
+    const spl = type.split("::",3)
+    const mod = spl[1] || " "
+    const act = shortenAddress(spl[0])
+    
+    if (spl.length>2){
+    let res = spl[2]
+    if(res.split("::").length>1){
+       res = formatType(res.slice(1))
+    }
+    else{
+        res=shortenAddress(res);
+    }
+    const rest = res
+    
+    return act+"::"+mod+"::"+rest
+}
+return act + "::"+mod;
+}
   export const TimeAgo = (timestamp: string) => {
     // convert unix timestamp in microseconds to milliseconds
-    const date = new Date(parseInt(timestamp) * 10000);
+    const date = new Date(parseInt(timestamp));
     // const date = new Date(timestamp);
     const now = new Date();
     const seconds = Math.round(Math.abs((now.getTime() - date.getTime())));
