@@ -36,7 +36,7 @@ const ModuleExplorer = ({ client, mod }: ModExploreProps) => {
     const [addressList, setAddressList] = useState<string[]>(["0x1", "0x3",]);
     const [typeArgs, setTypeArgs] = useState<string[]>(["0x1::aptos_coin::AptosCoin"]);
     const [tempArgs, setTempArg] = useState<string[]>([]);
-    const { account,isConnected } =useWeb3();
+    // const { account,isConnected } =useWeb3();
     const [txs, setTxs] = useState<Types.Transaction[]>([]);
     const ModuleInfo = ({ module }: { module: Types.MoveModuleBytecode }) => {
         const { abi } = module;
@@ -85,13 +85,10 @@ const ModuleExplorer = ({ client, mod }: ModExploreProps) => {
         }
         )
        
-
-            if(isConnected && account){
                 loadTxs(address,client).then((res)=>{setTxs(res)
             console.log("just loaded ", res);
             }
-            )
-        };
+            );
     
     }
 
@@ -167,7 +164,7 @@ const ModuleExplorer = ({ client, mod }: ModExploreProps) => {
                     : null} */}
                     
 
-                {/* {txs ?<TxnList txns={txs} address={selectedAddress}/>:null} */}
+                {txs ?<TxnList txns={txs} address={selectedAddress}/>:null}
         </div>
     );
 }

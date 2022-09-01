@@ -75,10 +75,7 @@ const DappsView = () => {
     return (
         <div className="min-h-screen w-screen p-6 relative items-start justify-start ">
             <p className="text-3xl">Dapps</p>
-            {/* < */}
-
             <p>Recently Used</p>
-            {/* <div className="flex flex-col w-full"> */}
                 <div className="flex flex-row p-1">
                     {recentOpen.map((dapp: any) => {
                         return <img className="w-10 h-10 p-1" src={"./dapps/" + dapp.image} />

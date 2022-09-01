@@ -27,7 +27,7 @@ const TxnList = ({ txns, address }: TxnListProps) => {
                     // tx = tx as UserTransaction;
                     return (<div className="seam-outline mx-4 my-3" >
                         <p data-tip="type of txn (ex)">{tx.type}
-                        <ReactTooltip place="top" textColor="white" multiline={true}/>
+                        {/* <ReactTooltip place="top" textColor="white" multiline={true}/> */}
                         </p>
                         <TxnPayload {...tx as UserTransaction} />
                         <TxnFooter {...tx as UserTransaction} />

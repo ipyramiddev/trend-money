@@ -42,10 +42,10 @@ const Resource = (resource: MoveResource) => {
 
         return CoinStore(resource.data);
     }
-    if (resource.type == "0x3::token::TokenStore") {
+    // if (resource.type == "0x3::token::TokenStore") {
 
-        return TokenStore(resource.data);
-    }
+    //     return TokenStore(resource.data);
+    // }
 
     return (
         <div className="p-2 m-2 outline outline-2 overflow-hidden">

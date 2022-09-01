@@ -8,38 +8,39 @@ import { loadTxs } from "hooks/useTransaction";
 import AccountResources from "./account/AccountResources";
 import { loadAccount } from "hooks/loadAptos";
 interface Props {
-    account:any;
+    account: any;
     client: AptosClient;
 }
 
-const UserExplorer = ({client}:Props) => {
-    const { account,isConnected } =useWeb3();
+const UserExplorer = ({ client }: Props) => {
+    const { account, isConnected } = useWeb3();
     const [txs, setTxs] = useState<Types.Transaction[]>([]);
-    useEffect(()=>{
-        if(isConnected && account){
-            loadAccount(account.address,client);
-        loadTxs(account.address,client).then((res)=>{setTxs(res)
-        console.log("just loaded ", res);
+    useEffect(() => {
+        if (isConnected && account) {
+            loadAccount(account.address, client);
+            loadTxs(account.address, client).then((res) => {
+                setTxs(res)
+                console.log("just loaded ", res);
+            }
+            );
         }
-        );
-    }
 
     }
-    ,[]);
+        , [account,isConnected]);
 
     return (
         <div className="w-full mx-6">
-        <p className="text-3xl font-semibold">User Explorer</p>
+            <p className="text-3xl font-semibold">User Explorer</p>
             <div className='flex flex-row w-full items-start justify-center'>
-            {/* <UserOverview  /> */}
-            {account?.address ?(<AccountResources address={account?.address}/>):<p>no resources</p>}
-            {account?.address ?
+                {/* <UserOverview  /> */}
+                {account?.address ?(<AccountResources address={account?.address}/>):<p>no resources</p>}
+                {account?.address ?
             <TxnList txns={txs} address={account?.address}/>
             :<p>please connect</p>}
-            <WagMemeContainer />
+                <WagMemeContainer />
             </div>
         </div>
     );
-    }
+}
 
 export default UserExplorer;
