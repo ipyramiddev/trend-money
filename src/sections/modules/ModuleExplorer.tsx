@@ -41,7 +41,6 @@ const ModuleExplorer = ({ client, mod }: ModExploreProps) => {
     const ModuleInfo = ({ module }: { module: Types.MoveModuleBytecode }) => {
         const { abi } = module;
 
-
         return (
                 <div className=" px-2 rounded-xl">
                     <div className="flex flex-row p-2">
@@ -68,7 +67,6 @@ const ModuleExplorer = ({ client, mod }: ModExploreProps) => {
                 <div>
                 </div>
             </div>
-
           )
     }
 
@@ -163,8 +161,10 @@ const ModuleExplorer = ({ client, mod }: ModExploreProps) => {
                     />
                     : null} */}
                     
-
+                    <div className="flex flex-col gap gap-2 p-2 ">
                 {txs ?<TxnList txns={txs} address={selectedAddress}/>:null}
+                {selectedAddress? <AccountResources address={selectedAddress}/>:null}
+                </div>
         </div>
     );
 }

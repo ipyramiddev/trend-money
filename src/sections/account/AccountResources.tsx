@@ -19,17 +19,15 @@ const AccountResources = ({ address }: { address: string }) => {
             }
         });
         // web3.action.sdk.
-    }, []
+    }, [address]
     );
     return (
         <div>
             
             <div className="modScroll p-2 flex flex-col max-w-2xl ">
-                {resources && resources.length != 0 ? (ResourceList(resources)) : <p>no resources</p>}
+                {resources && resources.length !== 0 ? (ResourceList(resources)) : <p>no resources</p>}
             </div>
-            <p>
-
-            </p>
+            
         </div>
     );
 }
