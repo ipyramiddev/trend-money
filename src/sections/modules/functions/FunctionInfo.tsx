@@ -1,7 +1,7 @@
 import { Types } from "aptos";
 import { MoveAbility, MoveFunctionGenericTypeParam, MoveType } from "aptos/dist/generated";
 
-import { formatParam } from "hooks/formatting";
+import { formatParam, formatType } from "hooks/formatting";
 
 const FunctionInfo = ({ function: func }: { function: Types.MoveFunction }) => {
     return (
@@ -33,8 +33,8 @@ const FunctionInfo = ({ function: func }: { function: Types.MoveFunction }) => {
                 {func.return.length === 0 ? <p>No return type</p> : null}
                 {func.return.map((ret: MoveType, i) => {
                     return (
-                        <div key={ret + i} className="return-outline justify-center">
-                            <p className="">{ret}:</p>
+                        <div key={ret + i} className="max-w-10 return-outline justify-center">
+                            <p className="">{formatType(ret)}:</p>
                         </div>
                     )
                 }

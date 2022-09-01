@@ -58,10 +58,10 @@ const ModuleExplorer = ({ client, mod }: ModExploreProps) => {
                         })
                         }
                     </div>
+                        </div>
                     {selectedFunction !== null ?
                         <FunctionInfo function={selectedFunction} />
                         : <div>No function selected</div>}
-                        </div>
                 <div>
                 </div>
             </div>
@@ -102,9 +102,9 @@ const ModuleExplorer = ({ client, mod }: ModExploreProps) => {
                     isOpen={showTxnModal}
                     func={selectedFunction} />
                 : null}
-            <div className="flex flex-row w-3/4">
-
-                <div className=" seam-outline">
+            <div className="flex flex-row w-full justify-center">
+                {/* <div> */}
+                <div className="w-96 seam-outline">
                     <div className="flex flex-row text-black gap gap-2">
                         <input className="w-1/2 py-2 px-4 outline outline-2 outline-white rounded-2xl" type="text" placeholder="Enter address" value={selectedAddress} onChange={(e) => setSelectedAddress(e.target.value)} />
                         <button className="btn m-1 text-white" onClick={() => textCopy(selectedAddress)}> <FaClipboard /></button>
@@ -121,7 +121,7 @@ const ModuleExplorer = ({ client, mod }: ModExploreProps) => {
                         <p className=" text-2xl account-outline">{formatParam(selectedAddress)}</p>
                     </span>
                     <p className="text-xl text-center py-1">Account Modules</p>
-                    <div className="hScroller flex scrollbar  scrollbar-thumb-white flex-row justify-start seam-outline p-2 gap gap-2">
+                    <div className="hScroller flex scrollbar  scrollbar-thumb-white scrollbar-track-black flex-row justify-start seam-outline p-2 gap gap-2">
                         {modules.map((mod: Types.MoveModuleBytecode) => {
                             return (<div className="items-center justify-center">
                                 <button className=" module-outline" onClick={() => setSelectedModule(mod)}>{mod.abi?.name}</button>
@@ -129,17 +129,18 @@ const ModuleExplorer = ({ client, mod }: ModExploreProps) => {
                         }
                         )}
                     </div>
-                </div>
+                    </div>
+                {/* </div> */}
 
 
                 <div>
                     {selectedModule !== undefined ?
                         <ModuleInfo module={selectedModule} />
                         : <div>No modules found</div>}
-                    {selectedModule !== undefined ? <ModuleTypes module={selectedModule} /> : null}
                 </div>
+                    {selectedModule !== undefined ? <ModuleTypes module={selectedModule} /> : null}
             </div>
-            <div className="flex flex-row items-center justify-center gap gap-4">
+            {/* <div className="flex flex-row items-start justify-start gap gap-4"> */}
                 {selectedModule && selectedFunction ?
 
                     <TxnPreview
@@ -155,7 +156,7 @@ const ModuleExplorer = ({ client, mod }: ModExploreProps) => {
                 {/* <AccountResources address={selectedAddress}/> */}
 
                 {/* <TxnList /> */}
-            </div>
+            {/* </div> */}
         </div>
     );
 }

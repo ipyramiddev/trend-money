@@ -13,17 +13,9 @@ const nav_items = [
         path: '/explorer'
     },
     {
-        name: 'strategies',
-        path: '/app'
-    },
-    {
         name: 'staking',
         path: '/staking',
     },
-    // {
-    //     name: 'docs',
-    //     path: '/docs',
-    // },
 
 ];
 

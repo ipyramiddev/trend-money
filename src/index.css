@@ -122,6 +122,8 @@
   border: solid 3px  #e39165;
 }
 
+
+
 .return-outline{
   background-color: transparent;
   padding-left: 0.5rem;
@@ -136,6 +138,11 @@
   border: solid 3px  #dd14c9;
 }
 
+.return-outline:hover{
+  background-color: #dd14c9;
+  
+}
+
 .function-outline{
   background-color: transparent;
   padding-left: 0.5rem;
@@ -148,6 +155,10 @@
   border: solid 3px yellow;
   width: 100%;
   /* color: yellow; */
+}
+
+.function-outline:hover{
+  background-color: yellow;
 }
 
 
