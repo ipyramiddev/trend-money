@@ -80,23 +80,26 @@ export const shortenAddress = (
     );
   };
 
-export const formatParam = (param: string) => {
-    if (!param) {
+export const formatParam = (param:string) => {
+    console.log("param",param)
+    if (!param || param===undefined || param==="" ) {
         return "0x";
     }
-    if (param.slice(0, 2) === "0x" || param.slice(0,3)=== "&0x") {
+    // try{
+    if (param && param.length>1) {
         // split on ::
-        const split = param.split("::");
-        if(split.length !== 1){
-            return shortenAddress(split[0]) + "::" + split[1] + "::" + split[2];   
+        const splitt = param.split("::");
+        if(splitt.length !== 1){
+            return shortenAddress(splitt[0]) + "::" + splitt[1] + "::" + splitt[2];   
         }
         return shortenAddress(param);
     }
     if (param.length >= 30) {
         return shortenAddress(param);
     }
-    return param;
-}
+    // } catch{
+    return param
+    };
 
 export const formatType = (type:string)=>{
     const spl = type.split("::",3)

@@ -26,7 +26,7 @@ const UserExplorer = ({ client }: Props) => {
         }
 
     }
-        , [account,isConnected]);
+        , [isConnected]);
 
     return (
         <div className="w-full mx-6">

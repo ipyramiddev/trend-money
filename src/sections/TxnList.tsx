@@ -26,10 +26,8 @@ const TxnList = ({ txns, address }: TxnListProps) => {
                 if (tx.type === "user_transaction") {
                     // tx = tx as UserTransaction;
                     return (<div className="seam-outline mx-4 my-3" >
-                        <p data-tip="type of txn (ex)">{tx.type}
-                        {/* <ReactTooltip place="top" textColor="white" multiline={true}/> */}
-                        </p>
                         <TxnPayload {...tx as UserTransaction} />
+                        
                         <TxnFooter {...tx as UserTransaction} />
                     </div>)
                 }
@@ -56,6 +54,9 @@ const TxnPayload = ({ payload }: UserTransaction) => {
                 <div>
                     <div className="">
                         <TxnHeader address={addr} module_name={mod} func_name={scr} />
+                        <p data-tip="type of txn (ex)">{type}
+                        {/* <ReactTooltip place="top" textColor="white" multiline={true}/> */}
+                        </p>
                         <EntryTxnArgs {...payload} />
                     </div>
                 </div>
@@ -128,14 +129,7 @@ const TxnFooter = ({ success, sender, timestamp, version, hash, gas_used,events,
             </div>
             <div className=""> 
                 <p className="text-bold" data-tip={`<p>${event_txt}</p>`}>{events?.length} events</p>
-                {/* {events?.map((event: Types.Event)=> {
-                    return (
-                        <div>
-                            <p>{event.key}</p>
-                            <p>{event.type}</p>
-                        </div>
-                    );
-                })} */}
+                
                 <ReactTooltip place="top" textColor="white" html={true} multiline={true}/>
             </div>
             <div>

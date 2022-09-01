@@ -5,7 +5,7 @@ import { TransactionPayloadScript } from "aptos/dist/transaction_builder/aptos_t
 import TxnHeader from "components/txn/TxnHeader";
 import { useEffect, useRef, useState } from "react";
 import { generic_serialize } from "util/aptosUtils";
-import {useWalletContext } from '../context/wallet/context';
+import {useWallet } from '@manahippo/aptos-wallet-adapter';
 import { ConnectWallet, useWeb3 } from "@fewcha/web3-react";
 import ModalWrapper from "./ModalWrapper";
 import copy from "copy-to-clipboard";
@@ -22,6 +22,7 @@ const WalletModal = ({isOpen,setIsOpen}: walletModalProps) =>{
     const [argList, setArgList] = useState<any[]>([]);
     const cancelButtonRef = useRef(null);
     const { account, balance, isConnected,disconnect, network, fewcha, martian, currentWallet } = useWeb3();
+    const {  } = useWallet();
 
     const onDisconnect = ()=>{
       disconnect()

@@ -1,5 +1,5 @@
 import { Types } from "aptos"
-import { formatParam } from "hooks/formatting"
+import { formatParam, formatType } from "hooks/formatting"
 
 const EntryTxnArgs = ( payload :Types.TransactionPayload_EntryFunctionPayload) => {
     return (
@@ -13,7 +13,7 @@ const EntryTxnArgs = ( payload :Types.TransactionPayload_EntryFunctionPayload) =
             <div className=" bg-white p-2 text-black opacity-80">
                 <p className="text-center text-xl font-semibold">arg types</p>
                 {payload.type_arguments.map((type_arg, index) => {
-                    return <p key={index}>{formatParam(type_arg)}</p>
+                    return <p key={index}>{formatType(type_arg)}</p>
                 })}
             </div>
         </div>)

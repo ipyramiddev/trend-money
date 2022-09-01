@@ -14,14 +14,14 @@ export interface walletContext {
 
 export const walletContext = createContext<walletContext | null>(null);
 
-export const useWalletContext = () => {
-  const context = useContext(walletContext) as walletContext;
+// export const useWalletContext = () => {
+//   const context = useContext(walletContext) as walletContext;
 
-  if (!context) {
-    throw new Error("useWalletContext must be used within a walletContext");
-  }
-  return context;
-};
+//   if (!context) {
+//     throw new Error("useWalletContext must be used within a walletContext");
+//   }
+//   return context;
+// };
 
 export type WalletNetworks = "Devnet" | "Localhost" | "Testnet" | "AIT3";
 

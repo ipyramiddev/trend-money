@@ -10,7 +10,6 @@ import {useGlobalState} from "../GlobalState";
 import {useEffect, useState} from "react";
 
 import {
-  useWalletContext,
   walletExplorerNetworkMap,
 } from "../context/wallet/context";
 import {signAndSubmitTransaction} from "./wallet";
@@ -49,7 +48,7 @@ const useSubmitTransaction = () => {
   const [transactionInProcess, setTransactionInProcess] =
     useState<boolean>(false);
   const [state, _] = useGlobalState();
-  const {walletNetwork} = useWalletContext();
+  // const {walletNetwork} = useWalletContext();
   const client = new AptosClient(state.network_value);
 
   useEffect(() => {
@@ -62,19 +61,19 @@ const useSubmitTransaction = () => {
     payload: TxnBuilderTypes.TransactionPayloadEntryFunction,
   ) {
     // if dApp network !== wallet network => return error
-    if (walletExplorerNetworkMap(walletNetwork) !== state.network_name) {
+    // if (walletExplorerNetworkMap(walletNetwork) !== state.network_name) {
       setTransactionResponse({
         transactionSubmitted: false,
         message:
           "Wallet and Explorer should use the same network to submit a transaction",
       });
       return;
-    }
+    // }
 
-    setTransactionInProcess(true);
-    await signAndSubmitTransaction(payload, client).then(
-      setTransactionResponse,
-    );
+    // setTransactionInProcess(true);
+    // await signAndSubmitTransaction(payload, client).then(
+    //   setTransactionResponse,
+    // );
   }
 
   function clearTransactionResponse() {
