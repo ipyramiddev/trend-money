@@ -11,6 +11,7 @@ export const WalletProvider: React.FC<WalletProviderProps> = ({
   children,
 }: WalletProviderProps) => {
   const value = useWallet(connectPetra,getPetra);
+  
 
   // const wallets:walletContext[] = [petraWallet]
   return (

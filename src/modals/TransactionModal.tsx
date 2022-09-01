@@ -47,23 +47,23 @@ const TransactionModal = ({isOpen,client, address,module, type_arguments, args, 
     }
 
     const sendTxn = async () => {
-        
+      
       const payload = {
-        type: "entry_function_payload",
+        type: "script_function_payload",
         function: address+'::'+module_name+"::"+func.name,
-        type_arguments: type_arguments,
-        arguments: args,
+        type_arguments: [],
+        arguments: [],
       };
       console.log("Payload",payload);
-      const req = await web3.action.generateTransaction(payload)
-      const tx = await web3.action.signAndSubmitTransaction(req.data)
+      // const req = await window.martian.generateTransaction(account.address, payload)
+      // const tx = await window.martian.signAndSubmitTransaction(req.data)
       // const r = await web3.action.submitTransaction(tx)
-      // const transactionRequest = await window.martian.generateTransaction(account.address, payload);
+      const transactionRequest = await window.martian.generateTransaction(account.address, payload);
       // const txn = await window.martian.sig
-      // const txnHash = await window.martian.signTransaction(transactionRequest);
-      // const txnsubmit = await window.martian.submitTransactions(txnHash);
+      const txnHash = await window.martian.signTransaction(transactionRequest);
+      const txnsubmit = await window.martian.submitTransactions(txnHash);
       // console.log(transactionRequest);
-        console.log("txnHash", tx);
+        // console.log("txnHash", tx);
         // console.log("submit", txnsubmit);
 
     }
