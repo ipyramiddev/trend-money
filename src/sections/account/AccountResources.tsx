@@ -7,6 +7,7 @@ import { Types } from "aptos";
 import { formatType, format_large_number, shortenAddress } from "hooks/formatting";
 import ReactTooltip from "react-tooltip";
 import { json } from "stream/consumers";
+import { DepositsWithdraws } from "./DepositsWithdraws";
 
 const web3 = new Web3();
 const AccountResources = ({ address }: { address: string }) => {
@@ -14,7 +15,6 @@ const AccountResources = ({ address }: { address: string }) => {
     useEffect(() => {
         web3.action.sdk.getAccountResources(address).then((res) => {
             if (res.status === 200) {
-                // res.data
                 setResources(res.data);
             }
         });
@@ -42,17 +42,21 @@ const Resource = (resource: MoveResource) => {
 
         return CoinStore(resource.data);
     }
+    if (resource.type.includes("0x1::coin::CoinStore")){
+        return GenericCoinStore(resource.data,resource.type)
+    }
+
     if (resource.type == "0x3::token::TokenStore") {
 
         return TokenStore(resource.data);
     }
-    const tooltipText = JSON.stringify(resource.data,null, 2)
-    
+    const tooltipText = JSON.stringify(resource.data,null, "\n").split("\n").map((ele,i)=>{
+        if(ele.length>5){
+        return (`<p>${ele.replace('"',"")}</p>`)}})
     return (
         <div className="p-2 m-2 outline outline-2 overflow-hidden">
-            <p data-tip={`<p>${tooltipText}</p>`}>{formatType(resource.type)}</p>
-            <ReactTooltip place="top" textColor="white" html={true} multiline={true}/>
-            {/* <p>{resource.data}</p> */}
+            <p data-tip={`<div>${tooltipText}</div>`}>{formatType(resource.type)}</p>
+            <ReactTooltip place="top" textColor="white"  html={true} multiline={true}/>
         </div>
     )
 }
@@ -61,24 +65,24 @@ const Resource = (resource: MoveResource) => {
 // 0x3::token::TokenStore
 const TokenStore = (tokenstore:any)=>{
     const data = tokenstore.data
+    // const tokens =
     console.log("TOKENSTORE",data);
     return (
         <div className="flex flex-col rounded-2xl outline outline-2 p-2 m-2">
-            
+            <p>Token Store</p>
             {DepositsWithdraws(tokenstore)}
+
         </div>
     );
 }
 
-const CoinStore = (coins: any) => {
-
-
+const CoinStore = (coins: any,) => {
 
     return (<div className="flex flex-col p-3 m-3 rounded-lg text-left items-start justify-start">
         <div className="outline flex flex-row items-center justify-between rounded-lg w-full p-2 m-1">
             <div>
             <p className="text-4xl font-bold">{format_large_number(coins.coin?.value)}</p>
-            <p className="text text-sm opacity-70">Aptos Tokens</p>
+            <p className="text text-sm opacity-70">APT coin</p>
             </div>
             <img src="./tokens/asset_APT.svg" className="w-20 h-20 m-2"/>
         {DepositsWithdraws(coins)}
@@ -87,19 +91,19 @@ const CoinStore = (coins: any) => {
     </div>);
 }
 
-const DepositsWithdraws = (coins : any)=> {
-    return (<div className="flex flex-row justify-start gap gap-4">
-
-    <div className="user-stat">
-        <p className="stat-val"> {coins.deposit_events.counter || 0} </p>
-        <p> deposits </p>
-    </div>
-    <div className="user-stat">
-        <p className="stat-val"> {coins.withdraw_events.counter || 0} </p>
-        <p> withdrawls </p>
-    </div>
-</div>);
+const GenericCoinStore = (coins: any,typ:string) => {
+    const coin = typ.split("::")[2].split("<")[1].split("::")[0]
+    return (<div className="flex flex-col p-3 m-3 rounded-lg text-left items-start justify-start">
+        <div className="outline flex flex-row items-center justify-between rounded-lg w-full p-2 m-1">
+            <div>
+            <p className="text-4xl font-bold">{format_large_number(coins.coin?.value)}</p>
+            <p className="text text-sm opacity-70">{coin}</p>
+            </div>
+            {/* <img src="./tokens/asset_APT.svg" className="w-20 h-20 m-2"/> */}
+        </div>
+        {DepositsWithdraws(coins)}
+        {/* <UserNfts {...user.nfts} /> */}
+    </div>);
 }
-
 
 export default AccountResources;

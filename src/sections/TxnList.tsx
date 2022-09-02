@@ -2,12 +2,13 @@ import { Types } from "aptos";
 import React from "react";
 import { ReactDOM } from "react";
 import { formatParam, formatType, parsePayloadFunction, shortenAddress, TimeAgo } from "hooks/formatting";
-import { aptosTxnLink } from "hooks/useExplorer";
 import ReactTooltip from "react-tooltip";
 import { useState } from "react";
 import { UserTransaction } from "aptos/dist/generated";
 import TxnHeader from "components/txn/TxnHeader";
 import EntryTxnArgs from "components/txn/TxnArgs";
+import { VersionLink } from "./VersionLink";
+import { HashLink } from "./HashLink";
 interface TxnListProps {
     // isLoading: boolean;
     txns: Types.Transaction[];
@@ -37,7 +38,6 @@ const TxnList = ({ txns, address }: TxnListProps) => {
             }
             )}
             </div>
-            {/* <ReactTooltip place="top" textColor="white" multiline={true}/> */}
         </div>
     );
 }
@@ -73,6 +73,12 @@ const TxnPayload = ({ payload }: UserTransaction) => {
                     </div>
                 </div>
             );
+        default:
+            return (
+                <div>
+                    <p>{type}</p>
+                </div>
+            )
 
     }
 
@@ -85,22 +91,6 @@ const TxnPayload = ({ payload }: UserTransaction) => {
     )
 }
 
-const VersionLink = (version: string) => {
-    const url = aptosTxnLink(version);
-    return <a className="flex flex-row text-right justify-end" href={url}>
-        <p className="pr-1 text-sm opacity-70 align-bottom">version</p>
-        <p className="link">{version}</p>
-    </a>;
-}
-
-const HashLink = (hash: string) => {
-    return (
-        <a className="flex flex-row text-right justify-end" href={aptosTxnLink(hash)}>
-            <p className="pr-1 text-sm opacity-70 align-bottom">hash</p>
-            <p>{shortenAddress(hash)}</p>
-        </a>
-    )
-}
 const AddrClickable = (addr:string) => {
     return(
         <button className="px-2 account-outline m-1">
@@ -124,7 +114,7 @@ const TxnFooter = ({ success, sender, timestamp, version, hash, gas_used,events,
     return (
         <div className="flex flex-row justify-between">
             <div className="">
-                <button className="text-underline">repeat tx </button>
+                {/* <button className="text-underline">repeat tx </button> */}
                 <p>gas cost: {gas_used}</p>
             </div>
             <div className=""> 

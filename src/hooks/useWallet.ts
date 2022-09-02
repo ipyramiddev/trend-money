@@ -13,17 +13,17 @@ export const useWallet = () => {
 
 
 
-export const connectToMetamask = async (provider:Web3Provider) => {
-    const accounts = await provider.send("eth_requestAccounts", []);
-    const balance = await provider.getBalance(accounts[0]);
-    const balanceInEther = ethers.utils.formatEther(balance);
-    console.log(accounts)
-    const userData = {
-        walletAddress: accounts[0],
-        balances : {
-            cUSD: balanceInEther,
-        }
-    }
-    console.log("USERDATA:",userData)
-    return userData
-  }
+// export const connectToMetamask = async (provider:Web3Provider) => {
+//     const accounts = await provider.send("eth_requestAccounts", []);
+//     const balance = await provider.getBalance(accounts[0]);
+//     const balanceInEther = ethers.utils.formatEther(balance);
+//     console.log(accounts)
+//     const userData = {
+//         walletAddress: accounts[0],
+//         balances : {
+//             cUSD: balanceInEther,
+//         }
+//     }
+//     console.log("USERDATA:",userData)
+//     return userData
+//   }
