@@ -55,12 +55,9 @@ const TransactionModal = ({isOpen,client, address,module, type_arguments, args, 
       };
       console.log("Payload",payload);
       const transactionRequest = await window.martian.generateTransaction(account.address, payload);
-      // const txn = await window.martian.sig
       const txnHash = await window.martian.signTransaction(transactionRequest);
       const txnsubmit = await window.martian.submitTransactions(txnHash);
-      // console.log(transactionRequest);
-        // console.log("txnHash", tx);
-        // console.log("submit", txnsubmit);
+      
 
     }
 

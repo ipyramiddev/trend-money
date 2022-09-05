@@ -83,6 +83,17 @@ export const dapps = [
     "address":"0xa814959bfce66346bd028cf4a5d9e212216bb8acb66ca0fb1d0a8ec8c4f767ab"
   },
   {
+    "name": "BlueMove",
+    "tags": ["NFT"],
+    "discord": "",
+    "twitter": "https://twitter.com/blueMove",
+    "status": "Testnet",
+    "github": "",
+    "url": "https://bluemove.net/",
+    "image": "blueMove.png",
+    "address":"0xcb6213dee7fcbf7826e2e42e63f081037d4fb096e8df74875b34034a688a865b"
+  },
+  {
     "name": "Hippo Labs",
     "tags": ["Aggregator", "DeFi", "Tools"],
     "description": "",
