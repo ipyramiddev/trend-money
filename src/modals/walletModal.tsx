@@ -30,10 +30,6 @@ const WalletModal = ({isOpen,setIsOpen}: walletModalProps) =>{
       setIsOpen(false);
     }
 
-    const copyToClipboard = (copyText:string) => {
-      copy(copyText);
-      // alert(`You have copied "${copyText}"`);
-   }
     return (
       <ModalWrapper open={isOpen} setOpen={setIsOpen} cancelButtonRef={cancelButtonRef} title="tets">
         {isConnected?? <div className="flex flex-row justify-between"> <p className="text-white">{account?.address}</p>
@@ -53,9 +49,6 @@ const WalletModal = ({isOpen,setIsOpen}: walletModalProps) =>{
   <button className="seam-button" onClick={onDisconnect}>disconnect</button>
 </div>)
 }
-{/* fewcha...
-fewcha.sdk...
-fewcha.token... */}
        
       </ModalWrapper>
     );

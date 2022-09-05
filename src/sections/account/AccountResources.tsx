@@ -13,7 +13,7 @@ const web3 = new Web3();
 const AccountResources = ({ address }: { address: string }) => {
     const [resources, setResources] = useState<MoveResource[]>([]);
     useEffect(() => {
-        web3.action.sdk.getAccountResources(address).then((res) => {
+        web3.action.sdk.getAccountResources(address.toString()).then((res) => {
             if (res.status === 200) {
                 setResources(res.data);
             }

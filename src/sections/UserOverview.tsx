@@ -27,20 +27,9 @@ const UserOverview = ({ connected, user }: UserProps) => {
             <img src="../public/tokens/asset_APT.svg" className="w-auto h-auto p-3"/>
             </span>
             </div>
-            <div className="flex flex-row justify-start gap gap-4">
-
-                <div className="user-stat">
-                <p className="stat-val"> {user.coins?.deposit_count || 0 } </p>
-                    <p> deposits </p>
-                </div>
-                <div className="user-stat">
-                    <p className="stat-val"> {user.coins?.withdraw_count || 0} </p>
-                    <p> withdrawls </p>
-                </div>
-            </div>
+           
             <UserNfts {...user.nfts} />
-            <input className=" m-3 bg-opacity-30 outline outline-white outline-2 text-black" type="text" value={sendAddr} onChange={(e) => setSendAddr(e.target.value)} />
-            <button className="seam-button m-3" onClick={() => sendTransaction(sendAddr)}>Send coins:</button>
+            
         </div>
     )
 }

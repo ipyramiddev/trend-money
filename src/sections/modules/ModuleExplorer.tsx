@@ -83,7 +83,7 @@ const ModuleExplorer = ({ client, mod }: ModExploreProps) => {
         }
         )
        
-                loadTxs(address,client).then((res)=>{setTxs(res)
+            loadTxs(address,client).then((res)=>{setTxs(res)
             console.log("just loaded ", res);
             }
             );
@@ -129,8 +129,8 @@ const ModuleExplorer = ({ client, mod }: ModExploreProps) => {
                     </span>
                     <p className="text-xl text-center py-1">Account Modules</p>
                     <div className="hScroller flex scrollbar  scrollbar-thumb-white scrollbar-track-black flex-row justify-start seam-outline p-2 gap gap-2">
-                        {modules.map((mod: Types.MoveModuleBytecode) => {
-                            return (<div className="items-center justify-center">
+                        {modules.map((mod: Types.MoveModuleBytecode,i:number) => {
+                            return (<div key={i} className="items-center justify-center">
                                 <button className=" module-outline" onClick={() => setSelectedModule(mod)}>{mod.abi?.name}</button>
                             </div>)
                         }
@@ -140,7 +140,7 @@ const ModuleExplorer = ({ client, mod }: ModExploreProps) => {
                 {/* </div> */}
 
 
-                <div className="flex w-1/2">
+                <div className="flex w-2/3">
                     {selectedModule !== undefined ?
                         <ModuleInfo module={selectedModule} />
                         : <div>No modules found</div>}
@@ -162,8 +162,8 @@ const ModuleExplorer = ({ client, mod }: ModExploreProps) => {
                     : null} */}
                     
                     <div className="flex flex-col gap gap-2 p-2 ">
-                {txs ?<TxnList txns={txs} address={selectedAddress}/>:null}
-                {selectedAddress!=="0x1"? <AccountResources address={selectedAddress}/>:null}
+                        {txs ?<TxnList txns={txs} address={selectedAddress}/>:null}
+                        {txs&&selectedAddress!=="0x1"? <AccountResources address={selectedAddress}/>:null}
                 </div>
         </div>
     );

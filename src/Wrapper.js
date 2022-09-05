@@ -5,13 +5,12 @@ import Home from './pages/Home';
 import Explorer from './pages/Explorer';
 import Navbar from './components/Navbar';
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
-import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client'
-import Web3Provider from "@fewcha/web3-react";
+// import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client'
 
 
 import { useState } from 'react';
 import { GlobalStateProvider } from 'GlobalState';
-import { MyWalletProvider } from './context/wallet/provider';
+// import { MyWalletProvider } from './context/wallet/provider';
 import WalletModal from 'modals/walletModal';
 import Staking from './pages/Staking';
 
@@ -20,7 +19,6 @@ export default function Wrapper() {
   const [walletModalOpen, setWalletModal] = useState(false);
   return (
     // <ApolloProvider client={client}>
-    <Web3Provider>
       <GlobalStateProvider>
         {/* <MyWalletProvider> */}
         <div >
@@ -41,7 +39,7 @@ export default function Wrapper() {
         </div>
         {/* </MyWalletProvider> */}
       </GlobalStateProvider>
-    </Web3Provider>
+    
     // </ApolloProvider>
 
   );

@@ -6,7 +6,7 @@ import { AptosClient, AptosAccount, FaucetClient, BCS, TxnBuilderTypes, HexStrin
 import { dapps } from "../dapp_data";
 import BubbleSection from '../sections/BubbleSection';
 import UserOverview from '../sections/UserOverview';
-import { loadCoins, loadNfts, loadCoinStore, useFaucet, sendTransaction } from '../hooks/useAptos';
+import { useFaucet, sendTransaction } from '../hooks/useAptos';
 import SplineSection from '../sections/SplineSection';
 import TxnList from 'sections/TxnList';
 import ModuleExplorer from '../sections/modules/ModuleExplorer';

@@ -1,34 +1,48 @@
+import useStakeInputs from "hooks/StakeInputs";
 import React, {useEffect} from "react";
 import useSubmitStake from "../../hooks/useStake";
+import {validator_addresses} from './validator_data';
 
+
+const validator = () => {
+  return (
+    <div>
+
+    </div>
+  )
+}
 
 export function StakePage() {
 //   const {isConnected: isWalletConnected} = useWalletContext();
-    const [operatorAddr, setOperatorAddr] = React.useState<string>("");
-    const [voterAddr, setVoterAddr] = React.useState<string>("");
-    const [amount, setAmount] = React.useState<string>("");
 
   const {
     submitStake,
     transactionInProcess,
     transactionResponse,
-  } = useSubmitStake();
+  } = useSubmitStake(); 
+
+  const {
+    StakeInputs,
+    getInputs
+  } = useStakeInputs();
+
 
   const onSubmitClick = async () => {
+    const {amount,operatorAddr,voterAddr} = getInputs()
       await submitStake(parseInt(amount), operatorAddr, voterAddr);
   };
 
-  useEffect(() => {
-    if (transactionResponse?.transactionSubmitted) {
-      console.log(" tx submitted");
-    }
-  }, [transactionResponse]);
+  // useEffect(() => {
+  //   if (transactionResponse?.transactionSubmitted) {
+  //     console.log(" tx submitted");
+  //   }
+  // }, [transactionResponse]);
 
   const submitButton = (
     <span>
       <button
         className="seam-button"
-        onClick={onSubmitClick}
+        onClick={()=>onSubmitClick()}
       >
         Submit
       </button>
@@ -39,23 +53,15 @@ export function StakePage() {
     <>
       
       <div>
-        <div>
-          <div>
-            <input type="text" value={amount} onChange={(e)=>setAmount(e.target.value)}/>
-          </div>
-          <div>
-            <input type="text" value={operatorAddr} onChange={(e)=>setOperatorAddr(e.target.value)}/>
-          </div>
-          <div>
-            <input type="text" value={voterAddr} onChange={(e)=>setVoterAddr(e.target.value)}/>
-          </div>
+        <div className="flex flex-col gap gap-2 p-2">
+          {StakeInputs()}
           <div>
             <form>
               {submitButton}
             </form>
           </div>
         </div>
-      </div>
+      </div>             
     </>
   );
 }

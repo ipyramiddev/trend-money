@@ -80,8 +80,6 @@ const TxnPayload = ({ payload }: UserTransaction) => {
 
     }
 
-
-
     return (
         <div>
             <p>Non user txn</p>

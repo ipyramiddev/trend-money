@@ -1,12 +1,11 @@
 import {useState} from 'react';
 import TokenView from './TokenView';
-import UbeTokenPrices from '../components/UbeTokenPrices';
 import AptosPools from './AptosPools';
 
 const tabs = [
-    {name: 'Aptos Pools', id: 'aptos'},
-    {name: 'Celo Pools', id: 'celo'},
-    {name: 'Uniswap Pools', id: 'uniswap'},
+    {name: 'Account Txns', id: 'txns'},
+    {name: 'Use', id: 'use'},
+    {name: 'Resources', id: 'celo'},
 ]
 
 function SwitchView(props) {
@@ -23,7 +22,7 @@ function SwitchView(props) {
             <div className="flex flex-row gap-2">
                 <div className="tabs">
                     {tabs.map((tab, index) => {
-                        return (<a className={`tab tab-bordered ${view===tab.name ? 'bg-white text-black' : 'border-gray'}`} onClick={()=>setView(tab.name)}>
+                        return (<a  key={index} className={`tab tab-bordered ${view===tab.name ? 'text-underline' : 'border-gray'}`} onClick={()=>setView(tab.name)}>
                             <p classname="text-2xl">{tab.name}</p>
                             </a>)
                     })

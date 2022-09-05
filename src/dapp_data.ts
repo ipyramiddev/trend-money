@@ -24,9 +24,23 @@ export const dapps = [
     "url": "https://switchboard.xyz/",
     "image": "switchboard.svg",
     "github": "",
+    "address":"0x14611263909398572be034debb2e61b6751cafbeaddd994b9a1250cb76b99d38",
     "docs": "https://docs.switchboard.xyz/introduction",
     "npm": "",
     "k": "ORACLE"
+  },
+  {
+    "name": "Aptin",
+    "tags": ["lending"],
+    "discord": "",
+    "twitter": "https://twitter.com/AptinLabs",
+    "status": "TBA",
+    "url": "https://app.aptin.io/",
+    "image": "aptin.jpeg",
+    "github": "",
+    "address":"0x14611263909398572be034debb2e61b6751cafbeaddd994b9a1250cb76b99d38",
+    "docs": "",
+    "npm": "",
   },
 
   {

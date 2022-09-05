@@ -1,3 +1,4 @@
+import { useWeb3 } from "@fewcha/web3-react";
 import {BCS, TxnBuilderTypes} from "aptos";
 import useSubmitTransaction from "./useTransaction";
 
@@ -8,6 +9,8 @@ const useSubmitStake = () => {
     transactionResponse,
     clearTransactionResponse,
   } = useSubmitTransaction();
+
+  const { account, balance, isConnected,disconnect, network, fewcha, martian, currentWallet } = useWeb3();
 
   async function submitStake(
     stakingAmount: number,
@@ -27,7 +30,11 @@ const useSubmitStake = () => {
       ),
     );
 
-    await submitTransaction(payload);
+    const transactionRequest = await window.martian.generateTransaction(account.address.toString(), payload);
+    const txnHash = await window.martian.signTransaction(transactionRequest);
+    const txnsubmit = await window.martian.submitTransactions(txnHash);
+
+    // await submitTransaction(payload);
   }
 
   return {
@@ -36,6 +43,7 @@ const useSubmitStake = () => {
     transactionResponse,
     clearTransactionResponse,
   };
+  
 };
 
 export default useSubmitStake;
