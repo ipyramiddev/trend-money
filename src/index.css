@@ -62,6 +62,16 @@
   border: dashed 3px  #ffffff;
 }
 
+.seam-sqr{
+  margin: 0.5rem;
+  padding: 0.7rem;
+  
+  border-radius: 5px;
+  color: white;
+  border: dashed 3px  #ffffff;
+
+}
+
 .module-container{
   width: 90%;
   height: 100%;
