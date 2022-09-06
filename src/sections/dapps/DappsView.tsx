@@ -2,7 +2,6 @@ import DappBubble from "components/dapps/DappBubble";
 import { dapps } from "dapp_data";
 import { useEffect, useState } from "react";
 import BubbleSection from "sections/BubbleSection";
-import { ImShuffle } from 'react-icons/im';
 import { Types } from "aptos";
 import { loadTxs } from "hooks/useTransaction";
 import TxnList from "sections/TxnList";
@@ -37,17 +36,10 @@ const DappsView = () => {
     const [dappStack, setDappStack] = useState<any[]>([]);
 
     const pushDapp = (curr: any) => {
-
         const newStack = [curr, ...dappStack]
         setDappStack(newStack);
-
     }
 
-    // const renderRecents = () => {
-
-    //     const current = (<iframe className="scrollbar rounded-xl  scrollbar-thumb-pink scrollbar-track-blue" title="host" src={selectedDapp.url} width="93%"/>)
-    //     setDappStack([current, ...dappStack])
-    // }
     useEffect(() => {
 
         renderRecents();
@@ -64,6 +56,7 @@ const DappsView = () => {
         }
         // popDapp();
         setSelectedDapp(dapp);
+        loadTxs(dapp.address).then((txns)=>setTxns(txns))
         return;
     }
     const renderRecents = () => {
@@ -75,22 +68,13 @@ const DappsView = () => {
     return (
         <div className="min-h-screen w-screen p-6 relative items-start justify-start ">
             <p className="text-3xl">Dapps</p>
-            <p>Recently Used</p>
                 <div className="flex flex-row p-1">
-                    {recentOpen.map((dapp: any) => {
-                        return <img className="w-10 h-10 p-1" src={"./dapps/" + dapp.image} />
-                    })
-                    }
                     <BubbleSection dapps={orderedDapps as Dapp[]} onSelect={loadDapp} />
                 </div>
-
-                {/* <Icons discordUrl={dappStack[0].discord} twitterUrl={dappStack[0].twitter} githubUrl={dappStack[0].github} /> */}
-
-            {/* </div> */}
-            <div className="min-h-screen">
+            <div className="min-h-screen px-6">
                 {dappStack[0]}
                 </div>
-            {/* {txns?.length!==0 ? <TxnList txns={txns||[]} address={selectedDapp.address}/> : null} */}
+            {txns?.length!==0 ? <TxnList txns={txns||[]} address={selectedDapp.address}/> : null}
         </div>
     );
 }
