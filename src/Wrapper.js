@@ -6,7 +6,7 @@ import Explorer from './pages/Explorer';
 import Navbar from './components/Navbar';
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
 // import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client'
-
+import NodePage from 'pages/NodePage';
 
 import { useState } from 'react';
 import { GlobalStateProvider } from 'GlobalState';
@@ -30,7 +30,7 @@ export default function Wrapper() {
               <Route path="/home" element={<Home />} />
               <Route path="/docs" element={<Docs />} />
               <Route path="/staking" element={<Staking />} />
-              {/* ADD ADDITONAL ROUTES here ex swap page */}
+              <Route path= "/nodes" element = {<NodePage/>}/>
               <Route path="/app" element={<App />} />
               <Route path="/explorer" element={<Explorer />} />
             </Routes>

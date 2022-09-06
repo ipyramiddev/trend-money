@@ -22,6 +22,7 @@
     "@splinetool/r3f-spline": "^1.0.1",
     "@splinetool/react-spline": "^2.2.1",
     "@splinetool/runtime": "^0.9.90",
+    "@switchboard-xyz/aptos.js": "^2.0.8",
     "@tailwindcss/aspect-ratio": "^0.4.0",
     "@tailwindcss/line-clamp": "^0.4.0",
     "@testing-library/jest-dom": "^5.14.1",

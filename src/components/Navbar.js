@@ -62,6 +62,7 @@ export default function Navbar(props) {
                                     <FaBookOpen className=" hover:text-blac " />
                                 </a>
                             </p>
+                        <p></p>
                         <button className="seam-button m-3" onClick={() => props.showConnectModal(true)}>{!isConnected ? "Connect" : "Connected"}</button>
                     </ul>
                 </div>

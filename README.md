@@ -14,9 +14,11 @@
 
 # Seam
 
- ## building Aptos ecosystem tooling and providing distributed yield + dapp gateway 
+ ## building Aptos ecosystem tooling and providing distributed yield + staking and a gateway to dapps across the ecosystem
 
 ## What Problem does seam solve?
+
+
 
 users need a single interface to view their account info(resources,tokens,modules) and view their transactions across dapps on aptos
 
@@ -52,3 +54,7 @@ Our project serves as a one stop shop for passive DeFi users. Actively researchi
 ## How is Seam different from other yield aggregators?
 
 With our yield protocol users will be holding a single asset which represents deposits across pools. This mitigates some of the inherent risk involved in yield farming.
+
+Custodial proof of deposit, this is different from liquid staking protocols that offer yield bearing fungible tokens that represent 'staked APT' such as sAPT and stAPT that tortgua and zaptos offer.
+
+

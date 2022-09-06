@@ -6,9 +6,6 @@ import DepositModal from "./modals/DepositModal";
 import SeamPool from "./components/pool/SeamPool.js";
 import pool_data from './pool_data.js';
 import UserHeader from "./components/UserHeader.js";
-import UniPool from "./components/pool/UniPool.js";
-import PlatformOverview from "./components/PlatformOverview";
-import SwitchView from "./sections/SwitchView";
 function App() {
 
   const [poolData, setPoolData] = useState(null);
@@ -17,11 +14,7 @@ function App() {
   const [walletBalance, setWalletBalances] = useState([]);
   const [provider, setProvider] = useState(null);
   
-
-  
   const [showDepositModal, setShowDepositModal] = useState(false);
-
-
 
   const toggleDepositModal = () => {
     setShowDepositModal(!showDepositModal);
