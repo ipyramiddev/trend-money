@@ -4,8 +4,7 @@ interface PoolProps {
     client: AptosClient;
 }
 
-const Pools =  ({client,}:PoolProps) => {
-
+const Pools = ({ client, }: PoolProps) => {
 
     return (
         <div>

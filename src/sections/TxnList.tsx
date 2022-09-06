@@ -1,12 +1,13 @@
 import { Types } from "aptos";
 import React from "react";
 import { ReactDOM } from "react";
-import { formatParam, parsePayloadFunction, shortenAddress } from "hooks/formatting";
+import { formatParam, parsePayloadFunction } from "hooks/formatting";
 import { useState } from "react";
 import { UserTransaction } from "aptos/dist/generated";
 import TxnHeader from "components/txn/TxnHeader";
 import EntryTxnArgs from "components/txn/TxnArgs";
 import { TxnFooter } from "./TxnFooter";
+import { AddrClickable } from "./AddrClickable";
 interface TxnListProps {
     // isLoading: boolean;
     txns: Types.Transaction[];
@@ -43,7 +44,6 @@ const TxnList = ({ txns, address }: TxnListProps) => {
 const TxnPayload = ({ payload }: UserTransaction) => {
     const { type } = payload;
     
-    // console.log("payload", type);
     switch (type) {
         case "entry_function_payload":
             payload = payload as Types.TransactionPayload_EntryFunctionPayload
@@ -86,15 +86,5 @@ const TxnPayload = ({ payload }: UserTransaction) => {
         </div>
     )
 }
-
-const AddrClickable = (addr:string) => {
-    return(
-        <button className="px-2 account-outline m-1">
-            {shortenAddress(addr)}
-        </button>
-       
-    );
-}
-
 
 export default TxnList;
