@@ -12,7 +12,7 @@ const [amount, setAmount] = useState<string>("");
 const StakeInputs = () => {
     
     return (
-        <div  className="text-black">
+        <div  className="flex flex-col gap gap-3 text-black p-2 ">
             <div>
                 <input type="text" value={amount} placeholder="# of APT to stake" onChange={(e) => setAmount(e.target.value)} />
             </div>

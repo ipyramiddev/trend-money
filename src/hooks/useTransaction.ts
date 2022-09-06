@@ -1,8 +1,4 @@
 import { TxnBuilderTypes, AptosClient, Types } from "aptos";
-
-
-// export const sendTransaction
-
 import {useQuery} from "react-query";
 import {getTransaction} from ".";
 import {ResponseError} from "./client";
@@ -70,10 +66,10 @@ const useSubmitTransaction = () => {
       return;
     // }
 
-    // setTransactionInProcess(true);
-    // await signAndSubmitTransaction(payload, client).then(
-    //   setTransactionResponse,
-    // );
+    setTransactionInProcess(true);
+    await signAndSubmitTransaction(payload, client).then(
+      setTransactionResponse,
+    );
   }
 
   function clearTransactionResponse() {

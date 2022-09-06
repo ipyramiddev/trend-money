@@ -4,20 +4,36 @@ import { FaBookOpen, FaGithub, FaTwitter } from 'react-icons/fa';
 import { useWeb3 } from '@fewcha/web3-react';
 import { useState } from 'react';
 const nav_items = [
-    {
-        name: 'Home',
-        path: '/'
-    },
-    {
-        name: 'Explorer',
-        path: '/explorer'
-    },
-    {
-        name: 'staking',
-        path: '/staking',
-    },
-
+    { name: 'Home', path: '/' },
+    {name: 'Explorer',path: '/explorer'},
+    {name: 'staking',path: '/staking'},
 ];
+const nav_icons = [
+    {name: 'github', link:'https://github.com/SeamMoney/seam', icon:(<FaGithub className=" hover:text-blac " />)},
+    {name: 'docs',link: 'https://docs.seam.money/',icon:(<FaBookOpen className=" hover:text-blac " />)},
+    {name: 'twitter',link:"https://twitter.com/SeamMoney", icon:(<FaTwitter className=" hover:text-blac " />)},
+];
+
+
+function NavbarItem(props) {
+    return (<li className='block py-2 pr-4 pl-3 text-white hover:bg-white hover:text-blac rounded-lg' >
+        <a href={props.item.path} className=" ">{props.item.name}</a>
+    </li>);
+
+}
+
+function NavbarIcon(link,icon, key) {
+    return (
+        <p
+            key={key+"-link"}
+            className="text-white text-3xl p-2 m-3 rounded-xl hover:bg-white hover:text-blac ">
+            <a href={link}>
+                {icon}
+            </a>
+        </p>
+    );
+
+}
 
 
 export default function Navbar(props) {
@@ -41,28 +57,12 @@ export default function Navbar(props) {
                     <ul className="flex flex-col items-center mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium">
 
                         {nav_items.map((item, i) => (
-                            <li className='block py-2 pr-4 pl-3 text-white hover:bg-white hover:text-blac rounded-lg' >
-                                <a href={item.path} className=" ">{item.name}</a>
-                            </li>
+                            <NavbarItem item={item} i={i} />
                         ))}
-                        <div>
-                            <p className="text-white text-3xl p-2 m-3 rounded-xl hover:bg-white hover:text-blac ">
-                                <a href="https://github.com/SeamMoney/seam">
-                                    <FaGithub className=" hover:text-blac " />
-                                </a>
-                            </p>
-                        </div>
-                            <p className="text-white text-3xl p-2 m-3 rounded-xl hover:bg-white hover:text-blac ">
-                                <a href="https://twitter.com/SeamMoney">
-                                    <FaTwitter className=" hover:text-blac " />
-                                </a>
-                            </p>
-                            <p className="text-white text-3xl p-2 m-3 rounded-xl hover:bg-white hover:text-blac ">
-                                <a href="https://docs.seam.money/">
-                                    <FaBookOpen className=" hover:text-blac " />
-                                </a>
-                            </p>
-                        <p></p>
+
+                        {nav_icons.map((item, i) => { return (NavbarIcon(item.link,item.icon, i)) })}
+                        
+                        
                         <button className="seam-button m-3" onClick={() => props.showConnectModal(true)}>{!isConnected ? "Connect" : "Connected"}</button>
                     </ul>
                 </div>
