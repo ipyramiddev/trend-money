@@ -40,17 +40,13 @@ const DappsView = () => {
         setDappStack(newStack);
     }
 
-    useEffect(() => {
-
-        renderRecents();
-    }, [selectedDapp, orderedDapps])
 
 
     const loadDapp = (dapp: any) => {
         // if(dapp.name in dappStack.entries)
         if (dapp.url && !(dapp.name in recentOpen.keys)) {
 
-            pushDapp(<DappFrame dapp={dapp} />);
+            pushDapp(<DappFrame dapp={dapp} viewUrl={dapp?.url}/>);
         } else {
 
         }
@@ -59,10 +55,7 @@ const DappsView = () => {
         loadTxs(dapp.address).then((txns)=>setTxns(txns))
         return;
     }
-    const renderRecents = () => {
-        const recents = recentOpen.map((recent) => <DappFrame dapp={recent} />);
-        // setDappStack(recents);
-    }
+
     const reshuffle = () => setOrderedDapps(shuffle(orderedDapps));
 
     return (

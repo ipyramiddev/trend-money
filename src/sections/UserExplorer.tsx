@@ -37,7 +37,7 @@ const UserExplorer = ({ client }: Props) => {
             <button className="seam-button m-3" onClick={() => sendTransaction(sendAddr, account.address.toString())}>Send coins:</button>
             <div className='flex flex-row w-full items-start justify-center'>
                 {/* <UserOverview  /> */}
-                {account?.address ? (<AccountResources address={account?.address} />) : <p>no resources</p>}
+                {account?.address.toString() ? (<AccountResources address={account?.address.toString()} />) : <p>no resources</p>}
                 {account?.address ?
                 
                     <TxnList txns={txs} address={account?.address} />

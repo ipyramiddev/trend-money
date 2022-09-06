@@ -38,7 +38,7 @@ export const dapps = [
     "url": "https://app.aptin.io/",
     "image": "aptin.jpeg",
     "github": "",
-    "address": "0x14611263909398572be034debb2e61b6751cafbeaddd994b9a1250cb76b99d38",
+    "address": "0xa529c1796eb7f6c959f2e6974395a231fe830b65f4583abb1a6a226de6af3ce7",
     "docs": "",
     "npm": "",
   },
