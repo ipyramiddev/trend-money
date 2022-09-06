@@ -90,6 +90,9 @@ export default useSubmitTransaction;
 const NODE_URL = "https://fullnode.devnet.aptoslabs.com";
 const FAUCET_URL = "https://faucet.devnet.aptoslabs.com";
 
+const AIT3_URL = "https:://fullnode.testnet.aptoslabs.com"
+
+
 const defaultClient = new AptosClient(NODE_URL);
 
 export const loadTxs = async (address: string,client:AptosClient=defaultClient):Promise<Types.Transaction[]> =>  {
@@ -98,3 +101,21 @@ export const loadTxs = async (address: string,client:AptosClient=defaultClient):
         return txs.reverse()
     
 }
+
+
+
+// export const loadValidatorSet = () =>{
+//   const 
+//   return(
+
+//   )
+// }
+
+
+// export const loadValidatorDetails = (address:string) =>{
+
+//   const resources = web3.
+//   return (
+    
+//   )
+// }
