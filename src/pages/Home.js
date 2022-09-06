@@ -1,6 +1,4 @@
 import React from "react";
-import PlatformOverview from "../components/PlatformOverview";
-import UniIcon from "../components/UniIcon";
 import {dapps} from "../dapp_data";
 
 const defiDapps = ["Tsunami","Aries","Laminar","hippo","Econia",]
@@ -10,7 +8,6 @@ function Protocol(dapp){
     <div className="w-30 h-12 rounded-2xl">
         <p>{dapp.name}</p>
         <img src={`../dapps/${dapp.image}`} alt={dapp.name} className="w-20 h-20" />
-      
     </div>
     );
 }
@@ -18,8 +15,6 @@ function Protocol(dapp){
 const ProtocolIntegrations = () => {
     const dappData = dapps.filter(d => defiDapps.includes(d.name));
     console.log(dappData)
-
-
 
     return(
         <div className="flex flex-row justify-center m-5 p-2">
@@ -67,9 +62,7 @@ function Home() {
             <div className="flex flex-col justify-center m-3 p-3 mb-10 items-center rounded-lg boarder boarder-4 border-white bg-white-opacity-10">
                 <p className="text-3xl font-bold p-2">Integrating with top Aptos protocols</p>
                 <ProtocolIntegrations />
-                
             </div>
-                {/* <PlatformOverview/> */}
         </div>
     );
 }
