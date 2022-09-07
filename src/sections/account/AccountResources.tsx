@@ -8,24 +8,25 @@ import { formatType, format_large_number, shortenAddress } from "hooks/formattin
 import ReactTooltip from "react-tooltip";
 import { json } from "stream/consumers";
 import { DepositsWithdraws } from "./DepositsWithdraws";
+import { loadResources } from "hooks/useAptos";
 
 const web3 = new Web3();
 const AccountResources = ({ address }: { address: string }) => {
-    const [resources, setResources] = useState<MoveResource[]>([]);
+    const [resources, setResources] = useState<Types.MoveResource[]>([]);
     useEffect(() => {
-        web3.action.sdk.getAccountResources(address.toString()).then((res) => {
-            if (res.status === 200) {
-                setResources(res.data);
-            }
+        loadResources(address).then((res) => {
+            // if (res.status === 200) {
+                setResources(res);
+            // }
         });
         // web3.action.sdk.
-    }, [address]
+    }, []
     );
     return (
         <div>
             
             <div className="modScroll p-2 flex flex-col max-w-2xl ">
-                {resources && resources.length !== 0 ? (ResourceList(resources)) : <p>no resources</p>}
+                {resources && resources.length !== 0 ? (ResourceList(resources)) : <p>none</p>}
             </div>
             
         </div>

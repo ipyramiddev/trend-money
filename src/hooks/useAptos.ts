@@ -95,3 +95,9 @@ export const loadModules = async (address: string) => {
     return modules;
 
 }
+
+export const loadResources = async (address: string) => {
+    const modules = await client.getAccountResources(address) as Types.MoveResource[];
+    return modules;
+
+}

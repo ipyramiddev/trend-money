@@ -81,7 +81,7 @@ export const shortenAddress = (
   };
 
 export const formatParam = (param:string) => {
-    console.log("param",param)
+    // console.log("param",param)
     if (!param || param===undefined || param==="" ) {
         return "0x";
     }
@@ -130,6 +130,6 @@ return act + "::"+mod;
     // console.log("seconds",date);
     const minutes = Math.round(Math.abs(seconds / 60));
     const hours = Math.round(Math.abs(minutes / 60));
-    console.log("hours", minutes)
+    // console.log("hours", minutes)
     return hours + " hours ago";
   }
