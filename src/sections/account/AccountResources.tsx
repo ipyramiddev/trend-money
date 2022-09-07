@@ -11,7 +11,13 @@ import { DepositsWithdraws } from "./DepositsWithdraws";
 import { loadResources } from "hooks/useAptos";
 
 const web3 = new Web3();
-const AccountResources = ({ address }: { address: string }) => {
+
+interface Props{
+    address: string;
+    selectResource: (resource:Types.MoveResource)=>void;
+}
+
+const AccountResources = ({ address,selectResource }: Props) => {
     const [resources, setResources] = useState<Types.MoveResource[]>([]);
     useEffect(() => {
         loadResources(address).then((res) => {
@@ -26,18 +32,18 @@ const AccountResources = ({ address }: { address: string }) => {
         <div>
             
             <div className="modScroll p-2 flex flex-col max-w-2xl ">
-                {resources && resources.length !== 0 ? (ResourceList(resources)) : <p>none</p>}
+                {resources && resources.length !== 0 ? (ResourceList(resources,selectResource)) : <p>none</p>}
             </div>
             
         </div>
     );
 }
 
-const ResourceList = (resources: MoveResource[]) => {
-    return resources.map((resource: MoveResource) => Resource(resource))
+const ResourceList = (resources: MoveResource[],selectResource: (resource:Types.MoveResource)=>void) => {
+    return resources.map((resource: MoveResource,) => Resource(resource,selectResource))
 }
 
-const Resource = (resource: MoveResource) => {
+const Resource = (resource: MoveResource,selectResource: (resource:Types.MoveResource)=>void) => {
     console.log("Account resource",resource);
     if (resource.type == "0x1::coin::CoinStore<0x1::aptos_coin::AptosCoin>") {
 
@@ -56,7 +62,7 @@ const Resource = (resource: MoveResource) => {
         return (`<p>${ele.replace('"',"")}</p>`)}})
     return (
         <div className="p-2 m-2 outline outline-2 overflow-hidden">
-            <p data-tip={`<div>${tooltipText}</div>`}>{formatType(resource.type)}</p>
+            <button onClick={()=>selectResource(resource)} data-tip={`<div>${tooltipText}</div>`}>{formatType(resource.type)}</button>
             <ReactTooltip place="top" textColor="white"  html={true} multiline={true}/>
         </div>
     )

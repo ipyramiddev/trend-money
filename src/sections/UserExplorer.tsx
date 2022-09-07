@@ -9,6 +9,7 @@ import AccountResources from "./account/AccountResources";
 import { loadAccount } from "hooks/loadAptos";
 import { sendTransaction } from "hooks/useAptos";
 import { FaJenkins } from "react-icons/fa";
+import ResourceDetailView from "views/ResourceDetailView";
 interface Props {
     account: any;
     client: AptosClient;
@@ -33,16 +34,16 @@ const UserExplorer = ({ client }: Props) => {
     return (
         <div className="w-full mx-6">
             <p className="text-3xl font-semibold">User Explorer</p>
-            {/* <input className=" m-3 bg-opacity-30 outline outline-white outline-2 text-black" type="text" value={sendAddr} onChange={(e) => setSendAddr(e.target.value)} />
-            <button className="seam-button m-3" onClick={() => sendTransaction(sendAddr, account.address.toString())}>Send coins:</button> */}
+            
             <div className='flex flex-row w-full items-start justify-center'>
                 {/* <UserOverview  /> */}
-                {account?.address.toString() ? (<AccountResources address={account?.address.toString()} />) : <p>no resources</p>}
                 {account?.address ?
                 
-                    <TxnList txns={txs} address={account?.address} />
-                    : <p>please connect</p>}
-                <WagMemeContainer />
+                <TxnList txns={txs} address={account?.address} />
+                : <p>please connect</p>}
+                {account?.address.toString() ? (<ResourceDetailView address={account?.address.toString()} />) : <p>no resources</p>}
+                
+                {/* <WagMemeContainer /> */}
             </div>
         </div>
     );

@@ -60,6 +60,7 @@ const ProtocolTag = (p:any) =>{
         <p>{p}</p>
     </div>)
 }
+// const Σ = (){}
 
 export const StakingPool = ({ pool }: PoolProps) => {
 

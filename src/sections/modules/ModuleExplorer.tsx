@@ -21,6 +21,7 @@ import { textCopy } from "utils";
 import { loadTxs } from "hooks/useTransaction";
 import { useWeb3 } from "@fewcha/web3-react";
 import TxnFilterView from "views/TxnFilterView";
+import ResourceDetailView from "views/ResourceDetailView";
 interface ModExploreProps {
     client: AptosClient;
     mod: Types.MoveModuleBytecode[];
@@ -157,7 +158,8 @@ const ModuleExplorer = ({ client, mod }: ModExploreProps) => {
 
             <div className="flex flex-row gap gap-2 p-2 ">
                 <TxnFilterView address={selectedAddress} />
-                <AccountResources address={selectedAddress} />
+                {/* <AccountResources address={selectedAddress} /> */}
+                <ResourceDetailView address={selectedAddress} />
             </div>
         </div>
     );
