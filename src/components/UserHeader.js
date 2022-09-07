@@ -51,7 +51,7 @@ function UserHeader(user) {
     });
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error : {error.toString()}</p>;
-    console.log(data);
+    // console.log(data);
     const userData = data.users[0];
 
 

@@ -5,7 +5,7 @@ function Token(props){
     return (
         // <Tooltip >
         <div key={props.i} className={`p-1 hover:scale-125}`}>
-            <img className={`w-10 h-10 rounded-full `} title={token} src={`../tokens/asset_${token}.png`} alt={token} />
+            <img className={`w-10 h-10 rounded-full ${token==="APT"?"bg-white":""}`} title={token} src={`../tokens/asset_${token}.png`} alt={token} />
         </div>
         //  </Tooltip>
     );

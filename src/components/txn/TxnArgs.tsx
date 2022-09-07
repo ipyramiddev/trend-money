@@ -19,7 +19,7 @@ const EntryTxnArgs = ( payload :Types.TransactionPayload_EntryFunctionPayload) =
             <div className=" bg-white p-2 text-black opacity-80">
                 <p className="text-center text-xl font-semibold">arg types</p>
                 {payload.type_arguments.map((type_arg, index) => {
-                    return <button onClick={()=>textCopy(type_arg)}key={index}>{formatType(type_arg)}</button>
+                    return <button onClick={()=>textCopy(type_arg)} key={type_arg+index}>{formatType(type_arg)}</button>
                 })}
             </div>
         </div>)

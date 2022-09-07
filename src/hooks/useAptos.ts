@@ -2,7 +2,7 @@ import { AptosClient, AptosAccount, FaucetClient, BCS, Types, TxnBuilderTypes, H
 import { MoveModule, MoveModuleBytecode, MoveResource } from "aptos/dist/generated";
 
 import { BaseContract } from "ethers";
-import { aptinSupply } from "./useAptin";
+import { aptinSupplyPayload } from "./useAptin";
 const NODE_URL = "https://fullnode.devnet.aptoslabs.com";
 const FAUCET_URL = "https://faucet.devnet.aptoslabs.com";
 
@@ -76,7 +76,7 @@ const default_options = {
 
 console.log("OPTIONS",default_options);
 
-const payload = aptinSupply(client,"APT",5444)
+const payload = aptinSupplyPayload("APT",5444)
 const transactionRequest = await window.martian.generateTransaction(sender, payload,default_options);
 const txnHash = await window.martian.signAndSubmitTransaction(transactionRequest);
 // console.log(transactionRequest);

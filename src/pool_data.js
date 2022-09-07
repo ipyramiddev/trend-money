@@ -1,3 +1,5 @@
+import { aptinSupplyPayload } from "hooks/useAptin";
+
 const pool_data = {
     stats:
     {
@@ -19,17 +21,33 @@ const pool_data = {
 
             pools: [
                 {
+                    name: 'Supply APT',
+                    platform: "Aptin",
+                    assets: ["APT"],
+                    category:"Supply asset",
+                    deposit_payload: aptinSupplyPayload("APT",10000),
+                    category_tag:"lend",
+
+                    yp_address: '0x01522c42ca43d7bfd34f373d41ad7d90a95e714c'
+                },
+                {
                     name: "APT-BTC",
                     platform: "liquidSwap",
+                    category:"Liquidity Pool",
+                    category_tag:"lp",
                     yp_address: '0xb460f9ae1fea4f77107146c1960bb1c978118816',
                     assets: ["APT", "BTC"],
+
                     portion: 0.25,
+                    
 
                 },
                 {
                     name: "APT-ETH",
                     platform: "liquidSwap",
                     assets: ["APT", "ETH",],
+                    category:"Liquidity Pool",
+                    category_tag:"lend",
                     yp_address: '0x0448e99ab5f8230713a9f5d7e64ec2ab6e5952a3',
                     portion: 0.25,
                 },
@@ -37,6 +55,8 @@ const pool_data = {
                     name: 'APT-ETH',
                     platform: "Anime.swap",
                     assets: ["BTC", "USDT",],
+                    category:"Liquidity Pool",
+                    category_tag:"lp",
                     yp_address: '0x01522c42ca43d7bfd34f373d41ad7d90a95e714c'
                 }
             ]
@@ -50,16 +70,21 @@ const pool_data = {
             pools: [
                 {
                     name: "APT-BTC",
-                    platform: "Pontem",
+                    platform: "hippo",
                     yp_address: '0xb460f9ae1fea4f77107146c1960bb1c978118816',
-                    assets: ["CELO", "mCUSD"],
+                    assets: ["USDT", "APT"],
+                    portion: 0.25,
+                    category_tag:"lp",
+                    
 
                 },
                 {
                     name: "APT-ETH",
-                    platform: "Anime swap",
+                    platform: "Anime.swap",
                     assets: ["APT", "ETH",],
                     yp_address: '0x0448e99ab5f8230713a9f5d7e64ec2ab6e5952a3',
+                    portion: 0.25,
+                    category_tag:"lp",
                     // YTF_portion: 0.25,
                 },
                 // {
@@ -93,6 +118,7 @@ const aptin_data = {
             apy: 0.05,
             supplied_q: 10000,
             borrow_q: 10000,
+            deposit_payload: aptinSupplyPayload("APT",10000)
         }
     ],
     borrow_pools: [

@@ -1,3 +1,5 @@
+
+import { slice } from "lodash";
 // function format_tvl(tvl) {
 //     if (tvl === null) {
 //         return '-';
@@ -6,7 +8,13 @@
 //     return "$" + tvl;
 // }
 
-import { slice } from "lodash";
+// function format_apy(apy:[]) {
+//     if (tvl === null) {
+//         return '-';
+//     }
+//     tvl = tvl.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+//     return "$" + tvl;
+// }
 
 export const format_large_number = (num:number) => {
     if (num === null) {
