@@ -14,3 +14,12 @@ export const dapp_map = () => {
     }
     return "APT"
   }
+
+  export const dappByName = (name:string)=>{
+    const name_map = new Map(dapps.map(i => [i.name||"0x0x",{name:i.name,image:i.image}]));
+    const dp = name_map.get(name);
+    // if(dp){
+      return dp
+    // }
+    // return {}
+  }

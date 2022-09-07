@@ -18,7 +18,8 @@ const TxnList = ({ txns, address }: TxnListProps) => {
 
     return (
         <div className="h-full items-start ">
-            <div className="flex flex-row justify-start items-start "><p>Transactions for</p> <p>{AddrClickable(address)}</p></div>
+            <div className="flex flex-row justify-start items-center ">
+                <p>Transactions for</p> <p>{AddrClickable(address)}</p></div>
             
             <div className="txScroller px-4">
             {txns.map((tx: Types.Transaction) => {
@@ -51,7 +52,7 @@ const TxnPayload = ({ payload }: UserTransaction) => {
                 <div>
                     <div className="">
                         <TxnHeader address={addr} module_name={mod} func_name={scr} />
-                        <p data-tip="type of txn (ex)">{type}
+                        <p data-tip={payload.arguments}>{type}
                         {/* <ReactTooltip place="top" textColor="white" multiline={true}/> */}
                         </p>
                         <EntryTxnArgs {...payload} />

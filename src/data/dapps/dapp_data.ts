@@ -209,7 +209,7 @@ export const dapps = [
   },
 
   {
-    "name": "liquidswap",
+    "name": "liquidSwap",
     "description": "",
     "tags": ["DEX"],
     "discord": "https://discord.gg/kHWnQpBq",
