@@ -23,3 +23,10 @@ export const dapp_map = () => {
     // }
     // return {}
   }
+
+  export const isDapp = (address:string)=> {
+    if(dapp_map().get(address)){
+        return true;
+    }
+    return false;
+ }
