@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import '../index.css';
 // const fullNodes = [
 import { AptosClient, AptosAccount, FaucetClient, BCS, TxnBuilderTypes, HexString, Types } from "aptos";
-import { dapps } from "../dapp_data";
+import { dapps } from "data/dapps/dapp_data";
 import BubbleSection from '../sections/BubbleSection';
 import UserOverview from '../sections/UserOverview';
 import { useFaucet, sendTransaction } from '../hooks/useAptos';

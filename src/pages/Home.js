@@ -1,5 +1,6 @@
 import React from "react";
-import {dapps} from "../dapp_data";
+
+import { dapps } from 'data/dapps/dapp_data';
 
 const defiDapps = ["Tsunami","Aries","Laminar","hippo","Econia",]
 

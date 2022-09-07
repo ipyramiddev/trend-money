@@ -3,6 +3,8 @@ interface PoolProps {
 }
 export const StakingPool = ({ pool }: PoolProps) => {
 
+    // const protocols = pool.
+
     return (<div className="w-full seam-outline roundex-2xl text-white">
         <div className='flex flex-row justify-between'>
             <h1 className="text-3xl">{pool.name}</h1>
