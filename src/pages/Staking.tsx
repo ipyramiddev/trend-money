@@ -5,10 +5,10 @@ const Staking = () => {
     return (
         <div className="w-full h-screen items-start">
             <p>Staking</p>
-            <Validators />
             {pool_data.seamPools.map((pool: any) => {
                 return(<StakingPool pool={pool} />)
             })}
+            <Validators />
         </div>
     )
 
