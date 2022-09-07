@@ -12,5 +12,5 @@ export const dapp_map = () => {
     if (img){
       return img
     }
-    return ""
+    return "APT"
   }

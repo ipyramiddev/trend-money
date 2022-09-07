@@ -14,6 +14,6 @@ export const truncateAddress = (address) => {
   };
 
   export const textCopy= (txt) =>{
-    copy(txt);
+    copy(txt.toString());
   }
   
