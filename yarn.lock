@@ -2153,6 +2153,15 @@
     schema-utils "^3.0.0"
     source-map "^0.7.3"
 
+"@pontem/liquidswap-sdk@^0.0.1":
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/@pontem/liquidswap-sdk/-/liquidswap-sdk-0.0.1.tgz#86e1f515390152e2039689e10bc9ff47f1ce4754"
+  integrity sha512-iIkEcP72NdXSE1jIFoeS2U1NvLYGVKaeZAFDBBQjlbyQtMjvbD8zG7dKxN5wp025j9wm0y8DPKDdmtVjASfXIg==
+  dependencies:
+    aptos "^1.2.0"
+    axios "^0.27.2"
+    decimal.js "^10.3.1"
+
 "@protobufjs/aspromise@^1.1.1", "@protobufjs/aspromise@^1.1.2":
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/@protobufjs/aspromise/-/aspromise-1.1.2.tgz#9b8b0cc663d669a7d8f6f5d0893a14d348f30fbf"
@@ -5491,7 +5500,7 @@ debug@^3.2.7:
   dependencies:
     ms "^2.1.1"
 
-decimal.js@^10.2.1:
+decimal.js@^10.2.1, decimal.js@^10.3.1:
   version "10.4.0"
   resolved "https://registry.yarnpkg.com/decimal.js/-/decimal.js-10.4.0.tgz#97a7448873b01e92e5ff9117d89a7bca8e63e0fe"
   integrity sha512-Nv6ENEzyPQ6AItkGwLE2PGKinZZ9g59vSh2BeH6NqPu0OTKZ5ruJsVqh/orbAnqXc9pBbgXAIrc2EyaCj8NpGg==

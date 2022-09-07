@@ -2,8 +2,11 @@ import { AptosClient, AptosAccount, FaucetClient, BCS, Types, TxnBuilderTypes, H
 import { MoveModule, MoveModuleBytecode, MoveResource } from "aptos/dist/generated";
 
 import { BaseContract } from "ethers";
+import { aptinSupply } from "./useAptin";
 const NODE_URL = "https://fullnode.devnet.aptoslabs.com";
 const FAUCET_URL = "https://faucet.devnet.aptoslabs.com";
+
+
 
 const client = new AptosClient(NODE_URL);
 const faucetClient = new FaucetClient(NODE_URL, FAUCET_URL);
@@ -16,8 +19,6 @@ export const useFaucet = async (account: AptosAccount) => {
 }
 
 
-
-
 export const mintWagmi = async (account: AptosAccount) => {
     const payload = {
         type: "script_function_payload",
@@ -25,18 +26,58 @@ export const mintWagmi = async (account: AptosAccount) => {
     }
 }
 
+export const loadPool = (pool:any) =>{
+    if(pool.platform==="liquidSwap"){
+        console.log("Start Loading pontem");
+        // const pont =
+    }
 
-export const sendTransaction= async (toAddr:string,sender:string) =>{
+    if(pool.platform==="Anime.swap"){
+        console.log("Start Loading anime");
+        // const animePool = 
+
+    }
+
+    // for deployments of econia orderbooks
+    if(pool.platform==="Econia"){
+        console.log("Start Loading econia");
+    }
+
+    if(pool.platform==="Aptin"){
+        console.log("Start Loading Aptin");
+    }
+
+    if(pool.platform==="Hippo"){
+        console.log("Start Loading Hippo");
+    }
+}
+
+
+export const sendTransaction= async (toAddr:string,sender:string,) =>{
 // Generate a transaction
-// const response = await window.martian.connect();
+const account = await window.martian.connect();
 // const sender = response.address;
-const payload = {
-    type: "script_function_payload",
-    function: "0x1::coin::transfer",
-    type_arguments: ["0x1::aptos_coin::AptosCoin"],
-    arguments: [toAddr, "500"]
-};
-const transactionRequest = await window.martian.generateTransaction(sender, payload);
+// const payload = {
+//     type: "script_function_payload",
+//     function: "0x1::coin::transfer",
+//     type_arguments: ["0x1::aptos_coin::AptosCoin"],
+//     arguments: [toAddr, "500"]
+// };
+
+const default_options = {
+    // sender: account.address.hex(),
+    // sequence_number: account.sequence_number,
+    max_gas_amount: "60000",
+    gas_unit_price: "1",
+    gas_currency_code: "XUS",
+    // Unix timestamp, in seconds + 10 seconds
+    expiration_timestamp_secs: (Math.floor(Date.now() / 1000) + 10).toString(),
+  }
+
+console.log("OPTIONS",default_options);
+
+const payload = aptinSupply(client,"APT",5444)
+const transactionRequest = await window.martian.generateTransaction(sender, payload,default_options);
 const txnHash = await window.martian.signAndSubmitTransaction(transactionRequest);
 // console.log(transactionRequest);
 };

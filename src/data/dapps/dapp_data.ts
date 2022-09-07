@@ -236,7 +236,7 @@ export const dapps = [
     "docs": "https://medium.com/@Laminar",
   },
   {
-    "name": "Anime swap",
+    "name": "Anime.swap",
     "tags": ["DEX", "swap"],
     "description": "https://laminar.markets/",
     "discord": "",

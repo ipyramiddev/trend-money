@@ -20,7 +20,7 @@ const pool_data = {
             pools: [
                 {
                     name: "APT-BTC",
-                    platform: "Pontem",
+                    platform: "liquidSwap",
                     yp_address: '0xb460f9ae1fea4f77107146c1960bb1c978118816',
                     assets: ["APT", "BTC"],
                     portion: 0.25,
@@ -28,14 +28,14 @@ const pool_data = {
                 },
                 {
                     name: "APT-ETH",
-                    platform: "Pontem",
+                    platform: "liquidSwap",
                     assets: ["APT", "ETH",],
                     yp_address: '0x0448e99ab5f8230713a9f5d7e64ec2ab6e5952a3',
                     portion: 0.25,
                 },
                 {
                     name: 'APT-ETH',
-                    platform: "anime.swap",
+                    platform: "Anime.swap",
                     assets: ["BTC", "USDT",],
                     yp_address: '0x01522c42ca43d7bfd34f373d41ad7d90a95e714c'
                 }
