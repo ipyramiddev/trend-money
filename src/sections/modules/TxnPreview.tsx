@@ -1,6 +1,7 @@
 import { AptosAccount, AptosClient } from "aptos";
 import { MoveFunction, MoveFunctionGenericTypeParam, MoveModuleBytecode, MoveType } from "aptos/dist/generated";
 import { formatParam } from "hooks/formatting";
+import { sendTransaction } from "hooks/useAptos";
 import TransactionModal from "modals/TransactionModal";
 import { useState } from "react";
 
@@ -21,6 +22,8 @@ const TxnPreview = ({address, module, func, params,setShowTxnModal,client } : Tx
         newArgs[index] = value;
         setArgList(newArgs);
     }
+
+    // const payloa
 
     return (
         <div className="shadow">
@@ -46,8 +49,9 @@ const TxnPreview = ({address, module, func, params,setShowTxnModal,client } : Tx
             )
         } )}
                 </div>
+                <button onClick={()=>sendTransaction("","")} className="seam-button ">send Txn</button>
             </div>
-                <button onClick={()=>setShowTxnModal(true)} className="seam-button ">Create Txn</button>
+                {/* <button onClick={()=>setShowTxnModal(true)} className="seam-button ">Create Txn</button> */}
         </div>
     )
 }

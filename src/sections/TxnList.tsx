@@ -2,7 +2,6 @@ import { Types } from "aptos";
 import React from "react";
 import { ReactDOM } from "react";
 import { formatParam, parsePayloadFunction } from "hooks/formatting";
-import { useState } from "react";
 import { UserTransaction } from "aptos/dist/generated";
 import TxnHeader from "components/txn/TxnHeader";
 import EntryTxnArgs from "components/txn/TxnArgs";

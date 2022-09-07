@@ -148,7 +148,7 @@ const ModuleExplorer = ({ client, mod }: ModExploreProps) => {
             </div>
                         {selectedModule !== undefined ? <ModuleTypes module={selectedModule} /> : null}
 
-                {/* {selectedModule && selectedFunction ?
+                {selectedModule && selectedFunction ?
 
                     <TxnPreview
                         address={selectedAddress}
@@ -159,7 +159,7 @@ const ModuleExplorer = ({ client, mod }: ModExploreProps) => {
                         setShowTxnModal={setShowTxnModal}
                         client={client}
                     />
-                    : null} */}
+                    : null}
                     
                     <div className="flex flex-col gap gap-2 p-2 ">
                         {txs ?<TxnList txns={txs} address={selectedAddress}/>:null}

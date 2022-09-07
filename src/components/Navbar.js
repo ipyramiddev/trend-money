@@ -6,7 +6,7 @@ import { useState } from 'react';
 const nav_items = [
     { name: 'Home', path: '/' },
     {name: 'Explorer',path: '/explorer'},
-    {name: 'staking',path: '/staking'},
+    {name: 'staking',path: '/staking?'},
 ];
 const nav_icons = [
     {name: 'github', link:'https://github.com/SeamMoney/seam', icon:(<FaGithub className=" hover:text-blac " />)},

@@ -32,6 +32,7 @@ interface Props {
     dapp: Dapp
     onSelect: (dapp: Dapp) => void;
     key:number;
+    selected?: boolean
 
 }
 
@@ -43,7 +44,6 @@ const DappBubble = ({ dapp, onSelect,key }: Props) => {
         onClick={() => onSelect(dapp)}
         className="flex flex-col justify-center px-5 items-center my-2 rounded-2xl border-white border-4 dappBubble">
                 <div className="flex flex-row  px-6 justify-start">
-                   
                     <img className="rounded-lg w-12 h-12 " src={`./dapps/${dapp.image}`} alt="nft-image" />
                     <p className="p-2 text-xl align-baseline">{dapp.name}</p>
                 </div>
