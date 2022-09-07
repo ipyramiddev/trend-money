@@ -3,20 +3,11 @@ import React, { useState, useEffect } from 'react';
 import '../index.css';
 // const fullNodes = [
 import { AptosClient, AptosAccount, FaucetClient, BCS, TxnBuilderTypes, HexString, Types } from "aptos";
-import { dapps } from "data/dapps/dapp_data";
-import BubbleSection from '../sections/BubbleSection';
-import UserOverview from '../sections/UserOverview';
-import { useFaucet, sendTransaction } from '../hooks/useAptos';
-import SplineSection from '../sections/SplineSection';
-import TxnList from 'sections/TxnList';
 import ModuleExplorer from '../sections/modules/ModuleExplorer';
 import UserExplorer from '../sections/UserExplorer';
-import { connectToWallet } from '../hooks/wallet';
 // import { AccountContextProvider } from 'context/AccountContext';
 import Pools from '../sections/pools/Pools';
 import DappsView from 'sections/dapps/DappsView';
-import { loadTxs } from 'hooks/useTransaction';
-import Validators from '../sections/staking/Validators';
 import { useWeb3 } from '@fewcha/web3-react';
 import { formatParam } from 'hooks/formatting';
 // devnet is used here for testing

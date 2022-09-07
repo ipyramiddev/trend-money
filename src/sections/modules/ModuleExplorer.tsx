@@ -8,18 +8,19 @@ import { loadModules, loadResources } from "hooks/useAptos";
 import { divide } from "lodash";
 import FunctionInfo from "./functions/FunctionInfo";
 import ModuleTypes from "./ModuleTypes";
-import {dapps } from 'data/dapps/dapp_data';
+import { dapps } from 'data/dapps/dapp_data';
 import { Dapp } from "components/dapps/types";
 import DappBadge from "components/DappBadge";
 import { MoveFunction } from "aptos/dist/generated";
 import TxnPreview from "./TxnPreview";
 import TransactionModal from "modals/TransactionModal";
-import TxnList from "sections/TxnList";
+
 import AccountResources from "sections/account/AccountResources";
 import { FaClipboard, FaRegClipboard } from "react-icons/fa";
 import { textCopy } from "utils";
 import { loadTxs } from "hooks/useTransaction";
 import { useWeb3 } from "@fewcha/web3-react";
+import TxnFilterView from "views/TxnFilterView";
 interface ModExploreProps {
     client: AptosClient;
     mod: Types.MoveModuleBytecode[];
@@ -35,19 +36,19 @@ const ModuleExplorer = ({ client, mod }: ModExploreProps) => {
     const [typeArgs, setTypeArgs] = useState<string[]>(["0x1::aptos_coin::AptosCoin"]);
     const [tempArgs, setTempArg] = useState<string[]>([]);
     // const { account,isConnected } =useWeb3();
-    const [txs, setTxs] = useState<Types.Transaction[]>([]);
+    
     const ModuleInfo = ({ module }: { module: Types.MoveModuleBytecode }) => {
         const { abi } = module;
 
         return (
-                <div className=" px-2 rounded-xl">
-                    <div className="flex flex-row p-2">
-                        <p className="text-2xl p-1">Module</p>
-                        {abi?.name !== undefined ? <h1 className="module-outline">{abi.name}</h1> : <h1>No name</h1>}
-                    </div>
+            <div className=" px-2 rounded-xl">
+                <div className="flex flex-row p-2">
+                    <p className="text-2xl p-1">Module</p>
+                    {abi?.name !== undefined ? <h1 className="module-outline">{abi.name}</h1> : <h1>No name</h1>}
+                </div>
 
-                    {abi?.exposed_functions !== undefined ? <h2 className="text-center opacity-70">{abi.exposed_functions.length} exposed function(s)</h2> : <h2>No exposed functions</h2>}
-                    <div className="flex flex-row justify-between">
+                {abi?.exposed_functions !== undefined ? <h2 className="text-center opacity-70">{abi.exposed_functions.length} exposed function(s)</h2> : <h2>No exposed functions</h2>}
+                <div className="flex flex-row justify-between">
                     <div className="modScroller outline-dashed rounded-xl outline-white p-1">
                         {abi?.exposed_functions.map((func: Types.MoveFunction) => {
                             return (
@@ -58,14 +59,14 @@ const ModuleExplorer = ({ client, mod }: ModExploreProps) => {
                         })
                         }
                     </div>
-                        </div>
-                    {selectedFunction !== null ?
-                        <FunctionInfo function={selectedFunction} />
-                        : <div>No function selected</div>}
+                </div>
+                {selectedFunction !== null ?
+                    <FunctionInfo function={selectedFunction} />
+                    : <div>No function selected</div>}
                 <div>
                 </div>
             </div>
-          )
+        )
     }
 
     const switchAddress = async (address: string) => {
@@ -79,17 +80,14 @@ const ModuleExplorer = ({ client, mod }: ModExploreProps) => {
             setError(err);
         }
         )
-            loadTxs(address,client).then((res)=>{setTxs(res)
-            console.log("just loaded ", res);
-            }
-            );
-    
+        
+
     }
 
     useEffect(() => {
         switchAddress(selectedAddress);
     }
-        , [selectedAddress]);
+        , []);
 
     return (
         <div className="w-full items-center justify-center">
@@ -125,14 +123,14 @@ const ModuleExplorer = ({ client, mod }: ModExploreProps) => {
                     </span>
                     <p className="text-xl text-center py-1">Account Modules</p>
                     <div className="hScroller flex scrollbar  scrollbar-thumb-white scrollbar-track-black flex-row justify-start seam-outline p-2 gap gap-2">
-                        {modules.map((mod: Types.MoveModuleBytecode,i:number) => {
+                        {modules.map((mod: Types.MoveModuleBytecode, i: number) => {
                             return (<div key={i} className="items-center justify-center">
                                 <button className=" module-outline" onClick={() => setSelectedModule(mod)}>{mod.abi?.name}</button>
                             </div>)
                         }
                         )}
                     </div>
-                    </div>
+                </div>
                 {/* </div> */}
 
 
@@ -142,25 +140,25 @@ const ModuleExplorer = ({ client, mod }: ModExploreProps) => {
                         : <div>No modules found</div>}
                 </div>
             </div>
-                        {selectedModule !== undefined ? <ModuleTypes module={selectedModule} /> : null}
+            {selectedModule !== undefined ? <ModuleTypes module={selectedModule} /> : null}
 
-                {selectedModule && selectedFunction ?
-    null
-                    // <TxnPreview
-                    //     address={selectedAddress}
-                    //     // account={userAccount}
-                    //     module={selectedModule}
-                    //     func={selectedFunction}
-                    //     params={selectedFunction?.params}
-                    //     setShowTxnModal={setShowTxnModal}
-                    //     client={client}
-                    // />
-                    : null}
-                    
-                    <div className="flex flex-row gap gap-2 p-2 ">
-                        {txs ?<TxnList txns={txs} address={selectedAddress}/>:null}
-                        <AccountResources address={selectedAddress}/>
-                </div>
+            {selectedModule && selectedFunction ?
+                null
+                // <TxnPreview
+                //     address={selectedAddress}
+                //     // account={userAccount}
+                //     module={selectedModule}
+                //     func={selectedFunction}
+                //     params={selectedFunction?.params}
+                //     setShowTxnModal={setShowTxnModal}
+                //     client={client}
+                // />
+                : null}
+
+            <div className="flex flex-row gap gap-2 p-2 ">
+                <TxnFilterView address={selectedAddress} />
+                <AccountResources address={selectedAddress} />
+            </div>
         </div>
     );
 }
