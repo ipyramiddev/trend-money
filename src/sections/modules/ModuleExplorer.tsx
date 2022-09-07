@@ -4,7 +4,7 @@ import { formatParam, parsePayloadFunction, shortenAddress, TimeAgo } from "hook
 import { aptosTxnLink } from "hooks/useExplorer";
 import ReactTooltip from "react-tooltip";
 import { useEffect, useState } from "react";
-import { loadModules } from "hooks/useAptos";
+import { loadModules, loadResources } from "hooks/useAptos";
 import { divide } from "lodash";
 import FunctionInfo from "./functions/FunctionInfo";
 import ModuleTypes from "./ModuleTypes";
@@ -27,13 +27,11 @@ interface ModExploreProps {
 
 const ModuleExplorer = ({ client, mod }: ModExploreProps) => {
     const [selectedAddress, setSelectedAddress] = useState<string>("0x1");
-    const [appSelected, setAppSelected] = useState<boolean>(false)
     const [selectedModule, setSelectedModule] = useState<Types.MoveModuleBytecode>(mod[0]);
     const [selectedFunction, setSelectedFunction] = useState<Types.MoveFunction | null>(null);
     const [modules, setModules] = useState<Types.MoveModuleBytecode[]>([]);
     const [error, setError] = useState<string | null>(null);
     const [showTxnModal, setShowTxnModal] = useState<boolean>(false);
-    const [addressList, setAddressList] = useState<string[]>(["0x1", "0x3",]);
     const [typeArgs, setTypeArgs] = useState<string[]>(["0x1::aptos_coin::AptosCoin"]);
     const [tempArgs, setTempArg] = useState<string[]>([]);
     // const { account,isConnected } =useWeb3();
@@ -70,7 +68,6 @@ const ModuleExplorer = ({ client, mod }: ModExploreProps) => {
           )
     }
 
-
     const switchAddress = async (address: string) => {
         loadModules(address).then((modules: Types.MoveModuleBytecode[]) => {
             setModules(modules);
@@ -82,7 +79,6 @@ const ModuleExplorer = ({ client, mod }: ModExploreProps) => {
             setError(err);
         }
         )
-       
             loadTxs(address,client).then((res)=>{setTxs(res)
             console.log("just loaded ", res);
             }
@@ -149,21 +145,21 @@ const ModuleExplorer = ({ client, mod }: ModExploreProps) => {
                         {selectedModule !== undefined ? <ModuleTypes module={selectedModule} /> : null}
 
                 {selectedModule && selectedFunction ?
-
-                    <TxnPreview
-                        address={selectedAddress}
-                        // account={userAccount}
-                        module={selectedModule}
-                        func={selectedFunction}
-                        params={selectedFunction?.params}
-                        setShowTxnModal={setShowTxnModal}
-                        client={client}
-                    />
+    null
+                    // <TxnPreview
+                    //     address={selectedAddress}
+                    //     // account={userAccount}
+                    //     module={selectedModule}
+                    //     func={selectedFunction}
+                    //     params={selectedFunction?.params}
+                    //     setShowTxnModal={setShowTxnModal}
+                    //     client={client}
+                    // />
                     : null}
                     
-                    <div className="flex flex-col gap gap-2 p-2 ">
+                    <div className="flex flex-row gap gap-2 p-2 ">
                         {txs ?<TxnList txns={txs} address={selectedAddress}/>:null}
-                        {txs&&selectedAddress!=="0x1"? <AccountResources address={selectedAddress}/>:null}
+                        <AccountResources address={selectedAddress}/>
                 </div>
         </div>
     );
