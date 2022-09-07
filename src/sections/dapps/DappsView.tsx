@@ -1,5 +1,5 @@
 import DappBubble from "components/dapps/DappBubble";
-import { dapps } from "dapp_data";
+import { dapps } from "data/dapps/dapp_data";
 import { useEffect, useState } from "react";
 import BubbleSection from "sections/BubbleSection";
 import { Types } from "aptos";

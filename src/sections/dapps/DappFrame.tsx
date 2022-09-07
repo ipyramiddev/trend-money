@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { FaArrowCircleUp, FaBackward, FaForward } from "react-icons/fa";
 
 interface DappFrameProps {
@@ -16,7 +16,7 @@ const DappHeader = (dapp:Dapp) =>{
 }
 
 const DappFrame = ({dapp,viewUrl}:DappFrameProps) => {
-
+    const ref = useRef<any>();
 
 
     const DappNav = () => {
@@ -47,6 +47,10 @@ const DappFrame = ({dapp,viewUrl}:DappFrameProps) => {
             </div>
         )
     }
+    const newNav = () => {
+        const url =  ref.current.contentWindow.location.href
+        console.log("NEW url",url);
+    }
 
     return (
         <div className="">
@@ -56,6 +60,8 @@ const DappFrame = ({dapp,viewUrl}:DappFrameProps) => {
         <iframe className="scrollbar rounded-xl  scrollbar-thumb-pink scrollbar-track-blue" 
             width={'100%'}
             height={'800px'}
+            ref={ref}
+            onLoad={newNav}
             title="host" src={viewUrl}/>
         </div>
         </div>
