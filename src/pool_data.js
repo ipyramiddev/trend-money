@@ -30,12 +30,12 @@ const pool_data = {
                     yp_address: '0x0448e99ab5f8230713a9f5d7e64ec2ab6e5952a3',
                     YTF_portion: 0.25,
                 },
-                // {
-                //     name: 'APT-ETH',
-                //     platform: "Pn",
-                //     assets: ["SOL", "CELO",],
-                //     yp_address: '0x01522c42ca43d7bfd34f373d41ad7d90a95e714c'
-                // }
+                {
+                    name: 'APT-ETH',
+                    platform: "Pn",
+                    assets: ["BTC", "USDT",],
+                    yp_address: '0x01522c42ca43d7bfd34f373d41ad7d90a95e714c'
+                }
             ]
         },
         {
@@ -54,7 +54,7 @@ const pool_data = {
                 },
                 {
                     name: "APT-ETH",
-                    platform: "Pontem",
+                    platform: "Anime swap",
                     assets: ["APT", "ETH",],
                     yp_address: '0x0448e99ab5f8230713a9f5d7e64ec2ab6e5952a3',
                     // YTF_portion: 0.25,
@@ -70,6 +70,39 @@ const pool_data = {
 
     ]
 }
+
+const aptin_data= {
+    assets : [
+        {
+            symbol: "APT",
+            name:"Aptos",
+            
+        },
+        {
+            symbol: "BTC",
+            name:"Bitcoin",
+        }
+    ],
+    supply_pools : [
+        {
+            name:"supply aptos",
+            assets: ["APT"],
+            apy: 0.05,
+            supplied_q: 10000,
+            borrow_q: 10000,
+        }
+    ],
+    lending_pools: [
+        
+    ]
+}
+
+const resources = [
+    {name:"aptos forum", url:"https://forum.aptoslabs.com/"},
+    {name:"aptos docs", url:"https://forum.aptoslabs.com/"},
+    {name:"aptos SDK docs", url:"https://aptos.dev/sdks"}
+    
+]
 
 
 export default pool_data;
