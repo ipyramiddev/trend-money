@@ -56,9 +56,9 @@ const Explorer = () => {
                 <p className="account-outline">{formatParam(account?.address || '')}</p>
                 {isConnected ? <p className="px-2 py-1 rounded-sm text-green1 outline-2 outline-green1 m-2">connected</p> : <p>not connected</p>}
                 {view === "ModuleExplorer" ? <ModuleExplorer client={client} mod={modules} /> : null}
+                {view === "Dapps" ? <DappsView /> : null}
                 {view === "UserExplorer" && isConnected ? <UserExplorer account={account} client={client} /> : null}
                 {view === "Pools" ? <Pools client={client} /> : null}
-                {view === "Dapps" ? <DappsView /> : null}
             </div>
         </div>
     );

@@ -6,6 +6,9 @@ export function assertNever(x: never): never {
   }
 
 
+// export function genPayload(
+
+
 export function isValidAccountAddress(accountAddr: string): boolean {
     // account address is 0x{64 hex characters}
     // with multiple options - 0X, 0x001, 0x1, 0x01
