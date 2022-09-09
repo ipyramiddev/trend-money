@@ -3,6 +3,7 @@ import App from './App';
 import Docs from './pages/Docs';
 import Home from './pages/Home';
 import Explorer from './pages/Explorer';
+import { Trade } from 'pages/Trade';
 import Navbar from './components/Navbar';
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
 // import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client'
@@ -29,7 +30,7 @@ export default function Wrapper() {
               <Route path="/" element={<Home />} />
               <Route path="/home" element={<Home />} />
               <Route path="/docs" element={<Docs />} />
-              <Route path="/staking" element={<Staking />} />
+              <Route path="/staking" element={<Trade/>} />
               <Route path= "/nodes" element = {<NodePage/>}/>
               <Route path="/app" element={<App />} />
               <Route path="/explorer" element={<Explorer />} />

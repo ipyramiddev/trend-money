@@ -39,6 +39,7 @@ const ResourceDetails = (resource:Types.MoveResource|null) =>{
         <p className="text-3xl">Resource Details</p>
         <p>{resource?.type}</p>
         {/* {resource?.data} */}
+        <p>{JSON.stringify(resource?.data)}</p>
         </div>);
 }
 

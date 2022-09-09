@@ -30,7 +30,7 @@ const AccountResources = ({ address,selectResource }: Props) => {
     );
     return (
         <div>
-            
+            <p className="text-3xl">Account Resources</p>
             <div className="modScroll p-2 flex flex-col max-w-2xl ">
                 {resources && resources.length !== 0 ? (ResourceList(resources,selectResource)) : <p>none</p>}
             </div>
@@ -57,12 +57,10 @@ const Resource = (resource: MoveResource,selectResource: (resource:Types.MoveRes
 
         return TokenStore(resource.data);
     }
-    const tooltipText = JSON.stringify(resource.data,null, "\n").split("\n").map((ele,i)=>{
-        if(ele.length>5){
-        return (`<p>${ele.replace('"',"")}</p>`)}})
+    
     return (
-        <div className="p-2 m-2 outline outline-2 overflow-hidden">
-            <button onClick={()=>selectResource(resource)} data-tip={`<div>${tooltipText}</div>`}>{formatType(resource.type)}</button>
+        <div className="p-2 m-2 outline rounded-lg outline-2 overflow-hidden">
+            <button onClick={()=>selectResource(resource)}>{formatType(resource.type)}</button>
             <ReactTooltip place="top" textColor="white"  html={true} multiline={true}/>
         </div>
     )
