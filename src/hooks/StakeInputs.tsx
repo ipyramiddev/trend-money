@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { FaArrowAltCircleUp } from "react-icons/fa";
 import useSubmitStake from "./useStake";
 
 interface StakeInputs{
@@ -46,13 +47,13 @@ const StakeForm = () => {
     const {handleSubmit,handleInputChange,inputs} = useStakeForm(submitStake);
     
     return (
-        <div  className="flex flex-col gap gap-3 text-black p-2 ">
+        <div  className="flex flex-col shadow shadow-xl shadow-orange gap-3 text-black p-2 ">
             <form onSubmit={handleSubmit}>
             <div>
-                <input type="text" name="amount" placeholder="# of APT to stake" onChange={(e) => handleInputChange(e)} />
+                <input className="bg-opacity" type="number" name="amount" placeholder="# of APT to stake" onChange={(e) => handleInputChange(e)} />
             </div>
             <div>
-                <input type="text" name="operatorAddr" placeholder="operator address" onChange={(e) => handleInputChange(e)} />
+                <button><FaArrowAltCircleUp/></button>
             </div>
             <div>
                 <input type="text" name="voterAddr" placeholder="voter address" onChange={(e) =>handleInputChange(e)} />

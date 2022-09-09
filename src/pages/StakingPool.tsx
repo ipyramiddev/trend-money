@@ -19,7 +19,7 @@ const tag_map= {
     order: {name:"Orderbook", color:"orange",}
 
 }
-const CategoryTag =(cat:string) =>{
+const CategoryTag =(cat:string,color="pink") =>{
     const tag = tag_map.lend
     let tag_color = "bg-blue"
     // if(
@@ -71,7 +71,7 @@ export const StakingPool = ({ pool }: PoolProps) => {
 
     // const protocols = _.pluck(pool.pools, 'protocol');
 
-    return (<div className="w-full seam-outline roundex-2xl text-white">
+    return (<div className="w-full seam-outline  shadow-lg shadow-white roundex-2xl text-white">
         <div className='flex flex-row justify-between'>
             <h1 className="text-3xl">{pool.name}</h1>
             <div className="items-center justify-center rounded-2xl">
