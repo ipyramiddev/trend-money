@@ -37,18 +37,18 @@ interface Props {
 }
 
 
-const DappBubble = ({ dapp, onSelect,key }: Props) => {
+const DappBubble = ({ dapp, onSelect,key,selected=false }: Props) => {
 
     return (
-        <div key={key} 
+        <button key={key} 
         onClick={() => onSelect(dapp)}
-        className="flex flex-col justify-center px-5 items-center my-2 rounded-2xl border-white border-4 dappBubble">
-                <div className="flex flex-row  px-6 justify-start">
+        className="flex flex-col justify-center px-6 items-start my-2 rounded-2xl border-white border-4 dappBubble">
+                <div className="flex flex-row  items-start px-6 justify-start">
                     <img className="rounded-lg w-12 h-12 " src={`./dapps/${dapp.image}`} alt="nft-image" />
                     <p className="p-2 text-xl align-baseline">{dapp.name}</p>
                 </div>
             
-        </div>
+        </button>
     );
 }
 
