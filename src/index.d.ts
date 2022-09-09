@@ -15,6 +15,16 @@ declare global {
 
   }
 
+  interface SwapInputs{
+    // protocol: string,
+    from_symbol: string,
+    from_quantity:number,
+    to_symbol: string,
+    
+  }
+
+  interface SwapComp{}
+
   interface Dapp {
     address?: string;
     name: string;

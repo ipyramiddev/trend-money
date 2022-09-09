@@ -10,6 +10,7 @@ import Pools from '../sections/pools/Pools';
 import DappsView from 'sections/dapps/DappsView';
 import { useWeb3 } from '@fewcha/web3-react';
 import { formatParam } from 'hooks/formatting';
+import { ExplorerTabView } from 'views/ExplorerTabView';
 // devnet is used here for testing
 const NODE_URL = "https://fullnode.devnet.aptoslabs.com";
 const FAUCET_URL = "https://faucet.devnet.aptoslabs.com";
@@ -35,16 +36,17 @@ const Explorer = () => {
     ]
     const [view, setView] = useState("ModuleExplorer");
     return (
-        <div className="flex flex-col w-full p-3 m-2 items-center justify-center">
+        <div className="flex flex-col w-full p-3 m-2 items-start justify-start">
             <p className="text-3xl text-center">Explorer</p>
-            <div className="flex flex-row items-start start">
-                <div className="flex tabs flex-row seam-outline">
+            {/* <ExplorerTabView/> */}
+            <div className="flex flex-row items-start justify-start start">
+                <div className="flex flex-row items-start">
                     {tabs.map((tab: any, index) => {
                         return (
                             <div
                                 onClick={() => setView(tab.id)}
-                                className={`px-2 m-2 py-1 rounded-xl ${view === tab.id ? 'bg-white text-black' : 'outline outline-2 outline-white text-white'}`}>
-                                <p className="text-2xl px-2 m-1 py-1 text-center justify-center">{tab.name}</p>
+                                className={`px-2 m-2 py-1 hover:opacity-100 rounded-xl ${view === tab.id ? 'underline font-bold' : 'opacity-70'}`}>
+                                <p className="text-2xl underline px-2 m-1 py-1 text-center font- justify-center">{tab.name}</p>
                             </div>)
                     })
                     }
@@ -64,3 +66,4 @@ const Explorer = () => {
 }
 
 export default Explorer;
+

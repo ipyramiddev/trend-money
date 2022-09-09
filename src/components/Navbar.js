@@ -3,10 +3,11 @@ import Logo from './Logo';
 import { FaBookOpen, FaGithub, FaTwitter } from 'react-icons/fa';
 import { useWeb3 } from '@fewcha/web3-react';
 import { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 const nav_items = [
     { name: 'Home', path: '/' },
     {name: 'Explorer',path: '/explorer'},
-    {name: 'staking',path: '/staking?'},
+    {name: 'Trade',path: '/staking?'},
 ];
 const nav_icons = [
     {name: 'github', link:'https://github.com/SeamMoney/seam', icon:(<FaGithub className=" hover:text-blac " />)},
@@ -39,6 +40,7 @@ function NavbarIcon(link,icon, key) {
 export default function Navbar(props) {
     const [isOpen, setIsOpen] = useState('hidden');
     const { isConnected, network } = useWeb3();
+    // const location = useLocation()
     const toggle = () => {
         setIsOpen(isOpen === '' ? 'hidden' : '');
     }

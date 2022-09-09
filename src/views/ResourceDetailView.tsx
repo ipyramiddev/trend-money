@@ -36,7 +36,10 @@ const ResourceDetailView = ({ address }: Props) => {
 
 const ResourceDetails = (resource:Types.MoveResource|null) =>{
     return(<div>
-        <p>ddd</p>{resource?.type}</div>);
+        <p className="text-3xl">Resource Details</p>
+        <p>{resource?.type}</p>
+        {/* {resource?.data} */}
+        </div>);
 }
 
 export default ResourceDetailView;
