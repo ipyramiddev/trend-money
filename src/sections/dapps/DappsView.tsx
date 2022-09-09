@@ -40,8 +40,6 @@ const DappsView = () => {
         setDappStack(newStack);
     }
 
-
-
     const loadDapp = (dapp: any) => {
         // if(dapp.name in dappStack.entries)
         if (dapp.url && !(dapp.name in recentOpen.keys)) {
@@ -64,7 +62,7 @@ const DappsView = () => {
                 <div className="flex flex-row p-1">
                     <BubbleSection dapps={orderedDapps as Dapp[]} onSelect={loadDapp} />
                 </div>
-            <div className="min-h-screen px-6">
+            <div className="px-6">
                 {dappStack[0]}
                 </div>
             {txns?.length!==0 ? <TxnList txns={txns||[]} address={selectedDapp.address}/> : null}

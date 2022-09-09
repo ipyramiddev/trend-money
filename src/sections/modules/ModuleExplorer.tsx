@@ -158,8 +158,7 @@ const ModuleExplorer = ({ client, mod }: ModExploreProps) => {
 
             <div className="flex flex-row gap gap-2 p-2 ">
                 <TxnFilterView address={selectedAddress} />
-                {/* <AccountResources address={selectedAddress} /> */}
-                <ResourceDetailView address={selectedAddress} />
+                <ResourceDetailView address={selectedAddress} showDetails={true}/>
             </div>
         </div>
     );

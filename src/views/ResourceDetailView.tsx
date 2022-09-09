@@ -6,41 +6,29 @@ import TxnList from "sections/TxnList";
 
 interface Props {
     address: string;
-
+    showDetails?: boolean
 }
 
-
-const ResourceDetailView = ({ address }: Props) => {
+const ResourceDetailView = ({ address, showDetails}: Props) => {
     const [txs, setTxs] = useState<Types.Transaction[]>([]);
-    const [resource,setResource] = useState<Types.MoveResource|null>(null);
+    const [resource, setResource] = useState<Types.MoveResource | null>(null);
 
-    const selectResources=(resource:Types.MoveResource)=>{
+    const selectResources = (resource: Types.MoveResource) => {
         setResource(resource)
     }
-    // useEffect(() => {
-    //     loadTxs(address).then((res) => {
-    //         setTxs(res)
-    //         console.log("just loaded ", res);
-    //     }
-    //     );
-    // }, [address])
-
-    // const txnEvents
 
     return (<div className="flex flex-row">
-        <AccountResources address={address} selectResource={selectResources}/>
-        {ResourceDetails(resource)}
-        {/* < */}
+        <AccountResources address={address} selectResource={selectResources} />
+        {showDetails ? ResourceDetails(resource) : null}
     </div>);
 }
 
-const ResourceDetails = (resource:Types.MoveResource|null) =>{
-    return(<div>
+const ResourceDetails = (resource: Types.MoveResource | null) => {
+    return (<div className="p-3">
         <p className="text-3xl">Resource Details</p>
-        <p>{resource?.type}</p>
-        {/* {resource?.data} */}
-        <p>{JSON.stringify(resource?.data)}</p>
-        </div>);
+        <p className="text-xl font-semibold">{resource?.type}</p>
+        <p>{JSON.stringify(resource?.data,null, "\t")}</p>
+    </div>);
 }
 
 export default ResourceDetailView;

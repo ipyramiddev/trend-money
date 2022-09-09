@@ -21,7 +21,7 @@ const DappFrame = ({dapp,viewUrl}:DappFrameProps) => {
 
     const DappNav = () => {
         return (
-            <div className="flex flex-row items-start justify-center p-3">
+            <div className="flex flex-row items-start justify-center px-3">
                 {/* BACK ARROW */}
                 <button className="seam-sqr">
                     <FaBackward />
@@ -59,7 +59,7 @@ const DappFrame = ({dapp,viewUrl}:DappFrameProps) => {
         <DappNav/>
         <iframe className="scrollbar rounded-xl  scrollbar-thumb-pink scrollbar-track-blue" 
             width={'100%'}
-            height={'800px'}
+            height={'600px'}
             ref={ref}
             onLoad={newNav}
             title="host" src={viewUrl}/>

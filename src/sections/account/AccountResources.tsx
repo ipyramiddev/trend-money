@@ -15,23 +15,21 @@ const web3 = new Web3();
 interface Props{
     address: string;
     selectResource: (resource:Types.MoveResource)=>void;
+    
 }
 
 const AccountResources = ({ address,selectResource }: Props) => {
     const [resources, setResources] = useState<Types.MoveResource[]>([]);
     useEffect(() => {
         loadResources(address).then((res) => {
-            // if (res.status === 200) {
                 setResources(res);
-            // }
         });
-        // web3.action.sdk.
     }, []
     );
     return (
         <div>
             <p className="text-3xl">Account Resources</p>
-            <div className="modScroll p-2 flex flex-col max-w-2xl ">
+            <div className="modScrollp-2 flex flex-col max-w-2xl ">
                 {resources && resources.length !== 0 ? (ResourceList(resources,selectResource)) : <p>none</p>}
             </div>
             
@@ -59,7 +57,7 @@ const Resource = (resource: MoveResource,selectResource: (resource:Types.MoveRes
     }
     
     return (
-        <div className="p-2 m-2 outline rounded-lg outline-2 overflow-hidden">
+        <div className="p-2 m-2 outline rounded-lg my-3 outline-2 overflow-hidden">
             <button onClick={()=>selectResource(resource)}>{formatType(resource.type)}</button>
             <ReactTooltip place="top" textColor="white"  html={true} multiline={true}/>
         </div>
@@ -81,6 +79,8 @@ const TokenStore = (tokenstore:any)=>{
     );
 }
 
+const TokenStoreItem = () => {}
+
 const CoinStore = (coins: any,) => {
 
     return (<div className="flex flex-col p-3 m-3 rounded-lg text-left items-start justify-start">
@@ -98,7 +98,7 @@ const CoinStore = (coins: any,) => {
 
 const GenericCoinStore = (coins: any,typ:string) => {
     const coin = typ.split("::")[2].split("<")[1].split("::")[0]
-    return (<div className="flex flex-col p-3 m-3 rounded-lg text-left items-start justify-start">
+    return (<div className="flex flex-col  p-3 m-3 rounded-lg text-left items-start justify-start">
         <div className="outline flex flex-row items-center justify-between rounded-lg w-full p-2 m-1">
             <div>
             <p className="text-4xl font-bold">{format_large_number(coins.coin?.value)}</p>
