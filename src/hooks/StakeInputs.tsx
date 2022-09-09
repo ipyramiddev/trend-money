@@ -1,37 +1,66 @@
 import { useState } from "react";
+import useSubmitStake from "./useStake";
 
-const useStakeInputs = () => {
-//     const {
-//         StakeInputs()
-// }
+interface StakeInputs{
+    amount: string;
+    operatorAddr:string;
+    voterAddr: string;
 
+}
 
-const [operatorAddr, setOperatorAddr] = useState<string>("");
-const [voterAddr, setVoterAddr] = useState<string>("");
-const [amount, setAmount] = useState<string>("");
-const StakeInputs = () => {
+const useStakeForm = (callback:any) => {
+    const {
+        submitStake,
+        transactionInProcess,
+        transactionResponse,
+      } = useSubmitStake(); 
+    
+    const [inputs, setInputs] = useState<StakeInputs>({amount:"",operatorAddr:"",voterAddr:""});
+    const handleSubmit = async (event:any) => {
+      if (event) {
+        event.preventDefault();
+        // const onSubmitClick = async () => {
+            
+              await submitStake(parseInt(inputs.amount), inputs.operatorAddr, inputs.voterAddr);
+        //   };
+      }
+    }
+    const handleInputChange = (event:any) => {
+      event.persist();
+      setInputs(inputs => ({...inputs, [event.target.name]: event.target.value}));
+    }
+    return {
+      handleSubmit,
+      handleInputChange,
+      inputs
+    };
+  }
+
+const StakeForm = () => {
+    // const [operatorAddr, setOperatorAddr] = useState<string>("");
+    // const [voterAddr, setVoterAddr] = useState<string>("");
+    // const [amount, setAmount] = useState<string>("");
+
+    const submitStake = () => {}
+
+    const {handleSubmit,handleInputChange,inputs} = useStakeForm(submitStake);
     
     return (
         <div  className="flex flex-col gap gap-3 text-black p-2 ">
+            <form onSubmit={handleSubmit}>
             <div>
-                <input type="text" value={amount} placeholder="# of APT to stake" onChange={(e) => setAmount(e.target.value)} />
+                <input type="text" name="amount" placeholder="# of APT to stake" onChange={(e) => handleInputChange(e)} />
             </div>
             <div>
-                <input type="text" value={operatorAddr} placeholder="operator address" onChange={(e) => setOperatorAddr(e.target.value)} />
+                <input type="text" name="operatorAddr" placeholder="operator address" onChange={(e) => handleInputChange(e)} />
             </div>
             <div>
-                <input type="text" value={voterAddr} placeholder="voter address" onChange={(e) => setVoterAddr(e.target.value)} />
+                <input type="text" name="voterAddr" placeholder="voter address" onChange={(e) =>handleInputChange(e)} />
             </div>
+            </form>
         </div>
     )
 }
-return {
-    StakeInputs,
-    getInputs
-}
-function getInputs() {
-    return {operatorAddr,voterAddr,amount}
-}
-}
 
-export default useStakeInputs;
+
+export default StakeForm;
