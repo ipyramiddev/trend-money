@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@animeswap.org/v1-sdk": "^0.2.0",
     "@ant-design/icons": "^4.7.0",
     "@apollo/client": "^3.6.4",
     "@apollo/react-hooks": "^4.0.0",
@@ -63,6 +64,7 @@
     "react-redux": "^8.0.1",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
+    "react-select": "^5.4.0",
     "react-simple-snackbar": "^1.1.11",
     "react-spring": "^9.4.5",
     "react-tooltip": "^4.2.21",

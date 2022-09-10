@@ -27,7 +27,7 @@ const pool_data = {
                     category:"Supply asset",
                     deposit_payload: aptinSupplyPayload("APT",10000),
                     category_tag:"lend",
-
+                    supply_apy: 0.05,
                     yp_address: '0x01522c42ca43d7bfd34f373d41ad7d90a95e714c'
                 },
                 {
@@ -52,7 +52,7 @@ const pool_data = {
                     portion: 0.25,
                 },
                 {
-                    name: 'APT-ETH',
+                    name: 'BTC-USDT',
                     platform: "Anime.swap",
                     assets: ["BTC", "USDT",],
                     category:"Liquidity Pool",
@@ -72,16 +72,14 @@ const pool_data = {
                     name: "APT-BTC",
                     platform: "hippo",
                     yp_address: '0xb460f9ae1fea4f77107146c1960bb1c978118816',
-                    assets: ["USDT", "APT"],
+                    assets: ["APT", "BTC"],
                     portion: 0.25,
                     category_tag:"lp",
-                    
-
                 },
                 {
-                    name: "APT-ETH",
+                    name: "APT-APT",
                     platform: "Anime.swap",
-                    assets: ["APT", "ETH",],
+                    assets: ["APT", "APT",],
                     yp_address: '0x0448e99ab5f8230713a9f5d7e64ec2ab6e5952a3',
                     portion: 0.25,
                     category_tag:"lp",

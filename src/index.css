@@ -16,6 +16,7 @@
   padding-top: 0.5rem;
   aspect-ratio: 5 / 2;
 }
+/*  */
 
 .table{
   background-color: black;
@@ -53,8 +54,8 @@
 .seam-button{
   background-color: transparent;
   margin: 0.5rem;
-  padding-left: 2rem;
-  padding-right: 2rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
   border-radius: 8px;

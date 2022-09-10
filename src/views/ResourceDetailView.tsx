@@ -1,8 +1,6 @@
 import { Types } from "aptos";
-import { loadTxs } from "hooks/useTransaction";
-import { useEffect, useState } from "react";
+import {useState } from "react";
 import AccountResources from "sections/account/AccountResources";
-import TxnList from "sections/TxnList";
 
 interface Props {
     address: string;
@@ -10,7 +8,6 @@ interface Props {
 }
 
 const ResourceDetailView = ({ address, showDetails}: Props) => {
-    const [txs, setTxs] = useState<Types.Transaction[]>([]);
     const [resource, setResource] = useState<Types.MoveResource | null>(null);
 
     const selectResources = (resource: Types.MoveResource) => {

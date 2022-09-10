@@ -16,10 +16,10 @@ declare global {
   }
 
   interface SwapInputs{
-    // protocol: string,
-    from_symbol: string,
+    protocol?: string,
+    from_coin: string,
     from_quantity:number,
-    to_symbol: string,
+    to_coin: string,
     
   }
 

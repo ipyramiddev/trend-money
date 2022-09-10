@@ -16,7 +16,7 @@ import TxnPreview from "./TxnPreview";
 import TransactionModal from "modals/TransactionModal";
 
 import AccountResources from "sections/account/AccountResources";
-import { FaClipboard, FaRegClipboard } from "react-icons/fa";
+import { FaClipboard, FaRegArrowAltCircleLeft, FaRegClipboard } from "react-icons/fa";
 import { textCopy } from "utils";
 import { loadTxs } from "hooks/useTransaction";
 import { useWeb3 } from "@fewcha/web3-react";
@@ -109,7 +109,9 @@ const ModuleExplorer = ({ client, mod }: ModExploreProps) => {
                 <div className="w-1/2 seam-outline">
                     <div className="flex flex-row text-black gap gap-2">
                         <input className="w-1/2 py-2 px-4 outline outline-2 outline-white rounded-2xl" type="text" placeholder="Enter address" value={selectedAddress} onChange={(e) => setSelectedAddress(e.target.value)} />
+                        <button className="btn m-1 text-white" onClick={() => switchAddress(selectedAddress)}> <FaRegArrowAltCircleLeft /></button>
                         <button className="btn m-1 text-white" onClick={() => textCopy(selectedAddress)}> <FaClipboard /></button>
+                        <button className="seam-button" onClick={()=>switchAddress('0x3')}>0x3</button>
                     </div>
                     <p>or Select a Dapp</p>
                     <div className="flex flex-row items-center scrollbar scrollbar-thumb-blue gap gap-4 dappScroll">
@@ -144,16 +146,16 @@ const ModuleExplorer = ({ client, mod }: ModExploreProps) => {
             {selectedModule !== undefined ? <ModuleTypes module={selectedModule} /> : null}
 
             {selectedModule && selectedFunction ?
-                null
-                // <TxnPreview
-                //     address={selectedAddress}
-                //     // account={userAccount}
-                //     module={selectedModule}
-                //     func={selectedFunction}
-                //     params={selectedFunction?.params}
-                //     setShowTxnModal={setShowTxnModal}
-                //     client={client}
-                // />
+                // null
+                <TxnPreview
+                    address={selectedAddress}
+                    // account={userAccount}
+                    module={selectedModule}
+                    func={selectedFunction}
+                    params={selectedFunction?.params}
+                    setShowTxnModal={setShowTxnModal}
+                    client={client}
+                />
                 : null}
 
             <div className="flex flex-row gap gap-2 p-2 ">
