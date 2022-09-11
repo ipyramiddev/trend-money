@@ -47,7 +47,7 @@ const StakeForm = () => {
     const {handleSubmit,handleInputChange,inputs} = useStakeForm(submitStake);
     
     return (
-        <div  className="flex flex-col shadow shadow-xl shadow-orange gap-3 text-black p-2 ">
+        <div  className="flex flex-col gap-3 text-black p-2 ">
             <form onSubmit={handleSubmit}>
             <div>
                 <input className="bg-opacity" type="number" name="amount" placeholder="# of APT to stake" onChange={(e) => handleInputChange(e)} />
