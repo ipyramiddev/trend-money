@@ -54,7 +54,7 @@ const DappFrame = ({dapp,viewUrl}:DappFrameProps) => {
 
     return (
         <div className="">
-        <div className="mockup-window w-full py-6">
+        <div className="mockup-window  shadow-lg shadow-pink w-full py-3 m-3">
             {DappHeader(dapp)}
         <DappNav/>
         <iframe className="scrollbar rounded-xl  scrollbar-thumb-pink scrollbar-track-blue" 
