@@ -17,7 +17,12 @@ const DappHeader = (dapp:Dapp) =>{
 
 const DappFrame = ({dapp,viewUrl}:DappFrameProps) => {
     const ref = useRef<any>();
+    const [rand, setRand] = useState(0);
 
+    const DappReload = () =>{
+        console.log("Trigger reload");
+        setRand(rand+1)
+    }
 
     const DappNav = () => {
         return (
@@ -35,7 +40,9 @@ const DappFrame = ({dapp,viewUrl}:DappFrameProps) => {
 
                 {/* REFRESH button */}
 
-                <button className="seam-sqr">
+                <button
+                onClick={()=>DappReload()}
+                 className="seam-sqr">
                     <FaArrowCircleUp/>
                 </button>
                 <input className="w-2/3 py-3 mx-3 rounded-2xl bg-white px-5 text-black"
@@ -54,7 +61,7 @@ const DappFrame = ({dapp,viewUrl}:DappFrameProps) => {
 
     return (
         <div className="">
-        <div className="mockup-window  shadow-lg shadow-pink w-full py-3 m-3">
+        <div className="mockup-window border  border-pink mockup-window-outline shadow-lg shadow-pink w-full pt-2 m-3">
             {DappHeader(dapp)}
         <DappNav/>
         <iframe className="scrollbar rounded-xl  scrollbar-thumb-pink scrollbar-track-blue" 
