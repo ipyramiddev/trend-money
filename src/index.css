@@ -303,8 +303,8 @@
 .txScroller{
   overflow-x: hidden;
   overflow-y: scroll;
-  height: 900px;
-  width: 600px;
+  height: 1000px;
+  width: 800px;
   
 }
 
