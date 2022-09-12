@@ -5294,6 +5294,11 @@ csstype@^3.0.2:
   resolved "https://registry.yarnpkg.com/csstype/-/csstype-3.1.0.tgz#4ddcac3718d787cf9df0d1b7d15033925c8f29f2"
   integrity sha512-uX1KG+x9h5hIJsaKR9xHUeUraxf8IODOwq9JLNPq6BwB04a/xgpq3rcx47l5BZu5zBPlgD342tdke3Hom/nJRA==
 
+customizable-react-badges@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/customizable-react-badges/-/customizable-react-badges-1.0.4.tgz#50b3c0a39c4b1c2e7d53efdca76d8a12d71366c3"
+  integrity sha512-W68zBB6KYgGaBwf8PCVt/wR5NMa0BOYrKOWoDDBMOEUyfySClkIn/YP4Ngy+Fw1uK+1saacbkba3Xys06Lq3lQ==
+
 "d3-array@2 - 3", "d3-array@2.10.0 - 3", "d3-array@2.5.0 - 3", d3-array@3, d3-array@^3.2.0:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/d3-array/-/d3-array-3.2.0.tgz#15bf96cd9b7333e02eb8de8053d78962eafcff14"

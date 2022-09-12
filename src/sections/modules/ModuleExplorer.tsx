@@ -144,7 +144,6 @@ const ModuleExplorer = ({ client, mod }: ModExploreProps) => {
                 </div>
             </div>
             {selectedModule !== undefined ? <ModuleTypes module={selectedModule} /> : null}
-
             {selectedModule && selectedFunction ?
                 // null
                 <TxnPreview
@@ -157,6 +156,7 @@ const ModuleExplorer = ({ client, mod }: ModExploreProps) => {
                     client={client}
                 />
                 : null}
+
 
             <div className="flex flex-row gap gap-2 p-2 ">
                 <TxnFilterView address={selectedAddress} />

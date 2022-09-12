@@ -56,15 +56,18 @@ export function  SwapView()  {
     
     const swap_assets = ["APT","BTC","ETH","SOL","USDT"]
     ;
-    const [protocols,setProtocols] = useState(["econia","aptin","Anime.swap"])
+    const [protocols,setProtocols] = useState(["econia","Anime.swap","hippo"])
     // const 
-    
-
-    
 
 
-return (<div className="w-full h-screen items-center justify-center text-white">
-        <div className='flex flex-row justify-center'>
+
+return (<div className="w-full min-h-screen items-center justify-center text-white">
+        <div className='flex flex-row justify-center gap gap-6'>
+            <div>
+                
+            </div>
+
+
             <div>
             <h1 className="text-3xl text-center"> Σ Swap</h1>
             <div className="items-center justify-center seam-outline shadow-md shadow-blue rounded-2xl">

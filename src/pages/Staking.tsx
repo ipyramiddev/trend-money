@@ -8,7 +8,7 @@ const Staking = () => {
             {pool_data.seamPools.map((pool: any) => {
                 return(<StakingPool pool={pool} />)
             })}
-            <Validators />
+            {/* <Validators /> */}
         </div>
     )
 
