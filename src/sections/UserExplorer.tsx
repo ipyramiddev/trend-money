@@ -41,7 +41,7 @@ const UserExplorer = ({ client }: Props) => {
                 
                 <TxnList txns={txs} address={account?.address} />
                 : <p>please connect</p>}
-                {account?.address.toString() ? (<ResourceDetailView showDetails={false} address={account?.address.toString()} />) : <p>no resources</p>}
+                {account?.address?.toString() ? (<ResourceDetailView showDetails={false} address={account?.address.toString()} />) : <p>no resources</p>}
                 
                 {/* <WagMemeContainer /> */}
             </div>

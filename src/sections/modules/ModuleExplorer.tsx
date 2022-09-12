@@ -137,14 +137,11 @@ const ModuleExplorer = ({ client, mod }: ModExploreProps) => {
                 {/* </div> */}
 
 
-                <div className="flex w-2/3">
+                <div className="flex flex-row w-1/2">
                     {selectedModule !== undefined ?
                         <ModuleInfo module={selectedModule} />
                         : <div>No modules found</div>}
-                </div>
-            </div>
-            {selectedModule !== undefined ? <ModuleTypes module={selectedModule} /> : null}
-            {selectedModule && selectedFunction ?
+            {/* {selectedModule && selectedFunction ?
                 // null
                 <TxnPreview
                     address={selectedAddress}
@@ -155,8 +152,11 @@ const ModuleExplorer = ({ client, mod }: ModExploreProps) => {
                     setShowTxnModal={setShowTxnModal}
                     client={client}
                 />
-                : null}
+                : null} */}
 
+                </div>
+            </div>
+            {selectedModule !== undefined ? <ModuleTypes module={selectedModule} /> : null}
 
             <div className="flex flex-row gap gap-2 p-2 ">
                 <TxnFilterView address={selectedAddress} />

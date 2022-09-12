@@ -4,7 +4,7 @@ import Docs from './pages/Docs';
 import Home from './pages/Home';
 import Explorer from './pages/Explorer';
 import { Trade } from 'pages/Trade';
-import Navbar from './components/Navbar';
+import Navbar from './components/navbar/Navbar';
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
 // import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client'
 import NodePage from 'pages/NodePage';
