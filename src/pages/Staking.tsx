@@ -4,7 +4,7 @@ import { StakingPool } from "./StakingPool";
 const Staking = () => {
     return (
         <div className="w-full h-screen items-start m-3 px-7">
-            <p className="text-center  text-3xl">Staking</p>
+            <p className="text-center  text-3xl">Strats</p>
             {pool_data.seamPools.map((pool: any) => {
                 return(<StakingPool pool={pool} />)
             })}

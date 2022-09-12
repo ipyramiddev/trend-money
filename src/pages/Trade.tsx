@@ -1,7 +1,7 @@
 import StakeForm from "hooks/StakeInputs";
 import useStakeInputs from "hooks/StakeInputs";
 import React, {useEffect, useState} from "react";
-import { StakePage } from "sections/staking/Validators";
+import Validators, { StakePage } from "sections/staking/Validators";
 import { SwapView } from "swap/SwapTop";
 import Staking from "./Staking";
 
@@ -40,7 +40,7 @@ export function Trade() {
   return (
     // <>
       
-      <div>
+      <div className="min-h-screen">
         <ul
             className="flex mb-0 list-none flex-wrap pt-3 pb-4 flex-row"
             role="tablist"
@@ -55,8 +55,8 @@ export function Trade() {
                 
                 {/* {view === "strategies" ? <ModuleExplorer client={client} mod={modules} /> : null} */}
                 {view === "swap" ? <SwapView /> : null}
-                {/* {view === "Strats" ? <SwapView /> : null} */}
-                {view === "stake" ? <Staking /> : null}
+                {view === "strategies" ? <Staking /> : null}
+                {view === "stake" ? <Validators /> : null}
                 {view === "Positions" ? null: null}
             </div>
         <div className="flex flex-row justify-between gap gap-2 p-2">

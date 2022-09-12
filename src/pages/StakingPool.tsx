@@ -95,7 +95,7 @@ export const StakingPool = ({ pool }: PoolProps) => {
             <div className='flex flex-row justify-end gap gap-4'>
                 {/* <BarChart/> */}
                 <div className="stat place-items-center">
-                    <div className="stat-value">{pool.avg_apr_24*100}</div>
+                    <div className="stat-value">{pool.avg_apr_24}</div>
                     <div className="stat-title">apr 24h.</div>
                 </div>
                 <div className="stat place-items-center">
