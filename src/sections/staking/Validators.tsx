@@ -43,11 +43,13 @@ const Validators = () => {
   useEffect(() => {
     loadValidators().then(({ validatorInfo, validatorSet, defaultConfig }: { validatorInfo: MoveResource, validatorSet: MoveResource, defaultConfig: MoveResource }) => {
       const vSet = (validatorSet.data as any)
+      const info = (validatorInfo.data as any).active_validators
+      
 
       console.log("VALIDATOR COUNT", vSet.active_validators)
       const validator_samples = vSet.active_validators.splice(0, 10).map((v: any) => {
         const i = v.config.validator_index
-        const performance = (validatorInfo as any)
+        const performance = info[i]
 
         return (
           { address: v.addr, validator_index: v.config.validator_index, voting_power: v.voting_power, node_count: v.config.fullnode_addresses.length, performance: performance }
@@ -55,7 +57,7 @@ const Validators = () => {
       })
       setVData(
         { validator_samples: validator_samples })
-        setValidator((validatorSet as any).active_validators)
+        setValidator((validatorSet as any).active_validators[0])
     })
   }, [])
 
