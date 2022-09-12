@@ -38,7 +38,7 @@ function NavbarIcon(link,icon, key) {
 
 
 export default function Navbar(props) {
-    const [ useGlobalState, setGlobalState] = useGlobalState();
+    // const [ useGlobalState, setGlobalState] = useGlobalState();
     const [isOpen, setIsOpen] = useState('hidden');
     const { isConnected, network } = useWeb3();
     // const location = useLocation()
@@ -65,7 +65,7 @@ export default function Navbar(props) {
 
                         {nav_icons.map((item, i) => { return (NavbarIcon(item.link,item.icon, i)) })}
                         
-                        <ChainInput/>
+                        {/* <ChainInput/> */}
                         <button className="seam-button m-3" onClick={() => props.showConnectModal(true)}>{!isConnected ? "Connect" : "Connected"}</button>
                     </ul>
                 </div>
@@ -73,7 +73,7 @@ export default function Navbar(props) {
         </nav>
     );
 
-const ChainInput () =>{
+const ChainInput =() =>{
     return <div>
         
     </div>

@@ -36,7 +36,7 @@ const MarketView = () => {
             <p className="text-3xl"> Markets </p>
 
             <MarketHeader market={temp_market} />
-            <MarketFrame market={}/>
+            <MarketFrame />
             <IRL />
         </div>
     )

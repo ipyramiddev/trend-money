@@ -36,7 +36,7 @@ const NodePage = () => {
             <p className="text-3xl"> Nodes </p>
 
             <NodeHeader node={temp_node} />
-            <NodeFrame node={}/>
+            {/* <NodeFrame node={}/> */}
             <IRL />
         </div>
     )

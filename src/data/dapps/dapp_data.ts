@@ -24,10 +24,9 @@ export const dapps = [
     "url": "https://switchboard.xyz/",
     "image": "switchboard.svg",
     "github": "",
-    "address": "0x14611263909398572be034debb2e61b6751cafbeaddd994b9a1250cb76b99d38",
+    "address": "0xb27f7bbf7caf2368b08032d005e8beab151a885054cdca55c4cc644f0a308d2b",
     "docs": "https://docs.switchboard.xyz/introduction",
     "npm": "",
-    "k": "ORACLE"
   },
   {
     "name": "Aptin",
@@ -38,7 +37,7 @@ export const dapps = [
     "url": "https://app.aptin.io/",
     "image": "aptin.jpeg",
     "github": "",
-    "address": "0xa529c1796eb7f6c959f2e6974395a231fe830b65f4583abb1a6a226de6af3ce7",
+    "address": "0xac39575e72d6717001bda33bb9c355715e3f23d4f7b6952f7cf6f3dbfae60674",
     "docs": "",
     "npm": "",
   },
@@ -80,7 +79,7 @@ export const dapps = [
     "github": "",
     "url": "https://www.aptosnames.com/",
     "image": "aptosnames.svg",
-    "address": "0xa814959bfce66346bd028cf4a5d9e212216bb8acb66ca0fb1d0a8ec8c4f767ab"
+    "address": "0xe2c279d1ec67b814eac9802cc9f14bbf96b1e4cf67ad0767965835a5210e4d16"
   },
   {
     "name": "BlueMove",
