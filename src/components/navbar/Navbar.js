@@ -1,5 +1,5 @@
 import React from 'react';
-import Logo from './Logo';
+import Logo from '../Logo';
 import { FaBookOpen, FaGithub, FaTwitter } from 'react-icons/fa';
 import { useWeb3 } from '@fewcha/web3-react';
 import { useState } from 'react';
@@ -38,6 +38,7 @@ function NavbarIcon(link,icon, key) {
 
 
 export default function Navbar(props) {
+    const [ useGlobalState, setGlobalState] = useGlobalState();
     const [isOpen, setIsOpen] = useState('hidden');
     const { isConnected, network } = useWeb3();
     // const location = useLocation()
@@ -64,11 +65,17 @@ export default function Navbar(props) {
 
                         {nav_icons.map((item, i) => { return (NavbarIcon(item.link,item.icon, i)) })}
                         
-                        
+                        <ChainInput/>
                         <button className="seam-button m-3" onClick={() => props.showConnectModal(true)}>{!isConnected ? "Connect" : "Connected"}</button>
                     </ul>
                 </div>
             </div>
         </nav>
     );
+
+const ChainInput () =>{
+    return <div>
+        
+    </div>
+}
 }

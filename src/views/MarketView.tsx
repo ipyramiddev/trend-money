@@ -48,14 +48,9 @@ interface MarketClient {
     ports: any[];
 }
 
-interface MarketFrameProps {
-    market: Market;
-    viewUrl?: string;
-    clients: MarketClient[]
-}
 
 
-const MarketFrame = ({market,viewUrl}:MarketFrameProps) =>{
+const MarketFrame = () =>{
     return (
         <div className="min-h-screen items-center justify-center p-4">
             <p className="text-3xl text-center">...coming soon</p>
@@ -76,8 +71,7 @@ const MarketHeader = ({ market }: MarketProps) => {
                 {/* <p className="text-3xl text-left">{market.name}</p> */}
                 {/* <p className="text-3xl text-left">{market.url}</p> */}
             </div>
-            <div>
-            </div>
+            
             {/* <mintWagmi */}
         </div>
     )
