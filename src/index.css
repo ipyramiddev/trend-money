@@ -310,9 +310,9 @@
 
 
 .hScroller{
-  overflow-x: scroll;
+  /* overflow-x: scroll;
   overflow-y: hidden;
-  height: 90px;
+  height: 90px; */
   /* width: 100%; */
 }
 .fnScroller{

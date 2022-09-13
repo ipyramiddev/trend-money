@@ -1,5 +1,6 @@
 import { AptosAccount, AptosClient } from "aptos";
 import { MoveFunction, MoveFunctionGenericTypeParam, MoveModuleBytecode, MoveType } from "aptos/dist/generated";
+import ModuleOutline from "components/etc/ModuleOutline";
 import { formatParam } from "hooks/formatting";
 import { sendTransaction } from "hooks/useAptos";
 import TransactionModal from "modals/TransactionModal";
@@ -34,7 +35,7 @@ const TxnPreview = ({address, module, func, params,setShowTxnModal,client } : Tx
                     <p className="account-outline text-2xl">{formatParam(address)}</p>
                     <p className="text-3xl">::</p>
 
-                    {module !== undefined ? <p className="text-2xl module-outline"> {module.abi?.name}</p> : <p className="text-2xl"></p>}
+                    {module !== undefined && module.abi? <ModuleOutline module_name={module.abi?.name}/> : <p className="text-2xl"></p>}
                     <p className="text-3xl">::</p>
                     <p className="function-outline text-2xl">{func?.name}</p>
                     

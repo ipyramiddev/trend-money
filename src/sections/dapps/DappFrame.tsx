@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import { FaArrowCircleUp, FaBackward, FaForward } from "react-icons/fa";
+import ReactTooltip from "react-tooltip";
 
 interface DappFrameProps {
     dapp: Dapp;
@@ -28,12 +29,12 @@ const DappFrame = ({dapp,viewUrl}:DappFrameProps) => {
         return (
             <div className="flex flex-row items-start justify-center px-3">
                 {/* BACK ARROW */}
-                <button className="seam-sqr">
+                <button className="seam-sqr" data-tip="coming soon">
                     <FaBackward />
                 </button>
 
                 {/* FORWARD ARROW */}
-                <button className="seam-sqr">
+                <button className="seam-sqr" data-tip="coming soon">
                     <FaForward/>
                 </button>
 
@@ -50,7 +51,7 @@ const DappFrame = ({dapp,viewUrl}:DappFrameProps) => {
                     </input>
 
                 {/* url txt input */}
-                
+                <ReactTooltip place="top" textColor="white" multiline={true}/>
             </div>
         )
     }

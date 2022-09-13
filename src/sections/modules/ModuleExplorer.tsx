@@ -22,6 +22,7 @@ import { loadTxs } from "hooks/useTransaction";
 import { useWeb3 } from "@fewcha/web3-react";
 import TxnFilterView from "views/TxnFilterView";
 import ResourceDetailView from "views/ResourceDetailView";
+import ModuleOutline from "components/etc/ModuleOutline";
 interface ModExploreProps {
     client: AptosClient;
     mod: Types.MoveModuleBytecode[];
@@ -42,10 +43,10 @@ const ModuleExplorer = ({ client, mod }: ModExploreProps) => {
         const { abi } = module;
 
         return (
-            <div className=" px-2 rounded-xl">
-                <div className="flex flex-row p-2">
-                    <p className="text-2xl p-1">Module</p>
-                    {abi?.name !== undefined ? <h1 className="module-outline">{abi.name}</h1> : <h1>No name</h1>}
+            <div className="px-2 rounded-xl">
+                <div className="flex flex-row p-2 justify-center">
+                    <p className="text-2xl p-1">Module:</p>
+                    {abi?.name !== undefined ? <ModuleOutline module_name={abi.name}/> : <h1>No name</h1>}
                 </div>
 
                 {abi?.exposed_functions !== undefined ? <h2 className="text-center opacity-70">{abi.exposed_functions.length} exposed function(s)</h2> : <h2>No exposed functions</h2>}
@@ -114,7 +115,7 @@ const ModuleExplorer = ({ client, mod }: ModExploreProps) => {
                         <button className="seam-button" onClick={()=>switchAddress('0x3')}>0x3</button>
                     </div>
                     <p>or Select a Dapp</p>
-                    <div className="flex flex-row items-center scrollbar scrollbar-thumb-blue gap gap-4 dappScroll">
+                    <div className="flex flex-wrap py-2 items-center scrollbar scrollbar-thumb-blue gap gap-3 w-full">
                         {dapps.filter((dapp: any) => (dapp.address)).map((dapp: any) => (
                             <DappBadge dapp={dapp} setSelectedAddress={switchAddress} isSelected={dapp.address ? (dapp.address === selectedAddress) : false} />
                         )
@@ -125,7 +126,7 @@ const ModuleExplorer = ({ client, mod }: ModExploreProps) => {
                         <p className=" text-2xl account-outline">{formatParam(selectedAddress)}</p>
                     </span>
                     <p className="text-xl text-center py-1">Account Modules</p>
-                    <div className="hScroller flex scrollbar  scrollbar-thumb-white scrollbar-track-black flex-row justify-start seam-outline p-2 gap gap-2">
+                    <div className=" flex flex-wrap scrollbar  scrollbar-thumb-blue scrollbar-track-black flex-row justify-start seam-outline p-2 gap gap-2">
                         {modules.map((mod: Types.MoveModuleBytecode, i: number) => {
                             return (<div key={i} className="items-center justify-center">
                                 <button className=" module-outline" onClick={() => setSelectedModule(mod)}>{mod.abi?.name}</button>

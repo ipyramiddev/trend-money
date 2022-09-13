@@ -147,6 +147,22 @@ export const dapps = [
     Docs: "",
     Npm: "",
   },
+
+  {
+    "name": "Enchanter",
+    discord: "https://discord.com/invite/D4kMhm7Ktk",
+    image: "Enchanter.png",
+    url: "",
+    description: "",
+    tags: ["DEX", "DeFi"],
+    Published: "Jul 19, 2022 6:53 AM",
+    twitter: "https://twitter.com/EnchanterFi",
+    status: "TBA",
+    github: "",
+    Docs: "",
+    Npm: "",
+  },
+
   {
     name: "Zaptos",
     tags: ["DEX", "DeFi"],
@@ -157,7 +173,7 @@ export const dapps = [
     twitter: "https://twitter.com/Empo_Fi",
     status: "TBA",
     github: "",
-    Docs: "",
+    docs: "",
   },
 
   {
