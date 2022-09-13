@@ -79,7 +79,7 @@ export const StakingPool = ({ pool }: PoolProps) => {
             {/* </div>
             <div id={`deposit-${pool.name}`}className="items-center justify-center rounded-2xl"> */}
         </div>
-        <div className='flex flex-row justify-end items-center'>
+        <div className='flex flex-row justify-start items-center'>
             
             <div id={`deposit-${pool.name}`} key={`deposit-${pool.name}`} className="items-center justify-center">
                 <button className="seam-button flex flex-row items-center justify-center">
@@ -90,9 +90,8 @@ export const StakingPool = ({ pool }: PoolProps) => {
         </div>
         {/* <div className='flex flex-col justify-between'> */}
             <div className='flex flex-row gap gap-3'>
-                {pool.pools.map((pool: any,i:number) => { return (<SubStrat pool={pool} i={i} />) })}
             {/* </div> */}
-            <div className='flex flex-row justify-end gap gap-4'>
+            <div className='flex flex-row justify-start gap gap-4'>
                 {/* <BarChart/> */}
                 <div className="stat place-items-center">
                     <div className="stat-value">{pool.avg_apr_24}</div>
@@ -103,11 +102,12 @@ export const StakingPool = ({ pool }: PoolProps) => {
                     <div className="stat-title">APT deposited</div>
                 </div>
 
+                {pool.pools.map((pool: any,i:number) => { return (<SubStrat pool={pool} i={i} />) })}
             </div>
             {pool.pools.map((strat: any,i:number) => { return (
             <Xarrow
                 start={`deposit-${pool.name}`} //can be react ref
-                startAnchor={["left","middle"]}
+                startAnchor={["right","bottom"]}
                 endAnchor={["top","middle"]}
                 curveness={40}
                 dashness={true}
