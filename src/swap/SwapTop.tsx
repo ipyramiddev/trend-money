@@ -64,7 +64,7 @@ export function  SwapView()  {
 return (<div className="w-full min-h-screen items-center justify-center text-white">
         <div className='flex flex-row justify-center gap gap-6'>
             <div>
-                
+                <p> Your Coins</p>
             </div>
 
 

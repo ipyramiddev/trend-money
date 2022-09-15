@@ -1,3 +1,4 @@
+import DappLogo from "sections/dapps/DappLogo";
 
 interface Props {
     dapp: any;
@@ -10,10 +11,11 @@ const DappBadge = ({ dapp, setSelectedAddress, isSelected }: Props) => {
     return (<button onClick={() => setSelectedAddress(dapp.address)}
         
         className={`outline outline-white  outline-2 dappBadge items-center justify-center  ${isSelected ? 'bg-white bg-opacity-100 text-black' :''}`} key={dapp.name}>
-        <img
-            className="object-contain dappBadge-img rounded-3xl"
-            src={`../dapps/${dapp.image}`} alt={dapp.name} />
-        <p className="font-bold ">{dapp.name}</p>
+            {DappLogo(dapp.image)}
+        {/* <img
+            className="object-contain  rounded-3xl"
+            src={`../dapps/${dapp.image}`} alt={dapp.name} /> */}
+        {/* <p className="font-bold ">{dapp.name}</p> */}
     </button>)
 }
 

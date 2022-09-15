@@ -6,8 +6,8 @@ import { createContext, useContext } from "react";
 // use via <ModalContextConsumer/> + provider
 export interface ModalContext{
   showModal: boolean;
-//   modalContent:any;
-//   setIsOpen: (isOpen: boolean) => void || undefined;
+  // modalContent:any;
+  // setIsOpen: (isOpen: boolean) => void || undefined;
 }
 const context = createContext<ModalContext>({showModal:false});
 export const ModalContextProvider = context.Provider;

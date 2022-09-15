@@ -22,7 +22,7 @@ export default function Wrapper() {
     // <ApolloProvider client={client}>
       <GlobalStateProvider>
         {/* <MyWalletProvider> */}
-        <div >
+        {/* <div > */}
           <Navbar showConnectModal={setWalletModal} />
           <BrowserRouter>
             <Routes>
@@ -37,7 +37,7 @@ export default function Wrapper() {
             </Routes>
           </BrowserRouter>
           {walletModalOpen ? <WalletModal isOpen={walletModalOpen} setIsOpen={setWalletModal} /> : null}
-        </div>
+        {/* </div> */}
         {/* </MyWalletProvider> */}
       </GlobalStateProvider>
     
