@@ -15,7 +15,7 @@ const tabs = [
 ]
 
 export function Trade() {
-  const [view, setView] = useState("swap");
+  const [view, setView] = useState("strategies");
   const color = "pink"
   const Tab = (tab:any)=>{return(
     <li className="-mb-px mr-2 last:mr-0 flex-auto text-center">
