@@ -7,6 +7,9 @@ import { loadTxs } from "hooks/useTransaction";
 import TxnList from "sections/TxnList";
 import DappFrame from "./DappFrame";
 import Icons from "components/Icons";
+import DappLogo from "./DappLogo";
+import DappBadge from "components/DappBadge";
+import ReactTooltip from "react-tooltip";
 
 function shuffle(array: any[]) {
     let currentIndex = array.length, randomIndex;
@@ -57,15 +60,20 @@ const DappsView = () => {
     const reshuffle = () => setOrderedDapps(shuffle(orderedDapps));
 
     return (
-        <div className="min-h-screen w-screen p-6 relative items-start justify-start ">
+        <div className="flex flex-col p-6 relative items-start justify-start ">
             <p className="text-3xl">Dapps</p>
-                <div className="flex flex-row p-1">
-                    <BubbleSection dapps={orderedDapps as Dapp[]} onSelect={loadDapp} />
+                <div className="flex flex-wrap p-1">
+                    {dapps.map((dapp:any,i:number)=>{
+                        return (<div className="p-0" data-tip={dapp.name}>
+                        <DappBadge dapp={dapp} setSelectedAddress={loadDapp} isSelected={dapp.address ? (dapp.address === selectedDapp) : false}/>
+                        </div>)
+                    })}
                 </div>
             <div className="px-6">
                 {dappStack[0]}
                 </div>
             {txns?.length!==0 ? <TxnList txns={txns||[]} address={selectedDapp.address}/> : null}
+            <ReactTooltip place="top" textColor="white" html={true} multiline={true} />
         </div>
     );
 }

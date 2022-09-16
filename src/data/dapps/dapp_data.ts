@@ -22,7 +22,7 @@ export const dapps = [
     "twitter": "https://twitter.com/switchboardxyz",
     "status": "TBA",
     "url": "https://switchboard.xyz/",
-    "image": "switchboard.svg",
+    "image": "switchboard.png",
     "github": "",
     "address": "0xb27f7bbf7caf2368b08032d005e8beab151a885054cdca55c4cc644f0a308d2b",
     "docs": "https://docs.switchboard.xyz/introduction",

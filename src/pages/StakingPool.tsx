@@ -9,7 +9,7 @@ import { dappByName } from "util/dappUtils";
 interface PoolProps {
     pool: any;
     i?: number;
-    setDeposit: (t:any)=> void
+    // setDeposit: (t:any)=> void
 }
 
 
@@ -63,7 +63,7 @@ const ProtocolTag = (p: any) => {
 }
 // const Σ = (){}
 
-export const StakingPool = ({ pool, setDeposit }: PoolProps) => {
+export const StakingPool = ({ pool }: PoolProps) => {
 
     const pool_assets = ["APT", "BTC"]
 
@@ -79,7 +79,7 @@ export const StakingPool = ({ pool, setDeposit }: PoolProps) => {
 
             <div id={`deposit-${pool.name}`} key={`deposit-${pool.name}`} className="items-center justify-center">
                 <button
-                    onClick={()=>setDeposit(pool.i)}
+                    // onClick={}
                     className="seam-button flex flex-row items-center justify-center">
                     <Token token={pool_assets[0]} />
                     Deposit</button>

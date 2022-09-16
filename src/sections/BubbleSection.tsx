@@ -16,9 +16,9 @@ const BubbleSection = ({ dapps, onSelect }: Props) => {
 		);
 	});
 
-	return (<div className="flex flex-row w-full gap gap-2">
-		<div className="hscroll scrollbar scrollbar-track-blue scrollbar-thumb-pink p-2 m-1">
-			<div className="flex flex-row gap gap-2">
+	return (<div className="flex flex-grid w-full gap gap-2">
+		<div className=" p-2 m-1">
+			<div className="flex flex-grid gap gap-2">
 				{children}
 			</div>
 		</div>
