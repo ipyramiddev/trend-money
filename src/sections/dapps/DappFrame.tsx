@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import { FaArrowCircleUp, FaBackward, FaForward } from "react-icons/fa";
 import ReactTooltip from "react-tooltip";
+import DappLogo from "./DappLogo";
 
 interface DappFrameProps {
     dapp: Dapp;
@@ -11,7 +12,7 @@ interface DappFrameProps {
 const DappHeader = (dapp:Dapp) =>{
     return(<div className="flex flex-row gap gap-2 items-center text-baseline px-4">
     <p className="text-2xl">{dapp.name}</p>
-    <img className="rounded-lg w-12 h-12 " src={`./dapps/${dapp.image}`} alt="dapp-img" />
+    {DappLogo(dapp.image||"dapp.png")}
     </div>);
 
 }
@@ -61,7 +62,7 @@ const DappFrame = ({dapp,viewUrl}:DappFrameProps) => {
     }
 
     return (
-        <div className="">
+        <div className="w-full min-w-full">
         <div className="mockup-window border  border-pink mockup-window-outline shadow-lg shadow-pink w-full pt-2 m-3">
             {DappHeader(dapp)}
         <DappNav/>
