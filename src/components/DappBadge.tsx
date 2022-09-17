@@ -2,13 +2,13 @@ import DappLogo from "sections/dapps/DappLogo";
 
 interface Props {
     dapp: any;
-    setSelectedAddress: (address: string) => void;
+    setSelectedDapp: (dapp: any) => void;
     isSelected?: boolean;
     // props: {
     // };
 }
-const DappBadge = ({ dapp, setSelectedAddress, isSelected }: Props) => {
-    return (<button onClick={() => setSelectedAddress(dapp.address)}
+const DappBadge = ({ dapp, setSelectedDapp, isSelected }: Props) => {
+    return (<button onClick={() => setSelectedDapp(dapp)}
         
         className={`outline outline-white  outline-2 dappBadge items-center justify-center  ${isSelected ? 'bg-white bg-opacity-100 text-black' :''}`} key={dapp.name}>
             {DappLogo(dapp.image)}
