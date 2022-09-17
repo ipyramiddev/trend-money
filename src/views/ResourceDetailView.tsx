@@ -21,10 +21,10 @@ const ResourceDetailView = ({ address, showDetails}: Props) => {
 }
 
 const ResourceDetails = (resource: Types.MoveResource | null) => {
-    return (<div className="p-3">
+    return (<div className="p-3 w-3/4">
         <p className="text-3xl">Resource Details</p>
         <p className="text-xl font-semibold">{resource?.type}</p>
-        <p>{JSON.stringify(resource?.data,null, "\t")}</p>
+        <p className="overflow overflow-clip">{JSON.stringify(resource?.data,null, "\t")}</p>
     </div>);
 }
 

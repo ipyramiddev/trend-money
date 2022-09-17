@@ -5,6 +5,14 @@ export const dapp_map = () => {
     const mp = new Map(dapps.map(i => [i.address||"0x0x",{name:i.name,image:i.image}]));
     return mp
   }
+
+export const dappsByAddress = () =>{
+  const addy_map = new Map(dapps.map(i => [i.address||"0x0x",{name:i.name,url:i.url,address:i.address, image:i.image}]));
+  return addy_map
+}
+
+const mapped = dapp_map()
+const addr_mapped = dappsByAddress();
   
   export const getDappImg = (address:string ) => {
     const dm = dapp_map()
@@ -13,6 +21,12 @@ export const dapp_map = () => {
       return img
     }
     return "APT"
+  }
+
+  export const getDappData = (address:string ) => {
+    if (isDapp(address)){
+
+    }
   }
 
   export const dappByName = (name:string)=>{
@@ -24,9 +38,13 @@ export const dapp_map = () => {
     // return {}
   }
 
+
+
   export const isDapp = (address:string)=> {
-    if(dapp_map().get(address)){
+    if(mapped.get(address)){
         return true;
     }
     return false;
  }
+
+ 
