@@ -70,7 +70,7 @@ const DappFrame = ({dapp,viewUrl}:DappFrameProps) => {
             width={'100%'}
             height={'600px'}
             ref={ref}
-            onLoad={newNav}
+            // onLoad={newNav}
             title="host" src={viewUrl}/>
         </div>
         </div>

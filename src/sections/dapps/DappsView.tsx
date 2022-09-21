@@ -77,7 +77,7 @@ const DappsView = () => {
                 <div className="flex flex-wrap p-1">
                     {dapps.map((dapp:any,i:number)=>{
                         return (<div className="p-0" data-tip={dapp.name}>
-                            <DappBadge dapp={dapp} setSelectedAddress={loadDapp} isSelected={dapp.address ? (dapp.address === selectedDapp) : false}/>
+                            <DappBadge dapp={dapp} setSelectedDapp={loadDapp} isSelected={dapp.address ? (dapp.address === selectedDapp) : false}/>
                         </div>)
                     })}
                 </div>

@@ -1,30 +1,12 @@
 import IRL from "components/IRL";
 import DappFrame from "sections/dapps/DappFrame";
+import { opto_specs } from "./opto_specs";
 
-const opto_specs = {
-    cpu: {
-        model: "i7 4770"
-    },
-    ram: "16gb (2x8gb)",
-    storage: "128gb ssd",
-    clients: [
-        {
-            name:"Aptos node",
-            url: "",
-        },
-        {
-            name:"api gui",
-            url: "",
-        }
-    ]
-
-}
-
-const temp_node = {
+const temp_node = {      
     name: "opto0",
     connected: true,
     specs: opto_specs,
-    img: '0.gif',
+    img: './optos/opto0.gif',
     url: ""
 }
 

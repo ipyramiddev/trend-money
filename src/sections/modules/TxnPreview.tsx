@@ -1,3 +1,4 @@
+import { useWeb3 } from "@fewcha/web3-react";
 import { AptosAccount, AptosClient } from "aptos";
 import { MoveFunction, MoveFunctionGenericTypeParam, MoveModuleBytecode, MoveType } from "aptos/dist/generated";
 import ModuleOutline from "components/etc/ModuleOutline";
@@ -17,6 +18,7 @@ interface TxnPreviewProps {
 
 const TxnPreview = ({address, module, func, params,setShowTxnModal,client } : TxnPreviewProps) => {
     const [argList, setArgList] = useState<any[]>([]);
+    const { account, balance, isConnected, network, currentWallet } = useWeb3();
 
     const updateArg = (index: number, value: string) => {
         const newArgs = [...argList];
@@ -50,7 +52,7 @@ const TxnPreview = ({address, module, func, params,setShowTxnModal,client } : Tx
             )
         } )}
                 </div>
-                <button onClick={()=>sendTransaction("","")} className="seam-button ">send Txn</button>
+                <button onClick={()=>sendTransaction(address,account.address.toString(),func.name,module.abi?.name||"",func.generic_type_params as any[],argList)} className="seam-button ">send Txn</button>
             </div>
                 {/* <button onClick={()=>setShowTxnModal(true)} className="seam-button ">Create Txn</button> */}
         </div>

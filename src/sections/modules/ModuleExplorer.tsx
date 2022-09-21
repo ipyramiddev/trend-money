@@ -71,7 +71,15 @@ const ModuleExplorer = ({ client, mod }: ModExploreProps) => {
         )
     }
 
+    const switchDapp = async (d : Dapp) => {
+        if(d.address){
+            switchAddress(d.address);
+        }
+    }
+
     const switchAddress = async (address: string) => {
+
+        
         loadModules(address).then((modules: Types.MoveModuleBytecode[]) => {
             setModules(modules);
             setSelectedFunction(modules[0].abi?.exposed_functions[0] || null);
@@ -90,6 +98,8 @@ const ModuleExplorer = ({ client, mod }: ModExploreProps) => {
         switchAddress(selectedAddress);
     }
         , []);
+
+
 
     return (
         <div className="w-full items-center justify-center">
@@ -117,7 +127,7 @@ const ModuleExplorer = ({ client, mod }: ModExploreProps) => {
                     <p>or Select a Dapp</p>
                     <div className="flex flex-wrap py-2 items-center scrollbar scrollbar-thumb-blue gap gap-3 w-full">
                         {dapps.filter((dapp: any) => (dapp.address)).map((dapp: any) => (
-                            <DappBadge dapp={dapp} setSelectedAddress={switchAddress} isSelected={dapp.address ? (dapp.address === selectedAddress) : false} />
+                            <DappBadge dapp={dapp} setSelectedDapp={switchDapp} isSelected={dapp.address ? (dapp.address === selectedAddress) : false} />
                         )
                         )}
                     </div>
@@ -142,7 +152,7 @@ const ModuleExplorer = ({ client, mod }: ModExploreProps) => {
                     {selectedModule !== undefined ?
                         <ModuleInfo module={selectedModule} />
                         : <div>No modules found</div>}
-            {/* {selectedModule && selectedFunction ?
+            {selectedModule && selectedFunction ?
                 // null
                 <TxnPreview
                     address={selectedAddress}
@@ -153,7 +163,7 @@ const ModuleExplorer = ({ client, mod }: ModExploreProps) => {
                     setShowTxnModal={setShowTxnModal}
                     client={client}
                 />
-                : null} */}
+                : null}
 
                 </div>
             </div>
