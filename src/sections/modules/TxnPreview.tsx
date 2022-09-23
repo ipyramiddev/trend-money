@@ -52,7 +52,7 @@ const TxnPreview = ({address, module, func, params,setShowTxnModal,client } : Tx
             )
         } )}
                 </div>
-                <button onClick={()=>sendTransaction(address,account.address.toString(),func.name,module.abi?.name||"",func.generic_type_params as any[],argList)} className="seam-button ">send Txn</button>
+                <button onClick={()=>sendTransaction(address,account.address.toString(),module.abi?.name||"",func.name,func.generic_type_params as any[],argList)} className="seam-button ">send Txn</button>
             </div>
                 {/* <button onClick={()=>setShowTxnModal(true)} className="seam-button ">Create Txn</button> */}
         </div>

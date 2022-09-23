@@ -9,6 +9,8 @@ import { json } from "stream/consumers";
 import { DepositsWithdraws } from "./DepositsWithdraws";
 import { loadResources } from "hooks/useAptos";
 import AccountOutline from "components/etc/AccountOutline";
+import CoinImg from "components/etc/CoinImg";
+import ModuleOutline from "components/etc/ModuleOutline";
 
 const web3 = new Web3();
 
@@ -45,7 +47,7 @@ const ResourceList = (resources: Types.MoveResource[],selectResource: (resource:
 const filteredResources = (
     resources: Types.MoveResource[],
     selectResource: (resource:Types.MoveResource)=>void,
-    filter: string[] = ["0x3"],
+    filter: string[] = [],
     max: number = 15
     ) => {
         let r_temp = resources;
@@ -134,13 +136,34 @@ const CoinStore = (coins: any,) => {
     </div>);
 }
 
+const parseCoin= (coin:string) =>{
+    const coinT = coin.split("<")
+
+    const c = coinT[coinT.length-1].split("::")
+    const cAddr = c[0]
+    const cMod = c[1]
+    const cSymbol = c[2].split(">")[0]
+    return {cAddr,cMod,cSymbol}
+}
+
 const GenericCoinStore = (coins: any,typ:string) => {
-    const coin = typ.split("::")[2].split("<")[1].split("::")[0]
+    const coinT = typ.split("<")
+
+    const coin = coinT[coinT.length-1]
+    const {cAddr, cMod, cSymbol} = parseCoin(typ)
     return (<div className="flex flex-col  p-3 m-3 rounded-lg text-left items-start justify-start">
-        <div className="outline flex flex-row items-center justify-between rounded-lg w-full p-2 m-1">
             <div>
+        <div className="outline flex flex-row items-center justify-between rounded-lg w-full p-2 m-1">
             <p className="text-4xl font-bold">{format_large_number(coins.coin?.value)}</p>
-            <p className="text text-sm opacity-70">{coin}</p>
+            <CoinImg symbol={cSymbol}/>
+            <AccountOutline name="" addr={cAddr}/>
+            {/* <p className="text text-sm opacity-70">{coin}</p> */}
+            <ModuleOutline module_name={cMod}/>
+            <div>
+            <img src="./tokens/asset_APT.png" className="w-20 h-20 m-2"/>
+            <p>{cSymbol}</p>
+            </div>
+            {/* <p className="text text-sm opacity-70">{typ.split("::")[1]}</p> */}
             </div>
             {/* <img src="./tokens/asset_APT.svg" className="w-20 h-20 m-2"/> */}
         </div>
