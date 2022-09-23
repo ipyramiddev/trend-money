@@ -2,6 +2,7 @@ import { AptosClient, AptosAccount, FaucetClient, BCS, Types, TxnBuilderTypes, H
 import { MoveModule, MoveModuleBytecode, MoveResource } from "aptos/dist/generated";
 
 import { BaseContract } from "ethers";
+import { aSwap } from "./useAnime";
 import { aptinSupplyPayload } from "./useAptin";
 const NODE_URL = "https://fullnode.devnet.aptoslabs.com";
 const FAUCET_URL = "https://faucet.devnet.aptoslabs.com";
@@ -25,6 +26,9 @@ export const loadValidators =async () => {
     return {validatorInfo,validatorSet,defaultConfig}
 }
 
+// export const loadValidatorVotes = async (addr:string, vIndex:number) => {
+//     const v = (await client.getAccountResource(new HexString(addr))
+// }
 
 
 export const mintWagmi = async (account: AptosAccount) => {
@@ -42,6 +46,7 @@ export const loadPool = (pool:any) =>{
 
     if(pool.platform==="Anime.swap"){
         console.log("Start Loading anime");
+        // const a = aSwap( 
         // const animePool = 
 
     }
@@ -61,16 +66,25 @@ export const loadPool = (pool:any) =>{
 }
 
 
-export const sendTransaction= async (toAddr:string,sender:string,) =>{
+export const sendTransaction= async (
+    toAddr:string,
+    sender:string,
+    mod:string,
+    func:string,
+    generic_type_params: any[],
+    args: any[]
+    ) =>{
 // Generate a transaction
 const account = await window.martian.connect();
+const f = `${toAddr}::${mod}::${func}`
+// const func = 
 // const sender = response.address;
-// const payload = {
-//     type: "script_function_payload",
-//     function: "0x1::coin::transfer",
-//     type_arguments: ["0x1::aptos_coin::AptosCoin"],
-//     arguments: [toAddr, "500"]
-// };
+const payload = {
+    type: "entry_function_payload",
+    function: f,
+    type_arguments: generic_type_params,
+    arguments: args
+};
 
 const default_options = {
     // sender: account.address.hex(),
@@ -84,7 +98,8 @@ const default_options = {
 
 console.log("OPTIONS",default_options);
 
-const payload = aptinSupplyPayload("APT",5444)
+// const payload = aptinSupplyPayload("APT",5444)
+// const payload = aSwap("0x1::
 const transactionRequest = await window.martian.generateTransaction(sender, payload,default_options);
 const txnHash = await window.martian.signAndSubmitTransaction(transactionRequest);
 // console.log(transactionRequest);

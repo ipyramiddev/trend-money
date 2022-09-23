@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 // import {getUserResources } from '@fewcha/web3";
 // loads the resources for an user
 import Web3 from "@fewcha/web3";
-import { MoveResource } from "aptos/dist/generated";
 import { Types } from "aptos";
 import { formatType, format_large_number, shortenAddress } from "hooks/formatting";
 import ReactTooltip from "react-tooltip";
@@ -37,11 +36,11 @@ const UserResources = ({ address,selectResource }: Props) => {
     );
 }
 
-const ResourceList = (resources: MoveResource[],selectResource: (resource:Types.MoveResource)=>void) => {
-    return resources.map((resource: MoveResource,) => Resource(resource,selectResource))
+const ResourceList = (resources: Types.MoveResource[],selectResource: (resource:Types.MoveResource)=>void) => {
+    return resources.map((resource: Types.MoveResource,) => Resource(resource,selectResource))
 }
 
-const Resource = (resource: MoveResource,selectResource: (resource:Types.MoveResource)=>void) => {
+const Resource = (resource: Types.MoveResource,selectResource: (resource:Types.MoveResource)=>void) => {
     console.log("User resource",resource);
     if (resource.type == "0x1::coin::CoinStore<0x1::aptos_coin::AptosCoin>") {
 

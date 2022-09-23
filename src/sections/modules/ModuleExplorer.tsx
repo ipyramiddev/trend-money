@@ -1,5 +1,4 @@
 import { AptosAccount, AptosClient, Types } from "aptos";
-// import { MoveFunction, MoveModule, UserTransaction } from "aptos/dist/api/data-contracts";
 import { formatParam, parsePayloadFunction, shortenAddress, TimeAgo } from "hooks/formatting";
 import { aptosTxnLink } from "hooks/useExplorer";
 import ReactTooltip from "react-tooltip";
@@ -11,7 +10,6 @@ import ModuleTypes from "./ModuleTypes";
 import { dapps } from 'data/dapps/dapp_data';
 import { Dapp } from "components/dapps/types";
 import DappBadge from "components/DappBadge";
-import { MoveFunction } from "aptos/dist/generated";
 import TxnPreview from "./TxnPreview";
 import TransactionModal from "modals/TransactionModal";
 
@@ -38,15 +36,15 @@ const ModuleExplorer = ({ client, mod }: ModExploreProps) => {
     const [typeArgs, setTypeArgs] = useState<string[]>(["0x1::aptos_coin::AptosCoin"]);
     const [tempArgs, setTempArg] = useState<string[]>([]);
     // const { account,isConnected } =useWeb3();
-    
+
     const ModuleInfo = ({ module }: { module: Types.MoveModuleBytecode }) => {
-        const { abi } = module;
+        const { abi, } = module;
 
         return (
             <div className="px-2 rounded-xl">
                 <div className="flex flex-row p-2 justify-center">
                     <p className="text-2xl p-1">Module:</p>
-                    {abi?.name !== undefined ? <ModuleOutline module_name={abi.name}/> : <h1>No name</h1>}
+                    {abi?.name !== undefined ? <ModuleOutline module_name={abi.name} /> : <h1>No name</h1>}
                 </div>
 
                 {abi?.exposed_functions !== undefined ? <h2 className="text-center opacity-70">{abi.exposed_functions.length} exposed function(s)</h2> : <h2>No exposed functions</h2>}
@@ -71,15 +69,15 @@ const ModuleExplorer = ({ client, mod }: ModExploreProps) => {
         )
     }
 
-    const switchDapp = async (d : Dapp) => {
-        if(d.address){
+    const switchDapp = async (d: Dapp) => {
+        if (d.address) {
             switchAddress(d.address);
         }
     }
 
     const switchAddress = async (address: string) => {
 
-        
+
         loadModules(address).then((modules: Types.MoveModuleBytecode[]) => {
             setModules(modules);
             setSelectedFunction(modules[0].abi?.exposed_functions[0] || null);
@@ -88,10 +86,7 @@ const ModuleExplorer = ({ client, mod }: ModExploreProps) => {
         }).catch((err: any) => {
             console.log(err);
             setError(err);
-        }
-        )
-        
-
+        })
     }
 
     useEffect(() => {
@@ -120,11 +115,12 @@ const ModuleExplorer = ({ client, mod }: ModExploreProps) => {
                 <div className="w-1/2 seam-outline">
                     <div className="flex flex-row text-black gap gap-2">
                         <input className="w-1/2 py-2 px-4 outline outline-2 outline-white rounded-2xl" type="text" placeholder="Enter address" value={selectedAddress} onChange={(e) => setSelectedAddress(e.target.value)} />
-                        <button className="btn m-1 text-white" onClick={() => switchAddress(selectedAddress)}> <FaRegArrowAltCircleLeft /></button>
-                        <button className="btn m-1 text-white" onClick={() => textCopy(selectedAddress)}> <FaClipboard /></button>
-                        <button className="seam-button" onClick={()=>switchAddress('0x3')}>0x3</button>
+                        <button data-tip="load address" className="btn m-1 text-white" onClick={() => switchAddress(selectedAddress)}> <FaRegArrowAltCircleLeft /></button>
+                        <button data-tip="Copy Addr." className="btn m-1 text-white" onClick={() => textCopy(selectedAddress)}> <FaClipboard /></button>
+                        <button data-tip="Aptos Token(NFT) Lib" className="seam-button" onClick={() => switchAddress('0x3')}>0x3</button>
+                        
                     </div>
-                    <p>or Select a Dapp</p>
+                    <p className="text-center text-lg font-bold pt-2">or Select a Dapp</p>
                     <div className="flex flex-wrap py-2 items-center scrollbar scrollbar-thumb-blue gap gap-3 w-full">
                         {dapps.filter((dapp: any) => (dapp.address)).map((dapp: any) => (
                             <DappBadge dapp={dapp} setSelectedDapp={switchDapp} isSelected={dapp.address ? (dapp.address === selectedAddress) : false} />
@@ -136,7 +132,7 @@ const ModuleExplorer = ({ client, mod }: ModExploreProps) => {
                         <p className=" text-2xl account-outline">{formatParam(selectedAddress)}</p>
                     </span>
                     <p className="text-xl text-center py-1">Account Modules</p>
-                    <div className=" flex flex-wrap scrollbar  scrollbar-thumb-blue scrollbar-track-black flex-row justify-start seam-outline p-2 gap gap-2">
+                    <div className=" flex flex-wrap scrollbar h-60 overflow-y-scroll scrollbar-thumb-blue scrollbar-track-black flex-row justify-start seam-outline p-2 gap gap-2">
                         {modules.map((mod: Types.MoveModuleBytecode, i: number) => {
                             return (<div key={i} className="items-center justify-center">
                                 <button className=" module-outline" onClick={() => setSelectedModule(mod)}>{mod.abi?.name}</button>
@@ -144,6 +140,7 @@ const ModuleExplorer = ({ client, mod }: ModExploreProps) => {
                         }
                         )}
                     </div>
+                    <ReactTooltip place="top" textColor="white" />
                 </div>
                 {/* </div> */}
 
@@ -152,18 +149,18 @@ const ModuleExplorer = ({ client, mod }: ModExploreProps) => {
                     {selectedModule !== undefined ?
                         <ModuleInfo module={selectedModule} />
                         : <div>No modules found</div>}
-            {selectedModule && selectedFunction ?
-                // null
-                <TxnPreview
-                    address={selectedAddress}
-                    // account={userAccount}
-                    module={selectedModule}
-                    func={selectedFunction}
-                    params={selectedFunction?.params}
-                    setShowTxnModal={setShowTxnModal}
-                    client={client}
-                />
-                : null}
+                    {selectedModule && selectedFunction ?
+                        // null
+                        <TxnPreview
+                            address={selectedAddress}
+                            // account={userAccount}
+                            module={selectedModule}
+                            func={selectedFunction}
+                            params={selectedFunction?.params}
+                            setShowTxnModal={setShowTxnModal}
+                            client={client}
+                        />
+                        : null}
 
                 </div>
             </div>
@@ -171,7 +168,7 @@ const ModuleExplorer = ({ client, mod }: ModExploreProps) => {
 
             <div className="flex flex-row gap gap-2 p-2 ">
                 <TxnFilterView address={selectedAddress} />
-                <ResourceDetailView address={selectedAddress} showDetails={true}/>
+                <ResourceDetailView address={selectedAddress} showDetails={true} />
             </div>
         </div>
     );

@@ -2,7 +2,6 @@ import { Types } from "aptos";
 import React from "react";
 import { ReactDOM } from "react";
 import { formatParam, parsePayloadFunction } from "hooks/formatting";
-import { UserTransaction } from "aptos/dist/generated";
 import TxnHeader from "components/txn/TxnHeader";
 import EntryTxnArgs from "components/txn/TxnArgs";
 import { TxnFooter } from "./TxnFooter";
@@ -26,9 +25,9 @@ const TxnList = ({ txns, address }: TxnListProps) => {
                 {txns.map((tx: Types.Transaction) => {
                     if (tx.type === "user_transaction") {
                         return (<div className="seam-outline mx-4 my-3" >
-                            <TxnPayload {...tx as UserTransaction} />
+                            <TxnPayload {...tx as Types.UserTransaction} />
 
-                            <TxnFooter {...tx as UserTransaction} />
+                            <TxnFooter {...tx as Types.UserTransaction} />
                         </div>)
                     }
                     else {
@@ -41,7 +40,7 @@ const TxnList = ({ txns, address }: TxnListProps) => {
     );
 }
 
-const TxnPayload = ({ payload }: UserTransaction) => {
+const TxnPayload = ({ payload }: Types.UserTransaction) => {
     const { type } = payload;
 
     switch (type) {

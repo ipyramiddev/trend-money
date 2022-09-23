@@ -1,14 +1,14 @@
 import React from "react";
 import { formatType, shortenAddress, TimeAgo } from "hooks/formatting";
 import ReactTooltip from "react-tooltip";
-import { UserTransaction } from "aptos/dist/generated";
+import {Types} from 'aptos';
 import { VersionLink } from "./VersionLink";
 import { HashLink } from "./HashLink";
 
-export const TxnFooter = ({ success, sender, timestamp, version, hash, gas_used, events, event_root_hash }: UserTransaction) => {
+export const TxnFooter = ({ success, sender, timestamp, version, hash, gas_used, events, event_root_hash }: Types.UserTransaction) => {
 
     // const event_html
-    const event_txt = "<div>" + events.map((event) => {
+    const event_txt = "<div>" + events.map((event:Types.Event) => {
         return "<p>" + formatType(event.type) + "</p>";
         // return event_txt;
     }) + "</div>";

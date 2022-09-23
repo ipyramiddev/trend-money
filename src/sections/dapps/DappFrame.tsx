@@ -5,25 +5,25 @@ import DappLogo from "./DappLogo";
 
 interface DappFrameProps {
     dapp: Dapp;
-    viewUrl:string;
+    viewUrl: string;
 
 }
 
-const DappHeader = (dapp:Dapp) =>{
-    return(<div className="flex flex-row gap gap-2 items-center text-baseline px-4">
-    <p className="text-2xl">{dapp.name}</p>
-    {DappLogo(dapp.image||"dapp.png")}
+const DappHeader = (dapp: Dapp) => {
+    return (<div className="flex flex-row gap gap-2 items-center text-baseline px-4">
+        <p className="text-2xl">{dapp.name}</p>
+        {DappLogo(dapp.image || "dapp.png")}
     </div>);
 
 }
 
-const DappFrame = ({dapp,viewUrl}:DappFrameProps) => {
+const DappFrame = ({ dapp, viewUrl }: DappFrameProps) => {
     const ref = useRef<any>();
     const [rand, setRand] = useState(0);
 
-    const DappReload = () =>{
+    const DappReload = () => {
         console.log("Trigger reload");
-        setRand(rand+1)
+        setRand(rand + 1)
     }
 
     const DappNav = () => {
@@ -36,43 +36,43 @@ const DappFrame = ({dapp,viewUrl}:DappFrameProps) => {
 
                 {/* FORWARD ARROW */}
                 <button className="seam-sqr" data-tip="coming soon">
-                    <FaForward/>
+                    <FaForward />
                 </button>
 
 
                 {/* REFRESH button */}
 
                 <button
-                onClick={()=>DappReload()}
-                 className="seam-sqr">
-                    <FaArrowCircleUp/>
+                    onClick={() => DappReload()}
+                    className="seam-sqr">
+                    <FaArrowCircleUp />
                 </button>
                 <input className="w-2/3 py-3 mx-3 rounded-2xl bg-white px-5 text-black"
-                value={viewUrl}>
-                    </input>
+                    value={viewUrl}>
+                </input>
 
                 {/* url txt input */}
-                <ReactTooltip place="top" textColor="white" multiline={true}/>
+                <ReactTooltip place="top" textColor="white" multiline={true} />
             </div>
         )
     }
     const newNav = () => {
-        const url =  ref.current.contentWindow.location.href
-        console.log("NEW url",url);
+        const url = ref.current.contentWindow.location.href
+        console.log("NEW url", url);
     }
 
     return (
         <div className="w-full min-w-full">
-        <div className="mockup-window border  border-pink mockup-window-outline shadow-lg shadow-pink w-full pt-2 m-3">
-            {DappHeader(dapp)}
-        <DappNav/>
-        <iframe className="scrollbar rounded-xl  scrollbar-thumb-pink scrollbar-track-blue" 
-            width={'100%'}
-            height={'600px'}
-            ref={ref}
-            // onLoad={newNav}
-            title="host" src={viewUrl}/>
-        </div>
+            <div className="mockup-window border  border-pink mockup-window-outline shadow-lg shadow-pink w-full pt-2 m-3">
+                {DappHeader(dapp)}
+                <DappNav />
+                <iframe className="scrollbar rounded-xl  scrollbar-thumb-pink scrollbar-track-blue"
+                    width={'100%'}
+                    height={'600px'}
+                    ref={ref}
+                    // onLoad={newNav}
+                    title="host" src={viewUrl} />
+            </div>
         </div>
     )
 }

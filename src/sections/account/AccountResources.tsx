@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 // import {getAccountResources } from '@fewcha/web3";
 // loads the resources for an account
 import Web3 from "@fewcha/web3";
-import { MoveResource } from "aptos/dist/generated";
 import { Types } from "aptos";
 import { formatType, format_large_number, shortenAddress } from "hooks/formatting";
 import ReactTooltip from "react-tooltip";
@@ -22,7 +21,8 @@ const AccountResources = ({ address,selectResource }: Props) => {
     const [resources, setResources] = useState<Types.MoveResource[]>([]);
     useEffect(() => {
         loadResources(address).then((res) => {
-                setResources(res);
+            const reversed = res.reverse()
+                setResources(reversed);
         });
     }, []
     );
@@ -37,11 +37,31 @@ const AccountResources = ({ address,selectResource }: Props) => {
     );
 }
 
-const ResourceList = (resources: MoveResource[],selectResource: (resource:Types.MoveResource)=>void) => {
-    return resources.map((resource: MoveResource,) => Resource(resource,selectResource))
+const ResourceList = (resources: Types.MoveResource[],selectResource: (resource:Types.MoveResource)=>void) => {
+    return resources.map((resource: Types.MoveResource,) => Resource(resource,selectResource))
 }
 
-const Resource = (resource: MoveResource,selectResource: (resource:Types.MoveResource)=>void) => {
+const filteredResources = (
+    resources: Types.MoveResource[],
+    selectResource: (resource:Types.MoveResource)=>void,
+    filter: any[] = ["0x3"],
+    max: number = 15
+    ) => {
+        let r_temp = resources;
+        let i = 0;
+        while(i<filter.length){
+            r_temp = r_temp.filter((r:Types.MoveResource,i:number)=>{
+                const t = r.type.startsWith(filter[i])
+                i=i+i;
+                return t;
+            })
+        }
+        return ResourceList(r_temp,selectResource);
+    }
+
+
+
+const Resource = (resource: Types.MoveResource,selectResource: (resource:Types.MoveResource)=>void) => {
     console.log("Account resource",resource);
     if (resource.type == "0x1::coin::CoinStore<0x1::aptos_coin::AptosCoin>") {
 
@@ -55,6 +75,11 @@ const Resource = (resource: MoveResource,selectResource: (resource:Types.MoveRes
 
         return TokenStore(resource.data);
     }
+    if (resource.type == "0x3::token::Collections") {
+
+        return Collections(resource.data);
+    }
+
     
     return (
         <div className="p-2 m-2 outline rounded-lg my-3 outline-2 overflow-hidden">
@@ -64,6 +89,17 @@ const Resource = (resource: MoveResource,selectResource: (resource:Types.MoveRes
     )
 }
 
+const Collections = (c:any) =>{
+    console.log(c)
+    const cData = c?.collection_data.handle
+    console.log("cData",cData)
+    // const lCollection = load
+
+    return (
+        <div>
+            <p>{JSON.stringify(c?.data)}</p>
+        </div>)
+}
 
 // 0x3::token::TokenStore
 const TokenStore = (tokenstore:any)=>{

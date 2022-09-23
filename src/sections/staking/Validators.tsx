@@ -1,4 +1,4 @@
-import { MoveResource } from "aptos/dist/generated";
+import { Types } from "aptos";
 import { format_large_number, shortenAddress } from "hooks/formatting";
 import StakeForm from "hooks/StakeInputs";
 import useStakeInputs from "hooks/StakeInputs";
@@ -41,7 +41,7 @@ const Validators = () => {
   const [selectedValidator, setValidator] = useState<any>()
 
   useEffect(() => {
-    loadValidators().then(({ validatorInfo, validatorSet, defaultConfig }: { validatorInfo: MoveResource, validatorSet: MoveResource, defaultConfig: MoveResource }) => {
+    loadValidators().then(({ validatorInfo, validatorSet, defaultConfig }: { validatorInfo: Types.MoveResource, validatorSet: Types.MoveResource, defaultConfig: Types.MoveResource }) => {
       const vSet = (validatorSet.data as any)
       const info = (validatorInfo.data as any).active_validators
       

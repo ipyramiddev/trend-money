@@ -1,6 +1,6 @@
 import { useWeb3 } from "@fewcha/web3-react";
 import { AptosAccount, AptosClient } from "aptos";
-import { MoveFunction, MoveFunctionGenericTypeParam, MoveModuleBytecode, MoveType } from "aptos/dist/generated";
+import { Types } from "aptos";
 import ModuleOutline from "components/etc/ModuleOutline";
 import { formatParam } from "hooks/formatting";
 import { sendTransaction } from "hooks/useAptos";
@@ -9,8 +9,8 @@ import { useState } from "react";
 
 interface TxnPreviewProps {
     address: string;
-    module: MoveModuleBytecode;
-    func: MoveFunction;
+    module: Types.MoveModuleBytecode;
+    func: Types.MoveFunction;
     params: any[];
     setShowTxnModal: React.Dispatch<React.SetStateAction<boolean>>;
     client: AptosClient;
@@ -39,11 +39,11 @@ const TxnPreview = ({address, module, func, params,setShowTxnModal,client } : Tx
 
                     {module !== undefined && module.abi? <ModuleOutline module_name={module.abi?.name}/> : <p className="text-2xl"></p>}
                     <p className="text-3xl">::</p>
-                    <p className="function-outline text-2xl">{func?.name}</p>
+                    <p className="function-outline text-2xl">{func.name}</p>
                     
                 </div>
                 <div>
-                {params.map((param:MoveType, index:number) => {
+                {params.map((param:Types.MoveType, index:number) => {
             return (
               <div key={index} className="flex flex-row items-baseline justify-start px-2 py-3 m-3 rounded-xl text-white">
                 <p className="p-1 text-bold text-right">{param}</p>
