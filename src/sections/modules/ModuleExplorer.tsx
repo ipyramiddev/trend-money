@@ -41,7 +41,7 @@ const ModuleExplorer = ({ client, mod }: ModExploreProps) => {
         const { abi, } = module;
 
         return (
-            <div className="px-2 rounded-xl">
+            <div className="px-2 flex flex-col rounded-xl">
                 <div className="flex flex-row p-2 justify-center">
                     <p className="text-2xl p-1">Module:</p>
                     {abi?.name !== undefined ? <ModuleOutline module_name={abi.name} /> : <h1>No name</h1>}
@@ -112,7 +112,7 @@ const ModuleExplorer = ({ client, mod }: ModExploreProps) => {
                 : null}
             <div className="flex flex-row w-full justify-center">
                 {/* <div> */}
-                <div className="w-1/2 seam-outline">
+                <div className="w-1/3 seam-outline">
                     <div className="flex flex-row text-black gap gap-2">
                         <input className="w-1/2 py-2 px-4 outline outline-2 outline-white rounded-2xl" type="text" placeholder="Enter address" value={selectedAddress} onChange={(e) => setSelectedAddress(e.target.value)} />
                         <button data-tip="load address" className="btn m-1 text-white" onClick={() => switchAddress(selectedAddress)}> <FaRegArrowAltCircleLeft /></button>
@@ -145,7 +145,7 @@ const ModuleExplorer = ({ client, mod }: ModExploreProps) => {
                 {/* </div> */}
 
 
-                <div className="flex flex-row w-1/2">
+                <div className="flex flex-col">
                     {selectedModule !== undefined ?
                         <ModuleInfo module={selectedModule} />
                         : <div>No modules found</div>}

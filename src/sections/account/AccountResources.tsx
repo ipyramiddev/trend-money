@@ -8,6 +8,7 @@ import ReactTooltip from "react-tooltip";
 import { json } from "stream/consumers";
 import { DepositsWithdraws } from "./DepositsWithdraws";
 import { loadResources } from "hooks/useAptos";
+import AccountOutline from "components/etc/AccountOutline";
 
 const web3 = new Web3();
 
@@ -30,7 +31,7 @@ const AccountResources = ({ address,selectResource }: Props) => {
         <div>
             <p className="text-3xl">Account Resources</p>
             <div className="modScrollp-2 flex flex-col max-w-2xl ">
-                {resources && resources.length !== 0 ? (ResourceList(resources,selectResource)) : <p>none</p>}
+                {resources && resources.length !== 0 ? (filteredResources(resources,selectResource)) : <p>none</p>}
             </div>
             
         </div>
@@ -44,17 +45,17 @@ const ResourceList = (resources: Types.MoveResource[],selectResource: (resource:
 const filteredResources = (
     resources: Types.MoveResource[],
     selectResource: (resource:Types.MoveResource)=>void,
-    filter: any[] = ["0x3"],
+    filter: string[] = ["0x3"],
     max: number = 15
     ) => {
         let r_temp = resources;
         let i = 0;
-        while(i<filter.length){
+        while(i<filter.length && resources.length>0){
             r_temp = r_temp.filter((r:Types.MoveResource,i:number)=>{
                 const t = r.type.startsWith(filter[i])
-                i=i+i;
                 return t;
             })
+            i=i+1;
         }
         return ResourceList(r_temp,selectResource);
     }
@@ -72,7 +73,6 @@ const Resource = (resource: Types.MoveResource,selectResource: (resource:Types.M
     }
 
     if (resource.type == "0x3::token::TokenStore") {
-
         return TokenStore(resource.data);
     }
     if (resource.type == "0x3::token::Collections") {
@@ -91,13 +91,15 @@ const Resource = (resource: Types.MoveResource,selectResource: (resource:Types.M
 
 const Collections = (c:any) =>{
     console.log(c)
+
     const cData = c?.collection_data.handle
     console.log("cData",cData)
     // const lCollection = load
 
     return (
-        <div>
-            <p>{JSON.stringify(c?.data)}</p>
+        <div className="outline rounded-lg">
+            <p>Account Collections </p>
+            <p>{JSON.stringify(c)}</p>
         </div>)
 }
 

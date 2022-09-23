@@ -1,5 +1,4 @@
 import { AptosClient, AptosAccount, FaucetClient, BCS, Types, TxnBuilderTypes, HexString, TokenClient } from "aptos";
-import { MoveModule, MoveModuleBytecode, MoveResource } from "aptos/dist/generated";
 
 import { BaseContract } from "ethers";
 import { aSwap } from "./useAnime";
@@ -29,6 +28,8 @@ export const loadValidators =async () => {
 // export const loadValidatorVotes = async (addr:string, vIndex:number) => {
 //     const v = (await client.getAccountResource(new HexString(addr))
 // }
+
+export const mintCollection = async () => {}
 
 
 export const mintWagmi = async (account: AptosAccount) => {
@@ -66,7 +67,7 @@ export const loadPool = (pool:any) =>{
 }
 
 
-export const sendTransaction= async (
+export const sendTransaction = async (
     toAddr:string,
     sender:string,
     mod:string,
@@ -87,7 +88,7 @@ const payload = {
 };
 
 const default_options = {
-    // sender: account.address.hex(),
+    sender: account.address.hex(),
     // sequence_number: account.sequence_number,
     max_gas_amount: "60000",
     gas_unit_price: "1",
@@ -114,13 +115,12 @@ export const stringToHex= (text: string) => {
   }
 
 export const loadModules = async (address: string) => {
-    const modules = await client.getAccountModules(address) as MoveModuleBytecode[];
+    const modules = await client.getAccountModules(address) as Types.MoveModuleBytecode[];
     return modules;
-
 }
 
 export const loadResources = async (address: string) => {
-    const modules = await client.getAccountResources(address) as Types.MoveResource[];
+    const modules = await client.getAccountResources(new HexString(address)) as Types.MoveResource[];
     return modules;
 
 }

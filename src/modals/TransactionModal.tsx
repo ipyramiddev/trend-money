@@ -1,6 +1,4 @@
-import { AptosAccount, AptosClient, BCS, TxnBuilderTypes } from "aptos";
-import { MoveFunction, MoveFunctionGenericTypeParam, MoveModule, MoveModuleBytecode, MoveType, MoveValue, TransactionPayload } from "aptos/dist/generated";
-import { TransactionPayloadScript } from "aptos/dist/transaction_builder/aptos_types";
+import { AptosAccount, AptosClient, BCS, TxnBuilderTypes, Types } from "aptos";
 import TxnHeader from "components/txn/TxnHeader";
 import {useRef, useState } from "react";
 import { generic_serialize } from "util/aptosUtils";
@@ -14,8 +12,8 @@ interface txnModalProps {
     client: AptosClient;
     address: string,
     // sender: string,
-    func: MoveFunction;
-    module: MoveModuleBytecode;
+    func: Types.MoveFunction;
+    module: Types.MoveModuleBytecode;
     type_arguments: string[],
     
     args: any[];
@@ -31,7 +29,7 @@ const TransactionModal = ({isOpen,client, address,module, type_arguments, args, 
     const cancelButtonRef = useRef(null);
     const { account, balance, isConnected, network,currentWallet,martian,fewcha } = useWeb3()
 
-    const params = func.params as MoveType[]
+    const params = func.params as Types.MoveType[]
     const module_name = module.abi?.name;
     
 
@@ -65,7 +63,7 @@ const TransactionModal = ({isOpen,client, address,module, type_arguments, args, 
       <ModalWrapper open={isOpen} setOpen={setIsOpen} cancelButtonRef={cancelButtonRef} title="tets">
         <p className="pt-0 text-3xl pb-2"> Create Txn</p>
         <TxnHeader func_name={func.name} module_name={module_name||"err"} address={address}/>
-        {params.map((param:MoveType, index:number) => {
+        {params.map((param:Types.MoveType, index:number) => {
             return (
               <span key={index} className="flex flex-row items-center justify-center px-2 py-3 m-3 rounded-xl text-white">
                 <p className="text-sm text-bold text-right">{param}</p>
