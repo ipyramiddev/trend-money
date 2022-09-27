@@ -1999,12 +1999,20 @@
     styled-components "^5.3.5"
     uuid "^8.3.2"
 
-"@fewcha/web3@^0.1.13", "@fewcha/web3@^0.1.19", "@fewcha/web3@^0.1.25":
+"@fewcha/web3@^0.1.13", "@fewcha/web3@^0.1.25":
   version "0.1.25"
   resolved "https://registry.yarnpkg.com/@fewcha/web3/-/web3-0.1.25.tgz#bd9a66d0cda4b1fed17a441ea77616ae5ec930ee"
   integrity sha512-Jgt4W4gNnviL7jqexu73Jr/Mag8eHZUIqDE52kY6tXKqXlaDb22DwqCLfcccZPy0YMMvOr/Y5S+DmoVruipOxQ==
   dependencies:
     aptos "^1.3.10"
+    buffer "^6.0.3"
+
+"@fewcha/web3@^0.1.19":
+  version "0.1.32"
+  resolved "https://registry.yarnpkg.com/@fewcha/web3/-/web3-0.1.32.tgz#18c543a1f3830b256773b3194852c980b1a2256e"
+  integrity sha512-5QrBit4XlDpg4b8UMmDHNxDL/or+1/mk688IbZZ6JSEnvFs15/FW60TTPBTzt9sQKLC+0fq7uMCi3JH/EoMZYg==
+  dependencies:
+    aptos "^1.3.14"
     buffer "^6.0.3"
 
 "@gar/promisify@^1.0.1":
@@ -4244,7 +4252,7 @@ aptos@1.2.0:
     typescript-memoize "^1.1.0"
     yarn "^1.22.18"
 
-aptos@^1.2.0:
+aptos@^1.2.0, aptos@^1.3.10, aptos@^1.3.14:
   version "1.3.14"
   resolved "https://registry.yarnpkg.com/aptos/-/aptos-1.3.14.tgz#7487b4fd783dd5dfb49419f6e907a95c8ca7ce22"
   integrity sha512-9AZ7fKgOwLoOITnw3nz2Nzon/HjKrHDU6n893S4MhsmHXK85R4NG4UyTyIczhWGWVdytJiPCkEZufhzsH4eZCw==
@@ -4255,18 +4263,6 @@ aptos@^1.2.0:
     form-data "4.0.0"
     tweetnacl "1.0.3"
 
-aptos@^1.3.10, aptos@^1.3.6:
-  version "1.3.11"
-  resolved "https://registry.yarnpkg.com/aptos/-/aptos-1.3.11.tgz#6063113c734e18909b0d7f7233a99cc574153fd4"
-  integrity sha512-IaiXvKGFrL7/dg931KjOU6ny59lCV724NyNNJF/L4zigTsV0+EIGGAyaJBOvWedPr43qrY6CKiEdkDjXsOQJSA==
-  dependencies:
-    "@scure/bip39" "^1.1.0"
-    axios "^0.27.2"
-    ed25519-hd-key "^1.2.0"
-    js-sha3 "^0.8.0"
-    tweetnacl "^1.0.3"
-    typescript-memoize "^1.1.0"
-
 aptos@^1.3.12:
   version "1.3.12"
   resolved "https://registry.yarnpkg.com/aptos/-/aptos-1.3.12.tgz#ab9de80f18a9bbd4e77a338602e80a1734faa1e0"
@@ -4276,6 +4272,18 @@ aptos@^1.3.12:
     axios "^0.27.2"
     ed25519-hd-key "^1.2.0"
     form-data "^4.0.0"
+    js-sha3 "^0.8.0"
+    tweetnacl "^1.0.3"
+    typescript-memoize "^1.1.0"
+
+aptos@^1.3.6:
+  version "1.3.11"
+  resolved "https://registry.yarnpkg.com/aptos/-/aptos-1.3.11.tgz#6063113c734e18909b0d7f7233a99cc574153fd4"
+  integrity sha512-IaiXvKGFrL7/dg931KjOU6ny59lCV724NyNNJF/L4zigTsV0+EIGGAyaJBOvWedPr43qrY6CKiEdkDjXsOQJSA==
+  dependencies:
+    "@scure/bip39" "^1.1.0"
+    axios "^0.27.2"
+    ed25519-hd-key "^1.2.0"
     js-sha3 "^0.8.0"
     tweetnacl "^1.0.3"
     typescript-memoize "^1.1.0"
