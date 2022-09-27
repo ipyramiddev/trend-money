@@ -41,6 +41,19 @@ export const dapps = [
     "docs": "",
     "npm": "",
   },
+  {
+    "name": "AptID",
+    "tags": ["lending"],
+    "discord": "",
+    "twitter": "https://twitter.com/AptinLabs",
+    "status": "TBA",
+    "url": "https://app.aptin.io/",
+    "image": "aptin.jpeg",
+    "github": "",
+    "address": "0xac39575e72d6717001bda33bb9c355715e3f23d4f7b6952f7cf6f3dbfae60674",
+    "docs": "",
+    "npm": "",
+  },
 
   {
     "name": "Econia",
@@ -104,7 +117,7 @@ export const dapps = [
     "github": "https://github.com/hippospace",
     "url": "https://hippo.space/",
     "docs": "",
-    "address": "0xa61e1e86e9f596e483283727d2739ba24b919012720648c29380f9cd0a96c11a"
+    "address": "0xdad1c1d54fcff3bf0d83b4b0067d7cf0ebdca3ff17556f77115ada2db1ff23fe"
   },
   {
     "name": "Souffl3",
@@ -155,6 +168,21 @@ export const dapps = [
     url: "",
     description: "",
     tags: ["DEX", "DeFi"],
+    Published: "Jul 19, 2022 6:53 AM",
+    twitter: "https://twitter.com/EnchanterFi",
+    status: "TBA",
+    github: "",
+    Docs: "",
+    Npm: "",
+  },
+
+  {
+    "name": "Anchotos",
+    discord: "https://t.co/7sGpHAGFJZ",
+    image: "Enchanter.png",
+    url: "https://anchotos.app/",
+    description: "Lending and borrowing",
+    tags: ["Lending", "DeFi"],
     Published: "Jul 19, 2022 6:53 AM",
     twitter: "https://twitter.com/EnchanterFi",
     status: "TBA",

@@ -22,18 +22,51 @@ interface Props{
 
 const AccountResources = ({ address,selectResource }: Props) => {
     const [resources, setResources] = useState<Types.MoveResource[]>([]);
+    const [filters, setFilters ] = useState<string[]>([])
+    const [filterItems, setFilterItems ] = useState<string[]>([])
+
+    const toggleFilter= (f:any) => {
+        if(filters.includes(f)){
+            const temp = filters.filter((f1:any) =>{
+                return f1!==f;
+            })
+            setFilters(temp);
+            return;
+        }
+        setFilters([...filters, f])
+    }
+
+
     useEffect(() => {
         loadResources(address).then((res) => {
             const reversed = res.reverse()
+            const coreAddys = res.map((t:any)=>{
+                const {cAddr, cMod} = parseCoin(t.type)
+                return shortenAddress(cAddr)
+            })
+            
                 setResources(reversed);
+                setFilterItems([... new Set(coreAddys)]);
         });
     }, []
     );
     return (
         <div>
             <p className="text-3xl">Account Resources</p>
+            {/* filter view */}
+            <div className="flex flex-grid items-start">
+                {filterItems.map((f:any)=>{
+                    const active = filters.includes(f);
+                    return (<button className={`outline rounded-sm p-2 ${active? 'bg-white text-black':"text-white"}`}
+                     onClick={()=>toggleFilter(f)}>
+                        <p >{f}</p>
+                    </button>)
+                })}
+            </div>
+
+
             <div className="modScrollp-2 flex flex-col max-w-2xl ">
-                {resources && resources.length !== 0 ? (filteredResources(resources,selectResource)) : <p>none</p>}
+                {resources && resources.length !== 0 ? (filteredResources(resources,selectResource,filters)) : <p>none</p>}
             </div>
             
         </div>
@@ -105,6 +138,10 @@ const Collections = (c:any) =>{
         </div>)
 }
 
+const Collection = (c: any) =>{
+
+}
+
 // 0x3::token::TokenStore
 const TokenStore = (tokenstore:any)=>{
     const data = tokenstore.data
@@ -119,7 +156,6 @@ const TokenStore = (tokenstore:any)=>{
     );
 }
 
-const TokenStoreItem = () => {}
 
 const CoinStore = (coins: any,) => {
 

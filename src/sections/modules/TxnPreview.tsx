@@ -29,9 +29,9 @@ const TxnPreview = ({address, module, func, params,setShowTxnModal,client } : Tx
     // const payloa
 
     return (
-        <div className="shadow">
-            <p className="text-3xl p-2 " >Use Module</p>
-        <div className=" items-start seam-outline">
+        <div className="shadow items-center  p-3">
+            <p className="text-3xl p-2 text-center" >Use Module</p>
+        <div className=" items-center seam-outline">
             
                 <div className="flex flex-row items-center gap gap-3">
                     <p className="account-outline text-2xl">{formatParam(address)}</p>

@@ -117,7 +117,7 @@ export const formatType = (type:string)=>{
     if (spl.length>2){
     let res = spl[2]
     if(res.split("::").length>1){
-       res = formatType(res.slice(1))
+       res = formatType(res.slice(res.split("::").length))
     }
     else{
         res=shortenAddress(res);
