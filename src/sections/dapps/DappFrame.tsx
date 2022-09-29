@@ -1,5 +1,6 @@
+import Icons from "components/Icons";
 import { useRef, useState } from "react";
-import { FaArrowCircleUp, FaBackward, FaForward } from "react-icons/fa";
+import { FaArrowCircleUp, FaBackward, FaForward, FaGithub } from "react-icons/fa";
 import ReactTooltip from "react-tooltip";
 import DappLogo from "./DappLogo";
 
@@ -20,6 +21,7 @@ const DappHeader = (dapp: Dapp) => {
 const DappFrame = ({ dapp, viewUrl }: DappFrameProps) => {
     const ref = useRef<any>();
     const [rand, setRand] = useState(0);
+    const [url, setUrl] = useState(viewUrl);
 
     const DappReload = () => {
         console.log("Trigger reload");
@@ -39,7 +41,6 @@ const DappFrame = ({ dapp, viewUrl }: DappFrameProps) => {
                     <FaForward />
                 </button>
 
-
                 {/* REFRESH button */}
 
                 <button
@@ -48,8 +49,19 @@ const DappFrame = ({ dapp, viewUrl }: DappFrameProps) => {
                     <FaArrowCircleUp />
                 </button>
                 <input className="w-2/3 py-3 mx-3 rounded-2xl bg-white px-5 text-black"
-                    value={viewUrl}>
+                    value={url}>
                 </input>
+                <div className="flex flex-row gap gap-4 px-3 py-2 rounded-xl text-2xl">
+                    
+                    <button
+                        onClick={()=>setUrl((dapp as any).github)}
+                    >
+                        <FaGithub />
+                    </button>
+                    {/* <a href={twitterUrl} className="icon rounded-full">
+                        <FaTwitter />
+                    </a> */}
+                </div>
 
                 {/* url txt input */}
                 <ReactTooltip place="top" textColor="white" multiline={true} />
@@ -71,7 +83,7 @@ const DappFrame = ({ dapp, viewUrl }: DappFrameProps) => {
                     height={'600px'}
                     ref={ref}
                     // onLoad={newNav}
-                    title="host" src={viewUrl} />
+                    title="host" src={url} />
             </div>
         </div>
     )

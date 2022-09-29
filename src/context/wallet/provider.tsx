@@ -9,6 +9,7 @@ import {
   HippoExtensionWalletAdapter,
   MartianWalletAdapter,
   FewchaWalletAdapter,
+  useWallet,
   // PontemWalletAdapter
 } from '@manahippo/aptos-wallet-adapter';
 
@@ -27,13 +28,27 @@ export const MyWalletProvider: React.FC<WalletProviderProps> = ({
     // new PontemWalletAdapter()
   ];
   const value = wallets;
-  
+  // const {
+  //   connect,
+  //   disconnect,
+  //   account,
+  //   signAndSubmitTransaction,
+  //   connecting,
+  //   connected,
+  //   disconnecting,
+  //   wallet: currentWallet,
+  //   signTransaction,
+  //   select
+  // } = useWallet();
 
   // const wallets:walletContext[] = [petraWallet]
   return (
-    <WalletProvider wallets={value} onError={(error: Error) => {
-      console.log('Handle Error Message', error)
-    }} >{children}</WalletProvider>
+    <WalletProvider wallets={value} 
+      // autoConnect={false}
+      onError={(error) => {
+        console.log('wallet errors: ', error);
+        // message.error(error);
+      }}>{children}</WalletProvider>
   );
 };
 

@@ -47,14 +47,14 @@ export const dapps = [
     "discord": "",
     "twitter": "https://twitter.com/AptinLabs",
     "status": "TBA",
-    "url": "https://app.aptin.io/",
-    "image": "aptin.jpeg",
-    "github": "",
+    "url": "https://apt.id/",
+    "image": "aptID.png",
+    "github": "https://github.com/aptid",
     "address": "0xac39575e72d6717001bda33bb9c355715e3f23d4f7b6952f7cf6f3dbfae60674",
     "docs": "",
     "npm": "",
   },
-
+  
   {
     "name": "Econia",
     "description": "hyper-parallelized on-chain order book for the aptos blockchain",
@@ -77,7 +77,6 @@ export const dapps = [
     "twitter": "https://twitter.com/vialprotocol",
     "status": "Testnet",
     "image": "vial.png",
-
     "github": "",
     "docs": "",
     "address": "0xc30587eb23418ea650ffa1f78b37124d0897a78ffb2cce5c072f0d659b8cba2"
@@ -117,7 +116,8 @@ export const dapps = [
     "github": "https://github.com/hippospace",
     "url": "https://hippo.space/",
     "docs": "",
-    "address": "0xdad1c1d54fcff3bf0d83b4b0067d7cf0ebdca3ff17556f77115ada2db1ff23fe"
+    "address": "0xdad1c1d54fcff3bf0d83b4b0067d7cf0ebdca3ff17556f77115ada2db1ff23fe",
+    "coin_list": ''
   },
   {
     "name": "Souffl3",
@@ -165,11 +165,12 @@ export const dapps = [
     "name": "Enchanter",
     discord: "https://discord.com/invite/D4kMhm7Ktk",
     image: "Enchanter.png",
-    url: "",
+    url: "https://app.enchanter.fi/",
     description: "",
     tags: ["DEX", "DeFi"],
     Published: "Jul 19, 2022 6:53 AM",
     twitter: "https://twitter.com/EnchanterFi",
+    address: "0xcef9ab8e6539103b34d26388c976683e9fb7fdeee80b9beee4fdaba65a693809",
     status: "TBA",
     github: "",
     Docs: "",
@@ -191,18 +192,6 @@ export const dapps = [
     Npm: "",
   },
 
-  {
-    name: "Zaptos",
-    tags: ["DEX", "DeFi"],
-    discord: "https://discord.gg/zaptos",
-    image: "zaptos.jpg",
-    url: "https://app.zaptos.finance/#",
-    description: "",
-    twitter: "https://twitter.com/Empo_Fi",
-    status: "TBA",
-    github: "",
-    docs: "",
-  },
 
   {
     "name": "Thala Labs",
@@ -281,22 +270,22 @@ export const dapps = [
   {
     "name": "Anime.swap",
     "tags": ["DEX", "swap"],
-    "description": "https://laminar.markets/",
+    "description": "Dex w/ a kiss of anime ",
     "discord": "",
     "Published": "Jul 19, 2022 5:48 AM",
-    "twitter": "https://twitter.com/LaminarMarkets",
+    "twitter": "https://twitter.com/animeswap_org",
     "status": "mainnet",
     "image": "animeswap.png",
     "address": "0x16fe2df00ea7dde4a63409201f7f4e536bde7bb7335526a35d05111e68aa322c",
     "url": "https://app.animeswap.org/#/swap?chain=aptos_devnet",
-    "github": "",
+    "github": "https://github.com/AnimeSwap",
     "docs": "https://medium.com/@Laminar",
   },
   {
     "name": "Mojito",
     "tags": ["Prediction market"],
 
-    "twitter": "https://twitter.com/LaminarMarkets",
+    "twitter": "https://twitter.com/MojitoMarkets",
     "status": "TBA",
     "description": "Mojito Markets is building the global decentralised prediction markets on the blockchain",
     "image": "mojito.png",

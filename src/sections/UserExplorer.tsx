@@ -29,7 +29,7 @@ const UserExplorer = ({ client }: Props) => {
             );
         }
     }
-        , []);
+        , [account]);
 
     return (
         <div className="w-full mx-6">

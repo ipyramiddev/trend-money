@@ -36,7 +36,6 @@ const AccountResources = ({ address,selectResource }: Props) => {
         setFilters([...filters, f])
     }
 
-
     useEffect(() => {
         loadResources(address).then((res) => {
             const reversed = res.reverse()
@@ -57,7 +56,7 @@ const AccountResources = ({ address,selectResource }: Props) => {
             <div className="flex flex-grid items-start">
                 {filterItems.map((f:any)=>{
                     const active = filters.includes(f);
-                    return (<button className={`outline rounded-sm p-2 ${active? 'bg-white text-black':"text-white"}`}
+                    return (<button className={`outline rounded-t-xl p-2 ${active? 'bg-white text-black':"text-white"}`}
                      onClick={()=>toggleFilter(f)}>
                         <p >{f}</p>
                     </button>)
@@ -65,7 +64,7 @@ const AccountResources = ({ address,selectResource }: Props) => {
             </div>
 
 
-            <div className="modScrollp-2 flex flex-col max-w-2xl ">
+            <div className="modScroll p-2 flex flex-col max-w-2xl ">
                 {resources && resources.length !== 0 ? (filteredResources(resources,selectResource,filters)) : <p>none</p>}
             </div>
             

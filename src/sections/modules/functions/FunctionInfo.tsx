@@ -2,6 +2,15 @@ import { Types } from "aptos";
 
 import { formatParam, formatType } from "hooks/formatting";
 
+
+const GenericParam = (param:Types.MoveFunctionGenericTypeParam) =>{
+    const g_string = "< G >"
+    
+    return (<div>
+        <p>{g_string}</p>
+    </div>)
+}
+
 const FunctionInfo = ({ function: func }: { function: Types.MoveFunction }) => {
     return (
         <div className="items-center justify-center p-1 m-2 rounded-xl">
@@ -10,14 +19,15 @@ const FunctionInfo = ({ function: func }: { function: Types.MoveFunction }) => {
             <p className="function-outline">{func.name}</p>
             <p className="label"> Visibility: {func.visibility}</p>
             
-            <div>
+            <div className="flex flex-row justify-between items-center">
                 {func.generic_type_params.map((param: Types.MoveFunctionGenericTypeParam, i: number) => {
                     return (
                         <div key={"move" + i} className=" text-green1 justify-center">
+                            <p>Type</p>
+                              {GenericParam(param)}
                             {param.constraints.map((constraint: Types.MoveAbility, index:number) => {
                                 return (
-                                    <div className="bg-white" key={constraint + index}>
-                                        <p className="text-2xl">{constraint}:</p>
+                                    <div key={constraint + index}>
                                     </div>
                                 )
                             })
@@ -33,7 +43,7 @@ const FunctionInfo = ({ function: func }: { function: Types.MoveFunction }) => {
                 {func.return.map((ret: Types.MoveType, i) => {
                     return (
                         <div key={ret + i} className="max-w-10 return-outline justify-center">
-                            <p className="">{formatType(ret)}:</p>
+                            <p className="">{ret}:</p>
                         </div>
                     )
                 }
