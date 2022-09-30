@@ -32,7 +32,7 @@ const UserExplorer = ({ client }: Props) => {
         , [account]);
 
     return (
-        <div className="w-full mx-6">
+        <div className="w-full h-screen mx-6">
             <p className="text-3xl font-semibold">User Explorer</p>
             
             <div className='flex flex-row w-full items-start justify-center'>

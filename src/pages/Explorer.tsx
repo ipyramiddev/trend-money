@@ -1,6 +1,6 @@
 // Create Explorer page to view tokens and their supply, unique wallets, and transactions
 import React, { useState, useEffect } from 'react';
-import '../index.css';
+// import '../index.css';
 // const fullNodes = [
 import { AptosClient, AptosAccount, FaucetClient, BCS, TxnBuilderTypes, HexString, Types } from "aptos";
 import ModuleExplorer from '../sections/modules/ModuleExplorer';
@@ -36,8 +36,8 @@ const Explorer = () => {
     ]
     const [view, setView] = useState("ModuleExplorer");
     return (
-        <div className="flex flex-col w-full p-3 m-2 items-start justify-start">
-            <p className="text-3xl text-center">Explorer</p>
+        <div className="flex flex-col min-h-screen p-3 m-2 items-start justify-start">
+        <p className="text-3xl text-center">Explorer</p>
             {/* <ExplorerTabView/> */}
             <div className="flex flex-row items-start justify-start start">
                 <div className="flex flex-row items-start">
@@ -45,14 +45,14 @@ const Explorer = () => {
                         return (
                             <div
                                 onClick={() => setView(tab.id)}
-                                className={`px-2 m-2 py-1 hover:opacity-100 rounded-xl ${view === tab.id ? 'underline font-bold' : 'opacity-70'}`}>
-                                <p className="text-2xl underline px-2 m-1 py-1 text-center font- justify-center">{tab.name}</p>
+                                className={`px-2 m-2 py-1 hover:opacity-100 rounded-xl ${view === tab.id ? 'underline text-3xl font-bold' : 'opacity-60 text-2xl'}`}>
+                                <p className=" px-2 m-1 py-1 text-center justify-center">{tab.name}</p>
                             </div>)
                     })
                     }
                 </div>
             </div>
-            <div className="flex flex-col w-full items-center justify-start">
+            <div className="flex flex-col h-full w-full items-center justify-start">
                 <p className="account-outline">{formatParam(account?.address || '')}</p>
                 {isConnected ? <p className="px-2 py-1 rounded-sm text-green1 outline-2 outline-green1 m-2">connected</p> : <p>not connected</p>}
                 {view === "ModuleExplorer" ? <ModuleExplorer client={client} mod={modules} /> : null}

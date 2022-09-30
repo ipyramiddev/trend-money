@@ -1,6 +1,6 @@
 import Icons from "components/Icons";
 import { useRef, useState } from "react";
-import { FaArrowCircleUp, FaBackward, FaForward, FaGithub } from "react-icons/fa";
+import { FaArrowCircleUp, FaBackward, FaForward, FaGithub, FaTwitter } from "react-icons/fa";
 import ReactTooltip from "react-tooltip";
 import DappLogo from "./DappLogo";
 
@@ -11,11 +11,10 @@ interface DappFrameProps {
 }
 
 const DappHeader = (dapp: Dapp) => {
-    return (<div className="flex flex-row gap gap-2 items-center text-baseline px-4">
-        <p className="text-2xl">{dapp.name}</p>
+    return (<div className="flex flex-row gap gap-2  items-center text-baseline px-4">
+        <p className="text-2xl ">{dapp.name}</p>
         {DappLogo(dapp.image || "dapp.png")}
     </div>);
-
 }
 
 const DappFrame = ({ dapp, viewUrl }: DappFrameProps) => {
@@ -25,6 +24,7 @@ const DappFrame = ({ dapp, viewUrl }: DappFrameProps) => {
 
     const DappReload = () => {
         console.log("Trigger reload");
+        setUrl(viewUrl);
         setRand(rand + 1)
     }
 
@@ -58,9 +58,12 @@ const DappFrame = ({ dapp, viewUrl }: DappFrameProps) => {
                     >
                         <FaGithub />
                     </button>
-                    {/* <a href={twitterUrl} className="icon rounded-full">
+
+                    {/* <button
+                        onClick={()=>setUrl((dapp as any).twitter)}
+                    >
                         <FaTwitter />
-                    </a> */}
+                    </button> */}
                 </div>
 
                 {/* url txt input */}
@@ -75,7 +78,7 @@ const DappFrame = ({ dapp, viewUrl }: DappFrameProps) => {
 
     return (
         <div className="w-full min-w-full">
-            <div className="mockup-window border  border-pink mockup-window-outline shadow-lg shadow-pink w-full pt-2 m-3">
+            <div className="mockup-window border-pink mockup-window-outline border-4 shadow-xl  shadow-pink  w-full pt-2 m-3">
                 {DappHeader(dapp)}
                 <DappNav />
                 <iframe className="scrollbar rounded-xl  scrollbar-thumb-pink scrollbar-track-blue"

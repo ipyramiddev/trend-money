@@ -248,7 +248,7 @@ export const dapps = [
     "twitter": "https://twitter.com/PontemNetwork",
     "status": "mainnet",
     "logo": "",
-    "github": "",
+    "github": "https://github.com/pontem-network",
     "url": "https://liquidswap.com/#/",
     "image": "pontemNetwork.jpg",
     "address": "0x43417434fd869edee76cca2a4d2301e528a1551b1d719b75c350c3c97d15b8b9",
