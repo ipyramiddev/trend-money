@@ -5,7 +5,6 @@ import { useWeb3 } from '@fewcha/web3-react';
 import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 const nav_items = [
-    { name: 'Home', path: '/' },
     {name: 'Explorer',path: '/explorer'},
     {name: 'Trade',path: '/staking?'},
 ];
