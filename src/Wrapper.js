@@ -28,10 +28,8 @@ export default function Wrapper() {
             <Routes>
               {/* HOME PAGE */}
               <Route path="/" element={<Trade />} />
-              <Route path="/docs" element={<Docs />} />
-              <Route path="/vaults" element={<Trade/>} />
-              <Route path= "/nodes" element = {<NodePage/>}/>
-              <Route path="/app" element={<App />} />
+              <Route path="/powersets" element={<Trade/>} />
+              <Route path= "/staking" element = {<NodePage/>}/>
               <Route path="/explorer" element={<Explorer />} />
             </Routes>
           </BrowserRouter>
