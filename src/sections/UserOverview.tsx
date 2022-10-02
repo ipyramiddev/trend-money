@@ -18,7 +18,7 @@ const UserOverview = ({ connected, user }: UserProps) => {
         return null;
     }
     return (
-        <div className="flex flex-col p-3 m-3 rounded-lg text-left items-start justify-start">
+        <div className="flex flex-col min-h-screen p-3 m-3 rounded-lg text-left items-start justify-start">
             <p className="text-lg sm:text-sm opacity-80">Welcome back {shortenAddress(user.address)}</p>
             <div className="outline rounded-lg w-full p-2 m-1">
             <p className="text-4xl font-bold">{format_large_number(user.coins?.balance)}</p>

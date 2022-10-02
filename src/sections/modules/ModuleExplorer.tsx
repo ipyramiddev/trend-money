@@ -157,6 +157,7 @@ const ModuleExplorer = ({ client, mod }: ModExploreProps) => {
                             module={selectedModule}
                             func={selectedFunction}
                             params={selectedFunction?.params}
+                            generic_types={selectedFunction?.generic_type_params}
                             setShowTxnModal={setShowTxnModal}
                             client={client}
                         />

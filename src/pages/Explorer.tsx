@@ -11,12 +11,13 @@ import DappsView from 'sections/dapps/DappsView';
 import { useWeb3 } from '@fewcha/web3-react';
 import { formatParam } from 'hooks/formatting';
 import { ExplorerTabView } from 'views/ExplorerTabView';
+import Coins from './Coins';
 // devnet is used here for testing
 const NODE_URL = "https://fullnode.devnet.aptoslabs.com";
-const FAUCET_URL = "https://faucet.devnet.aptoslabs.com";
+// const FAUCET_URL = "https://faucet.devnet.aptoslabs.com";
 
 const client = new AptosClient(NODE_URL);
-const faucetClient = new FaucetClient(NODE_URL, FAUCET_URL);
+// const faucetClient = new FaucetClient(NODE_URL, FAUCET_URL);
 
 interface Props {
     isLoading: boolean;
@@ -33,11 +34,12 @@ const Explorer = () => {
         { name: 'Modules + Dapps', id: 'ModuleExplorer' },
         { name: 'User Account ', id: 'UserExplorer' },
         { name: 'Dapps', id: 'Dapps' },
+        { name: 'Coins', id: 'Coins' },
     ]
     const [view, setView] = useState("ModuleExplorer");
     return (
         <div className="flex flex-col min-h-screen p-3 m-2 items-start justify-start">
-        <p className="text-3xl text-center">Explorer</p>
+        <p className="text-3xl text-center">Explorer</p> 
             {/* <ExplorerTabView/> */}
             <div className="flex flex-row items-start justify-start start">
                 <div className="flex flex-row items-start">
@@ -53,12 +55,15 @@ const Explorer = () => {
                 </div>
             </div>
             <div className="flex flex-col h-full w-full items-center justify-start">
+
                 <p className="account-outline">{formatParam(account?.address || '')}</p>
+                <p>{network.toString()}</p>
                 {isConnected ? <p className="px-2 py-1 rounded-sm text-green1 outline-2 outline-green1 m-2">connected</p> : <p>not connected</p>}
                 {view === "ModuleExplorer" ? <ModuleExplorer client={client} mod={modules} /> : null}
                 {view === "Dapps" ? <DappsView /> : null}
                 {view === "UserExplorer" && isConnected ? <UserExplorer account={account} client={client} /> : null}
                 {view === "Pools" ? <Pools client={client} /> : null}
+                {view === "Coins" ? <Coins/> : null}
             </div>
         </div>
     );

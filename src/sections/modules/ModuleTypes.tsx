@@ -1,15 +1,17 @@
 import { Types } from "aptos";
-import { formatParam } from "hooks/formatting";
+import AccountOutline from "components/etc/AccountOutline";
+import ModuleOutline from "components/etc/ModuleOutline";
+import { formatParam, splitType } from "hooks/formatting";
 
 const ModuleTypes = ({ module }: { module: Types.MoveModuleBytecode }) => {
     const { abi } = module;
     return (
         <div className="flex flex-col w-full px-6 py-4 ">
             <p className="text-center text-2xl ">Module Types</p>
-            <div className="flex flex-col scrollbar  scrollbar-thumb-blue2 w-full mx-6 py-5">
+            <div className="flex flex-grid scrollbar  scrollbar-thumb-blue2  mx-6 py-5">
                 {ModuleStructs(module)}
             </div>
-            
+
         </div>
     );
 }
@@ -18,7 +20,7 @@ const ModuleTypes = ({ module }: { module: Types.MoveModuleBytecode }) => {
 const ModuleStructs = (module: Types.MoveModuleBytecode) => {
     const { abi } = module;
     return (
-        <div className="flex flex-row gap gap-2 items-start">
+        <div className="flex flex-grid  w-1/2 gap gap-2 items-start">
             {abi?.structs.map((struct: Types.MoveStruct) => {
                 return ModuleStruct(struct);
             })}
@@ -27,8 +29,24 @@ const ModuleStructs = (module: Types.MoveModuleBytecode) => {
     )
 }
 
+const isComplexName = (name: string) => {
+    return name.includes("::") || name.includes("<") || name.includes(">");
+}
+
+
+
 
 const ModuleStruct = (struct: Types.MoveStruct) => {
+    let fields = struct.fields.map((field: Types.MoveStructField) => {
+        let { address, module, name } = splitType(field.type);
+        if (isComplexName(name)) {
+            const [title, ...rest] = name.split("<");
+            name = title;
+
+        }
+
+        return ({ name: field.name, type: name, module: module, address: address })
+    });
     return (
         <div className="outline w-full rounded-xl m-2 px-2">
             <div className="flex flex-row gap gap-1">
@@ -36,11 +54,25 @@ const ModuleStruct = (struct: Types.MoveStruct) => {
                 <p className="label">:struct</p>
             </div>
             <div className="p-2">
-                {struct.fields.map((field: any) => {
+                {fields.map((field: any) => {
                     return (
-                        <div className="flex p-1 gap-1 justify-end">
+                        <div className="flex p-1 gap-1 justify-start">
                             <p>{formatParam(field.name)}:</p>
-                            <p>{field.type}</p>
+                            <div>
+                                <div className="flex flex-row gap-1 justify-start items-center">
+                                    <p className="text-2xl font-bold">{field.type}</p>
+                                </div>
+                                <div className="flex flex-row gap-1 justify-center items-center">
+                                    <p>@</p>
+                                    {field.module != "base" ? (
+                                        <>
+                                    <AccountOutline addr={field.address} />
+                                    <p> in ::</p>
+                                    
+                                    <ModuleOutline module_name={field.module}/></>) : (<p>std</p>)}
+                                </div>
+
+                            </div>
                         </div>
                     )
                 }
