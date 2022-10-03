@@ -1,10 +1,8 @@
-import { AptosAccount, AptosClient, Types } from "aptos";
-import { formatParam, parsePayloadFunction, shortenAddress, TimeAgo } from "hooks/formatting";
-import { aptosTxnLink } from "hooks/useExplorer";
+import { AptosClient, Types } from "aptos";
+import { formatParam, TimeAgo } from "hooks/formatting";
 import ReactTooltip from "react-tooltip";
 import { useEffect, useState } from "react";
-import { loadModules, loadResources } from "hooks/useAptos";
-import { divide } from "lodash";
+import { loadModules} from "hooks/useAptos";
 import FunctionInfo from "./functions/FunctionInfo";
 import ModuleTypes from "./ModuleTypes";
 import { dapps } from 'data/dapps/dapp_data';
@@ -13,11 +11,8 @@ import DappBadge from "components/DappBadge";
 import TxnPreview from "./TxnPreview";
 import TransactionModal from "modals/TransactionModal";
 
-import AccountResources from "sections/account/AccountResources";
-import { FaClipboard, FaRegArrowAltCircleLeft, FaRegClipboard } from "react-icons/fa";
+import { FaClipboard, FaRegArrowAltCircleLeft} from "react-icons/fa";
 import { textCopy } from "utils";
-import { loadTxs } from "hooks/useTransaction";
-import { useWeb3 } from "@fewcha/web3-react";
 import TxnFilterView from "views/TxnFilterView";
 import ResourceDetailView from "views/ResourceDetailView";
 import ModuleOutline from "components/etc/ModuleOutline";
@@ -76,8 +71,6 @@ const ModuleExplorer = ({ client, mod }: ModExploreProps) => {
     }
 
     const switchAddress = async (address: string) => {
-
-
         loadModules(address).then((modules: Types.MoveModuleBytecode[]) => {
             setModules(modules);
             setSelectedFunction(modules[0].abi?.exposed_functions[0] || null);
@@ -94,31 +87,15 @@ const ModuleExplorer = ({ client, mod }: ModExploreProps) => {
     }
         , []);
 
-
-
     return (
         <div className="w-full items-center justify-center">
-            {selectedModule && selectedFunction && showTxnModal ?
-                <TransactionModal
-                    // sender={account?.address} 
-                    client={client}
-                    address={selectedAddress}
-                    setIsOpen={setShowTxnModal}
-                    module={selectedModule}
-                    type_arguments={typeArgs}
-                    args={tempArgs}
-                    isOpen={showTxnModal}
-                    func={selectedFunction} />
-                : null}
             <div className="flex flex-row w-full justify-center">
-                {/* <div> */}
                 <div className="w-1/3 seam-outline">
                     <div className="flex flex-row text-black gap gap-2">
                         <input className="w-1/2 py-2 px-4 outline outline-2 outline-white rounded-2xl" type="text" placeholder="Enter address" value={selectedAddress} onChange={(e) => setSelectedAddress(e.target.value)} />
                         <button data-tip="load address" className="btn m-1 text-white" onClick={() => switchAddress(selectedAddress)}> <FaRegArrowAltCircleLeft /></button>
                         <button data-tip="Copy Addr." className="btn m-1 text-white" onClick={() => textCopy(selectedAddress)}> <FaClipboard /></button>
                         <button data-tip="Aptos Token(NFT) Lib" className="seam-button" onClick={() => switchAddress('0x3')}>0x3</button>
-                        
                     </div>
                     <p className="text-center text-lg font-bold pt-2">or Select a Dapp</p>
                     <div className="flex flex-wrap py-2 items-center scrollbar scrollbar-thumb-blue gap gap-3 w-full">
@@ -132,7 +109,7 @@ const ModuleExplorer = ({ client, mod }: ModExploreProps) => {
                         <p className=" text-2xl account-outline">{formatParam(selectedAddress)}</p>
                     </span>
                     <p className="text-xl text-center py-1">Account Modules</p>
-                    <div className=" flex flex-wrap scrollbar h-60 overflow-y-scroll scrollbar-thumb-blue scrollbar-track-black flex-row justify-start seam-outline p-2 gap gap-2">
+                    <div className="flex flex-wrap scrollbar h-60 overflow-y-scroll scrollbar-thumb-blue scrollbar-track-black flex-row justify-start seam-outline p-2 gap gap-2">
                         {modules.map((mod: Types.MoveModuleBytecode, i: number) => {
                             return (<div key={i} className="items-center justify-center">
                                 <button className=" module-outline" onClick={() => setSelectedModule(mod)}>{mod.abi?.name}</button>
@@ -150,10 +127,8 @@ const ModuleExplorer = ({ client, mod }: ModExploreProps) => {
                         <ModuleInfo module={selectedModule} />
                         : <div>No modules found</div>}
                     {selectedModule && selectedFunction ?
-                        // null
                         <TxnPreview
                             address={selectedAddress}
-                            // account={userAccount}
                             module={selectedModule}
                             func={selectedFunction}
                             params={selectedFunction?.params}
@@ -162,11 +137,9 @@ const ModuleExplorer = ({ client, mod }: ModExploreProps) => {
                             client={client}
                         />
                         : null}
-
                 </div>
             </div>
             {selectedModule !== undefined ? <ModuleTypes module={selectedModule} /> : null}
-
             <div className="flex flex-row gap gap-2 p-2 ">
                 <TxnFilterView address={selectedAddress} />
                 <ResourceDetailView address={selectedAddress} showDetails={true} />

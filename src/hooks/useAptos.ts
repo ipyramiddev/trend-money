@@ -3,15 +3,14 @@ import { AptosClient, AptosAccount, FaucetClient, BCS, Types, TxnBuilderTypes, H
 import { BaseContract } from "ethers";
 import { aSwap } from "./useAnime";
 import { aptinSupplyPayload } from "./useAptin";
-const NODE_URL = "https://fullnode.devnet.aptoslabs.com";
+const DEV_NODE_URL = "https://fullnode.devnet.aptoslabs.com";
 const FAUCET_URL = "https://faucet.devnet.aptoslabs.com";
 
 
 
-const client = new AptosClient(NODE_URL);
-const faucetClient = new FaucetClient(NODE_URL, FAUCET_URL);
+const client = new AptosClient(DEV_NODE_URL);
+const faucetClient = new FaucetClient(DEV_NODE_URL, FAUCET_URL);
 const tokenClient = new TokenClient(client);
-const WAGGY_ADDY = '0x84BCEA0377544E7B6ACB57CE120A74EF0D72C2F312138A99D42E46D2A4656F86';
 
 export const useFaucet = async (account: AptosAccount) => {
     console.log("Fauceting account...");
@@ -32,12 +31,12 @@ export const loadValidators =async () => {
 export const mintCollection = async () => {}
 
 
-export const mintWagmi = async (account: AptosAccount) => {
-    const payload = {
-        type: "script_function_payload",
-        function: `${WAGGY_ADDY}`,
-    }
-}
+// export const mintWagmi = async (account: AptosAccount) => {
+//     const payload = {
+//         type: "script_function_payload",
+//         function: `${WAGGY_ADDY}`,
+//     }
+// }
 
 export const loadPool = (pool:any) =>{
     if(pool.platform==="liquidSwap"){
@@ -72,7 +71,7 @@ export const sendTransaction = async (
     sender:string,
     mod:string,
     func:string,
-    generic_type_params: any[],
+    generic_type_params: string[],
     args: any[]
     ) =>{
 // Generate a transaction
@@ -99,8 +98,6 @@ const default_options = {
 
 console.log("OPTIONS",default_options);
 
-// const payload = aptinSupplyPayload("APT",5444)
-// const payload = aSwap("0x1::
 const transactionRequest = await window.martian.generateTransaction(sender, payload,default_options);
 const txnHash = await window.martian.signAndSubmitTransaction(transactionRequest);
 // console.log(transactionRequest);
