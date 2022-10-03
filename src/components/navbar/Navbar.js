@@ -5,12 +5,11 @@ import { useWeb3 } from '@fewcha/web3-react';
 import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 const nav_items = [
-    { name: 'Home', path: '/' },
     {name: 'Explorer',path: '/explorer'},
-    {name: 'Trade',path: '/staking?'},
+    {name: 'Powersets',path: '/powersets'},
 ];
 const nav_icons = [
-    {name: 'github', link:'https://github.com/SeamMoney/seam', icon:(<FaGithub className=" hover:text-blac " />)},
+    {name: 'github', link:'https://github.com/SeamMoney/', icon:(<FaGithub className=" hover:text-blac " />)},
     {name: 'docs',link: 'https://docs.seam.money/',icon:(<FaBookOpen className=" hover:text-blac " />)},
     {name: 'twitter',link:"https://twitter.com/SeamMoney", icon:(<FaTwitter className=" hover:text-blac " />)},
 ];
@@ -48,7 +47,7 @@ export default function Navbar(props) {
     return (
         <nav className=" px-2 sm:px-4 py-2.5 text-white">
             <div className="container flex flex-wrap justify-between items-center mx-auto">
-                <a href="https://www.seam.money" className="flex items-center">
+                <a href="/" className="flex items-center">
                     <Logo />
                 </a>
                 <button data-collapse-toggle="mobile-menu" type="button" onClick={() => toggle()} className="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="mobile-menu" aria-expanded="false">
