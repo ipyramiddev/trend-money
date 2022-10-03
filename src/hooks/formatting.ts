@@ -109,6 +109,22 @@ export const formatParam = (param:string) => {
     return param
     };
 
+// primitives have no :: delimiter
+// address::module::type (e.g. 0x1234::token::erc20)
+export const splitType = (type:string) => {
+    if (!type || type===undefined || type==="" ) {
+        return {address:"0x1",module:"base",name:"empty"};
+    }
+    if(type.split("::").length === 1){
+        return {address:"0x1",module:"base",name:type}
+    }
+    else{
+        const splitt = type.split("::");
+        return {address:splitt[0],module:splitt[1],name:splitt[2]}
+    }
+}
+
+
 export const formatType = (type:string)=>{
     const spl = type.split("::",3)
     const mod = spl[1] || " "

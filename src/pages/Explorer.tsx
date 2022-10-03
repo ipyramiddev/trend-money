@@ -12,12 +12,12 @@ import { useWeb3 } from '@fewcha/web3-react';
 import { formatParam } from 'hooks/formatting';
 import { ExplorerTabView } from 'views/ExplorerTabView';
 import Coins from './Coins';
+import IDE from './IDE';
 // devnet is used here for testing
 const NODE_URL = "https://fullnode.devnet.aptoslabs.com";
 // const FAUCET_URL = "https://faucet.devnet.aptoslabs.com";
 
 const client = new AptosClient(NODE_URL);
-// const faucetClient = new FaucetClient(NODE_URL, FAUCET_URL);
 
 interface Props {
     isLoading: boolean;
@@ -34,7 +34,8 @@ const Explorer = () => {
         { name: 'Modules + Dapps', id: 'ModuleExplorer' },
         { name: 'User Account ', id: 'UserExplorer' },
         { name: 'Dapps', id: 'Dapps' },
-        { name: 'Coins', id: 'Coins' },
+        { name: 'IDE', id: 'IDE' },
+        { name: 'Coins', id: 'Coins' }
     ]
     const [view, setView] = useState("ModuleExplorer");
     return (
@@ -62,6 +63,7 @@ const Explorer = () => {
                 {view === "ModuleExplorer" ? <ModuleExplorer client={client} mod={modules} /> : null}
                 {view === "Dapps" ? <DappsView /> : null}
                 {view === "UserExplorer" && isConnected ? <UserExplorer account={account} client={client} /> : null}
+                {view === "IDE" ? <IDE/> : null}
                 {view === "Pools" ? <Pools client={client} /> : null}
                 {view === "Coins" ? <Coins/> : null}
             </div>

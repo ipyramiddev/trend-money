@@ -10,7 +10,7 @@ export const dapps = [
     "status": "",
     "image": "tsunami.png",
     "github": "",
-    "Docs": "",
+    "docs": "https://docs.tsunami.finance/",
     "Npm": "",
     "k": "DEFI"
   },
@@ -18,13 +18,13 @@ export const dapps = [
     "name": "Switchboard",
     "tags": ["Oracle"],
     "discord": "",
-    "Published": "Jul 19, 2022 6:28 AM",
+    "Published": "",
     "twitter": "https://twitter.com/switchboardxyz",
     "status": "TBA",
     "url": "https://switchboard.xyz/",
     "image": "switchboard.png",
-    "github": "",
-    "address": "0xb27f7bbf7caf2368b08032d005e8beab151a885054cdca55c4cc644f0a308d2b",
+    "github": "https://github.com/switchboard-xyz/sbv2-aptos",
+    "address": "0x14611263909398572be034debb2e61b6751cafbeaddd994b9a1250cb76b99d38",
     "docs": "https://docs.switchboard.xyz/introduction",
     "npm": "",
   },
@@ -116,7 +116,7 @@ export const dapps = [
     "github": "https://github.com/hippospace",
     "url": "https://hippo.space/",
     "docs": "",
-    "address": "0xdad1c1d54fcff3bf0d83b4b0067d7cf0ebdca3ff17556f77115ada2db1ff23fe",
+    "address": "0x46e159be621e7493284112c551733e6378f931fd2fc851975bc36bedaae4de0f",
     "coin_list": ''
   },
   {
@@ -292,7 +292,7 @@ export const dapps = [
     "url": "https://app.mojito.markets",
     "github": "",
     "docs": "",
-    "address": "0xd60732df368517cf6c1b9155c97f022c961e8a7b30430d4a3ab143c88d684825",
+    "address": "0xa61f1c8f0e69bb866f2073f9a1ab0252efdd9f12c092256c68290d8dae35551e",
   },
 
   {

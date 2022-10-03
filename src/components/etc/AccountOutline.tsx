@@ -9,7 +9,7 @@ interface AccountProps {
 const AccountOutline = ({ name, addr }: AccountProps) => {
 
     return (<p data-tip={addr}
-    className="account-outline text-center">
+    className="account-outline text-center items-center justify-center">
         {isDapp(addr) ? (DappLogo(getDappImg(addr))) : shortenAddress(addr)}
         </p>)
 }

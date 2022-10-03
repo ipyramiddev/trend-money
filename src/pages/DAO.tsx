@@ -3,9 +3,15 @@
 export const Dao = () => {
     return (
         <div className="dao">
-            <p>Dao + Proposals</p>
+            <p>Seam Dao</p>
             {/* <DAOOverview />
             <Proposals /> */}
         </div>
     )
+}
+
+const DAOOverview = () => {
+    return(
+        <div></div>
+    );
 }
