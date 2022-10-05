@@ -1,5 +1,6 @@
+import Icons from "components/Icons";
 import { useRef, useState } from "react";
-import { FaArrowCircleUp, FaBackward, FaForward } from "react-icons/fa";
+import { FaArrowCircleUp, FaBackward, FaForward, FaGithub, FaTwitter } from "react-icons/fa";
 import ReactTooltip from "react-tooltip";
 import DappLogo from "./DappLogo";
 
@@ -10,19 +11,20 @@ interface DappFrameProps {
 }
 
 const DappHeader = (dapp: Dapp) => {
-    return (<div className="flex flex-row gap gap-2 items-center text-baseline px-4">
-        <p className="text-2xl">{dapp.name}</p>
+    return (<div className="flex flex-row gap gap-2  items-center text-baseline px-4">
+        <p className="text-2xl ">{dapp.name}</p>
         {DappLogo(dapp.image || "dapp.png")}
     </div>);
-
 }
 
 const DappFrame = ({ dapp, viewUrl }: DappFrameProps) => {
     const ref = useRef<any>();
     const [rand, setRand] = useState(0);
+    const [url, setUrl] = useState(viewUrl);
 
     const DappReload = () => {
         console.log("Trigger reload");
+        setUrl(viewUrl);
         setRand(rand + 1)
     }
 
@@ -39,7 +41,6 @@ const DappFrame = ({ dapp, viewUrl }: DappFrameProps) => {
                     <FaForward />
                 </button>
 
-
                 {/* REFRESH button */}
 
                 <button
@@ -48,8 +49,22 @@ const DappFrame = ({ dapp, viewUrl }: DappFrameProps) => {
                     <FaArrowCircleUp />
                 </button>
                 <input className="w-2/3 py-3 mx-3 rounded-2xl bg-white px-5 text-black"
-                    value={viewUrl}>
+                    value={url}>
                 </input>
+                <div className="flex flex-row gap gap-4 px-3 py-2 rounded-xl text-2xl">
+                    
+                    <button
+                        onClick={()=>setUrl((dapp as any).github)}
+                    >
+                        <FaGithub />
+                    </button>
+
+                    {/* <button
+                        onClick={()=>setUrl((dapp as any).twitter)}
+                    >
+                        <FaTwitter />
+                    </button> */}
+                </div>
 
                 {/* url txt input */}
                 <ReactTooltip place="top" textColor="white" multiline={true} />
@@ -63,7 +78,7 @@ const DappFrame = ({ dapp, viewUrl }: DappFrameProps) => {
 
     return (
         <div className="w-full min-w-full">
-            <div className="mockup-window border  border-pink mockup-window-outline shadow-lg shadow-pink w-full pt-2 m-3">
+            <div className="mockup-window border-pink mockup-window-outline border-4 shadow-xl  shadow-pink  w-full pt-2 m-3">
                 {DappHeader(dapp)}
                 <DappNav />
                 <iframe className="scrollbar rounded-xl  scrollbar-thumb-pink scrollbar-track-blue"
@@ -71,7 +86,7 @@ const DappFrame = ({ dapp, viewUrl }: DappFrameProps) => {
                     height={'600px'}
                     ref={ref}
                     // onLoad={newNav}
-                    title="host" src={viewUrl} />
+                    title="host" src={url} />
             </div>
         </div>
     )

@@ -34,17 +34,19 @@ const WalletModal = ({ isOpen, setIsOpen }: walletModalProps) => {
     <ModalWrapper open={isOpen} setOpen={setIsOpen} cancelButtonRef={cancelButtonRef} title="tets">
       {isConnected ? <div className="flex flex-col justify-between"> <p className="text-white">{account?.address}</p>
         <button className='seam-button' onClick={() => copy}> Copy </button>
+        <p>{network}</p>
       </div> : <p> Not connected </p>}
       {!isConnected && <ConnectWallet type="list" />}
       {isConnected && (
         <div className="">
           <div className="flex flex-row justify-center items-center gap gap-3 p-2 m-2">
             <p>Connected with </p>
-            {currentWallet === 'martian' ??
-              <img className="w-32 h-10" src={`./dapps/martian.png`} alt={currentWallet} />}
+            {currentWallet === 'martian' ?
+              <img className="w-10 h-10" src={`./dapps/martian.png`} alt={currentWallet} />:null}
             {currentWallet === 'fewcha' ?
-              <img className="w-32 h-24 p-2 bg-white rounded-2xl" src={`./dapps/fewcha.svg`} alt={currentWallet} /> : null}
+              <img className="w-10 h-10 p-2 bg-white rounded-2xl" src={`./dapps/fewcha.svg`} alt={currentWallet} /> : null}
           </div>
+          <p>Current Network: {network}</p>
           <button className='seam-button' onClick={() => copy}> Copy </button>
           <button className="seam-button" onClick={onDisconnect}>disconnect</button>
         </div>)
