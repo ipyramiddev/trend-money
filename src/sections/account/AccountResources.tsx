@@ -38,7 +38,7 @@ const AccountResources = ({ address,selectResource }: Props) => {
 
     useEffect(() => {
         loadResources(address).then((res) => {
-            const reversed = res.reverse()
+            const reversed = res
             const coreAddys = res.map((t:any)=>{
                 const {cAddr, cMod} = parseCoin(t.type)
                 return shortenAddress(cAddr)
@@ -97,12 +97,13 @@ const filteredResources = (
 
 
 const Resource = (resource: Types.MoveResource,selectResource: (resource:Types.MoveResource)=>void) => {
-    console.log("Account resource",resource);
+    // console.log("Account resource",resource);
     if (resource.type == "0x1::coin::CoinStore<0x1::aptos_coin::AptosCoin>") {
 
         return CoinStore(resource.data);
     }
     if (resource.type.includes("0x1::coin::CoinStore")){
+        console.log("coinstore",resource.type);
         return GenericCoinStore(resource.data,resource.type)
     }
 
