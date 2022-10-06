@@ -1,0 +1,113 @@
+.nav {
+  width: 100%;
+  top: 0;
+  left: 0;
+  padding: 30px;
+  z-index: 6;
+}
+
+.image_container {
+  /* width: 100%; */
+}
+
+.nav .mobile_nav_icon {
+  font-size: 3rem;
+  color: #ffffff;
+}
+
+.nav .mobile_nav_icon:active {
+  color: #8758FF;
+}
+
+.nav .mobile_nav {
+  position: fixed;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  left: 0;
+  top: 0;
+  min-height: 100%;
+  width: 0;
+  background: #181818;
+  overflow: hidden;
+  z-index: 10;
+  -webkit-transition: width 0.3s linear;
+  transition: width 0.3s linear;
+}
+
+.nav .mobile_nav .close_btn {
+  position: absolute;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  right: 20px;
+  top: 20px;
+  font-size: 2.5rem;
+  color: #bbc0d0;
+  border: 0;
+}
+
+.nav .mobile_nav .close_btn:hover {
+  -webkit-transform: rotateZ(360deg);
+          transform: rotateZ(360deg);
+  -webkit-transition: -webkit-transform 0.4s linear;
+  transition: -webkit-transform 0.4s linear;
+  transition: transform 0.4s linear;
+  transition: transform 0.4s linear, -webkit-transform 0.4s linear;
+}
+
+.nav .mobile_nav .nav_links {
+  position: relative;
+  font-size: 24px;
+  -webkit-animation-name: slideRight;
+          animation-name: slideRight;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+  -webkit-animation-delay: 0.5s;
+          animation-delay: 0.5s;
+  -webkit-transition: -webkit-animation 1s linear;
+  transition: -webkit-animation 1s linear;
+  transition: animation 1s linear;
+  transition: animation 1s linear, -webkit-animation 1s linear;
+}
+
+.nav .mobile_nav .nav_links > * {
+  margin: 24px 0;
+}
+
+@media (max-width: 768px) {
+  .nav .nav_link_wrapper {
+    display: none;
+  }
+  .nav .act_button {
+    display: none;
+  }
+}
+
+@media (min-width: 768px) {
+  .nav .btn_group {
+    -webkit-box-orient: horizontal !important;
+    -webkit-box-direction: normal !important;
+        -ms-flex-direction: row !important;
+            flex-direction: row !important;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+}
+
+@media (min-width: 1024px) {
+  .nav .mobile_nav_icon {
+    display: none;
+  }
+  .nav .mobile_nav {
+    display: none;
+  }
+}
+/*# sourceMappingURL=Nav.module.css.map */
