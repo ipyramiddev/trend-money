@@ -116,7 +116,7 @@ export const dapps = [
     "github": "https://github.com/hippospace",
     "url": "https://hippo.space/",
     "docs": "",
-    "address": "0x46e159be621e7493284112c551733e6378f931fd2fc851975bc36bedaae4de0f",
+    "address": "0x498d8926f16eb9ca90cab1b3a26aa6f97a080b3fcbe6e83ae150b7243a00fb68",
     "coin_list": ''
   },
   {
@@ -330,5 +330,22 @@ export const dapps = [
     "github": "",
     "docs": "",
     "npm": "",
+  },
+
+  {
+    "name": "Leizd",
+    "tags": ["defi", "lending"],
+    "doc": "https://docs.leizd.com/",
+  },
+  { 
+    "name": "Ferum",
+
+    "tags": ["DEX", "Exchange"],
+    "url" : "https://www.ferum.xyz/",
+    "docs": "",
+    "github": "",
+    "image": "ferum.png",
+    "twitter": "https://twitter.com/ferumxyz",
+    "discord": "https://t.co/8DHuqgzhWo",
   }
 ]

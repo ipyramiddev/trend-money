@@ -48,9 +48,9 @@ const DappsView = () => {
         // if(dapp.name in dappStack.entries)
         
         
-        if (dapp.url && !(dapp.name in recentOpen.keys)) {
+        if (dapp.url) {
             
-            pushDapp(<DappFrame dapp={dapp} viewUrl={dapp?.url}/>);
+            pushDapp(<DappFrame dapp={dapp} viewUrl={dapp?.url||""}/>);
             setSelectedDapp(dapp);
             loadTxs(dapp.address).then((txns)=>setTxns(txns))
         } else {
@@ -77,12 +77,13 @@ const DappsView = () => {
                 <div className="flex flex-wrap p-1">
                     {dapps.map((dapp:any,i:number)=>{
                         return (<div className="p-0" data-tip={dapp.name}>
-                            <DappBadge dapp={dapp} setSelectedDapp={loadDapp} isSelected={dapp.address ? (dapp.address === selectedDapp) : false}/>
+                            <DappBadge dapp={dapp} setSelectedDapp={loadDapp} isSelected={dapp.address ? (dapp.address === selectedDapp.address) : false}/>
                         </div>)
                     })}
                 </div>
             <div className="px-6 w-full">
                 {dappStack[0]}
+                <DappFrame dapp={selectedDapp} viewUrl={selectedDapp?.url||""}/>
                 </div>
             {txns?.length!==0 ? <TxnList txns={txns||[]} address={selectedDapp.address}/> : null}
             <ReactTooltip place="top" textColor="white" html={true} multiline={true} />

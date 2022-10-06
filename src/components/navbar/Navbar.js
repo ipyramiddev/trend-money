@@ -72,9 +72,9 @@ export default function Navbar(props) {
         </nav>
     );
 
-const ChainInput =() =>{
-    return <div>
+// const ChainInput =() =>{
+//     return <div>
         
-    </div>
-}
+//     </div>
+// }
 }
