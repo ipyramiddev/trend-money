@@ -2,36 +2,29 @@ import { AptosClient, Types } from "aptos";
 import { formatParam, TimeAgo } from "hooks/formatting";
 import ReactTooltip from "react-tooltip";
 import { useEffect, useState } from "react";
-import { loadModules} from "hooks/useAptos";
+import { loadModules, useClient} from "hooks/useAptos";
 import FunctionInfo from "./functions/FunctionInfo";
 import ModuleTypes from "./ModuleTypes";
 import { dapps } from 'data/dapps/dapp_data';
 import { Dapp } from "components/dapps/types";
 import DappBadge from "components/DappBadge";
 import TxnPreview from "./TxnPreview";
-import TransactionModal from "modals/TransactionModal";
-
 import { FaClipboard, FaRegArrowAltCircleLeft} from "react-icons/fa";
 import { textCopy } from "utils";
 import TxnFilterView from "views/TxnFilterView";
 import ResourceDetailView from "views/ResourceDetailView";
 import ModuleOutline from "components/etc/ModuleOutline";
-interface ModExploreProps {
-    client: AptosClient;
-    mod: Types.MoveModuleBytecode[];
-}
+import { Link, Outlet, useLoaderData, useParams } from "react-router-dom";
 
-const ModuleExplorer = ({ client, mod }: ModExploreProps) => {
-    const [selectedAddress, setSelectedAddress] = useState<string>("0x1");
+const ModuleExplorer = () => {
+    let mod = useLoaderData() as Types.MoveModuleBytecode[];
+    let {addr,name} = useParams();
+    const client = useClient();
+    const [selectedAddress, setSelectedAddress] = useState<string>(addr||'');
     const [selectedModule, setSelectedModule] = useState<Types.MoveModuleBytecode>(mod[0]);
     const [selectedFunction, setSelectedFunction] = useState<Types.MoveFunction | null>(null);
-    const [modules, setModules] = useState<Types.MoveModuleBytecode[]>([]);
-    const [error, setError] = useState<string | null>(null);
-    const [showTxnModal, setShowTxnModal] = useState<boolean>(false);
-    const [typeArgs, setTypeArgs] = useState<string[]>(["0x1::aptos_coin::AptosCoin"]);
-    const [tempArgs, setTempArg] = useState<string[]>([]);
-    // const { account,isConnected } =useWeb3();
-
+    const [modules, setModules] = useState<Types.MoveModuleBytecode[]>(mod);
+    
     const ModuleInfo = ({ module }: { module: Types.MoveModuleBytecode }) => {
         const { abi, } = module;
 
@@ -41,7 +34,6 @@ const ModuleExplorer = ({ client, mod }: ModExploreProps) => {
                     <p className="text-2xl p-1">Module:</p>
                     {abi?.name !== undefined ? <ModuleOutline module_name={abi.name} /> : <h1>No name</h1>}
                 </div>
-
                 {abi?.exposed_functions !== undefined ? <h2 className="text-center opacity-70">{abi.exposed_functions.length} exposed function(s)</h2> : <h2>No exposed functions</h2>}
                 <div className="flex flex-row justify-between">
                     <div className="modScroller outline-dashed rounded-xl outline-white p-1">
@@ -64,26 +56,10 @@ const ModuleExplorer = ({ client, mod }: ModExploreProps) => {
         )
     }
 
-    const switchDapp = async (d: Dapp) => {
-        if (d.address) {
-            switchAddress(d.address);
-        }
-    }
 
-    const switchAddress = async (address: string) => {
-        loadModules(address).then((modules: Types.MoveModuleBytecode[]) => {
-            setModules(modules);
-            setSelectedFunction(modules[0].abi?.exposed_functions[0] || null);
-            setSelectedAddress(address);
-            setSelectedModule(modules[0]);
-        }).catch((err: any) => {
-            console.log(err);
-            setError(err);
-        })
-    }
 
     useEffect(() => {
-        switchAddress(selectedAddress);
+        // switchAddress(selectedAddress);
     }
         , []);
 
@@ -93,14 +69,16 @@ const ModuleExplorer = ({ client, mod }: ModExploreProps) => {
                 <div className="w-1/3 seam-outline">
                     <div className="flex flex-row text-black gap gap-2">
                         <input className="w-1/2 py-2 px-4 outline outline-2 outline-white rounded-2xl" type="text" placeholder="Enter address" value={selectedAddress} onChange={(e) => setSelectedAddress(e.target.value)} />
-                        <button data-tip="load address" className="btn m-1 text-white" onClick={() => switchAddress(selectedAddress)}> <FaRegArrowAltCircleLeft /></button>
+                        <Link to={`/explorer/modules/${selectedAddress}`}>
+                            <button data-tip="load address" className="btn m-1 text-white"> <FaRegArrowAltCircleLeft /></button>
+                        </Link>
                         <button data-tip="Copy Addr." className="btn m-1 text-white" onClick={() => textCopy(selectedAddress)}> <FaClipboard /></button>
-                        <button data-tip="Aptos Token(NFT) Lib" className="seam-button" onClick={() => switchAddress('0x3')}>0x3</button>
+                        {/* <button data-tip="Aptos Token(NFT) Lib" className="seam-button" onClick={() => switchAddress('0x3')}>0x3</button> */}
                     </div>
                     <p className="text-center text-lg font-bold pt-2">or Select a Dapp</p>
                     <div className="flex flex-wrap py-2 items-center scrollbar scrollbar-thumb-blue gap gap-3 w-full">
                         {dapps.filter((dapp: any) => (dapp.address)).map((dapp: any) => (
-                            <DappBadge dapp={dapp} setSelectedDapp={switchDapp} isSelected={dapp.address ? (dapp.address === selectedAddress) : false} />
+                            <DappBadge dapp={dapp}  isSelected={dapp.address ? (dapp.address === selectedAddress) : false} />
                         )
                         )}
                     </div>
@@ -133,7 +111,7 @@ const ModuleExplorer = ({ client, mod }: ModExploreProps) => {
                             func={selectedFunction}
                             params={selectedFunction?.params}
                             generic_types={selectedFunction?.generic_type_params}
-                            setShowTxnModal={setShowTxnModal}
+                            
                             client={client}
                         />
                         : null}
@@ -144,6 +122,7 @@ const ModuleExplorer = ({ client, mod }: ModExploreProps) => {
                 <TxnFilterView address={selectedAddress} />
                 <ResourceDetailView address={selectedAddress} showDetails={true} />
             </div>
+            {/* </DataRouter> */}
         </div>
     );
 }

@@ -18,6 +18,10 @@ export const useFaucet = async (account: AptosAccount) => {
     // const re = await faucetClient.
 }
 
+export const useClient = ()=>{
+    return client;
+}
+
 export const loadValidators =async () => {
     const validatorInfo = (await client.getAccountResource(new HexString("0x1"),"0x1::stake::ValidatorPerformance"))
     const validatorSet = (await client.getAccountResource(new HexString("0x1"),"0x1::stake::ValidatorSet"))

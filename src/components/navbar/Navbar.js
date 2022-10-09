@@ -5,7 +5,7 @@ import { useWeb3 } from '@fewcha/web3-react';
 import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 const nav_items = [
-    {name: 'Explorer',path: '/explorer'},
+    {name: 'Explorer',path: '/explorer/modules/0x1'},
     {name: 'Powersets',path: '/powersets'},
 ];
 const nav_icons = [

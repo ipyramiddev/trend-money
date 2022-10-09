@@ -4,7 +4,6 @@ import { Types } from "aptos";
 import ModuleOutline from "components/etc/ModuleOutline";
 import { formatParam } from "hooks/formatting";
 import { sendTransaction } from "hooks/useAptos";
-import TransactionModal from "modals/TransactionModal";
 import { useState } from "react";
 
 interface TxnPreviewProps {
@@ -13,11 +12,10 @@ interface TxnPreviewProps {
     func: Types.MoveFunction;
     params: any[];
     generic_types: any[];
-    setShowTxnModal: React.Dispatch<React.SetStateAction<boolean>>;
     client: AptosClient;
 }
 
-const TxnPreview = ({ address, module, func, params, generic_types, setShowTxnModal, client }: TxnPreviewProps) => {
+const TxnPreview = ({ address, module, func, params, generic_types, client }: TxnPreviewProps) => {
     const [argList, setArgList] = useState<any[]>([]);
     const [gList, setgList] = useState<any[]>([]);
     const { account, balance, isConnected, network, currentWallet } = useWeb3();

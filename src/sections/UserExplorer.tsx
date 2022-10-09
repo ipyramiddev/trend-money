@@ -7,16 +7,14 @@ import { AptosClient, Types } from "aptos";
 import { loadTxs } from "hooks/useTransaction";
 import AccountResources from "./account/AccountResources";
 import { loadAccount } from "hooks/loadAptos";
-import { sendTransaction } from "hooks/useAptos";
+import { sendTransaction, useClient } from "hooks/useAptos";
 import { FaJenkins } from "react-icons/fa";
 import ResourceDetailView from "views/ResourceDetailView";
-interface Props {
-    account: any;
-    client: AptosClient;
-}
 
-const UserExplorer = ({ client }: Props) => {
+
+const UserExplorer = () => {
     const { account, isConnected } = useWeb3();
+    const client = useClient();
     const [txs, setTxs] = useState<Types.Transaction[]>([]);
     const [sendAddr, setSendAddr] = useState<string>("");
     useEffect(() => {

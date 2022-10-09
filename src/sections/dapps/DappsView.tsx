@@ -11,6 +11,9 @@ import DappLogo from "./DappLogo";
 import DappBadge from "components/DappBadge";
 import ReactTooltip from "react-tooltip";
 import { dappsByAddress } from "util/dappUtils";
+import { DappContextProvider } from "./DappContext";
+import DappManager from "./DappManager";
+import { Outlet } from "react-router-dom";
 
 function shuffle(array: any[]) {
     let currentIndex = array.length, randomIndex;
@@ -44,49 +47,17 @@ const DappsView = () => {
         setDappStack(newStack);
     }
 
-    const loadDapp = (dapp: any) => {
-        // if(dapp.name in dappStack.entries)
-        
-        
-        if (dapp.url) {
-            
-            pushDapp(<DappFrame dapp={dapp} viewUrl={dapp?.url||""}/>);
-            setSelectedDapp(dapp);
-            loadTxs(dapp.address).then((txns)=>setTxns(txns))
-        } else {
-            if(!dapp.url){
-                let d = dappsByAddress().get(dapp)
-                if (d!==undefined){
-                pushDapp(<DappFrame dapp={d} viewUrl={d.url||""}/>);
-                setSelectedDapp(d);
-                if(d.address){
-            loadTxs(d.address).then((txns)=>setTxns(txns))}
-            }
-            }
-            
-        }
-        // popDapp();
-        return;
-    }
-
-    const reshuffle = () => setOrderedDapps(shuffle(orderedDapps));
-
     return (
         <div className="flex flex-col w-full p-6 relative items-start justify-start ">
-            <p className="text-3xl">Dapps</p>
-                <div className="flex flex-wrap p-1">
-                    {dapps.map((dapp:any,i:number)=>{
-                        return (<div className="p-0" data-tip={dapp.name}>
-                            <DappBadge dapp={dapp} setSelectedDapp={loadDapp} isSelected={dapp.address ? (dapp.address === selectedDapp.address) : false}/>
-                        </div>)
-                    })}
-                </div>
+                <DappContextProvider value={{dapp:null,isHome:true}}>
             <div className="px-6 w-full">
-                {dappStack[0]}
-                <DappFrame dapp={selectedDapp} viewUrl={selectedDapp?.url||""}/>
+                {/* <DappManager /> */}
+                <Outlet/>
+
                 </div>
             {txns?.length!==0 ? <TxnList txns={txns||[]} address={selectedDapp.address}/> : null}
             <ReactTooltip place="top" textColor="white" html={true} multiline={true} />
+                </DappContextProvider>
         </div>
     );
 }
