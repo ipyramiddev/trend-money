@@ -13,7 +13,6 @@ export const coin_lists = [
         module: 'coins',
         types: ["BTC","USDT"]
     },
-
 ]
 
 
