@@ -1,5 +1,30 @@
 import { AptosClient } from "aptos";
 import { useState } from "react";
+
+type File = {
+    name: string;
+    lines: string[];
+    warnings?: string[];
+    compiled?: string;
+
+}
+
+interface EditorProps {
+    file: File;
+    module: string;
+
+}
+
+const mockFile = {
+    name: "test.move",
+    lines: [
+        "line 1",
+        "line 2",
+        "line 3",
+        "line 4",
+        "line 5",
+    ],
+}
  
 
 interface PoolProps {
@@ -13,26 +38,13 @@ interface PoolProps {
 // from this page the user will be able to compile, test and deploy their contracts
 const IDE = () => {
     return (
-    <div>
+    <div className="w-full h-full items-center ">
         <p>IDE</p>
+        <FileEditor file={mockFile} module="temp"/>
         
 
     </div>
     )
-}
-
-type File = {
-    name: string;
-    content: string;
-    warnings?: string[];
-    compiled?: string;
-
-}
-
-interface EditorProps {
-    file: File;
-    module: string;
-
 }
 
 
@@ -42,18 +54,27 @@ const FileEditor = ({
     module
 }:EditorProps) => {
 
-    const [currentText, setCurrentText] = useState<string>(file.content);
+    const handleChange = (e:any) =>{
+        
+            setCurrentText(e.event.textValue);
+        // }
+
+    }
+
+    const [currentText, setCurrentText] = useState<string>(file.lines.join(" \n"));
 
     return (
-        <div className="mockup-window border-pink mockup-window-outline border-4 shadow-xl  shadow-pink  w-full pt-2 m-3">
+        <div className="mockup-window border-pink mockup-window-outline border-4 shadow-xl  shadow-pink  w-full min-h-1/2 pt-2 m-3">
         <div className="multiline">
-        <input type="textarea" 
+        <textarea 
         className="w-full h-full py-3 mx-3 rounded-2xl bg-white px-5 text-black"
           name="textValue"
           value={currentText}
-        //   onChange={this.handleChange}
+          onChange={(e)=>handleChange(e)}
         />
       </div>
+
+      <p>{currentText}</p>
             </div>
     )}
 

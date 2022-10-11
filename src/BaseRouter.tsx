@@ -3,6 +3,7 @@ import { ERouter } from "Erouter";
 import { loadModules } from "hooks/useAptos";
 import { loadTxs } from "hooks/useTransaction";
 import Explorer from "pages/Explorer";
+import IDE from "pages/IDE";
 import NodePage from "pages/NodePage";
 import { Trade } from "pages/Trade";
 import {
@@ -27,7 +28,7 @@ export const BaseRouter = () => {
         <Route path="/" element={<Trade />} />
 
         {/* <Route path="powersets" element={<Trade/>} /> */}
-        <Route path="/staking" element={<NodePage />} />
+        <Route path="staking" element={<NodePage />} />
         <Route path="explorer" element={<Explorer />} >
           <Route
             element={<ModuleExplorer />}
@@ -43,6 +44,12 @@ export const BaseRouter = () => {
             element={<UserExplorer/>}
             path="user"></Route>
 
+            <Route
+              element={<IDE/>}
+              path="ide"
+              >
+                </Route>
+
             <Route 
             element={<DappsView/>}
             path="dapps">
@@ -53,6 +60,7 @@ export const BaseRouter = () => {
                   const dapp = dappByName(params.dapp||"");
                   return {...dapp, txs:loadTxs(dapp?.address||'0x1')}
                 }}/>
+
 
             </Route>
         </Route>

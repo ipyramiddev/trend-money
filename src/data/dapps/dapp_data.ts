@@ -131,7 +131,6 @@ export const dapps = [
     "github": "",
     "docs": "",
     "address": "0xf6994988bd40261af9431cd6dd3fcf765569719e66322c7a05cc78a89cd366d4"
-
   },
   {
     "name": "Aries",

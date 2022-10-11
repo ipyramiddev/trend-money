@@ -30,9 +30,9 @@ const Explorer = () => {
     const tabs = [
         { name: 'Modules + Dapps', id: 'modules/0x1' },
         { name: 'User Account ', id: 'user' },
-        { name: 'Dapps', id: 'dapps' },
+        { name: 'Dapps', id: 'dapps/home' },
         { name: 'IDE', id: 'IDE' },
-        { name: 'Coins', id: 'Coins' }
+        // { name: 'Coins', id: 'Coins' }
     ]
     const view = pathname;
     return (
