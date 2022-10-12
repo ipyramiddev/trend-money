@@ -57,6 +57,7 @@ export const BaseRouter = () => {
 
               <Route path=":dapp" element={<DappFrame/>}
                 loader= {async ({request,params})=>{
+                  console.log('params are:',params);
                   const dapp = dappByName(params.dapp||"");
                   return {...dapp, txs:loadTxs(dapp?.address||'0x1')}
                 }}/>

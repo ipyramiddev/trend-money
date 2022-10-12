@@ -23,8 +23,9 @@ const DappHeader = (dapp: Dapp) => {
 const DappFrame = () => {
     const ref = useRef<any>();
     let {dapp} = useParams();
-    let {dapp_data} = useLoaderData() as any;
-    dappByName(dapp||"") as Dapp;
+    console.log("setting dapp:",dapp)
+    // let {dapp_data} = useLoaderData() as any;
+    let dapp_data = dappByName(dapp||"") as Dapp;
     const [rand, setRand] = useState(0);
     const [url, setUrl] = useState(dapp_data?.url||'');
 
