@@ -12,7 +12,6 @@ import DappBadge from "components/DappBadge";
 import ReactTooltip from "react-tooltip";
 import { dappsByAddress } from "util/dappUtils";
 import { DappContextProvider } from "./DappContext";
-import DappManager from "./DappManager";
 import { Outlet } from "react-router-dom";
 
 function shuffle(array: any[]) {
@@ -51,10 +50,8 @@ const DappsView = () => {
         <div className="flex flex-col w-full p-6 relative items-start justify-start ">
                 <DappContextProvider value={{dapp:null,isHome:true}}>
             <div className="px-6 w-full">
-                {/* <DappManager /> */}
                 <Outlet/>
-
-                </div>
+            </div>
             {txns?.length!==0 ? <TxnList txns={txns||[]} address={selectedDapp.address}/> : null}
             <ReactTooltip place="top" textColor="white" html={true} multiline={true} />
                 </DappContextProvider>

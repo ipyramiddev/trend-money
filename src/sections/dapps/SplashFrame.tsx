@@ -22,7 +22,7 @@ const DappBadge = ({ dapp, setSelectedDapp, isSelected,key }: sDapp) => {
             </div>
             {dapp.address ? 
             <Link to={`/explorer/modules/${dapp.address}`}>
-            <p className="hover:text-underline"
+            <p className="hover:text-underlined"
             >@{shortenAddress(dapp.address)}</p></Link>:null}
     <Link to={`/explorer/dapps/${dapp.name}`}>
     <button onClick={() => setSelectedDapp(dapp)}
