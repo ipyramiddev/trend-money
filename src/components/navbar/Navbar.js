@@ -9,9 +9,9 @@ const nav_items = [
     {name: 'Powersets',path: '/powersets'},
 ];
 const nav_icons = [
-    {name: 'github', link:'https://github.com/SeamMoney/', icon:(<FaGithub className=" hover:text-blac " />)},
-    {name: 'docs',link: 'https://docs.seam.money/',icon:(<FaBookOpen className=" hover:text-blac " />)},
-    {name: 'twitter',link:"https://twitter.com/SeamMoney", icon:(<FaTwitter className=" hover:text-blac " />)},
+    // {name: 'github', link:'https://github.com/SeamMoney/', icon:(<FaGithub className=" hover:text-blac " />)},
+    // {name: 'docs',link: 'https://docs.seam.money/',icon:(<FaBookOpen className=" hover:text-blac " />)},
+    // {name: 'twitter',link:"https://twitter.com/SeamMoney", icon:(<FaTwitter className=" hover:text-blac " />)},
 ];
 
 
