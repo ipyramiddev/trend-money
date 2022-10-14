@@ -1,7 +1,4 @@
-// Create Explorer page to view tokens and their supply, unique wallets, and transactions
 import React, { useState, useEffect } from 'react';
-// import '../index.css';
-// const fullNodes = [
 import { AptosClient, AptosAccount, FaucetClient, BCS, TxnBuilderTypes, HexString, Types } from "aptos";
 import ModuleExplorer from '../sections/modules/ModuleExplorer';
 import UserExplorer from '../sections/UserExplorer';
@@ -13,59 +10,51 @@ import { formatParam } from 'hooks/formatting';
 import { ExplorerTabView } from 'views/ExplorerTabView';
 import Coins from './Coins';
 import IDE from './IDE';
+// import { Route,BrowserRouter as Router,Link } from 'react-router-dom';
+import { Outlet } from 'react-router';
+import { Link, useLocation } from 'react-router-dom';
 // devnet is used here for testing
 const NODE_URL = "https://fullnode.devnet.aptoslabs.com";
 // const FAUCET_URL = "https://faucet.devnet.aptoslabs.com";
 
 const client = new AptosClient(NODE_URL);
 
-interface Props {
-    isLoading: boolean;
-    isConnected: boolean;
-    // setConnected: (connected: boolean) => void;
-}
 
 const Explorer = () => {
     const { account, balance, isConnected, network, currentWallet } = useWeb3();
+    let {pathname} = useLocation()
+    // pathname = pathname.
     useEffect(() => {
     }, [account, isConnected]);
     const [modules, setModules] = React.useState<Types.MoveModuleBytecode[]>([]);
     const tabs = [
-        { name: 'Modules + Dapps', id: 'ModuleExplorer' },
-        { name: 'User Account ', id: 'UserExplorer' },
-        { name: 'Dapps', id: 'Dapps' },
+        { name: 'Modules + Dapps', id: 'modules/0x1' },
+        { name: 'User Account ', id: 'user' },
+        { name: 'Dapps', id: 'dapps/home' },
         { name: 'IDE', id: 'IDE' },
-        { name: 'Coins', id: 'Coins' }
+        // { name: 'Coins', id: 'Coins' }
     ]
-    const [view, setView] = useState("ModuleExplorer");
+    const view = pathname;
     return (
         <div className="flex flex-col min-h-screen p-3 m-2 items-start justify-start">
         <p className="text-3xl text-center">Explorer</p> 
-            {/* <ExplorerTabView/> */}
             <div className="flex flex-row items-start justify-start start">
                 <div className="flex flex-row items-start">
                     {tabs.map((tab: any, index) => {
                         return (
+                            <Link to={`${tab.id}`}>
                             <div
-                                onClick={() => setView(tab.id)}
-                                className={`px-2 m-2 py-1 hover:opacity-100 rounded-xl ${view === tab.id ? 'underline text-3xl font-bold' : 'opacity-60 text-2xl'}`}>
+                                className={`px-2 m-2 py-1 hover:opacity-100 rounded-xl ${view.includes(tab.id) ? 'underline text-3xl font-bold' : 'opacity-60 text-2xl'}`}>
                                 <p className=" px-2 m-1 py-1 text-center justify-center">{tab.name}</p>
-                            </div>)
+                            </div></Link>)
                     })
                     }
                 </div>
             </div>
             <div className="flex flex-col h-full w-full items-center justify-start">
-
                 <p className="account-outline">{formatParam(account?.address || '')}</p>
-                <p>{network.toString()}</p>
+                <Outlet/>
                 {isConnected ? <p className="px-2 py-1 rounded-sm text-green1 outline-2 outline-green1 m-2">connected</p> : <p>not connected</p>}
-                {view === "ModuleExplorer" ? <ModuleExplorer client={client} mod={modules} /> : null}
-                {view === "Dapps" ? <DappsView /> : null}
-                {view === "UserExplorer" && isConnected ? <UserExplorer account={account} client={client} /> : null}
-                {view === "IDE" ? <IDE/> : null}
-                {view === "Pools" ? <Pools client={client} /> : null}
-                {view === "Coins" ? <Coins/> : null}
             </div>
         </div>
     );

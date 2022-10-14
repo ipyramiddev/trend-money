@@ -1,6 +1,7 @@
 import { AptosClient, AptosAccount, FaucetClient, BCS, Types, TxnBuilderTypes, HexString, TokenClient } from "aptos";
 
 import { BaseContract } from "ethers";
+import { type } from "os";
 import { aSwap } from "./useAnime";
 import { aptinSupplyPayload } from "./useAptin";
 const DEV_NODE_URL = "https://fullnode.devnet.aptoslabs.com";
@@ -17,12 +18,37 @@ export const useFaucet = async (account: AptosAccount) => {
     // const re = await faucetClient.
 }
 
+export const useClient = ()=>{
+    return client;
+}
+
 export const loadValidators =async () => {
     const validatorInfo = (await client.getAccountResource(new HexString("0x1"),"0x1::stake::ValidatorPerformance"))
     const validatorSet = (await client.getAccountResource(new HexString("0x1"),"0x1::stake::ValidatorSet"))
     const defaultConfig = (await client.getAccountResource(new HexString("0x1"), "0x1::staking_config::StakingConfig"))
     return {validatorInfo,validatorSet,defaultConfig}
 }
+export const loadCoin = async (coin:any) => {
+    // const coinType = coin.address + "::" + coin.module + "::" + coin.types[0];
+    const coinType = "0x1::aptos_coin::AptosCoin";
+    const coin_info_type = "0x1::coin::CoinStore<" + coin.address + "::" + coin.module + "::" + coin.types[0] + ">"; 
+    console.log("Loading coin: ", coinType)
+    const coinInfo = (await client.getAccountResource(new HexString(coin.address), coin_info_type)) as Types.MoveResource
+    console.log(coinInfo)
+    return coinInfo
+}
+
+export const loadCoinList = async (coin_list:any[]) => {
+    let coin_list_data = [];
+    for (let i = 0; i < coin_list.length; i++) {
+        const coin = coin_list[i];
+        const coin_data = await loadCoin(coin);
+        coin_list_data.push(coin_data)
+    }
+    return coin_list_data
+    
+}
+
 
 // export const loadValidatorVotes = async (addr:string, vIndex:number) => {
 //     const v = (await client.getAccountResource(new HexString(addr))
