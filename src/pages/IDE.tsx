@@ -6,13 +6,11 @@ type File = {
     lines: string[];
     warnings?: string[];
     compiled?: string;
-
 }
 
 interface EditorProps {
     file: File;
     module: string;
-
 }
 
 const mockFile = {
@@ -26,11 +24,9 @@ const mockFile = {
     ],
 }
  
-
 interface PoolProps {
     client: AptosClient;
 }
-
 
 // This page will load a list of user files and show an inbrowser ide
 // From here the user can create new files, edit existing files, and delete files
@@ -41,13 +37,9 @@ const IDE = () => {
     <div className="w-full h-full items-center ">
         <p>IDE</p>
         <FileEditor file={mockFile} module="temp"/>
-        
-
     </div>
     )
 }
-
-
 
 const FileEditor = ({
     file,
@@ -55,10 +47,7 @@ const FileEditor = ({
 }:EditorProps) => {
 
     const handleChange = (e:any) =>{
-        
             setCurrentText(e.event.textValue);
-        // }
-
     }
 
     const [currentText, setCurrentText] = useState<string>(file.lines.join(" \n"));

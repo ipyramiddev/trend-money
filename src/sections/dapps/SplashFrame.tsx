@@ -17,8 +17,8 @@ const DappBadge = ({ dapp, setSelectedDapp, isSelected,key }: sDapp) => {
     return (
         <div className="h-100 outline rounded-xl outline-white shadow-blue shadow-lg m-4 px-4 py-2">
             <div className="flex flex-row justify-between items-center">
+                <p className="text-lg font-bold text-right">{dapp.name}</p>
                 {DappLogo(dapp.image)}
-                <p className="text-lg text-right">{dapp.name}</p>
             </div>
             {dapp.address ? 
             <Link to={`/explorer/modules/${dapp.address}`}>
@@ -26,13 +26,13 @@ const DappBadge = ({ dapp, setSelectedDapp, isSelected,key }: sDapp) => {
             >@{shortenAddress(dapp.address)}</p></Link>:null}
     <Link to={`/explorer/dapps/${dapp.name}`}>
     <button onClick={() => setSelectedDapp(dapp)}
-        className={`outline outline-white w-full outline-2 dappBadge items-center justify-center  ${isSelected ? 'bg-white bg-opacity-100 text-black' :''}`} key={dapp.name}>
+        className={`outline outline-white w-full outline-2  items-center justify-center  ${isSelected ? 'bg-white bg-opacity-100 text-black' :''}`} key={dapp.name}>
             Open Dapp
     </button>
     </Link>
 
     <button data-tip={dapp.name} onClick={() => setSelectedDapp(dapp)}
-        className={`outline outline-white w-full outline-2 dappBadge items-center justify-center  ${isSelected ? 'bg-white bg-opacity-100 text-black' :''}`} key={dapp.name}>
+        className={`outline outline-white w-full  text-black bg-white hover:bg-transparent outline-2 dappBadge items-center justify-center  ${isSelected ? 'bg-white bg-opacity-100 text-black' :''}`} key={dapp.name}>
             View Info
     </button>
     </div>)
