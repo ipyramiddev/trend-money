@@ -1,5 +1,4 @@
 import App from "App";
-import { ERouter } from "Erouter";
 import { loadModules } from "hooks/useAptos";
 import { loadTxs } from "hooks/useTransaction";
 import Explorer from "pages/Explorer";
