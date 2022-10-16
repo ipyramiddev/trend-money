@@ -1,14 +1,10 @@
 import TxnList from "./TxnList";
-import UserOverview from "./UserOverview";
-import WagMemeContainer from "./WagMemeContainer";
 import { useWeb3 } from '@fewcha/web3-react';
 import { useEffect, useState } from "react";
-import { AptosClient, Types } from "aptos";
+import { Types } from "aptos";
 import { loadTxs } from "hooks/useTransaction";
-import AccountResources from "./account/AccountResources";
 import { loadAccount } from "hooks/loadAptos";
 import { sendTransaction, useClient } from "hooks/useAptos";
-import { FaJenkins } from "react-icons/fa";
 import ResourceDetailView from "views/ResourceDetailView";
 
 

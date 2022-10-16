@@ -1,16 +1,13 @@
 import {useState} from 'react';
-import TokenView from './TokenView';
-import AptosPools from './AptosPools';
-import { StakePage } from './staking/Validators';
 
 const tabs = [
-    {name: 'Yield Strategies', id: 'yield'},
-    {name: 'Staking Pools', id: 'stake'},
-    {name: 'Open Stake', id: 'celo'},
+    {name: 'Transactions', id: 'txs'},
+    {name: 'Types', id: 'types'},
+    {name: 'Resources', id: 'resources'},
 ]
 
 function SwitchView(props) {
-    const [view, setView] = useState("token-prices");
+    const [view, setView] = useState("Transactions");
 
     const switchTab = (tab) => {
         if (tab!==view) {
@@ -19,22 +16,24 @@ function SwitchView(props) {
     }
     
     return (
-        <div className="flex flex-col items-start justify-center">
-            <div className="flex flex-row gap-2">
-                <div className="tabs">
+        <div className="flex flex-col  m-4 p-4 text-bold items-center justify-center">
+            <div className="flex flex-row gap-2 items-center justify-center">
                     {tabs.map((tab, index) => {
-                        return (<a  key={index} className={`tab tab-bordered ${view===tab.name ? 'text-underline' : 'border-gray'}`} onClick={()=>setView(tab.name)}>
-                            <p classname="text-2xl">{tab.name}</p>
+                        return (<a  key={index} className={`tab text-3xl tab-bordered ${view===tab.name ? 'text-underline' : ''}`} onClick={()=>setView(tab.name)}>
+                            <p classname="text-3xl">{tab.name}</p>
                             </a>)
                     })
                 }
-                </div>
-
+{/* 
                 {view === "Yield Strategies" && <AptosPools />}
                 {view === "Staking Pools" && <StakePage />}
+            */}
                 {/* {view === "Open stake" && <OpenStake/>} */}
                 
             </div>
+            {view === "Transactions" && props.children[0]}
+            {view === "Types" && props.children[1]}
+            {view === "Resources" && props.children[2]}
         </div>
     )
 }
