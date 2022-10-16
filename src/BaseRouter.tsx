@@ -1,6 +1,7 @@
 import App from "App";
 import { loadModules } from "hooks/useAptos";
 import { loadTxs } from "hooks/useTransaction";
+import DappInfo from "pages/DappInfo";
 import Explorer from "pages/Explorer";
 import IDE from "pages/IDE";
 import NodePage from "pages/NodePage";
@@ -33,36 +34,42 @@ export const BaseRouter = () => {
             element={<ModuleExplorer />}
             path="modules/:addr/"
             loader={async ({ request, params }) => {
-             
+
               console.log("running loader");
-              return loadModules(params.addr || "0x1")
+              return loadModules(params.addr || "0x1", )
             }}
           />
 
-            <Route 
-            element={<UserExplorer/>}
+          <Route
+            element={<UserExplorer />}
             path="user"></Route>
 
-            <Route
-              element={<IDE/>}
-              path="ide"
-              >
-                </Route>
+          <Route
+            element={<IDE />}
+            path="ide"
+          >
+          </Route>
 
-            <Route 
-            element={<DappsView/>}
+          <Route
+            element={<DappsView />}
             path="dapps">
-              <Route path="home"element={<SplashFrame/>}/>
+            <Route path="home" element={<SplashFrame />} />
 
-              <Route path=":dapp" element={<DappFrame/>}
-                loader= {async ({request,params})=>{
-                  console.log('params are:',params);
-                  const dapp = dappByName(params.dapp||"");
-                  return {...dapp, txs:loadTxs(dapp?.address||'0x1')}
-                }}/>
+            <Route path=":dapp" element={<DappFrame />}
+              loader={async ({ request, params }) => {
+                console.log('params are:', params);
+                const dapp = dappByName(params.dapp || "");
+                return { ...dapp, txs: loadTxs(dapp?.address || '0x1') }
+              }} />
 
+            <Route path="info/:dapp/" element={<DappInfo />}
+              loader={async ({ request, params }) => {
+                console.log('params are:', params);
+                const dapp = dappByName(params.dapp || "");
+                return { ...dapp, txs: loadTxs(dapp?.address || '0x1') }
+              }} />
 
-            </Route>
+          </Route>
         </Route>
       </Route>
     )

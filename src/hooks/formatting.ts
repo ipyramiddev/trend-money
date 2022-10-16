@@ -16,7 +16,8 @@ import { slice } from "lodash";
 //     return "$" + tvl;
 // }
 
-export const format_large_number = (num:number) => {
+export const format_large_number = (n:number,decimals=100000000) => {
+    let num = n/decimals;
     if (num === null) {
         return '-';
     }
@@ -31,7 +32,7 @@ export const format_large_number = (num:number) => {
     }
         
     if( num<1000 ){
-    return (num/1).toFixed(1)
+    return (num/1).toFixed(4)
     };
 }
 

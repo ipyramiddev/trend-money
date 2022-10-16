@@ -5,30 +5,44 @@ import { type } from "os";
 import { aSwap } from "./useAnime";
 import { aptinSupplyPayload } from "./useAptin";
 const DEV_NODE_URL = "https://fullnode.devnet.aptoslabs.com";
+const TEST_NODE_URL = "https://fullnode.testnet.aptoslabs.com";
 const FAUCET_URL = "https://faucet.devnet.aptoslabs.com";
 
 
 
-const client = new AptosClient(DEV_NODE_URL);
-const faucetClient = new FaucetClient(DEV_NODE_URL, FAUCET_URL);
-const tokenClient = new TokenClient(client);
+const tClient = new AptosClient(TEST_NODE_URL);
+const dClient = new AptosClient(DEV_NODE_URL);
+// const faucetClient = new FaucetClient(DEV_NODE_URL, FAUCET_URL);
+// const tokenClient = new TokenClient(client);
 
 export const useFaucet = async (account: AptosAccount) => {
     console.log("Fauceting account...");
     // const re = await faucetClient.
 }
 
-export const useClient = ()=>{
-    return client;
+export const useClient = (nodeUrl:string=TEST_NODE_URL)=>{
+    if(nodeUrl==TEST_NODE_URL){
+        return tClient;
+    }
+    if(nodeUrl==DEV_NODE_URL){
+        return dClient;
+    }
+    return tClient;
 }
 
-export const loadValidators =async () => {
+export const useTokenClient =(client:AptosClient=tClient)=>{
+
+}
+
+
+
+export const loadValidators =async (client=tClient) => {
     const validatorInfo = (await client.getAccountResource(new HexString("0x1"),"0x1::stake::ValidatorPerformance"))
     const validatorSet = (await client.getAccountResource(new HexString("0x1"),"0x1::stake::ValidatorSet"))
     const defaultConfig = (await client.getAccountResource(new HexString("0x1"), "0x1::staking_config::StakingConfig"))
     return {validatorInfo,validatorSet,defaultConfig}
 }
-export const loadCoin = async (coin:any) => {
+export const loadCoin = async (coin:any,client=tClient) => {
     // const coinType = coin.address + "::" + coin.module + "::" + coin.types[0];
     const coinType = "0x1::aptos_coin::AptosCoin";
     const coin_info_type = "0x1::coin::CoinStore<" + coin.address + "::" + coin.module + "::" + coin.types[0] + ">"; 
@@ -137,12 +151,12 @@ export const stringToHex= (text: string) => {
     return Array.from(encoded, (i) => i.toString(16).padStart(2, "0")).join("");
   }
 
-export const loadModules = async (address: string) => {
+export const loadModules = async (address: string,client=tClient) => {
     const modules = await client.getAccountModules(address) as Types.MoveModuleBytecode[];
     return modules;
 }
 
-export const loadResources = async (address: string) => {
+export const loadResources = async (address: string,client=tClient) => {
     const modules = await client.getAccountResources(new HexString(address)) as Types.MoveResource[];
     return modules;
 

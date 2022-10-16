@@ -15,7 +15,6 @@ import { Outlet } from 'react-router';
 import { Link, useLocation } from 'react-router-dom';
 // devnet is used here for testing
 const NODE_URL = "https://fullnode.devnet.aptoslabs.com";
-// const FAUCET_URL = "https://faucet.devnet.aptoslabs.com";
 
 const client = new AptosClient(NODE_URL);
 
@@ -23,7 +22,6 @@ const client = new AptosClient(NODE_URL);
 const Explorer = () => {
     const { account, balance, isConnected, network, currentWallet } = useWeb3();
     let {pathname} = useLocation()
-    // pathname = pathname.
     useEffect(() => {
     }, [account, isConnected]);
     const [modules, setModules] = React.useState<Types.MoveModuleBytecode[]>([]);
@@ -31,7 +29,7 @@ const Explorer = () => {
         { name: 'Modules + Dapps', id: 'modules/0x1' },
         { name: 'User Account ', id: 'user' },
         { name: 'Dapps', id: 'dapps/home' },
-        { name: 'IDE', id: 'IDE' },
+        // { name: 'IDE', id: 'IDE' },
         // { name: 'Coins', id: 'Coins' }
     ]
     const view = pathname;
@@ -46,7 +44,8 @@ const Explorer = () => {
                             <div
                                 className={`px-2 m-2 py-1 hover:opacity-100 rounded-xl ${view.includes(tab.id) ? 'underline text-3xl font-bold' : 'opacity-60 text-2xl'}`}>
                                 <p className=" px-2 m-1 py-1 text-center justify-center">{tab.name}</p>
-                            </div></Link>)
+                            </div>
+                            </Link>)
                     })
                     }
                 </div>
