@@ -26,15 +26,18 @@ const DappBadge = ({ dapp, setSelectedDapp, isSelected,key }: sDapp) => {
             >@{shortenAddress(dapp.address)}</p></Link>:null}
     <Link to={`/explorer/dapps/${dapp.name}`}>
     <button onClick={() => setSelectedDapp(dapp)}
-        className={`outline outline-white w-full outline-2  items-center justify-center  ${isSelected ? 'bg-white bg-opacity-100 text-black' :''}`} key={dapp.name}>
+        className={`w-full seam-button  items-center justify-center  ${isSelected ? 'bg-white bg-opacity-100 text-black' :''}`} key={dapp.name+'-ui'}>
             Open Dapp
     </button>
     </Link>
 
-    <button data-tip={dapp.name} onClick={() => setSelectedDapp(dapp)}
-        className={`outline outline-white w-full  text-black bg-white hover:bg-transparent outline-2 dappBadge items-center justify-center  ${isSelected ? 'bg-white bg-opacity-100 text-black' :''}`} key={dapp.name}>
-            View Info
+
+    <Link to={`/explorer/dapps/info/${dapp.name}`}>
+    <button data-tip={dapp.name}
+        className={`outline outline-white w-full  text-black bg-white hover:bg-transparent outline-2 dappBadge items-center justify-center  ${isSelected ? 'bg-white bg-opacity-100 text-black' :''}`} key={dapp.name+"-info"}>
+            Dapp Info
     </button>
+    </Link>
     </div>)
 }
 
