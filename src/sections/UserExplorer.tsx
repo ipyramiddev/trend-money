@@ -6,6 +6,7 @@ import { loadTxs } from "hooks/useTransaction";
 import { loadAccount } from "hooks/loadAptos";
 import { sendTransaction, useClient } from "hooks/useAptos";
 import ResourceDetailView from "views/ResourceDetailView";
+import UserOverview from "./UserOverview";
 
 
 const UserExplorer = () => {
@@ -30,12 +31,12 @@ const UserExplorer = () => {
             <p className="text-3xl font-semibold">User Explorer</p>
             
             <div className='flex flex-row w-full items-start justify-center'>
-                {/* <UserOverview  /> */}
+                {/* <UserOverview connected={false} user={undefined}  /> */}
                 {account?.address ?
                 
                 <TxnList txns={txs} address={account?.address} />
                 : <p>please connect</p>}
-                {account?.address?.toString() ? (<ResourceDetailView showDetails={false} address={account?.address.toString()} />) : <p>no resources</p>}
+                {account?.address?.toString() ? (<ResourceDetailView showDetails={true} showUnder={true} address={account?.address.toString()} />) : <p>no resources</p>}
                 
                 {/* <WagMemeContainer /> */}
             </div>

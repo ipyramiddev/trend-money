@@ -59,11 +59,6 @@ const ModuleExplorer = () => {
 
 
 
-    useEffect(() => {
-        // switchAddress(selectedAddress);
-    }
-        , []);
-
     return (
         <div className="w-full items-center justify-center">
             <div className="flex flex-row w-full justify-center">
@@ -119,9 +114,8 @@ const ModuleExplorer = () => {
                 </div>
             </div>
             <SwitchView>
-
                 <TxnFilterView address={selectedAddress} />
-            <ModuleTypes module={selectedModule} />
+                <ModuleTypes module={selectedModule} />
                 <ResourceDetailView address={selectedAddress} showDetails={true} />
             </SwitchView>
             <div className="flex flex-row gap gap-2 p-2 ">

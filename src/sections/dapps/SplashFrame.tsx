@@ -33,8 +33,8 @@ const DappBadge = ({ dapp, setSelectedDapp, isSelected,key }: sDapp) => {
 
 
     <Link to={`/explorer/dapps/info/${dapp.name}`}>
-    <button data-tip={dapp.name}
-        className={`outline outline-white w-full  text-black bg-white hover:bg-transparent outline-2 dappBadge items-center justify-center  ${isSelected ? 'bg-white bg-opacity-100 text-black' :''}`} key={dapp.name+"-info"}>
+    <button
+        className={`outline outline-white w-full text-black hover:text-white bg-white hover:bg-transparent outline-2 dappBadge items-center justify-center  ${isSelected ? 'bg-white bg-opacity-100 text-black' :''}`} key={dapp.name+"-info"}>
             Dapp Info
     </button>
     </Link>
