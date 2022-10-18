@@ -1,9 +1,9 @@
 import React from 'react';
 import Logo from '../Logo';
-import { FaBookOpen, FaGithub, FaTwitter } from 'react-icons/fa';
 import { useWeb3 } from '@fewcha/web3-react';
 import { useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import Select from 'react-select'
+
 const nav_items = [
     {name: 'Explorer',path: '/explorer/modules/0x1'},
     {name: 'Powersets',path: '/powersets'},
@@ -40,6 +40,24 @@ export default function Navbar(props) {
     // const [ useGlobalState, setGlobalState] = useGlobalState();
     const [isOpen, setIsOpen] = useState('hidden');
     const { isConnected, network } = useWeb3();
+
+
+    const options = [
+        { value: 'devnet', label: 'Devnet' },
+        { value: 'testnet', label: 'Testnet' },
+        { value: 'local', label: 'Local' }
+      ]
+      
+      const ChainInput = () => (
+        <div className='flex flex-col items-center  text-black justify-center'>
+        <Select options={options}
+        value={options.find(option => option.value === network)}
+         />
+         <p>network:{network.toString()}</p>
+        </div>
+
+      )
+
     // const location = useLocation()
     const toggle = () => {
         setIsOpen(isOpen === '' ? 'hidden' : '');
@@ -64,13 +82,14 @@ export default function Navbar(props) {
 
                         {nav_icons.map((item, i) => { return (NavbarIcon(item.link,item.icon, i)) })}
                         
-                        {/* <ChainInput/> */}
+                        <ChainInput/>
                         <button className="seam-button m-3" onClick={() => props.showConnectModal(true)}>{!isConnected ? "Connect" : "Connected"}</button>
                     </ul>
                 </div>
             </div>
         </nav>
     );
+
 
 // const ChainInput =() =>{
 //     return <div>
