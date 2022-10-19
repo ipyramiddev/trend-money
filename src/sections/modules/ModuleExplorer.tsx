@@ -16,9 +16,11 @@ import ModuleOutline from "components/etc/ModuleOutline";
 import { Link, Outlet, useLoaderData, useParams } from "react-router-dom";
 import SwitchView from "sections/SwitchView";
 
+
+
 const ModuleExplorer = () => {
     let mod = useLoaderData() as Types.MoveModuleBytecode[];
-    let { addr, name } = useParams();
+    let { addr, name,network } = useParams();
     
     const client = useClient();
     const [selectedAddress, setSelectedAddress] = useState<string>(addr || '');

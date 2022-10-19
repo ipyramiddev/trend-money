@@ -16,13 +16,14 @@ import { Link, useLocation } from 'react-router-dom';
 const Explorer = () => {
     const { account, balance, isConnected, network, currentWallet } = useWeb3();
     let {pathname} = useLocation()
-    useEffect(() => {
-    }, [account, isConnected]);
-    const [modules, setModules] = React.useState<Types.MoveModuleBytecode[]>([]);
+    
     const tabs = [
-        { name: 'Modules + Dapps', id: 'modules/0x1' },
+        { name: 'Modules + Dapps', id: 'modules/mainnet/0x1' },
+        { name: 'Transactions', id: 'txns' },
         { name: 'User Account ', id: 'user' },
         { name: 'Dapps', id: 'dapps/home' },
+        { name: 'Stats', id: 'stats' },
+        { name: 'Validators', id: 'validators' },
         { name: 'IDE', id: 'IDE' },
         // { name: 'Coins', id: 'Coins' }
     ]
@@ -45,9 +46,8 @@ const Explorer = () => {
                 </div>
             </div>
             <div className="flex flex-col h-full w-full items-center justify-start">
-                {/* <p className="account-outline">{formatParam(account?.address || '')}</p> */}
+                <p className="account-outline">{formatParam(account?.address || '')}</p>
                 <Outlet/>
-                {isConnected ? <p className="px-2 py-1 rounded-sm text-green1 outline-2 outline-green1 m-2">connected</p> : <p>not connected</p>}
             </div>
         </div>
     );

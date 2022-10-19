@@ -3,15 +3,12 @@ import Logo from '../Logo';
 import { useWeb3 } from '@fewcha/web3-react';
 import { useState } from 'react';
 import Select from 'react-select'
+import {FaGithub, FaTwitter, FaDiscord,FaBookOpen, FaTelegramPlane} from 'react-icons/fa';
 
-const nav_items = [
-    {name: 'Explorer',path: '/explorer/modules/0x1'},
-    {name: 'Powersets',path: '/powersets'},
-];
 const nav_icons = [
-    // {name: 'github', link:'https://github.com/SeamMoney/', icon:(<FaGithub className=" hover:text-blac " />)},
-    // {name: 'docs',link: 'https://docs.seam.money/',icon:(<FaBookOpen className=" hover:text-blac " />)},
-    // {name: 'twitter',link:"https://twitter.com/SeamMoney", icon:(<FaTwitter className=" hover:text-blac " />)},
+    {name: 'github', link:'https://github.com/SeamMoney/', icon:(<FaGithub className=" hover:text-blac " />)},
+    {name: 'docs',link: 'https://docs.seam.money/',icon:(<FaBookOpen className=" hover:text-blac " />)},
+    {name: 'twitter',link:"https://twitter.com/SeamMoney", icon:(<FaTwitter className=" hover:text-blac " />)},
 ];
 
 
@@ -43,20 +40,30 @@ export default function Navbar(props) {
 
 
     const options = [
-        { value: 'devnet', label: 'Devnet' },
-        { value: 'testnet', label: 'Testnet' },
-        { value: 'local', label: 'Local' }
+        // { value: 'devnet', label: 'Devnet' },
+        { value: 'https://fullnode.mainnet.aptoslabs.com/', label: 'Mainnet' },
+        { value: 'https://fullnode.devnet.aptoslabs.com/', label: 'Devnet' },
+        { value: 'https://fullnode.testnet.aptoslabs.com/', label: 'Testnet' }
+        // { value: 'local', label: 'Local' }
       ]
       
       const ChainInput = () => (
         <div className='flex flex-col items-center  text-black justify-center'>
         <Select options={options}
+        className="rounded-xl"
+        // styles={}
         value={options.find(option => option.value === network)}
+        defaultValue={{value:"https://fullnode.mainnet.aptoslabs.com/", label:"Mainnet"}}
          />
-         <p>network:{network.toString()}</p>
+         {/* <p>network:{network.toString()}</p> */}
         </div>
 
       )
+
+      const nav_items= (network) =>  [
+        {name: 'Explorer',path: `/explorer/modules/${network}/0x1`},
+        {name: 'Powersets',path: '/powersets'},
+    ];
 
     // const location = useLocation()
     const toggle = () => {
@@ -76,7 +83,7 @@ export default function Navbar(props) {
                 <div className={`${isOpen} w-full md:block md:w-auto items-center`} id="mobile-menu">
                     <ul className="flex flex-col items-center mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium">
 
-                        {nav_items.map((item, i) => (
+                        {nav_items("mainnet").map((item, i) => (
                             <NavbarItem item={item} i={i} />
                         ))}
 

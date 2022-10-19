@@ -6,28 +6,63 @@ import { aSwap } from "./useAnime";
 import { aptinSupplyPayload } from "./useAptin";
 const DEV_NODE_URL = "https://fullnode.devnet.aptoslabs.com";
 const TEST_NODE_URL = "https://fullnode.testnet.aptoslabs.com";
-const FAUCET_URL = "https://faucet.devnet.aptoslabs.com";
+const MAINNET_NODE_URL = "https://fullnode.mainnet.aptoslabs.com";
 
-
+const urls = {
+    dev: DEV_NODE_URL,
+    test: TEST_NODE_URL,
+    mainnet: MAINNET_NODE_URL,
+};
 
 const tClient = new AptosClient(TEST_NODE_URL);
 const dClient = new AptosClient(DEV_NODE_URL);
+const mClient = new AptosClient(MAINNET_NODE_URL);
 // const faucetClient = new FaucetClient(DEV_NODE_URL, FAUCET_URL);
-// const tokenClient = new TokenClient(client);
+const tokenClient = new TokenClient(mClient);
+const clients = {
+    "Mainnet":mClient,
+    "Testnet":tClient,
+    "Devnet":dClient
+}
+export const aptStats =async (client=mClient) => {
+    const coin = (await client.getAccountResource(new HexString("0x1"),"aptos_coin::AptosCoin"))
+    console.log("COIN", coin)
+    const supply_handle = (coin as any).supply as any
+    console.log("SUPPLY HANDLE", supply_handle)
+    return coin
+
+    
+}
 
 export const useFaucet = async (account: AptosAccount) => {
     console.log("Fauceting account...");
     // const re = await faucetClient.
 }
 
-export const useClient = (nodeUrl:string=TEST_NODE_URL)=>{
+export const useClient = (nodeUrl:string=MAINNET_NODE_URL)=>{
     if(nodeUrl==TEST_NODE_URL){
         return tClient;
+    }
+    if(nodeUrl==MAINNET_NODE_URL){
+        return mClient;
     }
     if(nodeUrl==DEV_NODE_URL){
         return dClient;
     }
-    return tClient;
+    return mClient;
+}
+
+export function getClient(network:string)  {
+    if (network == "Mainnet") {
+        return mClient;
+    }
+    if (network == "Testnet") {
+        return tClient;
+    }
+    if (network == "Devnet") {
+        return dClient;
+    }
+    
 }
 
 export const useTokenClient =(client:AptosClient=tClient)=>{
@@ -36,13 +71,17 @@ export const useTokenClient =(client:AptosClient=tClient)=>{
 
 
 
-export const loadValidators =async (client=tClient) => {
+export const loadValidators =async (client=dClient) => {
     const validatorInfo = (await client.getAccountResource(new HexString("0x1"),"0x1::stake::ValidatorPerformance"))
     const validatorSet = (await client.getAccountResource(new HexString("0x1"),"0x1::stake::ValidatorSet"))
     const defaultConfig = (await client.getAccountResource(new HexString("0x1"), "0x1::staking_config::StakingConfig"))
+    console.log("Validator info",validatorInfo)
+    console.log("Validator Set",validatorSet)
+
+
     return {validatorInfo,validatorSet,defaultConfig}
 }
-export const loadCoin = async (coin:any,client=tClient) => {
+export const loadCoin = async (coin:any,client=mClient) => {
     // const coinType = coin.address + "::" + coin.module + "::" + coin.types[0];
     const coinType = "0x1::aptos_coin::AptosCoin";
     const coin_info_type = "0x1::coin::CoinStore<" + coin.address + "::" + coin.module + "::" + coin.types[0] + ">"; 
@@ -64,9 +103,6 @@ export const loadCoinList = async (coin_list:any[]) => {
 }
 
 
-// export const loadValidatorVotes = async (addr:string, vIndex:number) => {
-//     const v = (await client.getAccountResource(new HexString(addr))
-// }
 
 export const mintCollection = async () => {}
 
@@ -151,12 +187,12 @@ export const stringToHex= (text: string) => {
     return Array.from(encoded, (i) => i.toString(16).padStart(2, "0")).join("");
   }
 
-export const loadModules = async (address: string,client=tClient) => {
+export const loadModules = async (address: string,client=mClient) => {
     const modules = await client.getAccountModules(address) as Types.MoveModuleBytecode[];
     return modules;
 }
 
-export const loadResources = async (address: string,client=tClient) => {
+export const loadResources = async (address: string,client=mClient) => {
     const modules = await client.getAccountResources(new HexString(address)) as Types.MoveResource[];
     return modules;
 

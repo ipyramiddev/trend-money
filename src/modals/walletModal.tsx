@@ -44,9 +44,9 @@ const WalletModal = ({ isOpen, setIsOpen }: walletModalProps) => {
             {currentWallet === 'martian' ?
               <img className="w-10 h-10" src={`./dapps/martian.png`} alt={currentWallet} />:null}
             {currentWallet === 'fewcha' ?
-              <img className="w-10 h-10 p-2 bg-white rounded-2xl" src={`./dapps/fewcha.svg`} alt={currentWallet} /> : null}
+              <img className="w-10 h-10 p-2 bg-white rounded-2xl" src={`../dapps/fewcha.png`} alt={currentWallet} /> : null}
           </div>
-          <p>Current Network: {network}</p>
+          <p>Current Network: {network.toString()}</p>
           <button className='seam-button' onClick={() => copy}> Copy </button>
           <button className="seam-button" onClick={onDisconnect}>disconnect</button>
         </div>)
