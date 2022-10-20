@@ -55,7 +55,6 @@ declare global {
   }
   interface UserProps {
     // account: AptosAccount | null;
-    connected: boolean;
     user: User;
 }
 

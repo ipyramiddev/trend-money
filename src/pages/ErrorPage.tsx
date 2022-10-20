@@ -11,7 +11,7 @@ const ErrorPage = () => {
                 <h1 className="text-4xl">404 no account found @</h1>
                 <AccountOutline addr={addr} />
 
-                <Link to={`/explorer/${network}/0x1`}>
+                <Link to={`/explorer/modules/${network}/0x1`}>
                 <button className="seam-button">Return</button>
                 </Link>
             </div>

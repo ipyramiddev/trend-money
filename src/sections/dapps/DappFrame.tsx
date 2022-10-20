@@ -7,6 +7,7 @@ import ReactTooltip from "react-tooltip";
 import { dappByName } from "util/dappUtils";
 import { useDappContext } from "./DappContext";
 import DappLogo from "./DappLogo";
+import SplashFrame from "./SplashFrame";
 
 interface DappFrameProps {
     dapp: Dapp;
@@ -14,12 +15,7 @@ interface DappFrameProps {
 
 }
 
-const DappHeader = (dapp: Dapp) => {
-    return (<div className="flex flex-row gap gap-2  items-center text-baseline px-4">
-        <p className="text-2xl ">{dapp?.name}</p>
-        {DappLogo(dapp?.image || "dapp.png")}
-    </div>);
-}
+
 
 
 
@@ -33,19 +29,29 @@ function renderIDapp(url:string) {
     
 }
 
+const DappHeader = (dapp: Dapp) => {
+    return (<div className="flex flex-row gap gap-2  items-center text-baseline px-4">
+        <p className="text-2xl ">{dapp?.name}</p>
+        {DappLogo(dapp?.image || "dapp.png")}
+    </div>);
+}
+
+// const dappScroller = (dapps: Dapp[]) => {
+
+
 
 const DappFrame = () => {
     const ref = useRef<any>();
     let {dapp} = useParams();
     console.log("setting dapp:",dapp)
     let dapp_data = dappByName(dapp||"") as Dapp;
-
+    const home = dapp==="home";
     return (
         <div className="w-full min-w-full">
             <WindowWrapper>
                 {DappHeader(dapp_data)}
                 {DappNav(dapp_data)}
-                {renderIDapp(dapp_data?.url||"")}
+                {home ? (<SplashFrame/>) :renderIDapp(dapp_data?.url||"")}
                 
             </WindowWrapper>
         </div>

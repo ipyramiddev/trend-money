@@ -12,7 +12,7 @@ import UserNfts from "./user/UserNfts";
 
 
 
-const UserOverview = ({ connected, user }: UserProps) => {
+const UserOverview = ({ user }: UserProps) => {
     const [sendAddr, setSendAddr] = useState<string>("");
     if (user === undefined) {
         return null;
@@ -28,7 +28,7 @@ const UserOverview = ({ connected, user }: UserProps) => {
             </span>
             </div>
            
-            <UserNfts {...user.nfts} />
+            {/* <UserNfts {...user.nfts} /> */}
             
         </div>
     )

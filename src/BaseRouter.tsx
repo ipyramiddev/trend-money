@@ -102,11 +102,16 @@ export const BaseRouter = () => {
           <Route
             element={<DappsView />}
             path="dapps">
-            <Route path="home" element={<SplashFrame />} />
+            <Route path="home" element={<SplashFrame/>} />
 
-            <Route path=":dapp" element={<DappFrame />}
+            <Route path="home" element={<DappsView/>} />
+
+            <Route path=":dapp" element={<DappsView />}
               loader={async ({ request, params }) => {
                 console.log('params are:', params);
+                if(params.dapp==="home"){
+                  return 
+                }
                 const dapp = dappByName(params.dapp || "");
                 return { ...dapp, txs: loadTxs(dapp?.address || '0x1') }
               }} />

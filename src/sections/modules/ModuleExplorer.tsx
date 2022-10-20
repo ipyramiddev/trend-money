@@ -76,8 +76,16 @@ const ModuleExplorer = () => {
                     <div className="flex flex-wrap py-2 items-center scrollbar scrollbar-thumb-blue gap gap-3 w-full">
                         {dapps.filter((dapp: any) => (dapp.address)).map((dapp: any) => (
                             <Link to={`/explorer/modules/${network}/${dapp.address}`} >
-                            <DappBadge dapp={dapp} isSelected={dapp.address ? (dapp.address === selectedAddress) : false} />
-                            </Link>
+                            <button
+                            onClick={(event)=>{
+                                window.history.pushState({}, '', `/explorer/modules/${network}/${dapp.address}`);
+                            }}
+                            >
+                            <DappBadge
+                            
+                            dapp={dapp} isSelected={dapp.address ? (dapp.address === selectedAddress) : false} />
+                            </button>
+                             </Link>
                         )
                         )}
                     </div>
@@ -98,8 +106,6 @@ const ModuleExplorer = () => {
                     </div>
                     <ReactTooltip place="top" textColor="white" />
                 </div>
-                {/* </div> */}
-
 
                 <div className="flex flex-col">
                     {selectedModule !== undefined ?
