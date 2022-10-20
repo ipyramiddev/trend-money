@@ -5,6 +5,7 @@ import { loadTxs } from "hooks/useTransaction";
 import AptosStats from "pages/AptosStats";
 import  Dao from "pages/DAO";
 import DappInfo from "pages/DappInfo";
+import ErrorPage from "pages/ErrorPage";
 import Explorer from "pages/Explorer";
 import IDE from "pages/IDE";
 import NodePage from "pages/NodePage";
@@ -50,7 +51,9 @@ export const BaseRouter = () => {
           </Route>
 
         <Route path="staking" element={<NodePage />} />
-        <Route path="explorer" element={<Explorer />} >
+        <Route path="explorer" element={<Explorer />} 
+          errorElement={<ErrorPage/>}
+        >
           <Route
             element={<ModuleExplorer />}
             path="modules/:network/:addr"

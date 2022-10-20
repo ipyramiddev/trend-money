@@ -67,7 +67,7 @@ const ModuleExplorer = () => {
                 <div className="w-1/3 seam-outline">
                     <div className="flex flex-row text-black gap gap-2">
                         <input className="w-1/2 py-2 px-4 outline outline-2 outline-white rounded-2xl" type="text" placeholder="Enter address" value={selectedAddress} onChange={(e) => setSelectedAddress(e.target.value)} />
-                        <Link to={`/explorer/modules/${selectedAddress}`}>
+                        <Link to={`/explorer/modules/${network}/${selectedAddress}`}>
                             <button data-tip="load address" className="btn m-1 text-white"> <FaRegArrowAltCircleLeft /></button>
                         </Link>
                         <button data-tip="Copy Addr." className="btn m-1 text-white" onClick={() => textCopy(selectedAddress)}> <FaClipboard /></button>
@@ -75,7 +75,9 @@ const ModuleExplorer = () => {
                     <p className="text-center text-lg font-bold pt-2">or Select a Dapp</p>
                     <div className="flex flex-wrap py-2 items-center scrollbar scrollbar-thumb-blue gap gap-3 w-full">
                         {dapps.filter((dapp: any) => (dapp.address)).map((dapp: any) => (
+                            <Link to={`/explorer/modules/${network}/${dapp.address}`} >
                             <DappBadge dapp={dapp} isSelected={dapp.address ? (dapp.address === selectedAddress) : false} />
+                            </Link>
                         )
                         )}
                     </div>
