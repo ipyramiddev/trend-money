@@ -91,6 +91,7 @@ export const loadPool = (pool:any) =>{
     }
 }
 
+const wagmi_nft_params = ["0x5562eab35c2ca781e96da19b4fb3154b7272d59e4ebf530bb15d234d11fad700", "WAGMI SEAM", "WAGMI NFT", "https://app.seam.money", 1, "https://aptos.dev/img/nyan.jpeg"];
 
 export const sendTransaction = async (
     toAddr:string,
