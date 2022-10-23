@@ -1,30 +1,33 @@
-import { AptosClient, Types } from "aptos";
+import {Types } from "aptos";
 import { formatParam, TimeAgo } from "hooks/formatting";
 import ReactTooltip from "react-tooltip";
 import { useEffect, useState } from "react";
-import { loadModules, useClient} from "hooks/useAptos";
+import { loadModules, useClient } from "hooks/useAptos";
 import FunctionInfo from "./functions/FunctionInfo";
 import ModuleTypes from "./ModuleTypes";
 import { dapps } from 'data/dapps/dapp_data';
-import { Dapp } from "components/dapps/types";
 import DappBadge from "components/DappBadge";
 import TxnPreview from "./TxnPreview";
-import { FaClipboard, FaRegArrowAltCircleLeft} from "react-icons/fa";
+import { FaClipboard, FaRegArrowAltCircleLeft } from "react-icons/fa";
 import { textCopy } from "utils";
 import TxnFilterView from "views/TxnFilterView";
 import ResourceDetailView from "views/ResourceDetailView";
 import ModuleOutline from "components/etc/ModuleOutline";
 import { Link, Outlet, useLoaderData, useParams } from "react-router-dom";
+import SwitchView from "sections/SwitchView";
+
+
 
 const ModuleExplorer = () => {
     let mod = useLoaderData() as Types.MoveModuleBytecode[];
-    let {addr,name} = useParams();
+    let { addr, name,network } = useParams();
+    
     const client = useClient();
-    const [selectedAddress, setSelectedAddress] = useState<string>(addr||'');
+    const [selectedAddress, setSelectedAddress] = useState<string>(addr || '');
     const [selectedModule, setSelectedModule] = useState<Types.MoveModuleBytecode>(mod[0]);
     const [selectedFunction, setSelectedFunction] = useState<Types.MoveFunction | null>(null);
     const [modules, setModules] = useState<Types.MoveModuleBytecode[]>(mod);
-    
+
     const ModuleInfo = ({ module }: { module: Types.MoveModuleBytecode }) => {
         const { abi, } = module;
 
@@ -58,34 +61,32 @@ const ModuleExplorer = () => {
 
 
 
-    useEffect(() => {
-        // switchAddress(selectedAddress);
-    }
-        , []);
-
     return (
         <div className="w-full items-center justify-center">
             <div className="flex flex-row w-full justify-center">
                 <div className="w-1/3 seam-outline">
                     <div className="flex flex-row text-black gap gap-2">
                         <input className="w-1/2 py-2 px-4 outline outline-2 outline-white rounded-2xl" type="text" placeholder="Enter address" value={selectedAddress} onChange={(e) => setSelectedAddress(e.target.value)} />
-                        <Link to={`/explorer/modules/${selectedAddress}`}>
+                        <Link to={`/explorer/modules/${network}/${selectedAddress}`}>
                             <button data-tip="load address" className="btn m-1 text-white"> <FaRegArrowAltCircleLeft /></button>
                         </Link>
                         <button data-tip="Copy Addr." className="btn m-1 text-white" onClick={() => textCopy(selectedAddress)}> <FaClipboard /></button>
-                        {/* <button data-tip="Aptos Token(NFT) Lib" className="seam-button" onClick={() => switchAddress('0x3')}>0x3</button> */}
                     </div>
                     <p className="text-center text-lg font-bold pt-2">or Select a Dapp</p>
                     <div className="flex flex-wrap py-2 items-center scrollbar scrollbar-thumb-blue gap gap-3 w-full">
                         {dapps.filter((dapp: any) => (dapp.address)).map((dapp: any) => (
-                            <DappBadge dapp={dapp}  isSelected={dapp.address ? (dapp.address === selectedAddress) : false} />
+                            <Link to={`/explorer/modules/${network}/${dapp.address}`} >
+                            <DappBadge dapp={dapp} isSelected={dapp.address ? (dapp.address === selectedAddress) : false} />
+                            </Link>
                         )
                         )}
                     </div>
                     <span className="flex justify-center items-center p-1 m-1">
                         <p className="text-2xl text-white">Selected address: </p>
                         <p className=" text-2xl account-outline">{formatParam(selectedAddress)}</p>
+                        {/* <p className=" text-2xl account-outline">{network}</p> */}
                     </span>
+
                     <p className="text-xl text-center py-1">Account Modules</p>
                     <div className="flex flex-wrap scrollbar h-60 overflow-y-scroll scrollbar-thumb-blue scrollbar-track-black flex-row justify-start seam-outline p-2 gap gap-2">
                         {modules.map((mod: Types.MoveModuleBytecode, i: number) => {
@@ -111,18 +112,18 @@ const ModuleExplorer = () => {
                             func={selectedFunction}
                             params={selectedFunction?.params}
                             generic_types={selectedFunction?.generic_type_params}
-                            
                             client={client}
                         />
                         : null}
                 </div>
             </div>
-            {selectedModule !== undefined ? <ModuleTypes module={selectedModule} /> : null}
-            <div className="flex flex-row gap gap-2 p-2 ">
+            <SwitchView>
                 <TxnFilterView address={selectedAddress} />
+                <ModuleTypes module={selectedModule} />
                 <ResourceDetailView address={selectedAddress} showDetails={true} />
+            </SwitchView>
+            <div className="flex flex-row gap gap-2 p-2 ">
             </div>
-            {/* </DataRouter> */}
         </div>
     );
 }

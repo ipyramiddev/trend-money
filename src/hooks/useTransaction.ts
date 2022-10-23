@@ -87,7 +87,7 @@ const useSubmitTransaction = () => {
 export default useSubmitTransaction;
 
 
-const NODE_URL = "https://fullnode.devnet.aptoslabs.com";
+const NODE_URL = "https://fullnode.mainnet.aptoslabs.com";
 const FAUCET_URL = "https://faucet.devnet.aptoslabs.com";
 
 const AIT3_URL = "https:://fullnode.testnet.aptoslabs.com"

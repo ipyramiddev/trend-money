@@ -198,8 +198,6 @@
   border-radius: 8px;
   border: solid 3px  #3f14dd;
   width: 100%;
-  
-  /* color: yellow; */
 }
 
 .account-outline{
@@ -212,8 +210,21 @@
   margin-bottom: 0.3rem;
   border-radius: 8px;
   border: solid 3px orange;
-  /* color: yellow; */
 }
+
+
+.type-outline{
+  background-color: transparent;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  padding-top: 0.3rem;
+  padding-bottom: 0.3rem;
+  margin-top: 0.3rem;
+  margin-bottom: 0.3rem;
+  border-radius: 8px;
+  border: solid 3px rgb(74, 239, 126);
+}
+
 
 
 .attribute-box{

@@ -4,14 +4,23 @@ import AccountResources from "sections/account/AccountResources";
 
 interface Props {
     address: string;
-    showDetails?: boolean
+    showDetails?: boolean;
+    showUnder?: boolean;
+
 }
 
-const ResourceDetailView = ({ address, showDetails}: Props) => {
+const ResourceDetailView = ({ address, showDetails,showUnder}: Props) => {
     const [resource, setResource] = useState<Types.MoveResource | null>(null);
 
     const selectResources = (resource: Types.MoveResource) => {
         setResource(resource)
+    }
+    
+    if (showUnder){
+        <div className="flex flex-col h-full">
+        <AccountResources address={address} selectResource={selectResources} />
+        {showDetails ? ResourceDetails(resource) : null}
+    </div>
     }
 
     return (<div className="flex flex-row">

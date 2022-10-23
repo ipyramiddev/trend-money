@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 // loads the resources for an account
 import Web3 from "@fewcha/web3";
 import { Types } from "aptos";
-import { formatType, format_large_number, shortenAddress } from "hooks/formatting";
+import { formatType, format_large_number, shortenAddress, splitType } from "hooks/formatting";
 import ReactTooltip from "react-tooltip";
 import { json } from "stream/consumers";
 import { DepositsWithdraws } from "./DepositsWithdraws";
@@ -11,6 +11,7 @@ import { loadResources } from "hooks/useAptos";
 import AccountOutline from "components/etc/AccountOutline";
 import CoinImg from "components/etc/CoinImg";
 import ModuleOutline from "components/etc/ModuleOutline";
+import TypeOutline from "components/etc/TypeOutline";
 
 const web3 = new Web3();
 
@@ -56,7 +57,7 @@ const AccountResources = ({ address,selectResource }: Props) => {
             <div className="flex flex-grid items-start">
                 {filterItems.map((f:any)=>{
                     const active = filters.includes(f);
-                    return (<button className={`outline rounded-t-xl p-2 ${active? 'bg-white text-black':"text-white"}`}
+                    return (<button className={`bg-white  text-lg rounded-xl px-3 py-2 ${active? 'bg-opacity-100 text-black':"text-black bg-opacity-50"}`}
                      onClick={()=>toggleFilter(f)}>
                         <p >{f}</p>
                     </button>)
@@ -64,7 +65,7 @@ const AccountResources = ({ address,selectResource }: Props) => {
             </div>
 
 
-            <div className="modScroll p-2 flex flex-col max-w-2xl ">
+            <div className="scrollY overflow-auto p-2 flex flex-col max-h-2xl ">
                 {resources && resources.length !== 0 ? (filteredResources(resources,selectResource,filters)) : <p>none</p>}
             </div>
             
@@ -80,7 +81,7 @@ const filteredResources = (
     resources: Types.MoveResource[],
     selectResource: (resource:Types.MoveResource)=>void,
     filter: string[] = [],
-    max: number = 15
+    max: number = 100
     ) => {
         let r_temp = resources;
         let i = 0;
@@ -96,7 +97,7 @@ const filteredResources = (
 
 
 
-const Resource = (resource: Types.MoveResource,selectResource: (resource:Types.MoveResource)=>void) => {
+const Resource = (resource: Types.MoveResource,selectResource: (resource:Types.MoveResource)=>void,base_addr="0x1") => {
     // console.log("Account resource",resource);
     if (resource.type == "0x1::coin::CoinStore<0x1::aptos_coin::AptosCoin>") {
 
@@ -116,9 +117,20 @@ const Resource = (resource: Types.MoveResource,selectResource: (resource:Types.M
     }
 
     
+    const { address, module, name } = splitType(resource.type);
+    const isSelf = address==base_addr;
     return (
-        <div className="p-2 m-2 outline rounded-lg my-3 outline-2 overflow-hidden">
-            <button onClick={()=>selectResource(resource)}>{formatType(resource.type)}</button>
+        <div className="p-2 m-2 outline h-40 rounded-lg  outline-2 ">
+
+            <div className="flex flex-row items-center">
+            <AccountOutline name="" addr={address} isSelf={isSelf}/>
+            <ModuleOutline module_name={module}/>
+            <TypeOutline type_name={name}/>
+            {/* <TypeOu */}
+            </div>
+            <div className="flex flex-row justify-end items-end">
+            <button  className="bg-white text-black rounded-full px-3 py-2 text-" onClick={()=>selectResource(resource)}>View Details</button>
+            </div>
             <ReactTooltip place="top" textColor="white"  html={true} multiline={true}/>
         </div>
     )
@@ -161,11 +173,12 @@ const CoinStore = (coins: any,) => {
 
     return (<div className="flex flex-col p-3 m-3 rounded-lg text-left items-start justify-start">
         <div className="outline flex flex-row items-center justify-between rounded-lg w-full p-2 m-1">
+            <img src="../tokens/asset_APT.png" className="w-10  rounded-full h-10 bg-white m-2"/>
             <div>
             <p className="text-4xl font-bold">{format_large_number(coins.coin?.value)}</p>
             <p className="text text-sm opacity-70">APT coin</p>
             </div>
-            <img src="./tokens/asset_APT.svg" className="w-20 h-20 m-2"/>
+            
         {DepositsWithdraws(coins)}
         </div>
         {/* <UserNfts {...user.nfts} /> */}
@@ -190,14 +203,14 @@ const GenericCoinStore = (coins: any,typ:string) => {
     return (<div className="flex flex-col  p-3 m-3 rounded-lg text-left items-start justify-start">
             <div>
         <div className="outline flex flex-row items-center justify-between rounded-lg w-full p-2 m-1">
-            <p className="text-4xl font-bold">{format_large_number(coins.coin?.value)}</p>
             <CoinImg symbol={cSymbol}/>
+            <p className="text-4xl font-bold">{format_large_number(coins.coin?.value)}</p>
             <AccountOutline name="" addr={cAddr}/>
             {/* <p className="text text-sm opacity-70">{coin}</p> */}
             <ModuleOutline module_name={cMod}/>
             <div>
-            <img src="./tokens/asset_APT.png" className="w-20 h-20 m-2"/>
-            <p>{cSymbol}</p>
+            {/* <img src="./tokens/asset_APT.png" className="w-20 h-20 m-2"/> */}
+            {/* <p>{cSymbol}</p> */}
             </div>
             {/* <p className="text text-sm opacity-70">{typ.split("::")[1]}</p> */}
             </div>

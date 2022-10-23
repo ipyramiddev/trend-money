@@ -116,7 +116,7 @@ export const dapps = [
     "github": "https://github.com/hippospace",
     "url": "https://hippo.space/",
     "docs": "",
-    "address": "0x498d8926f16eb9ca90cab1b3a26aa6f97a080b3fcbe6e83ae150b7243a00fb68",
+    "address": "0x89576037b3cc0b89645ea393a47787bb348272c76d6941c574b053672b848039",
     "coin_list": ''
   },
   {

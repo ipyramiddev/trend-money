@@ -1,3 +1,4 @@
+import WindowWrapper from "components/etc/WindowWrapper";
 import Icons from "components/Icons";
 import { useRef, useState } from "react";
 import { FaArrowCircleUp, FaBackward, FaForward, FaGithub, FaHome, FaTwitter } from "react-icons/fa";
@@ -20,33 +21,33 @@ const DappHeader = (dapp: Dapp) => {
     </div>);
 }
 
+
+
+function renderIDapp(url:string) {
+    return (<iframe className="scrollbar rounded-xl  scrollbar-thumb-pink scrollbar-track-blue"
+    width={'100%'}
+    height={'600px'}
+    // ref={ref}
+    // onLoad={newNav}
+    title="host" src={url} />)
+    
+}
+
+
 const DappFrame = () => {
     const ref = useRef<any>();
     let {dapp} = useParams();
-    let {dapp_data} = useLoaderData() as any;
-    dappByName(dapp||"") as Dapp;
-    const [rand, setRand] = useState(0);
-    const [url, setUrl] = useState(dapp_data?.url||'');
+    console.log("setting dapp:",dapp)
+    let dapp_data = dappByName(dapp||"") as Dapp;
 
-    // const DappReload = () => {
-    //     console.log("Trigger reload");
-    //     setUrl(dapp?.url||"");
-    //     setRand(rand + 1)
-    // }
-
-    
     return (
         <div className="w-full min-w-full">
-            <div className="mockup-window border-pink mockup-window-outline border-4 shadow-xl  shadow-pink  w-full pt-2 m-3">
+            <WindowWrapper>
                 {DappHeader(dapp_data)}
                 {DappNav(dapp_data)}
-                <iframe className="scrollbar rounded-xl  scrollbar-thumb-pink scrollbar-track-blue"
-                    width={'100%'}
-                    height={'600px'}
-                    ref={ref}
-                    // onLoad={newNav}
-                    title="host" src={dapp_data?.url} />
-            </div>
+                {renderIDapp(dapp_data?.url||"")}
+                
+            </WindowWrapper>
         </div>
     )
 }
