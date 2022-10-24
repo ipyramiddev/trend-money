@@ -23,7 +23,7 @@ const ResourceDetailView = ({ address, showDetails,showUnder}: Props) => {
     </div>
     }
 
-    return (<div className="flex flex-row">
+    return (<div className="flex flex-col">
         <AccountResources address={address} selectResource={selectResources} />
         {showDetails ? ResourceDetails(resource) : null}
     </div>);

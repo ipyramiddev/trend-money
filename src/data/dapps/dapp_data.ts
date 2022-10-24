@@ -252,7 +252,7 @@ export const dapps = [
     "github": "https://github.com/pontem-network",
     "url": "https://liquidswap.com/#/",
     "image": "pontemNetwork.jpg",
-    "address": "0x43417434fd869edee76cca2a4d2301e528a1551b1d719b75c350c3c97d15b8b9",
+    "address": "0x190d44266241744264b964a37b8f09863167a12d3e70cda39376cfb4e3561e12",
   },
 
   {
@@ -356,7 +356,7 @@ export const dapps = [
     "twitter": "https://twitter.com/TortugaFinance",
     "status": "Mainnet",
     "image": "tortuga.png",
-    "address": "0xaea7e219aa758cc115c8fba5e7323b6d17ed1a8b5ceb70900bdeb821cb2f75d2",
+    "address": "0x2f37694be6350f94bbd49e2e87bafd85c79096dcdb155f3071b2fd2a02ac0e2c",
     "url": 'https://tortuga.finance/',
     "github": "",
     "docs": "",

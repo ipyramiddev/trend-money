@@ -31,12 +31,13 @@ const temp_market = {
 
 
 const MarketView = () => {
+    const url = "http://www.coinbase.com/price/aptos";
     return (
         <div className=" flex-col w-screen p-6 h-screen">
             <p className="text-3xl"> Markets </p>
 
             <MarketHeader market={temp_market} />
-            <MarketFrame />
+            {MarketFrame(url)}
             {/* <IRL /> */}
         </div>
     )
@@ -50,9 +51,11 @@ interface MarketClient {
 
 
 
-const MarketFrame = () =>{
+const MarketFrame = (market_url:string) =>{
     return (
         <div className="min-h-screen items-center justify-center p-4">
+            <iframe 
+            src={market_url}></iframe>
             <p className="text-3xl text-center">...coming soon</p>
         </div>
         // </div>

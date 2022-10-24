@@ -21,7 +21,7 @@ const TxnHeader = ({ address, module_name, func_name }: Props) => {
         <div className="flex flex-row overflow-auto text-center text-xl justify-between gap gap-2 items-center">
             {/* Address */}
             
-            <button data-tip=" \n Copy address" onClick={()=>copyToClipboard(address)} className="account-outline  p-1 text-bold">
+            <button data-tip={`${address} \n Copy address`} onClick={()=>copyToClipboard(address)} className="account-outline  p-1 text-bold">
             {isDapp(address) ? (DappLogo(getDappImg(address))) : shortenAddress(address)}
                 </button>
             <p className="text-bold text-2xl">::</p>

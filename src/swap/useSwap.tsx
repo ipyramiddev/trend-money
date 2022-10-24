@@ -52,7 +52,7 @@ const useSubmitSwap = () => {
   }
 
   return {
-    // previewSwap,
+    previewSwap,
     submitSwap,
     // transactionInProcess,
     // transactionResponse,

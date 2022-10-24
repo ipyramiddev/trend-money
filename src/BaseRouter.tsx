@@ -57,6 +57,7 @@ export const BaseRouter = () => {
           <Route
             element={<ModuleExplorer />}
             path="modules/:network/:addr"
+            // loading={<div>loading</div>}
             loader={async ({ request, params }) => {
               const client = getClient(params.network||"Mainnet");
 

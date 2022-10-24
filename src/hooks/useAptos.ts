@@ -12,6 +12,7 @@ const urls = {
     dev: DEV_NODE_URL,
     test: TEST_NODE_URL,
     mainnet: MAINNET_NODE_URL,
+
 };
 
 const tClient = new AptosClient(TEST_NODE_URL);
@@ -161,6 +162,33 @@ const payload = {
     type_arguments: generic_type_params,
     arguments: args
 };
+const default_options = {
+    sender: sender,
+    sequence_number: account.sequence_number,
+    max_gas_amount: "6000",
+    // gas_unit_price: "1",
+    // gas_currency_code: "XUS",
+    // Unix timestamp, in seconds + 10 seconds
+    expiration_timestamp_secs: (Math.floor(Date.now() / 1000) + 10).toString(),
+  }
+
+console.log("OPTIONS",default_options);
+
+const transactionRequest = await window.martian.generateTransaction(sender, payload,default_options);
+const txnHash = await window.martian.signAndSubmitTransaction(transactionRequest);
+console.log(transactionRequest);
+console.log(txnHash);
+};
+
+export const sendPayload = async (
+    sender:string,
+    payload:Types.EntryFunctionPayload
+    ) =>{
+// Generate a transaction
+const account = await window.martian.connect();
+// const func = 
+// const sender = response.address;
+
 
 const default_options = {
     sender: sender,
@@ -176,7 +204,8 @@ console.log("OPTIONS",default_options);
 
 const transactionRequest = await window.martian.generateTransaction(sender, payload,default_options);
 const txnHash = await window.martian.signAndSubmitTransaction(transactionRequest);
-// console.log(transactionRequest);
+console.log(transactionRequest);
+console.log(txnHash);
 };
 
 

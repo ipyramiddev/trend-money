@@ -1,10 +1,12 @@
+import { useWeb3 } from "@fewcha/web3-react";
 import Stat from "components/Stat";
 import Token from "components/Token";
 import TokenStack from "components/TokenStack";
+import { sendPayload } from "hooks/useAptos";
 import Xarrow from "react-xarrows";
 import DappLogo from "sections/dapps/DappLogo";
 import { dappByName } from "util/dappUtils";
-
+import useSubmitTransaction from "../hooks/useTransaction";
 
 interface PoolProps {
     pool: any;
@@ -64,6 +66,22 @@ const ProtocolTag = (p: any) => {
 // const Σ = (){}
 
 export const StakingPool = ({ pool }: PoolProps) => {
+    
+
+  const {
+    submitTransaction,
+    transactionInProcess,
+    transactionResponse,
+    clearTransactionResponse,
+    genAnimePayload
+  } = useSubmitTransaction();
+
+  const {account} =useWeb3();
+
+  const send = async () => {
+    const payload = await genAnimePayload();
+    // await sendPayload(account?.address,payload);
+    };
 
     const pool_assets = ["APT", "BTC"]
 
@@ -79,7 +97,7 @@ export const StakingPool = ({ pool }: PoolProps) => {
 
             <div id={`deposit-${pool.name}`} key={`deposit-${pool.name}`} className="items-center justify-center">
                 <button
-                    // onClick={}
+                    onClick={()=>send()}
                     className="seam-button flex flex-row items-center justify-center">
                     <Token token={pool_assets[0]} />
                     Deposit</button>
