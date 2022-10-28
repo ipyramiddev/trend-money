@@ -70,7 +70,7 @@ const ModuleExplorer = () => {
                         <Link to={`/explorer/modules/${network}/${selectedAddress}`}>
                             <button data-tip="load address" className="btn m-1 text-white"> <FaRegArrowAltCircleLeft /></button>
                         </Link>
-                        <button data-tip="Copy Addr." className="btn m-1 text-white" onClick={() => textCopy(selectedAddress)}> <FaClipboard /></button>
+                        <button data-tip={`${selectedAddress} \n Copy Addr.`} className="btn m-1 text-white" onClick={() => textCopy(selectedAddress)}> <FaClipboard /></button>
                     </div>
                     <p className="text-center text-lg font-bold pt-2">or Select a Dapp</p>
                     <div className="flex flex-wrap py-2 items-center scrollbar scrollbar-thumb-blue gap gap-3 w-full">
