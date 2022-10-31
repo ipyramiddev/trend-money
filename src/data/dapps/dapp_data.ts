@@ -130,7 +130,7 @@ export const dapps = [
     "image": "souffl3.jpg",
     "github": "",
     "docs": "",
-    "address": "0xf6994988bd40261af9431cd6dd3fcf765569719e66322c7a05cc78a89cd366d4"
+    "address": "0x2c7bccf7b31baf770fdbcc768d9e9cb3d87805e255355df5db32ac9a669010a2"
   },
   {
     "name": "Aries",
@@ -324,7 +324,7 @@ export const dapps = [
     "twitter": "https://twitter.com/TopazMarket",
     "status": "Testnet",
     "image": "topaz.png",
-    "address": "0xaea7e219aa758cc115c8fba5e7323b6d17ed1a8b5ceb70900bdeb821cb2f75d2",
+    "address": "0xd4c70815e9d245a097646af821ecf87a073039e71e93c8cd04a0da082134d296",
     "url": 'https://www.topaz.so/',
     "github": "",
     "docs": "",
