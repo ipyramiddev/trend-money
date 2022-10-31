@@ -338,7 +338,6 @@ export const dapps = [
   },
   { 
     "name": "Ferum",
-
     "tags": ["DEX", "Exchange"],
     "url" : "https://www.ferum.xyz/",
     "docs": "",
@@ -346,5 +345,27 @@ export const dapps = [
     "image": "ferum.png",
     "twitter": "https://twitter.com/ferumxyz",
     "discord": "https://t.co/8DHuqgzhWo",
+  },
+  { 
+    "name": "Argo",
+    "tags": ["Stablecoin"],
+    "url" : "https://argo.fi/",
+    "docs": "https://docs.argo.fi/",
+    "github": "",
+    "address": "0x98298d34bcf896c663e069c464754e0cfd36b50e21eedd8db0e4189168057cb7",
+    "image": "argo.jpg",
+    "twitter": "https://twitter.com/ArgoUSD",
+    "discord": "https://argo.community/",
+  },
+  { 
+    "name": "HoustonSwap",
+    "tags": ["DEX","Concentrated Liquidity"],
+    "url" : "https://houstonswap.io/#",
+    "docs": "https://docs.houstonswap.io/houstonswap/",
+    "github": "",
+    "address":"0x7ab72b249ec24f76fe66b6de19dcee1e3d3361db5c2cccfaa48ea8659060a1bd",
+    "image": "HoustonSwap.svg",
+    "twitter": "https://twitter.com/HoustonSwap",
+    "discord": "https://discord.com/invite/bvC6uXyMvy",
   }
 ]
