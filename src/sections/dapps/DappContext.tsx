@@ -32,14 +32,19 @@ export const useDappContext = () => {
     const selectDapp=(dapp: Dapp|null)=>{ 
       if (dapp){
         console.log("selectDapp",dapp)
+        context1.isHome=false;
         context1.dapp = dapp;
       }
       else {context1.isHome=true}
+      console.log("context1",context1)
+    }
+    const toggleHome=()=>{
+      context1.isHome=!context1.isHome;
     }
 
 
   if (!context) {
     throw new Error("useDapp context must be used with DppProvider");
   }
-  return { ...context1, selectDapp };
+  return { ...context1, selectDapp,toggleHome };
 };

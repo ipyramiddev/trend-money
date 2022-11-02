@@ -12,6 +12,7 @@ import SplashFrame from "./SplashFrame";
 interface DappFrameProps {
     dapp: Dapp;
     viewUrl: string;
+    selectDapp: (dapp: Dapp) => void;
 
 }
 
@@ -36,22 +37,18 @@ const DappHeader = (dapp: Dapp) => {
     </div>);
 }
 
-// const dappScroller = (dapps: Dapp[]) => {
 
-
-
-const DappFrame = () => {
+const DappFrame = ({ dapp, viewUrl,selectDapp }: DappFrameProps) => {
     const ref = useRef<any>();
-    let {dapp} = useParams();
     console.log("setting dapp:",dapp)
-    let dapp_data = dappByName(dapp||"") as Dapp;
-    const home = dapp==="home";
+    let dapp_data = dappByName(dapp.name||"") as Dapp;
+    // const home = dapp==="home";
     return (
         <div className="w-full min-w-full">
             <WindowWrapper>
                 {DappHeader(dapp_data)}
-                {DappNav(dapp_data)}
-                {home ? (<SplashFrame/>) :renderIDapp(dapp_data?.url||"")}
+                {DappNav(dapp_data,selectDapp)}
+                {renderIDapp(dapp_data?.url||"")}
                 
             </WindowWrapper>
         </div>
@@ -61,7 +58,7 @@ const DappFrame = () => {
 export default DappFrame;
 
 
-const DappNav=(dapp:Dapp)=> {
+const DappNav=(dapp:Dapp,selectDapp:(dapp:Dapp)=>void)=> {
     return (
         <div className="flex flex-row items-start justify-center px-3">
             {/* BACK ARROW */}
@@ -77,13 +74,11 @@ const DappNav=(dapp:Dapp)=> {
             {/* REFRESH button */}
 
             {/* Home Icon button */}
-            <Link to="/explorer/dapps/home">
             <button className="seam-sqr" data-tip="Home" 
-            // onClick={()=>selectDapp(dapp)}
+            onClick={()=>selectDapp(dapp)}
             >
                 <FaHome/>
             </button>
-                </Link>
 
             <button
                 // onClick={() => selectDapp(null)}

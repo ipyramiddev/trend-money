@@ -2,6 +2,7 @@
 import { dapps } from "data/dapps/dapp_data";
 import { shortenAddress } from "hooks/formatting";
 import TabWrapper from "os/TabWrapper";
+import Draggable from "react-draggable";
 import { Link } from "react-router-dom";
 import DappLogo from "sections/dapps/DappLogo";
 import OsTab from "../../osTab";
@@ -26,12 +27,12 @@ const DappBadge = ({ dapp, setSelectedDapp, isSelected, key }: sDapp) => {
                 <Link to={`/explorer/modules/${dapp.address}`}>
                     <p className="hover:text-underlined"
                     >@{shortenAddress(dapp.address)}</p></Link> : null}
-            <Link to={`/explorer/dapps/${dapp.name}`}>
+            {/* <Link to={`/explorer/dapps/${dapp.name}`}> */}
                 <button onClick={() => setSelectedDapp(dapp)}
                     className={`w-full seam-button  items-center justify-center  ${isSelected ? 'bg-white bg-opacity-100 text-black' : ''}`} key={dapp.name + '-ui'}>
                     Open Dapp
                 </button>
-            </Link>
+            {/* </Link> */}
 
 
             <Link to={`/explorer/dapps/info/${dapp.name}`}>
@@ -55,11 +56,11 @@ const SplashFrame = () => {
                         
                         return (
                             <div className="bg-black">
-                            <TabWrapper>
+                            {/* <TabWrapper> */}
                                 <p>DRAG</p>
                                 <DappBadge key={"dapp" + i.toString()} dapp={dapp1} setSelectedDapp={selectDapp
                         } />
-                            </TabWrapper>
+                            {/* </TabWrapper> */}
                             </div>)
 
                     })}
