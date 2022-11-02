@@ -105,7 +105,7 @@ export const dapps = [
     "docs": "https://docs.bluemove.net/",
     "url": "https://bluemove.net/",
     "image": "blueMove.png",
-    "address": "0xcb6213dee7fcbf7826e2e42e63f081037d4fb096e8df74875b34034a688a865b"
+    "address": "0xd1fd99c1944b84d1670a2536417e997864ad12303d19eac725891691b04d614e"
   },
   {
     "name": "Hippo Labs",
@@ -137,11 +137,12 @@ export const dapps = [
   {
     "name": "Aries",
     "description": "Decentralised Margin Trading",
-    "tags": ["DeFi"],
+    "tags": ["DeFi","Lending","Borrowing"],
     "url": "https://ariesmarkets.xyz/",
     "discord": "https://discord.gg/h6Kx9pkp",
     "twitter": "https://twitter.com/AriesMarkets",
-    "status": "testnet",
+    "address": "0x9770fa9c725cbd97eb50b2be5f7416efdfd1f1554beb0750d4dae4c64e860da3",
+    "status": "mainnet",
     "image": "aries.jpg",
     "github": "",
     "docs": "",
