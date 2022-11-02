@@ -2,19 +2,17 @@ import React, { useState, useEffect } from 'react';
 import { AptosClient, AptosAccount, FaucetClient, BCS, TxnBuilderTypes, HexString, Types } from "aptos";
 import ModuleExplorer from '../sections/modules/ModuleExplorer';
 import UserExplorer from '../sections/UserExplorer';
-// import { AccountContextProvider } from 'context/AccountContext';
 import Pools from '../sections/pools/Pools';
 import DappsView from 'sections/dapps/DappsView';
-import { useWeb3 } from '@fewcha/web3-react';
 import { formatParam } from 'hooks/formatting';
 import { ExplorerTabView } from 'views/ExplorerTabView';
 import Coins from './Coins';
-import IDE from './IDE';
 import { Outlet } from 'react-router';
 import { Link, useLocation } from 'react-router-dom';
+import { useWallet } from '@manahippo/aptos-wallet-adapter';
 
 const Explorer = () => {
-    const { account, balance, isConnected, network, currentWallet } = useWeb3();
+    const { account, connected,  wallet: currentWallet,} = useWallet();
     let {pathname} = useLocation()
     
     const tabs = [
@@ -46,7 +44,6 @@ const Explorer = () => {
                 </div>
             </div>
             <div className="flex flex-col h-full w-full items-center justify-start">
-                <p className="account-outline">{formatParam(account?.address || '')}</p>
                 <Outlet/>
             </div>
         </div>

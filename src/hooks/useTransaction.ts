@@ -115,24 +115,6 @@ const useSubmitTransaction = () => {
         export const loadTxs = async (address: string,client:AptosClient=defaultClient):Promise<Types.Transaction[]> =>  {
           const txs = await client.getAccountTransactions(address)
           
-        return txs.reverse()
+        return txs.reverse();
     
 }
-
-
-
-// export const loadValidatorSet = () =>{
-//   const 
-//   return(
-
-//   )
-// }
-
-
-// export const loadValidatorDetails = (address:string) =>{
-
-//   const resources = web3.
-//   return (
-    
-//   )
-// }

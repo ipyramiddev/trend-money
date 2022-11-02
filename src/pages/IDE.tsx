@@ -4,7 +4,7 @@ import { FaSave } from "react-icons/fa";
 import ParserServer from '../sections/ide/ParserServer'
 type File = {
     name: string;
-    lines: string[];
+    script: string;
     warnings?: string[];
     compiled?: string;
 }
@@ -14,17 +14,25 @@ interface EditorProps {
     module: string;
 }
 
+
+const mockScript = (aptIN:any,) => {
+    const amnt = aptIN * 100_000_000;
+    const market_id= '0x4d61696e204163636f756e74'
+    const script = 
+    `script { \n
+        use 0x9770fa9c725cbd97eb50b2be5f7416efdfd1f1554beb0750d4dae4c64e860da3::controller;
+        fun main() {
+            controller::register_user();
+            controller::deposit("${market_id}", "${amnt}", false);
+        }   
+    }`
+    return script;
+}
 const mockFile = {
     name: "test.move",
-    lines: [
-        "line 1",
-        "line 2",
-        "line 3",
-        "line 4",
-        "line 5",
-    ],
+    script: mockScript(1)
 }
- 
+
 interface PoolProps {
     client: AptosClient;
 }
@@ -72,22 +80,22 @@ const FileEditor = ({
     module
 }:EditorProps) => {
 
-    const handleChange = (e:any) =>{
-            setCurrentText(e.event.textValue);
-    }
+    // const handleChange = (e:any) =>{
+    //         setCurrentText(e.event.textValue);
+    // }
 
-    const [currentText, setCurrentText] = useState<string>(file.lines.join(" \n"));
+    const [currentText, setCurrentText] = useState<string>(file.script);
 
     return (
         <div className="mockup-window border-pink mockup-window-outline border-4 shadow-xl  shadow-pink  w-full min-h-1/2 pt-2 m-3">
 
             <div>
-        <div className="multiline">
+        <div className="multiline h-60">
         <textarea 
         className="w-full h-full py-3 mx-3 rounded-2xl bg-white px-5 text-black"
           name="textValue"
-          placeholder={currentText}
-          onChange={(e)=>handleChange(e)}
+          value={currentText}
+        //   onChange={(e)=>handleChange(e)}
         />
       </div>
         <ParserServer/>

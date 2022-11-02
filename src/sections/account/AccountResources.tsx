@@ -1,7 +1,4 @@
 import { useEffect, useState } from "react";
-// import {getAccountResources } from '@fewcha/web3";
-// loads the resources for an account
-import Web3 from "@fewcha/web3";
 import { Types } from "aptos";
 import { formatType, format_large_number, shortenAddress, splitType } from "hooks/formatting";
 import ReactTooltip from "react-tooltip";
@@ -13,7 +10,6 @@ import CoinImg from "components/etc/CoinImg";
 import ModuleOutline from "components/etc/ModuleOutline";
 import TypeOutline from "components/etc/TypeOutline";
 
-const web3 = new Web3();
 
 interface Props{
     address: string;
@@ -23,19 +19,8 @@ interface Props{
 
 const AccountResources = ({ address,selectResource }: Props) => {
     const [resources, setResources] = useState<Types.MoveResource[]>([]);
-    const [filters, setFilters ] = useState<string[]>([])
-    const [filterItems, setFilterItems ] = useState<string[]>([])
 
-    const toggleFilter= (f:any) => {
-        if(filters.includes(f)){
-            const temp = filters.filter((f1:any) =>{
-                return f1!==f;
-            })
-            setFilters(temp);
-            return;
-        }
-        setFilters([...filters, f])
-    }
+
 
     useEffect(() => {
         loadResources(address).then((res) => {
@@ -46,29 +31,15 @@ const AccountResources = ({ address,selectResource }: Props) => {
             })
             
                 setResources(reversed);
-                setFilterItems([... new Set(coreAddys)]);
         });
     }, []
     );
     return (
-        <div>
+        <div className="max-w-6xl">
             <p className="text-3xl">Account Resources</p>
-            {/* filter view */}
-            <div className="flex flex-grid items-start">
-                {filterItems.map((f:any)=>{
-                    const active = filters.includes(f);
-                    return (<button className={`bg-white  text-lg rounded-xl px-3 py-2 ${active? 'bg-opacity-100 text-black':"text-black bg-opacity-50"}`}
-                     onClick={()=>toggleFilter(f)}>
-                        <p >{f}</p>
-                    </button>)
-                })}
-            </div>
-
-
             <div className="scrollY overflow-auto p-2 flex flex-col max-h-2xl ">
-                {resources && resources.length !== 0 ? (filteredResources(resources,selectResource,filters)) : <p>none</p>}
+                {resources && resources.length !== 0 ? (filteredResources(resources,selectResource,[])) : <p>none</p>}
             </div>
-            
         </div>
     );
 }
@@ -84,14 +55,7 @@ const filteredResources = (
     max: number = 100
     ) => {
         let r_temp = resources;
-        let i = 0;
-        while(i<filter.length && resources.length>0){
-            r_temp = r_temp.filter((r:Types.MoveResource,i:number)=>{
-                const t = r.type.startsWith(filter[i])
-                return t;
-            })
-            i=i+1;
-        }
+        
         return ResourceList(r_temp,selectResource);
     }
 
@@ -120,7 +84,7 @@ const Resource = (resource: Types.MoveResource,selectResource: (resource:Types.M
     const { address, module, name } = splitType(resource.type);
     const isSelf = address==base_addr;
     return (
-        <div className="p-2 m-2 outline h-40 rounded-lg  outline-2 ">
+        <div className="p-2 m-2 outline h-40 rounded-lg  w-40 outline-2 ">
 
             <div className="flex flex-row items-center">
             <AccountOutline name="" addr={address} isSelf={isSelf}/>

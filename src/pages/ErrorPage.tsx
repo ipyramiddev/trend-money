@@ -12,7 +12,7 @@ const ErrorPage = () => {
                 <AccountOutline addr={addr} />
 
                 <Link to={`/explorer/modules/${network}/0x1`}>
-                <button className="seam-button">Return</button>
+                    <button className="seam-button">Return</button>
                 </Link>
             </div>
         )
