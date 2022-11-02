@@ -44,7 +44,7 @@ const TxnPreview = ({ address, module, func, params, generic_types, client }: Tx
 
     };
 
-    // const payloa
+    // const payload
 
     return (
         <div className="shadow items-center  p-3">
@@ -62,7 +62,8 @@ const TxnPreview = ({ address, module, func, params, generic_types, client }: Tx
                 </div>
                 <div className="flex flex-row gap-2 ">
                     <div>
-                        {params.map((param: Types.MoveType, index: number) => {
+                        { params.length!=0 && params[0] === "&signer" ? <p className="text-2xl">signer</p> : <p className="text-2xl">signer,</p>}
+                        {params.filter(param => param!=="&signer").map((param: Types.MoveType, index: number) => {
                             return (
                                 <div key={index} className="flex flex-row items-baseline justify-start px-2 py-3 m-3 rounded-xl text-white">
                                     { }

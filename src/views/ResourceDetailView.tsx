@@ -30,7 +30,7 @@ const ResourceDetailView = ({ address, showDetails,showUnder}: Props) => {
 }
 
 const ResourceDetails = (resource: Types.MoveResource | null) => {
-    return (<div className="p-3 w-24">
+    return (<div className="p-3 w-full max-w-6xl">
         <p className="text-3xl">Resource Details</p>
         <p className="text-xl font-semibold">{resource?.type}</p>
         <p className="w-full">{JSON.stringify(resource?.data,null, "\t")}</p>

@@ -103,10 +103,10 @@ export const BaseRouter = () => {
           <Route
             element={<DappsView />}
             path="dapps">
-            <Route path="home" element={<SplashFrame/>} />
+            {/* <Route path="home" element={<SplashFrame/>} /> */}
 
-            <Route path="home" element={<DappsView/>} />
-
+            {/* <Route path="home" element={<DappsView/>} /> */}
+{/* 
             <Route path=":dapp" element={<DappsView />}
               loader={async ({ request, params }) => {
                 console.log('params are:', params);
@@ -115,7 +115,7 @@ export const BaseRouter = () => {
                 }
                 const dapp = dappByName(params.dapp || "");
                 return { ...dapp, txs: loadTxs(dapp?.address || '0x1') }
-              }} />
+              }} /> */}
 
             <Route path="info/:dapp/" element={<DappInfo />}
               loader={async ({ request, params }) => {

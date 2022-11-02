@@ -12,7 +12,7 @@ const DappBadge = ({ dapp,  isSelected }: Props) => {
     return (
     
     <button data-tip={dapp.name} 
-        className={`outline outline-white  outline-2 dappBadge items-center justify-center  ${isSelected ? 'bg-white bg-opacity-100 text-black' :''}`} key={dapp.name}>
+        className={`dappBadge rounded-full p-2 hover:bg-white items-center justify-center  ${isSelected ? 'bg-white bg-opacity-100 p-3 text-black' :''}`} key={dapp.name}>
             {DappLogo(dapp.image)}
     </button>
     )

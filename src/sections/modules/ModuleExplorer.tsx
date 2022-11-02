@@ -2,7 +2,7 @@ import {Types } from "aptos";
 import { formatParam, TimeAgo } from "hooks/formatting";
 import ReactTooltip from "react-tooltip";
 import { useEffect, useState } from "react";
-import { loadModules, useClient } from "hooks/useAptos";
+import { getClient, loadModules, useClient } from "hooks/useAptos";
 import FunctionInfo from "./functions/FunctionInfo";
 import ModuleTypes from "./ModuleTypes";
 import { dapps } from 'data/dapps/dapp_data';
@@ -21,12 +21,28 @@ import SwitchView from "sections/SwitchView";
 const ModuleExplorer = () => {
     let mod = useLoaderData() as Types.MoveModuleBytecode[];
     let { addr, name,network } = useParams();
+
+
+
+    // const loadModules
     
     const client = useClient();
     const [selectedAddress, setSelectedAddress] = useState<string>(addr || '');
+    // const [selectedDapp, setSelected] = useState<string>(addr || '');
     const [selectedModule, setSelectedModule] = useState<Types.MoveModuleBytecode>(mod[0]);
     const [selectedFunction, setSelectedFunction] = useState<Types.MoveFunction | null>(null);
     const [modules, setModules] = useState<Types.MoveModuleBytecode[]>(mod);
+
+    const updateView = async (addr: string) => {
+        setSelectedAddress(addr);
+        const client = getClient("Mainnet");
+
+            console.log("running module loader");
+            const mods = await loadModules(addr , client)
+            setModules(mods);
+            setSelectedModule(mods[0]);
+            
+    }
 
     const ModuleInfo = ({ module }: { module: Types.MoveModuleBytecode }) => {
         const { abi, } = module;
@@ -78,7 +94,9 @@ const ModuleExplorer = () => {
                             <Link to={`/explorer/modules/${network}/${dapp.address}`} >
                             <button
                             onClick={(event)=>{
+                                updateView(dapp.address)
                                 window.history.pushState({}, '', `/explorer/modules/${network}/${dapp.address}`);
+                                setSelectedAddress(dapp.address);
                             }}
                             >
                             <DappBadge

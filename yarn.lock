@@ -1908,10 +1908,10 @@
   resolved "https://registry.yarnpkg.com/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz#b520529ec21d8e5945a1851dfd1c32e94e39ff45"
   integrity sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==
 
-"@imcoding.online/js-move-playground@^1.0.2":
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/@imcoding.online/js-move-playground/-/js-move-playground-1.0.2.tgz#e81a2895ecd05a5da463a713e0b696a2ab2726fe"
-  integrity sha512-K7HVm6NqtWldPBXs5TiDZgZ05XpiTTXAcxSsfunbKw6GS9ItKpZl/YIjLmd5J8O/V41uTf03m3YopB/0xygTgQ==
+"@imcoding.online/js-move-playground@^1.0.3":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@imcoding.online/js-move-playground/-/js-move-playground-1.0.3.tgz#5adc3f477d381f792c34d3d0b446a46410cad319"
+  integrity sha512-OERBNaidUskb3dF2K6UyLWU5N8iKj1MaVlLFiOHTUaOBKVl74HiowSFc0WfODmhKM4xcYld9yozEEptZWvB/2w==
 
 "@istanbuljs/load-nyc-config@^1.0.0":
   version "1.1.0"

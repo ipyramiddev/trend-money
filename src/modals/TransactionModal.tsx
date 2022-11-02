@@ -1,13 +1,10 @@
+import { useWallet } from "@manahippo/aptos-wallet-adapter";
 import { AptosAccount, AptosClient, BCS, TxnBuilderTypes, Types } from "aptos";
 import TxnHeader from "components/txn/TxnHeader";
 import {useRef, useState } from "react";
 import { generic_serialize } from "util/aptosUtils";
 import ModalWrapper from "./ModalWrapper";
-import Web3 from "@fewcha/web3";
-import { useWeb3 } from "@fewcha/web3-react";
-// import { MoveResource } from "aptos/dist/generated";
 
-const web3 = new Web3();
 interface txnModalProps {
     client: AptosClient;
     address: string,
@@ -15,9 +12,7 @@ interface txnModalProps {
     func: Types.MoveFunction;
     module: Types.MoveModuleBytecode;
     type_arguments: string[],
-    
     args: any[];
-    // arg_types?: string[];
     isOpen: boolean;
     setIsOpen: (isOpen: boolean) => void;
 
@@ -27,7 +22,7 @@ const TransactionModal = ({isOpen,client, address,module, type_arguments, args, 
     const [open, setOpen] = useState(isOpen);
     const [argList, setArgList] = useState<any[]>([]);
     const cancelButtonRef = useRef(null);
-    const { account, balance, isConnected, network,currentWallet,martian,fewcha } = useWeb3()
+    const { account, connected, network,wallet:currentWallet } = useWallet()
 
     const params = func.params as Types.MoveType[]
     const module_name = module.abi?.name;
@@ -52,7 +47,7 @@ const TransactionModal = ({isOpen,client, address,module, type_arguments, args, 
         arguments: argList,
       };
       console.log("Payload",payload);
-      const transactionRequest = await window.martian.generateTransaction(account.address, payload);
+      const transactionRequest = await window.martian.generateTransaction(account?.address, payload);
       const txnHash = await window.martian.signTransaction(transactionRequest);
       const txnsubmit = await window.martian.submitTransactions(txnHash);
       

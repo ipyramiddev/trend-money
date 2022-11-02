@@ -19,7 +19,7 @@ const Explorer = () => {
         { name: 'Modules + Dapps', id: 'modules/mainnet/0x1' },
         // { name: 'Transactions', id: 'txns' },
         { name: 'User Account ', id: 'user' },
-        { name: 'Dapps', id: 'dapps/home' },
+        { name: 'Dapps', id: 'dapps' },
         // { name: 'Stats', id: 'stats' },
         { name: 'Validators', id: 'validators' },
         { name: 'IDE', id: 'IDE' },

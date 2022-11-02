@@ -12,8 +12,27 @@ import ModuleExplorer from 'sections/modules/ModuleExplorer';
 import UserExplorer from 'sections/UserExplorer';
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client'
 import NodePage from 'pages/NodePage';
-
-import { useState } from 'react';
+import {
+  WalletProvider,
+  // HyperPayWalletAdapter,
+  // AptosWalletAdapter,
+  // HippoExtensionWalletAdapter,
+  MartianWalletAdapter,
+  FewchaWalletAdapter,
+  PontemWalletAdapter,
+  RiseWalletAdapter,
+  SpikaWalletAdapter,
+  FletchWalletAdapter,
+  // AptosSnapAdapter,
+  // NightlyWalletAdapter,
+  // BitkeepWalletAdapter,
+  // TokenPocketWalletAdapter,
+  // BloctoWalletAdapter,
+  // WalletAdapterNetwork,
+  // ONTOWalletAdapter,
+  // FoxWalletAdapter
+} from '@manahippo/aptos-wallet-adapter';
+import { useState,useMemo } from 'react';
 import { GlobalStateProvider } from 'GlobalState';
 // import { MyWalletProvider } from './context/wallet/provider';
 import WalletModal from 'modals/walletModal';
@@ -24,15 +43,47 @@ import { useClient } from 'hooks/useAptos';
 export default function Wrapper({children}) {
   const [walletModalOpen, setWalletModal] = useState(false);
   const client = useClient();
+
+  const wallets = useMemo(
+    () => [
+      // new HyperPayWalletAdapter(),
+      // new HippoExtensionWalletAdapter(),
+      new MartianWalletAdapter(),
+      // new AptosWalletAdapter(),
+      new FewchaWalletAdapter(),
+      new PontemWalletAdapter(),
+      new RiseWalletAdapter(),
+      new SpikaWalletAdapter(),
+      new FletchWalletAdapter(),
+      // new AptosSnapAdapter(),
+      // new NightlyWalletAdapter(),
+      // new BitkeepWalletAdapter(),
+      // new TokenPocketWalletAdapter(),
+      // new BloctoWalletAdapter({ network: WalletAdapterNetwork.Testnet }),
+      // new ONTOWalletAdapter(),
+      // new FoxWalletAdapter()
+    ],
+    []
+  );
+
   return (
     // <ApolloProvider client={client}>
       <GlobalStateProvider>
+         <WalletProvider
+      wallets={wallets}
+      autoConnect={false}
+
+      onError={(error) => {
+        console.log('wallet errors: ', error);
+        // message.error(error.message);
+      }}>
           <Navbar showConnectModal={setWalletModal} />
         {/* <MyWalletProvider> */}
         {/* <div > */}
           {/* <Nav/> */}
           {children}
           {walletModalOpen ? <WalletModal isOpen={walletModalOpen} setIsOpen={setWalletModal} /> : null}
+          </WalletProvider>
       </GlobalStateProvider>
     
     // </ApolloProvider>
