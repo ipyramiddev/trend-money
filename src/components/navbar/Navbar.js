@@ -29,7 +29,6 @@ function NavbarIcon(link,icon, key) {
             </a>
         </p>
     );
-
 }
 
 
