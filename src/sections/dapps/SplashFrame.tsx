@@ -5,7 +5,6 @@ import TabWrapper from "os/TabWrapper";
 import Draggable from "react-draggable";
 import { Link } from "react-router-dom";
 import DappLogo from "sections/dapps/DappLogo";
-import OsTab from "../../osTab";
 import { useDappContext } from "./DappContext";
 
 
@@ -57,7 +56,6 @@ const SplashFrame = () => {
                         return (
                             <div className="bg-black">
                             {/* <TabWrapper> */}
-                                <p>DRAG</p>
                                 <DappBadge key={"dapp" + i.toString()} dapp={dapp1} setSelectedDapp={selectDapp
                         } />
                             {/* </TabWrapper> */}
@@ -65,7 +63,6 @@ const SplashFrame = () => {
 
                     })}
                     {/* </Draggable> */}
-                    <OsTab/>
                 </div>
             </div>
         </div>
