@@ -69,5 +69,3 @@ const SplashFrame = () => {
     )
 }
 export default SplashFrame;
-
-// function TabHandle = () => <div></div>
