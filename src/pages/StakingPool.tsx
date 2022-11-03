@@ -85,7 +85,7 @@ export const StakingPool = ({ pool }: PoolProps) => {
 
     const pool_assets = ["APT", "BTC"]
 
-    const protocols = pool.pools.map((i: any) => [i.address || "0x0x", { name: i.name, image: i.image }])
+    const protocols = pool.pools.map((i: any) => [i.address || "0x1", { name: i.name, image: i.image }])
     console.log("PROTOCOLS", protocols);
 
     return (<div className="w-full seam-outline  shadow-lg shadow-white roundex-2xl text-white">
