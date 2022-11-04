@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
-
+// import {getUserResources } from '@fewcha/web3";
+// loads the resources for an user
+import Web3 from "@fewcha/web3";
 import { Types } from "aptos";
 import { formatType, format_large_number, shortenAddress } from "hooks/formatting";
 import ReactTooltip from "react-tooltip";
@@ -7,9 +9,12 @@ import { json } from "stream/consumers";
 import { loadResources } from "hooks/useAptos";
 import { DepositsWithdraws } from "./account/DepositsWithdraws";
 
+const web3 = new Web3();
+
 interface Props{
     address: string;
     selectResource: (resource:Types.MoveResource)=>void;
+    
 }
 
 const UserResources = ({ address,selectResource }: Props) => {
@@ -63,7 +68,7 @@ const Resource = (resource: Types.MoveResource,selectResource: (resource:Types.M
 const TokenStore = (tokenstore:any)=>{
     const data = tokenstore.data
     // const tokens =
-    console.log("TOKENSTORE",tokenstore);
+    console.log("TOKENSTORE",data);
     return (
         <div className="flex flex-col rounded-2xl outline outline-2 p-2 m-2">
             <p>Token Store</p>

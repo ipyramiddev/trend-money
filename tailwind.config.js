@@ -1,6 +1,9 @@
+/** @type {import('tailwindcss').Config} */
 module.exports = {
-	content: ['./src/**/*.{js,jsx,tsx,ts}','./src/*.{js,ts,tsx}', './public/index.html'],
-	theme: {
+  content: [
+    './src/**/*.{js,jsx,ts,tsx}',
+  ],
+  theme: {
 		screens: {
 			sm: '480px',
 			md: '768px',
@@ -58,5 +61,6 @@ module.exports = {
 			}),
 		},
 	},
-	plugins: [require('daisyui'),require('tailwindcss-gradients'),require('tailwind-scrollbar')],
-};
+	// plugins: [require('daisyui'),require('tailwindcss-gradients'),require('tailwind-scrollbar')],
+	plugins: [],
+}

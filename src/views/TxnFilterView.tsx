@@ -12,7 +12,7 @@ interface Props {
 const TxnFilterView = ({ address }: Props) => {
     const [txs, setTxs] = useState<Types.Transaction[]>([]);
     useEffect(() => {
-        loadTxs(address).then((res) => {
+        loadTxs(address).then((res: any) => {
             setTxs(res)
             console.log("just loaded ", res);
         }

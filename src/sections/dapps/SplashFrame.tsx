@@ -1,4 +1,3 @@
-
 import { dapps } from "data/dapps/dapp_data";
 import { shortenAddress } from "hooks/formatting";
 import Draggable from "react-draggable";
@@ -68,3 +67,5 @@ const SplashFrame = () => {
     )
 }
 export default SplashFrame;
+
+

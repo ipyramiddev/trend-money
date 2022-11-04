@@ -1,22 +1,27 @@
 {
-    "extends": "@tsconfig/node12/tsconfig.json",
-    "compilerOptions": {
-      "preserveConstEnums": true,
-      "esModuleInterop": true,
-      "noFallthroughCasesInSwitch": true,
-      "module": "esnext","target": "es2020",
-      "lib": ["dom", "dom.iterable", "esnext"],
-      "allowJs": true,
-      "skipLibCheck": true,
-      "moduleResolution": "node",
-      "resolveJsonModule": true,
-      "isolatedModules": false,
-      "allowSyntheticDefaultImports": true,
-      "noEmit": true,
-      "jsx": "react-jsx",
-      "baseUrl": "src"
-    },
-    "include": ["src/**/*", "types/**/*", "scripts/**/*","src/*"],
-    "exclude": ["node_modules", "**/*.spec.ts"],
-    // "require": 
-  }
+  "compilerOptions": {
+    "target": "es5",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": false,
+    "noEmit": true,
+    "jsx": "react-jsx",
+    "baseUrl": "src"
+  },
+  "include": [
+    "src"
+  ]
+}
