@@ -415,5 +415,16 @@ export const dapps = [
     "image": "HoustonSwap.svg",
     "twitter": "https://twitter.com/HoustonSwap",
     "discord": "https://discord.com/invite/bvC6uXyMvy",
+  },
+  { 
+    "name": "AptFlip",
+    "tags": ["Gaming"],
+    "url" : "https://aptflip.com/flip",
+    "docs": "https://medium.com/@APTflip",
+    "github": "",
+    "address":"0x783ea0c95907f6d1269647fa2516bb41966ef24c4446a854722ac2ebd1e39613",
+    "image": "aptFlip.png",
+    "twitter": "https://twitter.com/Aptosflip",
+    "discord": "https://discord.com/invite/bvC6uXyMvy",
   }
 ]
