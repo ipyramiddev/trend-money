@@ -31,11 +31,6 @@ function SwitchView(props: any) {
             </a>
           );
         })}
-        {/* 
-                {view === "Yield Strategies" && <AptosPools />}
-                {view === "Staking Pools" && <StakePage />}
-            */}
-        {/* {view === "Open stake" && <OpenStake/>} */}
       </div>
       {view === "Transactions" && props.children[0]}
       {view === "Types" && props.children[1]}

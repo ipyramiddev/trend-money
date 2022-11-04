@@ -1,4 +1,4 @@
-import {Types } from "aptos";
+import { Types } from "aptos";
 import { formatParam, TimeAgo } from "hooks/formatting";
 import ReactTooltip from "react-tooltip";
 import { useEffect, useState } from "react";
@@ -20,15 +20,10 @@ import SwitchView from "sections/SwitchView";
 
 const ModuleExplorer = () => {
     let mod = useLoaderData() as Types.MoveModuleBytecode[];
-    let { addr, name,network } = useParams();
+    let { addr, name, network } = useParams();
 
-
-
-    // const loadModules
-    
     const client = useClient();
     const [selectedAddress, setSelectedAddress] = useState<string>(addr || '');
-    // const [selectedDapp, setSelected] = useState<string>(addr || '');
     const [selectedModule, setSelectedModule] = useState<Types.MoveModuleBytecode>(mod[0]);
     const [selectedFunction, setSelectedFunction] = useState<Types.MoveFunction | null>(null);
     const [modules, setModules] = useState<Types.MoveModuleBytecode[]>(mod);
@@ -37,11 +32,11 @@ const ModuleExplorer = () => {
         setSelectedAddress(addr);
         const client = getClient("Mainnet");
 
-            console.log("running module loader");
-            const mods = await loadModules(addr , client)
-            setModules(mods);
-            setSelectedModule(mods[0]);
-            
+        console.log("running module loader");
+        const mods = await loadModules(addr, client)
+        setModules(mods);
+        setSelectedModule(mods[0]);
+
     }
 
     const ModuleInfo = ({ module }: { module: Types.MoveModuleBytecode }) => {
@@ -59,7 +54,7 @@ const ModuleExplorer = () => {
                         {abi?.exposed_functions.map((func: Types.MoveFunction) => {
                             return (
                                 <div className="flex cc px-4">
-                                    <button className="function-outline" onClick={() => setSelectedFunction(func)}>{func.name}</button>
+                                    <button className="function-outline hover:bg-orange bg-opacity-20" onClick={() => setSelectedFunction(func)}>{func.name}</button>
                                 </div>
                             )
                         })
@@ -92,18 +87,18 @@ const ModuleExplorer = () => {
                     <div className="flex flex-wrap py-2 items-center scrollbar scrollbar-thumb-blue gap gap-3 w-full">
                         {dapps.filter((dapp: any) => (dapp.address)).map((dapp: any) => (
                             <Link to={`/explorer/modules/${network}/${dapp.address}`} >
-                            <button
-                            onClick={(event)=>{
-                                updateView(dapp.address)
-                                window.history.pushState({}, '', `/explorer/modules/${network}/${dapp.address}`);
-                                setSelectedAddress(dapp.address);
-                            }}
-                            >
-                            <DappBadge
-                            
-                            dapp={dapp} isSelected={dapp.address ? (dapp.address === selectedAddress) : false} />
-                            </button>
-                             </Link>
+                                <button
+                                    onClick={(event) => {
+                                        updateView(dapp.address)
+                                        window.history.pushState({}, '', `/explorer/modules/${network}/${dapp.address}`);
+                                        setSelectedAddress(dapp.address);
+                                    }}
+                                >
+                                    <DappBadge
+
+                                        dapp={dapp} isSelected={dapp.address ? (dapp.address === selectedAddress) : false} />
+                                </button>
+                            </Link>
                         )
                         )}
                     </div>
@@ -117,37 +112,41 @@ const ModuleExplorer = () => {
                     <div className="flex flex-wrap scrollbar h-60 overflow-y-scroll scrollbar-thumb-blue scrollbar-track-black flex-row justify-start seam-outline p-2 gap gap-2">
                         {modules.map((mod: Types.MoveModuleBytecode, i: number) => {
                             return (<div key={i} className="items-center justify-center">
-                                <button className=" module-outline" onClick={() => setSelectedModule(mod)}>{mod.abi?.name}</button>
+                                <button className=" module-outline hover:bg-blue" onClick={() => setSelectedModule(mod)}>{mod.abi?.name}</button>
                             </div>)
                         }
                         )}
                     </div>
+                    {selectedModule !== undefined ?
+                        <ModuleInfo module={selectedModule} />
+                        : <div>Please Select an Address with deployed modules</div>}
                     <ReactTooltip place="top" textColor="white" />
                 </div>
 
-                <div className="flex flex-col">
-                    {selectedModule !== undefined ?
-                        <ModuleInfo module={selectedModule} />
-                        : <div>No modules found</div>}
-                    {selectedModule && selectedFunction ?
-                        <TxnPreview
-                            address={selectedAddress}
-                            module={selectedModule}
-                            func={selectedFunction}
-                            params={selectedFunction?.params}
-                            generic_types={selectedFunction?.generic_type_params}
-                            client={client}
-                        />
-                        : null}
+                <div className="flex flex-col w-1/2 mx-7 p-4">
+                    <div className="">
+                        {selectedModule && selectedFunction ?
+                            <TxnPreview
+                                address={selectedAddress}
+                                module={selectedModule}
+                                func={selectedFunction}
+                                params={selectedFunction?.params}
+                                generic_types={selectedFunction?.generic_type_params}
+                                client={client}
+                            />
+                            : null}
+
+                    </div>
+                    <SwitchView>
+                        <TxnFilterView address={selectedAddress} />
+                        <ModuleTypes module={selectedModule} />
+                        <ResourceDetailView address={selectedAddress} showDetails={true} showUnder={true} />
+                    </SwitchView>
+
+
                 </div>
             </div>
-            <SwitchView>
-                <TxnFilterView address={selectedAddress} />
-                <ModuleTypes module={selectedModule} />
-                <ResourceDetailView address={selectedAddress} showDetails={true} />
-            </SwitchView>
-            <div className="flex flex-row gap gap-2 p-2 ">
-            </div>
+
         </div>
     );
 }
