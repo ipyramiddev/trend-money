@@ -20,7 +20,31 @@ declare global {
     from_coin: string,
     from_quantity:number,
     to_coin: string,
+  }
+
     
+  interface CoinInfo {
+    decimals: number;
+    name: string;
+    supply: {
+      vec: [
+        {
+          aggregator: {
+            vec: [AggregatorData];
+          };
+          integer: {
+            vec: [];
+          };
+        },
+      ];
+    };
+    symbol: string;
+  }
+  
+  interface AggregatorData {
+    handle: string;
+    key: string;
+    limit: string;
   }
 
   interface SwapComp{}

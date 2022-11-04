@@ -1,7 +1,6 @@
 
 import { dapps } from "data/dapps/dapp_data";
 import { shortenAddress } from "hooks/formatting";
-import TabWrapper from "os/TabWrapper";
 import Draggable from "react-draggable";
 import { Link } from "react-router-dom";
 import DappLogo from "sections/dapps/DappLogo";
