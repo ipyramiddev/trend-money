@@ -1,4 +1,3 @@
-
 import { dapps } from "data/dapps/dapp_data";
 import { shortenAddress } from "hooks/formatting";
 import TabWrapper from "os/TabWrapper";
@@ -70,4 +69,4 @@ const SplashFrame = () => {
 }
 export default SplashFrame;
 
-// function TabHandle = () => <div></div>
+

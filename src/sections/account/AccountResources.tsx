@@ -185,4 +185,5 @@ const GenericCoinStore = (coins: any,typ:string) => {
     </div>);
 }
 
+
 export default AccountResources;
