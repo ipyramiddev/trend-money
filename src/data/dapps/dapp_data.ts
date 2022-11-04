@@ -15,6 +15,21 @@ export const dapps = [
     "k": "DEFI"
   },
   {
+    "name": "Home",
+    "tags": ["DeFi"],
+    "description": "",
+    "url": "",
+    "discord": "",
+    "Published": "Jul 25, 2022 10:00 AM",
+    "twitter": "https://twitter.com/Tsunamifinance_",
+    "status": "",
+    "image": "tsunami.png",
+    "github": "",
+    "docs": "https://docs.tsunami.finance/",
+    "Npm": "",
+    "k": "DEFI"
+  },
+  {
     "name": "Switchboard",
     "tags": ["Oracle"],
     "discord": "",

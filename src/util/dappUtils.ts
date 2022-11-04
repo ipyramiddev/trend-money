@@ -31,6 +31,7 @@ export const getDappData = (address: string) => {
 }
 
 export const dappByName = (name: string) => {
+  // if (name==="home") { return "home" }
   const name_map = new Map(dapps.map(i => [i.name || "0x0x", { ...i}]));
   const dp = name_map.get(name);
   // if(dp){

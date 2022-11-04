@@ -13,6 +13,10 @@ interface sDapp {
     key: string;
 }
 
+interface SplashProps{
+    selectDapp : (dapp:any)=>void;
+}
+
 const DappBadge = ({ dapp, setSelectedDapp, isSelected, key }: sDapp) => {
     return (
         <div className="h-100  outline rounded-xl outline-white shadow-blue shadow-lg m-4 px-4 py-2">
@@ -24,12 +28,12 @@ const DappBadge = ({ dapp, setSelectedDapp, isSelected, key }: sDapp) => {
                 <Link to={`/explorer/modules/${dapp.address}`}>
                     <p className="hover:text-underlined"
                     >@{shortenAddress(dapp.address)}</p></Link> : null}
-            {/* <Link to={`/explorer/dapps/${dapp.name}`}> */}
+            <Link to={`/explorer/dapps/${dapp.name}`}>
                 <button onClick={() => setSelectedDapp(dapp)}
                     className={`w-full seam-button  items-center justify-center  ${isSelected ? 'bg-white bg-opacity-100 text-black' : ''}`} key={dapp.name + '-ui'}>
                     Open Dapp
                 </button>
-            {/* </Link> */}
+            </Link>
 
 
             <Link to={`/explorer/dapps/info/${dapp.name}`}>
@@ -41,8 +45,8 @@ const DappBadge = ({ dapp, setSelectedDapp, isSelected, key }: sDapp) => {
         </div>)
 }
 
-const SplashFrame = () => {
-    const { dapp, selectDapp } = useDappContext();
+const SplashFrame = ({selectDapp}:SplashProps) => {
+    // const { dapp, selectDapp } = useDappContext();
     return (
         <div className="w-full h-100 items-center justify-center">
             <div className="mockup-window bg-black border-blue mockup-window-outline border-4 shadow-xl  shadow-blue  w-full pt-2 m-3">

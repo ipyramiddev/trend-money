@@ -17,9 +17,11 @@ const ResourceDetailView = ({ address, showDetails,showUnder}: Props) => {
     }
     
     if (showUnder){
-        <div className="flex flex-col h-full">
+        <div className="flex flex-col h-full ">
         <AccountResources address={address} selectResource={selectResources} />
+        <div className="scrollable ">
         {showDetails ? ResourceDetails(resource) : null}
+        </div>
     </div>
     }
 

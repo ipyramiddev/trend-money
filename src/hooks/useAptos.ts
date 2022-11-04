@@ -35,10 +35,6 @@ export const aptStats =async (client=mClient) => {
     
 }
 
-export const useFaucet = async (account: AptosAccount) => {
-    console.log("Fauceting account...");
-    // const re = await faucetClient.
-}
 
 export const useClient = (nodeUrl:string=MAINNET_NODE_URL)=>{
     if(nodeUrl==TEST_NODE_URL){
@@ -72,7 +68,7 @@ export const useTokenClient =(client:AptosClient=tClient)=>{
 
 
 
-export const loadValidators =async (client=dClient) => {
+export const loadValidators =async (client=mClient) => {
     const validatorInfo = (await client.getAccountResource(new HexString("0x1"),"0x1::stake::ValidatorPerformance"))
     const validatorSet = (await client.getAccountResource(new HexString("0x1"),"0x1::stake::ValidatorSet"))
     const defaultConfig = (await client.getAccountResource(new HexString("0x1"), "0x1::staking_config::StakingConfig"))
@@ -176,8 +172,8 @@ console.log("OPTIONS",default_options);
 
 const transactionRequest = await window.martian.generateTransaction(sender, payload,default_options);
 const txnHash = await window.martian.signAndSubmitTransaction(transactionRequest);
-console.log(transactionRequest);
-console.log(txnHash);
+// console.log(transactionRequest);
+// console.log(txnHash);
 };
 
 export const sendPayload = async () => {}

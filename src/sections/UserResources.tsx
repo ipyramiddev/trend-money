@@ -26,18 +26,18 @@ const UserResources = ({ address,selectResource }: Props) => {
     }, []
     );
     return (
-        <div>
+        <div className="w-1/2">
             <p className="text-3xl">User Resources</p>
-            <div className="modScrollp-2 flex flex-col max-w-2xl ">
+            <div className="modScroll p-2 flex flex-col">
                 {resources && resources.length !== 0 ? (ResourceList(resources,selectResource)) : <p>none</p>}
-            </div>
-            
+            </div>            
         </div>
     );
 }
 
 const ResourceList = (resources: Types.MoveResource[],selectResource: (resource:Types.MoveResource)=>void) => {
     return resources.map((resource: Types.MoveResource,) => Resource(resource,selectResource))
+
 }
 
 const Resource = (resource: Types.MoveResource,selectResource: (resource:Types.MoveResource)=>void) => {
@@ -83,14 +83,14 @@ const TokenStoreItem = () => {}
 const CoinStore = (coins: any,) => {
 
     return (<div className="flex flex-col p-3 m-3 rounded-lg text-left items-start justify-start">
-        <div className="outline flex flex-row items-center justify-between rounded-lg w-full p-2 m-1">
+        <div className="outline flex flex-row items-center justify-between rounded-lg p-2 m-1">
             <div>
             <p className="text-4xl font-bold">{format_large_number(coins.coin?.value)}</p>
             <p className="text text-sm opacity-70">APT coin</p>
             </div>
             <img src="./tokens/asset_APT.svg" className="w-20 h-20 m-2"/>
-        {DepositsWithdraws(coins)}
         </div>
+        {DepositsWithdraws(coins)}
         {/* <UserNfts {...user.nfts} /> */}
     </div>);
 }
@@ -99,8 +99,8 @@ const GenericCoinStore = (coins: any,typ:string) => {
     const t = formatType(typ);
 
     const coin = typ.split("::")[2].split("<")[1].split("::")[0]
-    return (<div className="flex flex-col  p-3 m-3 rounded-lg text-left items-start justify-start">
-        <div className="outline flex flex-row items-center justify-between rounded-lg w-full p-2 m-1">
+    return (<div className="flex flex-col p-3 m-3 rounded-lg text-left items-start justify-start">
+        <div className="outline flex flex-row items-center justify-between rounded-lg p-2 m-1">
             <div>
             <p className="text-4xl font-bold">{format_large_number(coins.coin?.value)}</p>
             <p className="text text-sm opacity-70">{coin}</p>

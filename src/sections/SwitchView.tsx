@@ -23,7 +23,7 @@ function SwitchView(props: any) {
             <a
               key={index}
               className={`tab text-3xl tab-bordered ${
-                view === tab.name ? "text-underline" : ""
+                view === tab.name ? "text-underlined" : ""
               }`}
               onClick={() => setView(tab.name)}
             >

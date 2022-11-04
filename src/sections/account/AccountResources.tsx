@@ -35,9 +35,9 @@ const AccountResources = ({ address,selectResource }: Props) => {
     }, []
     );
     return (
-        <div className="max-w-6xl">
+        <div className="">
             <p className="text-3xl">Account Resources</p>
-            <div className="scrollY overflow-auto p-2 flex flex-col max-h-2xl ">
+            <div className="scrollY overflow-scroll p-2 flex flex-col max-h-2xl ">
                 {resources && resources.length !== 0 ? (filteredResources(resources,selectResource,[])) : <p>none</p>}
             </div>
         </div>
@@ -172,15 +172,11 @@ const GenericCoinStore = (coins: any,typ:string) => {
             <AccountOutline name="" addr={cAddr}/>
             {/* <p className="text text-sm opacity-70">{coin}</p> */}
             <ModuleOutline module_name={cMod}/>
-            <div>
-            {/* <img src="./tokens/asset_APT.png" className="w-20 h-20 m-2"/> */}
-            {/* <p>{cSymbol}</p> */}
-            </div>
-            {/* <p className="text text-sm opacity-70">{typ.split("::")[1]}</p> */}
-            </div>
-            {/* <img src="./tokens/asset_APT.svg" className="w-20 h-20 m-2"/> */}
-        </div>
+            
         {DepositsWithdraws(coins)}
+        </div>
+        </div>
+        
         {/* <UserNfts {...user.nfts} /> */}
     </div>);
 }

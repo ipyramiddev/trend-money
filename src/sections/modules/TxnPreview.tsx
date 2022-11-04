@@ -51,7 +51,7 @@ const TxnPreview = ({ address, module, func, params, generic_types, client }: Tx
             <p className="text-3xl p-2 text-center" >Use Module</p>
             <div className=" items-center seam-outline shadow-pastelBlue shadow-2xl">
 
-                <div className="flex flex-row items-center gap gap-3">
+                <div className="flex flex-wrap items-center gap gap-3">
                     <p className="account-outline text-2xl">{formatParam(address)}</p>
                     <p className="text-3xl">::</p>
 

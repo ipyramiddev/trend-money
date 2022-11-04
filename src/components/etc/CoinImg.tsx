@@ -11,7 +11,7 @@ const CoinImg = ({symbol}:CoinProps)=>{
     
     return (
         <div className=" flex flex-col h-10 w-10 items-center justify-center rounded-sm p-0 m-2">
-    <img src={`../tokens/asset_${symbol}.png`} className="rounded-full"/>
+    <img src={`tokens/asset_${symbol}.png`} className="rounded-full"/>
     <p>{symbol}</p>
     </div>)
 }
