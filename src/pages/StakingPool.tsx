@@ -184,3 +184,4 @@ export const StakingPool = ({ pool }: PoolProps) => {
     </div>
   );
 };
+

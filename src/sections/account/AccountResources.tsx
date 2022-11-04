@@ -84,7 +84,7 @@ const Resource = (resource: Types.MoveResource,selectResource: (resource:Types.M
     const { address, module, name } = splitType(resource.type);
     const isSelf = address==base_addr;
     return (
-        <div className="p-2 m-2 outline h-40 rounded-lg  w-40 outline-2 ">
+        <div className="p-2 m-2 outline h-40 rounded-lg outline-2 ">
 
             <div className="flex flex-row items-center">
             <AccountOutline name="" addr={address} isSelf={isSelf}/>
@@ -184,5 +184,6 @@ const GenericCoinStore = (coins: any,typ:string) => {
         {/* <UserNfts {...user.nfts} /> */}
     </div>);
 }
+
 
 export default AccountResources;
