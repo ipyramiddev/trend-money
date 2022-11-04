@@ -1,60 +1,46 @@
-<!-- 
+# Getting Started with Create React App
 
-                            
- ####  ######   ##   #    # 
-#      #       #  #  ##  ## 
- ####  #####  #    # # ## # 
-     # #      ###### #    # 
-#    # #      #    # #    # 
- ####  ###### #    # #    #                        
-                 
-    
- -->
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Available Scripts
 
-# Seam
+In the project directory, you can run:
 
- ## building Aptos ecosystem tooling and providing distributed yield + staking and a gateway to dapps across the ecosystem
+### `yarn start`
 
-## What Problem does seam solve?
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
+The page will reload if you make edits.\
+You will also see any lint errors in the console.
 
+### `yarn test`
 
-users need a single interface to view their account info(resources,tokens,modules) and view their transactions across dapps on aptos
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-users should be able to create an
+### `yarn build`
 
-## The vision
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-seam aims to be an efficient transaction and defi gateway for the aptos ecosystem.
-the Parallelization structure of aptos expands the realm of ways it makes sense to propose txns to the network
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
 
-## What is Seam?
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-- tooling + custodial defi composites 
+### `yarn eject`
 
-Our project serves as a one stop shop for passive DeFi users. Actively researching pools and doing due diligence can take time, so our solution reduces the steps necessary to make this happen. overview of dapps will be provided as long with stats about usage of the protocols.
+**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-## The plan (stage 1)
+If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-[x] build an interface to parse modules and functions of accounts and dapps
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-[x] provide interface for account overview, user txns,nfts, dapps used, resources etc.
+You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-[] use this to provide interface to submit txn for any app
+## Learn More
 
-[] create composite defi flows to fragment positions, and create custodial POD.
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-[] extend txn interface to use multiple nodes for queueing and batched txns
-
-[] use parsed txns of protocols to show versioning of modules and verify account of module
-
-## The plan (stage 2)
-
-## How is Seam different from other yield aggregators?
-
-With our yield protocol users will be holding a single asset which represents deposits across pools. This mitigates some of the inherent risk involved in yield farming.
-
-Custodial proof of deposit, this is different from liquid staking protocols that offer yield bearing fungible tokens that represent 'staked APT' such as sAPT and stAPT that tortgua and zaptos offer.
-
-
+To learn React, check out the [React documentation](https://reactjs.org/).

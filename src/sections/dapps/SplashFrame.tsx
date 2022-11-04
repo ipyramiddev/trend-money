@@ -1,11 +1,11 @@
 
 import { dapps } from "data/dapps/dapp_data";
 import { shortenAddress } from "hooks/formatting";
-import TabWrapper from "os/TabWrapper";
+// import TabWrapper from "os/TabWrapper";
 import Draggable from "react-draggable";
 import { Link } from "react-router-dom";
 import DappLogo from "sections/dapps/DappLogo";
-import OsTab from "../../osTab";
+// import OsTab from "../../osTab";
 import { useDappContext } from "./DappContext";
 
 
@@ -65,7 +65,7 @@ const SplashFrame = () => {
 
                     })}
                     {/* </Draggable> */}
-                    <OsTab/>
+                    {/* <OsTab/> */}
                 </div>
             </div>
         </div>
