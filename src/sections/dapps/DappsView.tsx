@@ -39,8 +39,8 @@ const DappsView = () => {
 
     const changeDapp = (dapp: any) => {
         // const dappInfo = dappByName
-        selectDapp(dapp);
         toggleHome();
+        selectDapp(dapp);
 
     }
 
@@ -53,10 +53,10 @@ const DappsView = () => {
                 {/* <WindowWrapper> */}
                 <div className="px-6 w-full">
                     <div className="w-full items-center justify-center">
-                        {selectedDapp.name ? (
+                        { !isHome && selectedDapp.name!=="home" && selectedDapp?.name ? (
                             <DappFrame dapp={selectedDapp} viewUrl={selectedDapp.url} selectDapp={changeDapp} />) : null}
                         {isHome ? (
-                            <SplashFrame selectDapp={setSelectedDapp} />)
+                            <SplashFrame selectDapp={changeDapp} />)
                             : null}
 
 
@@ -65,7 +65,7 @@ const DappsView = () => {
 
                 {/* </WindowWrapper> */}
                 {/* </Draggable> */}
-                {txns?.length !== 0 ? <TxnList txns={txns || []} address={selectedDapp.address} /> : null}
+                {/* {txns?.length !== 0 ? <TxnList txns={txns || []} address={selectedDapp.address} /> : null} */}
                 <ReactTooltip place="top" textColor="white" html={true} multiline={true} />
             </DappContextProvider>
         </div>

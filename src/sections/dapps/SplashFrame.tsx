@@ -25,7 +25,7 @@ const DappBadge = ({ dapp, setSelectedDapp, isSelected, key }: sDapp) => {
                 {DappLogo(dapp.image)}
             </div>
             {dapp.address ?
-                <Link to={`/explorer/modules/${dapp.address}`}>
+                <Link to={`/explorer/modules/mainnet/${dapp.address}`}>
                     <p className="hover:text-underlined"
                     >@{shortenAddress(dapp.address)}</p></Link> : null}
             <Link to={`/explorer/dapps/${dapp.name}`}>

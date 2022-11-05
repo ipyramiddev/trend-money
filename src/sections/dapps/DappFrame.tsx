@@ -59,6 +59,7 @@ export default DappFrame;
 
 
 const DappNav=(dapp:Dapp,selectDapp:(dapp:Dapp)=>void)=> {
+    const {toggleHome} = useDappContext();
     return (
         <div className="flex flex-row items-start justify-center px-3">
             {/* BACK ARROW */}
@@ -74,11 +75,13 @@ const DappNav=(dapp:Dapp,selectDapp:(dapp:Dapp)=>void)=> {
             {/* REFRESH button */}
 
             {/* Home Icon button */}
+            <Link to="/explorer/dapps/home">
             <button className="seam-sqr" data-tip="Home" 
-            onClick={()=>selectDapp(dapp)}
+            onClick={()=>toggleHome()}
             >
                 <FaHome/>
             </button>
+            </Link>
 
             <button
                 // onClick={() => selectDapp(null)}

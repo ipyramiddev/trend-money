@@ -1,4 +1,5 @@
-import { useWeb3 } from "@fewcha/web3-react";
+
+import { useWallet } from "@manahippo/aptos-wallet-adapter";
 import { AptosAccount, AptosClient } from "aptos";
 import { Types } from "aptos";
 import ModuleOutline from "components/etc/ModuleOutline";
@@ -18,7 +19,7 @@ interface TxnPreviewProps {
 const TxnPreview = ({ address, module, func, params, generic_types, client }: TxnPreviewProps) => {
     const [argList, setArgList] = useState<any[]>([]);
     const [gList, setgList] = useState<any[]>([]);
-    const { account, balance, isConnected, network, currentWallet } = useWeb3();
+    const { account, connected,} = useWallet();
 
     const updateArg = (index: number, value: string) => {
         const newArgs = [...argList];
@@ -91,8 +92,8 @@ const TxnPreview = ({ address, module, func, params, generic_types, client }: Tx
                         })}
                     </div>
                 </div>
-
-                <button onClick={() => checkTxn(address, account.address.toString(), module.abi?.name || "", func.name, func.generic_type_params as any[], argList)} className="seam-button ">send Txn</button>
+                        
+                <button onClick={() => checkTxn(address, account?.address?.toString()||"", module.abi?.name || "", func.name, func.generic_type_params as any[], argList)} className="seam-button ">send Txn</button>
             </div>
             {/* <button onClick={()=>setShowTxnModal(true)} className="seam-button ">Create Txn</button> */}
         </div>
