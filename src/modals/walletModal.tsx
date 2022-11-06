@@ -50,14 +50,15 @@ const WalletModal = ({ isOpen, setIsOpen }: walletModalProps) => {
           onClick={() => {
             connect(option.name);
           }}
-          className="flex flex-row seam-button items-center justify-center w-full h-12 rounded-md"
+          className="flex flex-row seam-button items-center justify-center w-full h-12 rounded-md gap-4"
           id={option.name.split(' ').join('_')}
           key={option.name}
           >
-          {option.name}
           <img 
-            className="w-10 h-10 rounded-2xl ml-2"
-          src={`/wallets/${option.name}.png`} alt={option.name} />
+            className="w-10 h-10 rounded-3xl ml-2 gap-4"
+            src={`/wallets/${option.name}.png`} alt={option.name} 
+          />
+          {option.name.split(' ')[0]}
         </button>
       );
     });

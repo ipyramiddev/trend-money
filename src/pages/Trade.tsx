@@ -7,11 +7,10 @@ import MarketView from "views/MarketView";
 import Staking from "./Staking";
 
 const tabs = [
-  { name: "Strats", id: "strategies" },
+  { name: "Sets", id: "strategies" },
   { name: "Swap", id: "swap" },
   { name: "Stake", id: "stake" },
-  { name: "Market", id: "market" },
-  // { name: 'Market', id: 'Dapps' },
+  // { name: "Market", id: "market" },
 ];
 
 export function Trade() {
@@ -57,7 +56,7 @@ export function Trade() {
         {view === "swap" ? <SwapView /> : null}
         {view === "strategies" ? <Staking /> : null}
         {view === "stake" ? <Validators /> : null}
-        {view === "market" ? <MarketView /> : null}
+        {/* {view === "market" ? <MarketView /> : null} */}
       </div>
     </div>
     // </>
