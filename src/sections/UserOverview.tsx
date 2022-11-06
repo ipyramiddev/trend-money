@@ -19,7 +19,7 @@ const UserOverview = (props:any) => {
     return (
         <div className="p-3 m-3 rounded-lg text-left items-start justify-start">
             <p className="text-lg sm:text-sm opacity-80">Welcome back {shortenAddress(props?.address)}</p>
-            <div className="outline rounded-lg w-full p-2 m-1">
+            <div className="outline rounded-lg p-2 m-1">
             {/* <p className="text-4xl font-bold">{format_large_number(user.coins?.balance)}</p> */}
             <p className="text text-sm opacity-70">Aptos Tokens</p>
             <span className="bg-white">

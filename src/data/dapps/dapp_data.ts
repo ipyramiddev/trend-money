@@ -39,7 +39,7 @@ export const dapps = [
     "url": "https://switchboard.xyz/",
     "image": "switchboard.png",
     "github": "https://github.com/switchboard-xyz/sbv2-aptos",
-    "address": "0x14611263909398572be034debb2e61b6751cafbeaddd994b9a1250cb76b99d38",
+    "address": "0x34e2eead0aefbc3d0af13c0522be94b002658f4bef8e0740a21086d22236ad77",
     "docs": "https://docs.switchboard.xyz/introduction",
     "npm": "",
   },
@@ -52,8 +52,6 @@ export const dapps = [
     "status": "TBA",
     "url": "https://app.kanalabs.io/",
     "image": "kanaLabs.jpg",
-    
-    
     "docs": "https://docs.switchboard.xyz/introduction",
     "medium": "https://kanalabs.medium.com/",
     "npm": "",
@@ -85,19 +83,7 @@ export const dapps = [
     "docs": "https://www.econia.dev/",
     "address": "0xc0deb00c9154b6b64db01eeb77d08255300315e1fa35b687d384a703f6034fbd",
   },
-  {
-    "name": "Vial Protocol",
-    "description": "",
-    "tags": ["DeFi"],
-    "url": "https://www.vial.fi/",
-    "discord": "",
-    "twitter": "https://twitter.com/vialprotocol",
-    "status": "Testnet",
-    "image": "vial.png",
-    "github": "",
-    "docs": "",
-    "address": "0xc30587eb23418ea650ffa1f78b37124d0897a78ffb2cce5c072f0d659b8cba2"
-  },
+  
   {
     "name": "names.aptos",
     "tags": ["Name Service", "Tools"],
@@ -426,5 +412,51 @@ export const dapps = [
     "image": "aptFlip.png",
     "twitter": "https://twitter.com/Aptosflip",
     "discord": "https://discord.com/invite/bvC6uXyMvy",
-  }
+  },
+
+  { 
+    "name": "Cetus",
+    "tags": ["DEX", "Exchange"],
+    "url" : "https://app.cetus.zone/",
+    "docs": "https://t.co/pnxTzMsIqe",
+    "github": "",
+    "address":"0xec42a352cc65eca17a9fa85d0fc602295897ed6b8b8af6a6c79ef490eb8f9eba",
+    "image": "cetus.png",
+    "twitter": "https://twitter.com/CetusProtocol",
+    "discord": "https://t.co/pnxTzMsIqe",
+  },
+
+  
+  { 
+    "name": "Wormhole",
+    "tags": ["Bridge"],
+    "url" : "https://linktr.ee/wormholecrypto",
+    "github": "",
+    "address":"0x783ea0c95907f6d1269647fa2516bb41966ef24c4446a854722ac2ebd1e39613",
+    "image": "wormhole.jpg",
+    "twitter": "https://twitter.com/wormholecrypto",
+    "discord": "https://t.co/pnxTzMsIqe",
+  },
+
+  { 
+    "name": "LayerZero",
+    "tags": ["Bridge"],
+    "url" : "https://layerzero.network/",
+    "docs": "https://t.co/pnxTzMsIqe",
+    "github": "",
+    "address":"0xf22bede237a07e121b56d91a491eb7bcdfd1f5907926a9e58338f964a01b17fa",
+    "image": "LayerZero.jpg",
+    "twitter": "https://twitter.com/LayerZero_Labs",
+  },
+
+  {
+    "name": "Arco",
+    "tags": ["Lending", "Borrowing"],
+    "discord": "https://discord.com/invite/CrqCaQ45kZ",
+    "Published": "",
+    "twitter": "https://app.kanalabs.io/",
+    "status": "TBA",
+    "url": "https://arcoprotocol.tech/lend",
+    "image": "Arco.png",
+  },
 ]

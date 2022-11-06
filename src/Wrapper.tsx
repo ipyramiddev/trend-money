@@ -73,6 +73,7 @@ const Wrapper: React.FC<WrapperProps> = ({
 
   return (
     // <ApolloProvider client={client}>
+    <div className='h-screen'>
       <GlobalStateProvider>
          <WalletProvider
       wallets={wallets}
@@ -83,13 +84,12 @@ const Wrapper: React.FC<WrapperProps> = ({
         // message.error(error.message);
       }}>
           <Navbar showConnectModal={setWalletModal} />
-        {/* <MyWalletProvider> */}
-        {/* <div > */}
-          {/* <Nav/> */}
+        
           {children}
           {walletModalOpen ? <WalletModal isOpen={walletModalOpen} setIsOpen={setWalletModal} /> : null}
           </WalletProvider>
       </GlobalStateProvider>
+      </div>
     
     // </ApolloProvider>
 

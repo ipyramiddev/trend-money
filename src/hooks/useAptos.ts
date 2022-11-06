@@ -1,4 +1,5 @@
-import { AptosClient, AptosAccount, FaucetClient, BCS, Types, TxnBuilderTypes, HexString, TokenClient } from "aptos";
+import { AptosClient, AptosAccount, FaucetClient, BCS, Types, TxnBuilderTypes, HexString, TokenClient,CoinClient } from "aptos";
+import { coins } from "data/coins/coin_data";
 
 import { BaseContract } from "ethers";
 import { type } from "os";
@@ -62,7 +63,30 @@ export function getClient(network:string)  {
     
 }
 
-export const useTokenClient =(client:AptosClient=tClient)=>{
+export const useTokenClient = (client:AptosClient=mClient)=>{
+    return new TokenClient(client);
+}
+
+export const useCoinClient = (client:AptosClient=mClient)=>{
+    return new CoinClient(client);
+}
+
+// export const loadTokens = async (client:AptosClient=mClient)=>{
+//     const tokenClient = useTokenClient(client);
+//     const tokens = await tokenClient;
+//     return tokens;
+// }
+
+export const loadCoins = async (client:AptosClient=mClient)=>{
+    // const coinClient = useCoinClient(client);
+    const coin_data = coins.map(async (coin) => {
+        const addr = coin.type.split("::")[0];
+        const module = coin.type.split("::")[1];
+        const c_name = coin.type.split("::")[2];
+        const cd = await client.getAccountResource(new HexString(addr), module + "::" + c_name);
+        return { addr, module, c_name, cd, coin };
+    });
+    return  coin_data;
 
 }
 
@@ -88,16 +112,16 @@ export const loadCoin = async (coin:any,client=mClient) => {
     return coinInfo
 }
 
-export const loadCoinList = async (coin_list:any[]) => {
-    let coin_list_data = [];
-    for (let i = 0; i < coin_list.length; i++) {
-        const coin = coin_list[i];
-        const coin_data = await loadCoin(coin);
-        coin_list_data.push(coin_data)
-    }
-    return coin_list_data
+// export const loadCoinList = async (coin_list:any[]) => {
+//     let coin_list_data = [];
+//     for (let i = 0; i < coin_list.length; i++) {
+//         const coin = coin_list[i];
+//         const coin_data = await loadCoin(coin);
+//         coin_list_data.push(coin_data)
+//     }
+//     return coin_list_data
     
-}
+// }
 
 
 

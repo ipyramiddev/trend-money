@@ -48,28 +48,26 @@ const UserExplorer = () => {
                             {/* DO NOT DELETE */}
                             <div className='w-full h-12 bg-black absolute bottom-0'>
                             </div>
-        
                         </div>
-                        
                     </div>
             );
         }
 
     return (
-        <div className="mx-6">
+        <div className="mx-2 items-center justify-center p-2">
             <p className="text-3xl font-semibold">User Explorer</p>
             
             <div className='flex flex-row m-3 items-start justify-start'>
                 {account?.address ?
-                    <div className='flex flex-col w-1/2'>
-                    <UserOverview {...account} />
+                    <div className='flex flex-col '>
+                        <UserOverview {...account} />
 
                     <TxnList txns={txs} address={account?.address.toString()} />
                     </div>
                     : <p>please connect</p>}
                 {account?.address?.toString() ? (
                 <div className='w-1/2 p-2'>
-                <ResourceDetailView showDetails={true} showUnder={true} address={account?.address.toString()} />
+                    <ResourceDetailView showDetails={true} showUnder={true} address={account?.address.toString()} />
                 </div>)
                  : <p>no resources</p>
                  }
