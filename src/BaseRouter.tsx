@@ -2,11 +2,13 @@ import { Types } from "aptos";
 import {
   aptStats,
   getClient,
+  loadCoins,
   loadModules,
   loadValidators,
 } from "hooks/useAptos";
 import { loadTxs } from "hooks/useTransaction";
 import AptosStats from "pages/AptosStats";
+import Coins from "pages/Coins";
 import Dao from "pages/DAO";
 import DappInfo from "pages/DappInfo";
 import ErrorPage from "pages/ErrorPage";
@@ -77,7 +79,23 @@ export const BaseRouter = () => {
               return loadModules(params.addr || "0x1", client);
             }}
           />
+<Route
+            element={<Coins />}
+            path="coins"
+            // loading={<div>loading</div>}
+            loader={async ({
+              request,
+              params,
+            }: {
+              request: any;
+              params: any;
+            }) => {
+              const client = getClient(params.network || "Mainnet");
 
+              console.log("running module loader");
+              return loadCoins(client);
+            }}
+          />
           <Route
             element={<Validators />}
             path="validators/"
