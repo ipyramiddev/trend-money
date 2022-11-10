@@ -25,9 +25,7 @@ const Navigation = () => {
       </ul>
       {/* ACTION BUTTONS */}
       <div className={`flex space-16`}>
-        <a href="https://app.seam.money/">
-          {/* <Button text="Launch App" type="primary" /> */}
-        </a>
+        <a href="https://app.seam.money/" />
       </div>
 
       {/* Mobile nav icon */}

@@ -81,7 +81,7 @@ export default function Navbar(props: any) {
 
   const nav_items = (network: any) => [
     { name: "Explorer", path: `/explorer/modules/${network}/0x1` },
-    { name: "Powersets", path: "/powersets" },
+    { name: "Weaves", path: "/powersets" },
   ];
 
   // const location = useLocation()
