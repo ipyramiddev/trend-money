@@ -80,8 +80,8 @@ export default function Navbar(props: any) {
   );
 
   const nav_items = (network: any) => [
+    { name: "Looms", path: "/powersets" },
     { name: "Explorer", path: `/explorer/modules/${network}/0x1` },
-    { name: "Weaves", path: "/powersets" },
   ];
 
   // const location = useLocation()
@@ -137,9 +137,9 @@ export default function Navbar(props: any) {
               <NavbarItem item={item} i={i} key={i} />
             ))}
 
-            {nav_icons.map((item, i) => {
+            {/* {nav_icons.map((item, i) => {
               return NavbarIcon(item.link, item.icon, i);
-            })}
+            })} */}
 
             <ChainInput />
             <button
