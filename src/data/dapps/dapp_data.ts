@@ -271,7 +271,7 @@ export const dapps = [
     "docs": "https://medium.com/@Laminar",
   },
   {
-    "name": "Anime.swap",
+    "name": "AnimeSwap",
     "tags": ["DEX", "swap"],
     "description": "Dex w/ a kiss of anime ",
     "discord": "",
@@ -458,5 +458,16 @@ export const dapps = [
     "status": "TBA",
     "url": "https://arcoprotocol.tech/lend",
     "image": "Arco.png",
+  },
+
+  {
+    "name": "Ditto",
+    "tags": ["Staking", "Liquid Staking"],
+    "discord": "https://discord.com/invite/CrqCaQ45kZ",
+    "Published": "",
+    "twitter": "",
+    "status": "TBA",
+    "url": "https://stake.dittofinance.io/",
+    "image": "Ditto.png",
   },
 ]
