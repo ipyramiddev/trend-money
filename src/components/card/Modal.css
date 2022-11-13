@@ -1,8 +1,11 @@
 .modal {
   min-height: 600px;
   border-radius: 20px;
+  border-style: dashed;
+  border-color: #737373;
+  border-width: 3px;
   position: relative;
-  background-color: white;
+  background-color: #1b1b1b;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   display: flex;
 }
@@ -13,7 +16,7 @@
 }
 
 .modal__info {
-  background-color: white;
+  background-color: #1b1b1b;
   display: flex;
 }
 
