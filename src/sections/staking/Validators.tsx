@@ -43,12 +43,15 @@ const Validators = () => {
   const validators = useLoaderData() as any;
   // const 
 
+  function sortfunc(a: any, b: any) {
+    return b.voting_power - a.voting_power;
+  }
 
   return (
     <div className="flex flex-col gap gap-2">
         <h1 className="text-4xl">Active Validators</h1>
       <div className="flex flex-wrap items-start">
-        {validators?.validatorInfo?.validators.map((v: any, i: number) => {
+        {validators?.validatorInfo?.validators.sort(sortfunc).map((v: any, i: number) => {
           // const v_history 
 
 

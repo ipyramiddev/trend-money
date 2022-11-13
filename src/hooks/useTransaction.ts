@@ -1,4 +1,4 @@
-import { TxnBuilderTypes, AptosClient, Types } from "aptos";
+import { TxnBuilderTypes, AptosClient, Types,TransactionBuilder } from "aptos";
 import {useQuery} from "react-query";
 import {getTransaction} from ".";
 import {ResponseError} from "./client";
@@ -57,16 +57,6 @@ const useSubmitTransaction = () => {
   async function submitTransaction(
     payload: TxnBuilderTypes.TransactionPayloadEntryFunction,
     ) {
-      // if dApp network !== wallet network => return error
-      // if (walletExplorerNetworkMap(walletNetwork) !== state.network_name) {
-        setTransactionResponse({
-          transactionSubmitted: false,
-          message:
-          "Wallet and Explorer should use the same network to submit a transaction",
-        });
-        return;
-        // }
-        
         setTransactionInProcess(true);
         await signAndSubmitTransaction(payload, client).then(
           setTransactionResponse,

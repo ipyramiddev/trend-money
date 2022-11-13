@@ -6,7 +6,7 @@ import MobiIcon from "../MobiIcon.js";
 import AssetPrice from "../asset/AssetPrice.js";
 import { useQuery } from "@apollo/react-hooks";
 import { format_large_number } from "../../hooks/formatting";
-import { fees24hour, effective_cap_ratio } from "../../hooks/fin";
+import { effective_cap_ratio } from "../../hooks/fin";
 import { gql } from "@apollo/client";
 // import { Bytes } from '@apollo/client/utilities';
 import { BigNumber } from "ethers";
@@ -178,12 +178,12 @@ function SubSeam(props: any) {
                   />
                 );
               })}
-              <Stat
+              {/* <Stat
                 name="24h fee"
                 unit={"$"}
                 format={true}
                 value={fees24hour(vol24hUSD, pool.reserveUSD).usd_24h_return}
-              />
+              /> */}
               <Stat
                 key={i + i + i}
                 format={true}

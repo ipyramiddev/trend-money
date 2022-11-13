@@ -79,7 +79,7 @@ export const BaseRouter = () => {
               return loadModules(params.addr || "0x1", client);
             }}
           />
-<Route
+        <Route
             element={<Coins />}
             path="coins"
             // loading={<div>loading</div>}
@@ -132,6 +132,7 @@ export const BaseRouter = () => {
 
           <Route element={<DappsView />} path="dapps/:dappName">
             
+          </Route>
             <Route
               path="info/:dapp/"
               element={<DappInfo />}
@@ -147,7 +148,6 @@ export const BaseRouter = () => {
                 return { ...dapp, txs: loadTxs(dapp?.address || "0x1") };
               }}
             />
-          </Route>
         </Route>
       </Route>
     )

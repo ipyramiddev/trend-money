@@ -121,6 +121,9 @@ export const splitType = (type:string) => {
     }
     else{
         const splitt = type.split("::");
+        if (splitt[1][0]==="<"){
+            return {address:splitt[0],module:"base",name:splitt[1]}
+        }
         return {address:splitt[0],module:splitt[1],name:splitt[2]}
     }
 }
