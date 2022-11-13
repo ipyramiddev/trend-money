@@ -10,7 +10,3 @@ export const loadAccount = async (account:string,client:AptosClient) => {
 
 
 }
-
-
-
-// LOAD COIN AGGREATOR 0x1b854694ae746cdbd8d44186ca4929b2b337df21d1c74633be19b2710552fdca

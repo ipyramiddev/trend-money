@@ -7,7 +7,8 @@ const Staking = () => {
 
   return (
     <div className="w-full h-screen items-start m-3 px-7">
-      <p className="text-center  text-3xl">Strats</p>
+      <p className="text-center  text-3xl">TVL</p>
+      <p className="text-center  text-xl">$0</p>
       {pool_data.seamPools.map((pool: any, index: number) => {
         return <StakingPool pool={pool} key={index} />;
       })}

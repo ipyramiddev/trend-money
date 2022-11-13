@@ -59,7 +59,7 @@ const Wrapper: React.FC<WrapperProps> = ({
       new PontemWalletAdapter(),
       new RiseWalletAdapter(),
       new SpikaWalletAdapter(),
-      new FletchWalletAdapter(),
+      // new FletchWalletAdapter(),
       // new AptosSnapAdapter(),
       // new NightlyWalletAdapter(),
       // new BitkeepWalletAdapter(),
