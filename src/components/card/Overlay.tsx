@@ -14,7 +14,7 @@ const Overlay = ({ children, close }: {
   return (
     <motion.div
       className="overlay"
-      onClick={close}
+      // onClick={close}
       variants={variants}
       initial={"closed"}
       animate={"open"}

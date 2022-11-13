@@ -2,6 +2,8 @@ import React from "react";
 import "./Modal.css";
 import { IoCloseCircleOutline } from "react-icons/io5";
 import { motion } from "framer-motion";
+import ParentSize from '@visx/responsive/lib/components/ParentSize';
+import ExChart from './Exchart';
 
 const Modal = ({ close }: {
   close: () => void,
@@ -36,14 +38,15 @@ const Modal = ({ close }: {
       variants={modalVariants}
       onClick={(e) => e.stopPropagation()}
     >
-      <motion.img
+      {/* <motion.img
         className="modal__image"
         alt="real estate mansion"
         src={"https://blog.dupontregistry.com/wp-content/uploads/2020/08/Parkland_1st-Photo-scaled.jpg"}
         variants={imageVariants}
-      ></motion.img>
+      ></motion.img> */}
       <motion.div className="modal__info" variants={modalInfoVariants}>
-        <motion.div className="modal__row" variants={modalRowVariants}>
+        <ParentSize>{({ width, height }) => <ExChart width={width} height={height} />}</ParentSize>
+        {/* <motion.div className="modal__row" variants={modalRowVariants}>
           <span className="modal__price">{"price"}</span>
         </motion.div>
         <motion.div className="modal__row" variants={modalRowVariants}>
@@ -56,7 +59,7 @@ const Modal = ({ close }: {
           variants={modalRowVariants}
         >
           <p className="modal__description">{"description"}</p>
-        </motion.div>
+        </motion.div> */}
         <motion.button
           className="modal__close-wrapper"
           whileHover={{ scale: 1.2 }}
