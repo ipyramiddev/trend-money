@@ -134,7 +134,6 @@ const WalletModal = ({ isOpen, setIsOpen }: walletModalProps) => {
       {connected && account!=null ? <div className="flex flex-col justify-between"> 
       <AccountOutline addr={account!=null ? account.address?.toString():"not Connected"}/>
       <p className="text-green1 text-center text-lg">Connected</p>
-        <button className='seam-button' onClick={() => copy}> Copy </button>
       </div> : <p> Not connected </p>}
       {renderWalletConnectorGroup()}
       {connected && (
