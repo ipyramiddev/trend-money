@@ -139,7 +139,7 @@ const WalletModal = ({ isOpen, setIsOpen }: walletModalProps) => {
       {connected && (
         <div className="">
           <button className='seam-button' onClick={() => copy}> Copy </button>
-          <button className="seam-button" onClick={onDisconnect}>disconnect</button>
+          <button className="seam-button" onClick={onDisconnect}>Disconnect</button>
         </div>)
       }
     </ModalWrapper>
