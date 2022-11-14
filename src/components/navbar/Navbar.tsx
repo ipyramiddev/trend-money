@@ -55,30 +55,6 @@ export default function Navbar(props: any) {
   const [isOpen, setIsOpen] = useState("hidden");
   const { isConnected, network } = useWeb3();
 
-  const options = [
-    // { value: 'devnet', label: 'Devnet' },
-    { value: "https://fullnode.mainnet.aptoslabs.com/", label: "Mainnet" },
-    { value: "https://fullnode.devnet.aptoslabs.com/", label: "Devnet" },
-    { value: "https://fullnode.testnet.aptoslabs.com/", label: "Testnet" },
-    // { value: 'local', label: 'Local' }
-  ];
-
-  const ChainInput = () => (
-    <div className="flex flex-col items-center  text-black justify-center">
-      <Select
-        options={options}
-        className="rounded-xl"
-        // styles={}
-        value={options.find((option) => option.value === network)}
-        defaultValue={{
-          value: "https://fullnode.mainnet.aptoslabs.com/",
-          label: "Mainnet",
-        }}
-      />
-      {/* <p>network:{network.toString()}</p> */}
-    </div>
-  );
-
   const nav_items = (network: any) => [
     { name: "Looms", path: "/powersets" },
     { name: "Explorer", path: `/explorer/modules/${network}/0x1` },
@@ -141,7 +117,6 @@ export default function Navbar(props: any) {
               return NavbarIcon(item.link, item.icon, i);
             })} */}
 
-            <ChainInput />
             <button
               className="seam-button m-3"
               onClick={() => props.showConnectModal(true)}
