@@ -1,8 +1,9 @@
 import React from "react";
 import Logo from "../Logo";
+import { useWallet } from '@manahippo/aptos-wallet-adapter';
 import { useWeb3 } from "@fewcha/web3-react";
-import { useState } from "react";
-import Select from "react-select";
+import { useState, useEffect } from "react";
+
 import {
   FaGithub,
   FaTwitter,
@@ -54,6 +55,16 @@ export default function Navbar(props: any) {
   // const [ useGlobalState, setGlobalState] = useGlobalState();
   const [isOpen, setIsOpen] = useState("hidden");
   const { isConnected, network } = useWeb3();
+  const {
+    connect,
+    disconnect,
+    account,
+    wallets,
+    connecting,
+    connected,
+    disconnecting,
+    wallet: currentWallet,
+  } = useWallet();
 
   const nav_items = (network: any) => [
     { name: "Looms", path: "/powersets" },
@@ -64,6 +75,21 @@ export default function Navbar(props: any) {
   const toggle = () => {
     setIsOpen(isOpen === "" ? "hidden" : "");
   };
+
+  const onDisconnect = () => {
+    disconnect();
+  }
+
+  type WalletName<T extends string = string> = T & { __brand__: 'WalletName' };
+
+  useEffect(() => {
+    const wallet: WalletName = window.localStorage.getItem("wallet") as WalletName<string>;
+    console.log("wallet?", wallet);
+    if (wallet) {
+      connect(wallet);
+    }
+  }, []);
+
   return (
     <nav className=" px-2 sm:px-4 py-2.5 text-white">
       <div className="container flex flex-wrap justify-between items-center mx-auto">
@@ -119,9 +145,9 @@ export default function Navbar(props: any) {
 
             <button
               className="seam-button m-3"
-              onClick={() => props.showConnectModal(true)}
+              onClick={() => !connected ? props.showConnectModal(true) : onDisconnect()}
             >
-              {!isConnected ? "Connect" : "Connected"}
+              {!connected ? "Connect" : "Disconnect"}
             </button>
           </ul>
         </div>
