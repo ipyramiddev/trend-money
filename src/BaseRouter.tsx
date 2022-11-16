@@ -14,6 +14,7 @@ import DappInfo from "pages/DappInfo";
 import ErrorPage from "pages/ErrorPage";
 import Explorer from "pages/Explorer";
 import IDE from "pages/IDE";
+import SeamPass from "pages/SeamPass";
 import NodePage from "pages/NodePage";
 import { Trade } from "pages/Trade";
 import {
@@ -129,6 +130,8 @@ export const BaseRouter = () => {
           <Route element={<UserExplorer />} path="user"></Route>
 
           <Route element={<IDE />} path="ide"></Route>
+
+          <Route element={<SeamPass />} path="seampass"></Route>
 
           <Route element={<DappsView />} path="dapps/:dappName">
             
