@@ -1,7 +1,3 @@
-import { AptosAccount, AptosClient, BCS, TxnBuilderTypes } from "aptos";
-
-// import { MoveFunction, MoveModuleABI, MoveTypeId, AccountResource } from "aptos/dist/api/data-contracts";
-
 import TxnHeader from "components/txn/TxnHeader";
 import { useEffect, useRef, useState } from "react";
 import { generic_serialize } from "util/aptosUtils";
@@ -26,17 +22,13 @@ const WalletModal = ({ isOpen, setIsOpen }: walletModalProps) => {
     disconnect,
     account,
     wallets,
-    signAndSubmitTransaction,
     connecting,
     connected,
     disconnecting,
     wallet: currentWallet,
-    // signMessage,
-    signTransaction,
-    // network
   } = useWallet();
 
-  const { isConnected, network } = useWeb3();
+  const { network } = useWeb3();
 
   const onDisconnect = () => {
     disconnect().then(() => {
@@ -52,6 +44,7 @@ const WalletModal = ({ isOpen, setIsOpen }: walletModalProps) => {
         <button
           onClick={() => {
             connect(option.name);
+            localStorage.setItem("wallet", option.name);
           }}
           className="flex flex-row seam-button items-center justify-center w-full h-12 rounded-md gap-4"
           id={option.name.split(' ').join('_')}
