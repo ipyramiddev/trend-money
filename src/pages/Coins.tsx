@@ -25,7 +25,7 @@ const Coins = () => {
         return (
           <div key={i}>
             <p>{coin.type}</p>
-            {/* <p>{coin.value}</p> */}
+            <p>{coin.value}</p>
           </div>
         );
       })}

@@ -12,8 +12,8 @@ const BASE_LABEL = "text-sm text-left opacity-60 text-center text-white"
 const BASE_DIV = "bg-white bg-o pacity-5 rounded-2xl p-2 m-2"
 const BASE_OUTLINE = "seam-button  w-full p-2 m-2"
 const BASE_BOX = "outline w-1/3  outline-8 outline-dashed h-auto py-3 px-8 m-4 items-left justify-center rounded-2xl"
-const BASE_GRAD = "bg-gradient-to-tl from-purple via-pastelBlue to-blue2 m-3"
-const BASE_WINDOW = "mockup-window rounded-3xl  px-6 py-3  mockup-window-outline border-4 shadow-xl  shadow-pink w-full pt-2 m-3"
+const BASE_GRAD = " bg-gradient-to-tl from-rose-400 via-pastelBlue to-blue2 m-3"
+const BASE_WINDOW = "mockup-window rounded-3xl border-blue px-6 py-3  mockup-window-outline border-4 shadow-xl shadow-pink w-full pt-2 m-3"
 
 export const BASE_TYPES = {
   PAGE_BASE,

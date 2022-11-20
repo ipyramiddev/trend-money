@@ -23,7 +23,6 @@ import SplashFrame from "./SplashFrame";
 const DappsView = () => {
     let { dappName } = useParams();
 
-
     const [selectedDapp, setSelectedDapp] = useState<any>(dappByName(dappName || "home"));
     const [recentOpen, setRecentOpen] = useState<any[]>(dapps.slice(0, 3));
     const [orderedDapps, setOrderedDapps] = useState<any[]>(shuffle(dapps));
