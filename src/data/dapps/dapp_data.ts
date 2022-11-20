@@ -126,14 +126,14 @@ export const dapps = [
     "name": "Souffl3",
     "tags": ["NFT"],
     "description": "",
-    "discord": "",
+    "discord": "https://discord.com/invite/souffl3",
     "twitter": "https://twitter.com/souffl3",
     "status": "",
     "url": "https://souffl3.com/",
     "image": "souffl3.jpg",
     "github": "",
     "docs": "",
-    "address": "0x2c7bccf7b31baf770fdbcc768d9e9cb3d87805e255355df5db32ac9a669010a2"
+    "address": "0xf6994988bd40261af9431cd6dd3fcf765569719e66322c7a05cc78a89cd366d4"
   },
   {
     "name": "Aries",

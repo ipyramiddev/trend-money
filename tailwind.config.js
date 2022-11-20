@@ -1,4 +1,7 @@
 /** @type {import('tailwindcss').Config} */
+
+const plugin = require('tailwindcss/plugin');
+
 module.exports = {
   content: [
     './src/**/*.{js,jsx,ts,tsx}',
@@ -30,8 +33,9 @@ module.exports = {
 		
 		fontFamily: {
 			Poppins: ['Poppins', 'sans-serif'],
-			sans: ['Graphik', 'sans-serif'],
+			sans: ['Nunito Sans', 'Dank Mono', 'Graphik', 'sans-serif'],
 			serif: ['Merriweather', 'serif'],
+			'press-start': ['"Press Start 2P"', 'cursive'],
 		},
 
 		extend: {
@@ -46,6 +50,8 @@ module.exports = {
 			// boarderColor: {
 				
 			// },
+
+			t
 
 
 			backgroundImage: {
@@ -62,5 +68,15 @@ module.exports = {
 		},
 	},
 	// plugins: [require('daisyui'),require('tailwindcss-gradients'),require('tailwind-scrollbar')],
-	plugins: [],
+	plugins: [
+		plugin(function ({ addBase }) {
+			addBase({
+			  	'@font-face': {
+					fontFamily: 'Dank Mono',
+				  	fontWeight: '100',
+				  	src: 'url(/public/fonts/DankMono-Regular.ttf)'
+				}
+			})
+		}),
+	],
 }
