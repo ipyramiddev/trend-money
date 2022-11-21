@@ -3,10 +3,28 @@ import WindowWrapper from "components/etc/WindowWrapper";
 import Token from "components/Token";
 import React, { useState } from "react";
 
+
+const PC_PREVIEW_URL = "https://my.spline.design/3piecepreview-5bfbc1f2430a52b22f57e919d6c09af8/"
+
 const SeamPass = () => {
     return (
         <div className="w-full max-h-full m-10 items-center">
             <SeamPassNft />
+        </div>
+    )
+}
+
+const PcPreview = () => {
+    return (
+        <div className="w-full max-h-full m-10 items-center">
+            <div className={BASE_TYPES.BASE_WINDOW}>
+            <div className="flex flex-col items-center">
+                <iframe src={PC_PREVIEW_URL}  className=""  width="80%" height="300px">
+                    </iframe>
+                </div>
+                <p className={BASE_TYPES.BASE_T3}> EXCLUSIVE IRL computers and giveaway for seam pass holders</p>
+                {/* <p className={BASE_TYPES.BASE_T3}> **notice colors subject to</p> */}
+            </div>
         </div>
     )
 }
@@ -41,6 +59,7 @@ const PassDetails = () => {
                     <p className={BASE_TYPES.BASE_T4}> Airdrop of the SEAM token. In addition holders will get exculsive whitelist opprotunities from our many partner projects as well as giveaways from top exisiting collections.</p>
                 </div>
             </div>
+            <PcPreview/>
         </div>
     )
 }
