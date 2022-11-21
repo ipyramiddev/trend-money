@@ -6,9 +6,7 @@ import {useGlobalState} from "../GlobalState";
 import {useEffect, useState} from "react";
 import { NetworkType, SDK } from '@animeswap.org/v1-sdk';
 
-import {
-  walletExplorerNetworkMap,
-} from "../context/wallet/context";
+
 import {signAndSubmitTransaction} from "./wallet";
 
 export function useGetTransaction(txnHashOrVersion: string) {
