@@ -486,4 +486,13 @@ export const dapps = [
     "url": "https://linktr.ee/lever_x",
     "image": "LeverX.png",
   },
+
+  {
+    "name": "AptosDragons",
+    "tags": ["Casino", "Gaming"],
+    "twitter":"https://twitter.com/aptosdragonsnft",
+    "url": "https://aptos-dragons-roulette.vercel.app/",
+    "image": "AptosDragons.png",
+    "address":"0x4ab7514a82f84f597bf35d7c51e2e4460ddb9a5cf80e2ea23a5c97eea475713b",
+  },
 ]

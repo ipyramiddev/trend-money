@@ -152,12 +152,9 @@ export const formatType = (type:string)=>{
 return act + "::"+mod;
 }
   export const TimeAgo = (timestamp: string) => {
-    // convert unix timestamp in microseconds to milliseconds
-    // const date = new Date(parseInt(timestamp)/1000000000);
     
     const unix_ts = Number(timestamp);
     const diff = (Date.now()*1000 - unix_ts)/1000000/60/60
     const d =  diff.toFixed(1);
-    // console.log("hours", minutes)
     return d.toString() + " hours ago";
   }
