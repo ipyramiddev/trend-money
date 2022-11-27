@@ -1,4 +1,5 @@
 import { Types } from "aptos";
+import { BASE_TYPES } from "BaseStyles";
 import AccountOutline from "components/etc/AccountOutline";
 import { format_large_number, shortenAddress } from "hooks/formatting";
 import StakeForm from "hooks/StakeInputs";
@@ -22,9 +23,7 @@ export function StakePage() {
   );
 }
 
-const ValidatorsOverView = () => {
 
-}
 
 const ValidatorPreview = (validatorSample: any) => {
 
@@ -47,9 +46,30 @@ const Validators = () => {
     return b.voting_power - a.voting_power;
   }
 
+  const ValidatorsOverView = () => {
+    if(validators?.validatorInfo.validators){
+      const cumulativeVotingPower = validators.validatorInfo.validators.reduce((a: any, b: any) => a + b.voting_power, 0);
+      // show the average voting power of the top 100 validators
+      const averageVotingPower = cumulativeVotingPower / 100;
+
+
+
+      return (
+        <div>
+          <p className={BASE_TYPES.BASE_T4}>Avg. Stake{format_large_number(averageVotingPower)}</p>
+          <p className={BASE_TYPES.BASE_T4}>Cumultive Stake of Validators{format_large_number(cumulativeVotingPower)}</p>
+        </div>
+      )
+
+    }else{return(<div></div>)}
+
+  }
+
+
   return (
     <div className="flex flex-col gap gap-2">
         <h1 className="text-4xl">Active Validators</h1>
+      <ValidatorsOverView />
       <div className="flex flex-wrap items-start">
         {validators?.validatorInfo?.validators.sort(sortfunc).map((v: any, i: number) => {
           // const v_history 
