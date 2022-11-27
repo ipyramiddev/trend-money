@@ -17,9 +17,6 @@ const UserExplorer = () => {
     const { account, connected } = useWallet();
     const client = useClient();
     const [txs, setTxs] = useState<Types.Transaction[]>([]);
-    const [sendAddr, setSendAddr] = useState<string>("");
-    const totalMinted = 0;
-    const totalSupply = 0;
     useEffect(() => {
         if (connected && account != null) {
             loadAccount(account.address?.toString() || "", client);

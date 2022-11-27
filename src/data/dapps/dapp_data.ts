@@ -452,7 +452,6 @@ export const dapps = [
     "Published": "",
     "twitter": "",
     "address": "0xd11107bdf0d6d7040c6c0bfbdecb6545191fdf13e8d8d259952f53e1713f61b5",
-    "status": "TBA",
     "url": "https://stake.dittofinance.io/",
     "image": "Ditto.png",
   },
@@ -476,5 +475,15 @@ export const dapps = [
     "url": "https://stake.dittofinance.io/",
     "image": "Rafflor.png",
     "address": "0x22df18573dbf63cc0c05f695ef91331f6b6480c4445a891799b1b407ea987baf",
+  },
+  
+  {
+    "name": "LeverX",
+    "tags": ["Dex", "Derivatives"],
+    "status": "TBA",
+    "twitter":"https://twitter.com/LeveragedX",
+    "medium":"https://medium.com/@leverx_17257",
+    "url": "https://linktr.ee/lever_x",
+    "image": "LeverX.png",
   },
 ]
