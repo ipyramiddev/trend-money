@@ -455,4 +455,13 @@ export const dapps = [
     "url": "https://stake.dittofinance.io/",
     "image": "Ditto.png",
   },
+
+  {
+    "name": "Rafflor",
+    "tags": ["Raffles", "NFTs"],
+    "status": "TBA",
+    "url": "https://stake.dittofinance.io/",
+    "image": "Rafflor.png",
+    "address": "0x22df18573dbf63cc0c05f695ef91331f6b6480c4445a891799b1b407ea987baf",
+  },
 ]

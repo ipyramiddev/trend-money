@@ -19,9 +19,9 @@ const ResourceDetailView = ({ address, showDetails,showUnder}: Props) => {
     if (showUnder){
         <div className=" h-full">
         <AccountResources address={address} selectResource={selectResources} />
-        {/* <div className="scrollable "> */}
+        <div className="scrollable ">
         {showDetails ? ResourceDetails(resource) : null}
-        {/* </div> */}
+        </div>
     </div>
     }
 
