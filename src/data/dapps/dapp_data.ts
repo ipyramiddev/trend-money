@@ -442,6 +442,7 @@ export const dapps = [
     "twitter": "https://app.kanalabs.io/",
     "status": "TBA",
     "url": "https://arcoprotocol.tech/lend",
+    "address": "0x62fdfe47c9c37227be1f885e79be827be292fe1833ac63a2fe2c2c16c55ecb12",
     "image": "Arco.png",
   },
 
