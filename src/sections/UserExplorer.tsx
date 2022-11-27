@@ -33,7 +33,7 @@ const UserExplorer = () => {
         , [account]);
 
     return (
-        <div className="mx-2 items-center justify-center p-2">
+        <div className="mx-2 w-full justify-center p-2">
             <p className="text-3xl font-semibold">User Explorer</p>
             
             <div className='flex flex-row m-3 items-start justify-start'>

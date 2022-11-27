@@ -15,21 +15,6 @@ export const dapps = [
     "k": "DEFI"
   },
   {
-    "name": "Home",
-    "tags": ["DeFi"],
-    "description": "",
-    "url": "",
-    "discord": "",
-    "Published": "Jul 25, 2022 10:00 AM",
-    "twitter": "https://twitter.com/Tsunamifinance_",
-    "status": "",
-    "image": "tsunami.png",
-    "github": "",
-    "docs": "https://docs.tsunami.finance/",
-    "Npm": "",
-    "k": "DEFI"
-  },
-  {
     "name": "Switchboard",
     "tags": ["Oracle"],
     "discord": "",
@@ -432,7 +417,7 @@ export const dapps = [
     "tags": ["Bridge"],
     "url" : "https://linktr.ee/wormholecrypto",
     "github": "",
-    "address":"0x783ea0c95907f6d1269647fa2516bb41966ef24c4446a854722ac2ebd1e39613",
+    "address":"0x251011524cd0f76881f16e7c2d822f0c1c9510bfd2430ba24e1b3d52796df204",
     "image": "wormhole.jpg",
     "twitter": "https://twitter.com/wormholecrypto",
     "discord": "https://t.co/pnxTzMsIqe",

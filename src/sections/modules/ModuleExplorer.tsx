@@ -34,8 +34,10 @@ const ModuleExplorer = () => {
 
         console.log("running module loader");
         const mods = await loadModules(addr, client)
+        const func_name = mods[0].abi?.exposed_functions.filter((m) => m.name === name)[0];
         setModules(mods);
         setSelectedModule(mods[0]);
+        setSelectedFunction(func_name||null);
 
     }
 
