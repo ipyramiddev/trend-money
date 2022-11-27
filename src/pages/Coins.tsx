@@ -12,11 +12,11 @@ const Coins = () => {
   const coins = useLoaderData() as any;
   const [coinData, setCoinData] = useState<Types.MoveResource[]>([]);
 
-  // useEffect(() => {
-  //   loadCoinList(coin_lists).then((data) => {
-  //     setCoinData(data);
-  //   });
-  // }, []);
+  useEffect(() => {
+    loadCoinList(coin_lists).then((data) => {
+      setCoinData(data);
+    });
+  }, []);
 
   return (
     <div>
