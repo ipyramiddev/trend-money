@@ -496,4 +496,13 @@ export const dapps = [
     "image": "AptosDragons.png",
     "address":"0x4ab7514a82f84f597bf35d7c51e2e4460ddb9a5cf80e2ea23a5c97eea475713b",
   },
+
+  {
+    "name": "AUX",
+    "tags": ["DEX"],
+    "twitter":"https://twitter.com/AuxExchange",
+    "url": "https://aux.exchange/",
+    "image": "aux.svg",
+    "address":"0xbd35135844473187163ca197ca93b2ab014370587bb0ed3befff9e902d6bb541",
+  },
 ]
