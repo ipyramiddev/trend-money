@@ -13,6 +13,7 @@ import Dao from "pages/DAO";
 import DappInfo from "pages/DappInfo";
 import ErrorPage from "pages/ErrorPage";
 import Explorer from "pages/Explorer";
+import DetailPage from "pages/DetailPage";
 import IDE from "pages/IDE";
 import SeamPass from "pages/SeamPass";
 import NodePage from "pages/NodePage";
@@ -56,7 +57,7 @@ export const BaseRouter = () => {
             return aptStats(client);
           }}
         />
-
+        <Route path="detail" element={<DetailPage />} />
         <Route path="staking" element={<NodePage />} />
         <Route
           path="explorer"
@@ -80,7 +81,7 @@ export const BaseRouter = () => {
               return loadModules(params.addr || "0x1", client);
             }}
           />
-        <Route
+          <Route
             element={<Coins />}
             path="coins"
             // loading={<div>loading</div>}
@@ -133,24 +134,22 @@ export const BaseRouter = () => {
 
           <Route element={<SeamPass />} path="seampass"></Route>
 
-          <Route element={<DappsView />} path="dapps/:dappName">
-            
-          </Route>
-            <Route
-              path="info/:dapp/"
-              element={<DappInfo />}
-              loader={async ({
-                request,
-                params,
-              }: {
-                request: any;
-                params: any;
-              }) => {
-                console.log("params are:", params);
-                const dapp = dappByName(params.dapp || "");
-                return { ...dapp, txs: loadTxs(dapp?.address || "0x1") };
-              }}
-            />
+          <Route element={<DappsView />} path="dapps/:dappName"></Route>
+          <Route
+            path="info/:dapp/"
+            element={<DappInfo />}
+            loader={async ({
+              request,
+              params,
+            }: {
+              request: any;
+              params: any;
+            }) => {
+              console.log("params are:", params);
+              const dapp = dappByName(params.dapp || "");
+              return { ...dapp, txs: loadTxs(dapp?.address || "0x1") };
+            }}
+          />
         </Route>
       </Route>
     )
