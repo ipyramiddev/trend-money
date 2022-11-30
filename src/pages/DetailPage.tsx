@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import ExChart from "components/card/Exchart";
-import { Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import ParentSize from "@visx/responsive/lib/components/ParentSize";
+import { Token } from "graphql";
 const DetailPage = () => {
+  const location = useLocation()
+  const params = new URLSearchParams(location.search)
+  console.log(params.get("tokens")?.split(","))
   const [tab1, setTab1] = useState(true);
   const [tab2, setTab2] = useState(false);
   const [tab3, setTab3] = useState(false);
@@ -93,30 +97,37 @@ const DetailPage = () => {
             <div className="flex flex-row justify-between">
               <div className="flex space-x-4 items-center">
                 <div className="flex">
-                  <img
-                    className="lg:w-12 lg:h-12 md:w-12 md:h-12 rounded-full max-md:w-10 max-md:h-10"
-                    src="../tokens/asset_BTC.png"
-                  />
-                  <img
-                    className="lg:w-12 lg:h-12 md:w-12 md:h-12 rounded-full -ml-4 max-md:w-10 max-md:h-10"
-                    src="../tokens/asset_wETH.png"
-                  />
+                  {
+                    params.get("tokens")?.split(",").map((token, index) => {
+                      return (
+                        index>0?
+                        <img
+                          className="bg-white lg:w-12 lg:h-12 md:w-12 md:h-12 -ml-4 rounded-full max-md:w-10 max-md:h-10"                          
+                          src={`../tokens/asset_${token}.png`}
+                        />
+                        :
+                        <img
+                          className="bg-white lg:w-12 lg:h-12 md:w-12 md:h-12 rounded-full max-md:w-10 max-md:h-10"                          
+                          src={`../tokens/asset_${token}.png`}
+                        />
+                      )
+                    })
+                  }
                 </div>
                 <div
                   style={{ height: "2.4rem", borderRight: "1px solid #3a3a44" }}
                 ></div>
-                <span className="h-12 flex items-center font-medium border-2 border-dashed rounded-2xl text-white p-1">
-                  WBTC
-                </span>
-                <span className="h-12 flex items-center font-medium border-2 border-dashed rounded-2xl text-white p-1">
-                  ETH
-                </span>
-                <span className="h-12 flex items-center font-medium border-2 border-dashed rounded-2xl text-white p-1">
-                  UniV3
-                </span>
-                <span className="h-12 flex items-center font-medium border-2 border-dashed rounded-2xl text-white p-1">
-                  Yearn
-                </span>
+                {
+                  params.get("tokens")?.split(",").map((token, index) => {
+                    return (
+                      <span className="h-12 flex items-center font-medium border-2 border-dashed rounded-2xl text-white p-1">
+                        {token}
+                      </span>
+                    )
+
+                  })
+                }
+
               </div>
               <svg
                 className="w-12 h-12"

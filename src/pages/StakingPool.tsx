@@ -45,7 +45,7 @@ const SubStrat = ({ pool }: any) => {
 
   return (
     <>
-      <Link to="/detail">
+      <Link to={`/detail?name=${pool.name}&tokens=${pool.assets}`}>
         <motion.div className="listing" whileHover={{ scale: 1.1, y: 12 }}>
           <div
             className="flex flex-col seam-outline p-2 text-white cursor-pointer"
