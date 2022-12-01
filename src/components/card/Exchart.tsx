@@ -12,7 +12,7 @@ import {
   withTooltip,
   Tooltip,
   TooltipWithBounds,
-  defaultStyles
+  defaultStyles,
 } from "@visx/tooltip";
 import { WithTooltipProvidedProps } from "@visx/tooltip/lib/enhancers/withTooltip";
 import { localPoint } from "@visx/event";
@@ -32,7 +32,7 @@ const stock = [
   { date: "2007-15-14T07:00:00.000Z", close: 48 },
   { date: "2007-16-14T07:00:00.000Z", close: 43 },
   { date: "2007-17-14T07:00:00.000Z", close: 38 },
-  { date: "2007-18-14T07:00:00.000Z", close: 0 }
+  { date: "2007-18-14T07:00:00.000Z", close: 0 },
 ];
 
 export const background = "#3b6978";
@@ -43,7 +43,7 @@ const tooltipStyles = {
   ...defaultStyles,
   background,
   border: "1px solid white",
-  color: "white"
+  color: "white",
 };
 
 // util
@@ -55,7 +55,7 @@ const colors = {
   gray: "#98A7C0",
   darkGray: "#2A2A2A",
   accent: "#40FEAE",
-  darkAccent: "#256769"
+  darkAccent: "#256769",
 };
 
 const graph_data = [
@@ -68,13 +68,15 @@ const graph_data = [
   [7, 48],
   [8, 43],
   [9, 38],
-  [10, 0]
+  [10, 0],
 ];
 
 // accessors
 const getDate = (d: AppleStock) => new Date(d.date);
 const getStockValue = (d: AppleStock) => d.close;
-const bisectDate = bisector<AppleStock, Date>((d: any) => new Date(d.date)).left;
+const bisectDate = bisector<AppleStock, Date>(
+  (d: any) => new Date(d.date)
+).left;
 
 export type AreaProps = {
   width: number;
@@ -91,7 +93,7 @@ export default withTooltip<AreaProps, TooltipData>(
     hideTooltip,
     tooltipData,
     tooltipTop = 0,
-    tooltipLeft = 0
+    tooltipLeft = 0,
   }: AreaProps & WithTooltipProvidedProps<TooltipData>) => {
     if (width < 10) return null;
 
@@ -101,12 +103,12 @@ export default withTooltip<AreaProps, TooltipData>(
 
     const xScale = scaleLinear({
       domain: [1, 10],
-      range: [0 + margin.top, width - margin.top]
+      range: [0 + margin.top, width - margin.top],
     });
 
     const yScale = scaleLinear({
       domain: [0, 50],
-      range: [height - margin.top, margin.top * 2]
+      range: [height - margin.top, margin.top * 2],
     });
 
     // scales
@@ -114,7 +116,7 @@ export default withTooltip<AreaProps, TooltipData>(
       () =>
         scaleTime({
           range: [margin.left, innerWidth + margin.left],
-          domain: extent(stock, getDate) as [Date, Date]
+          domain: extent(stock, getDate) as [Date, Date],
         }),
       [innerWidth, margin.left]
     );
@@ -123,7 +125,7 @@ export default withTooltip<AreaProps, TooltipData>(
         scaleLinear({
           range: [innerHeight + margin.top, margin.top],
           domain: [0, (max(stock, getStockValue) || 0) + innerHeight / 3],
-          nice: true
+          nice: true,
         }),
       [margin.top, innerHeight]
     );
@@ -151,7 +153,7 @@ export default withTooltip<AreaProps, TooltipData>(
         showTooltip({
           tooltipData: d,
           tooltipLeft: x,
-          tooltipTop: stockValueScale(getStockValue(d))
+          tooltipTop: stockValueScale(getStockValue(d)),
         });
       },
       [showTooltip, stockValueScale, dateScale]
@@ -170,10 +172,10 @@ export default withTooltip<AreaProps, TooltipData>(
           />
           {/* Title */}
           <Text
+            className="lg:text-2xl md:text-2xl xl:text-2xl sm:text-xl"
             style={{
               fill: colors.white,
-              fontSize: 24,
-              fontWeight: 600
+              fontWeight: 600,
             }}
             x={margin.top / 2}
             y={margin.top}
@@ -192,7 +194,7 @@ export default withTooltip<AreaProps, TooltipData>(
             tickLabelProps={() => ({
               fill: colors.gray,
               textAnchor: "middle",
-              verticalAnchor: "middle"
+              verticalAnchor: "middle",
             })}
           />
 
@@ -209,9 +211,9 @@ export default withTooltip<AreaProps, TooltipData>(
             tickLabelProps={() => ({
               fill: colors.gray,
               textAnchor: "end",
-              verticalAnchor: "middle"
+              verticalAnchor: "middle",
             })}
-            tickFormat={(value:any) => `${value}`}
+            tickFormat={(value: any) => `${value}`}
           />
 
           {/* Gradient for actual line */}
@@ -235,16 +237,16 @@ export default withTooltip<AreaProps, TooltipData>(
           />
           <LinePath
             data={graph_data}
-            x={(d:any) => xScale(d[0])}
-            y={(d:any) => yScale(d[1])}
+            x={(d: any) => xScale(d[0])}
+            y={(d: any) => yScale(d[1])}
             fill="url('#background-gradient')"
             curve={curveNatural}
           />
 
           <LinePath
             data={graph_data}
-            x={(d:any) => xScale(d[0])}
-            y={(d:any) => yScale(d[1])}
+            x={(d: any) => xScale(d[0])}
+            y={(d: any) => yScale(d[1])}
             stroke="url('#line-gradient')"
             strokeWidth={3}
             curve={curveNatural}
@@ -353,7 +355,7 @@ export default withTooltip<AreaProps, TooltipData>(
                 ...defaultStyles,
                 minWidth: 72,
                 textAlign: "center",
-                transform: "translateX(-50%)"
+                transform: "translateX(-50%)",
               }}
             >
               {formatDate(getDate(tooltipData))}

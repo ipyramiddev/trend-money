@@ -8,7 +8,7 @@ import Xarrow from "react-xarrows";
 import DappLogo from "sections/dapps/DappLogo";
 import { dappByName } from "util/dappUtils";
 import useSubmitTransaction from "../hooks/useTransaction";
-
+import { Link } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import Overlay from "components/card/Overlay";
 import Modal from "components/card/Modal";
@@ -39,50 +39,47 @@ const SubStrat = ({ pool }: any) => {
   const openModal = () => {
     setOpen(true);
   };
-
   const closeModal = () => {
     setOpen(false);
   };
 
   return (
     <>
-      <motion.div
-        className="listing"
-        onClick={openModal}
-        whileHover={{ scale: 1.1, y: 12 }}
-      >
-        <div
-          className="flex flex-col seam-outline p-2 text-white cursor-pointer"
-          id={`${pool.name}-${pool.platform}`}
-        >
-          {/* TOKEN */}
+      <Link to={`/detail?name=${pool.name}&tokens=${pool.assets}`}>
+        <motion.div className="listing" whileHover={{ scale: 1.1, y: 12 }}>
+          <div
+            className="flex flex-col seam-outline p-2 text-white cursor-pointer"
+            id={`${pool.name}-${pool.platform}`}
+          >
+            {/* TOKEN */}
 
-          <div>
+            <div>
+              <div className="flex flex-row justify-between">
+                <p className="text-xl font-bold min-h-[4rem]">{pool.name}</p>
+                {CategoryTag(pool.category_tag)}
+              </div>
+            </div>
+            {ProtocolTag(pool.platform)}
+            <TokenStack tokens={pool.assets} />
             <div className="flex flex-row justify-between">
-              <p className="text-xl font-bold min-h-[4rem]">{pool.name}</p>
-              {CategoryTag(pool.category_tag)}
+              <Stat
+                format={true}
+                name="portion"
+                value={pool.portion * 100}
+                unit="%"
+              />
             </div>
           </div>
-          {ProtocolTag(pool.platform)}
-          <TokenStack tokens={pool.assets} />
-          <div className="flex flex-row justify-between">
-            <Stat
-              format={true}
-              name="portion"
-              value={pool.portion * 100}
-              unit="%"
-            />
-          </div>
-        </div>
-      </motion.div>
+        </motion.div>
 
-      <AnimatePresence>
-        {open && (
-          <Overlay close={closeModal}>
-            <Modal close={closeModal} />
-          </Overlay>
-        )}
-      </AnimatePresence>
+        <AnimatePresence>
+          {open && (
+            <Overlay close={closeModal}>
+              <Modal close={closeModal} />
+            </Overlay>
+          )}
+        </AnimatePresence>
+      </Link>
     </>
   );
 };
@@ -184,4 +181,3 @@ export const StakingPool = ({ pool }: PoolProps) => {
     </div>
   );
 };
-
