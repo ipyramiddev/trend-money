@@ -1,20 +1,7 @@
 import React, { useState, useEffect } from "react";
-import {
-  AptosClient,
-  AptosAccount,
-  FaucetClient,
-  BCS,
-  TxnBuilderTypes,
-  HexString,
-  Types,
-} from "aptos";
-import ModuleExplorer from "../sections/modules/ModuleExplorer";
-import UserExplorer from "../sections/UserExplorer";
-import Pools from "../sections/pools/Pools";
-import DappsView from "sections/dapps/DappsView";
+
+
 import { formatParam } from "hooks/formatting";
-import { ExplorerTabView } from "views/ExplorerTabView";
-import Coins from "./Coins";
 import { Outlet } from "react-router";
 import { Link, useLocation } from "react-router-dom";
 import { useWallet } from "@manahippo/aptos-wallet-adapter";

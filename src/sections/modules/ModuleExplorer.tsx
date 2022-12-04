@@ -15,6 +15,7 @@ import ResourceDetailView from "views/ResourceDetailView";
 import ModuleOutline from "components/etc/ModuleOutline";
 import { Link, Outlet, useLoaderData, useParams } from "react-router-dom";
 import SwitchView from "sections/SwitchView";
+import AddDappModal from "modals/AddDappModal";
 
 
 
@@ -27,7 +28,7 @@ const ModuleExplorer = () => {
     const [selectedModule, setSelectedModule] = useState<Types.MoveModuleBytecode>(mod[0]);
     const [selectedFunction, setSelectedFunction] = useState<Types.MoveFunction | null>(null);
     const [modules, setModules] = useState<Types.MoveModuleBytecode[]>(mod);
-
+    const [addModal, setAddModal] = useState<boolean>(false);
     const updateView = async (addr: string) => {
         setSelectedAddress(addr);
         const client = getClient("Mainnet");
@@ -77,6 +78,8 @@ const ModuleExplorer = () => {
     return (
         <div className="w-full items-center justify-center">
             <div className="flex flex-row w-full justify-center">
+                {addModal ? <AddDappModal/>:null}
+
                 <div className="w-1/3 seam-outline">
                     <div className="flex flex-row text-black gap gap-2">
                         <input className="w-1/2 py-2 px-4 outline outline-2 outline-white rounded-2xl" type="text" placeholder="Enter address" value={selectedAddress} onChange={(e) => setSelectedAddress(e.target.value)} />
@@ -104,6 +107,7 @@ const ModuleExplorer = () => {
                         )
                         )}
                     </div>
+                    <button className="seam-button m-1 w-full" onClick={() => setAddModal(true)}>Add Dapp</button>
                     <span className="flex justify-center items-center p-1 m-1">
                         <p className="text-2xl text-white">Selected address: </p>
                         <p className=" text-2xl account-outline">{formatParam(selectedAddress)}</p>
