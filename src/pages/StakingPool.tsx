@@ -64,7 +64,7 @@ const SubStrat = ({ pool }: any) => {
             <div className="flex flex-row justify-between">
               <Stat
                 format={true}
-                name="portion"
+                name="Portion"
                 value={pool.portion * 100}
                 unit="%"
               />
@@ -91,7 +91,7 @@ const ProtocolTag = (p: any) => {
   return (
     <div className="flex flex-row items-center justify-center px-2 py-1 rounded-xl outline outline-2 outline-white">
       <div className="w-8 h-8">
-        <img className="rounded-lg" src={`dapps/${dapp_img}`} alt="dapp-img" />
+        <img className="rounded-full" src={`dapps/${dapp_img}`} alt="dapp-img" />
       </div>
       <p>{p}</p>
     </div>
@@ -125,7 +125,7 @@ export const StakingPool = ({ pool }: PoolProps) => {
 
   return (
     <div className="w-full shadow-lg shadow-white roundex-2xl text-white p-8 mt-4 mb-4 rounded-lg text-white border-[3px] border-white border-dashed">
-      <div className="flex flex-row justify-between items-center">
+      <div className="flex flex-row justify-between items-center pb-3">
         <h1 className="text-3xl">{pool.name}</h1>
       </div>
       <div className="flex flex-row justify-start items-center">
@@ -146,11 +146,11 @@ export const StakingPool = ({ pool }: PoolProps) => {
       {/* <div className='flex flex-col justify-between'> */}
       <div className="flex flex-row gap gap-3">
         {/* </div> */}
-        <div className="flex flex-row w-1/3 justify-baseline gap gap-4">
+        <div className="flex flex-row w-1/3 justify-baseline gap gap-4 p-6">
           {/* <BarChart/> */}
           <div className="stat place-items-center">
             <p className="stat-value">{pool.avg_apr_24}</p>
-            <p className="stat-title">apr 24h.</p>
+            <p className="stat-title">APY 24h.</p>
           </div>
           <div className="stat place-items-center">
             <div className="stat-value">{pool.total_deposits}</div>

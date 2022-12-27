@@ -12,7 +12,7 @@ const pool_data = {
 
     seamPools: [
         {
-            name: '∀ - Stability Loom',
+            name: '3Y Volatility Composite',
             avg_apr_24h: 0.008,
             avg_apr_7d: 0.12,
             total_deposits: 20,
@@ -26,15 +26,16 @@ const pool_data = {
                     assets: ["APT"],
                     category:"Supply asset",
                     deposit_payload: aptinSupplyPayload("APT",10000),
-                    category_tag:"lend",
+                    category_tag:"Lend",
                     supply_apy: 0.05,
+                    portion: 0.25,
                     yp_address: '0x01522c42ca43d7bfd34f373d41ad7d90a95e714c'
                 },
                 {
                     name: "APT-BTC",
-                    platform: "liquidSwap",
+                    platform: "LiquidSwap",
                     category:"Liquidity Pool",
-                    category_tag:"lp",
+                    category_tag:"LP",
                     yp_address: '0xb460f9ae1fea4f77107146c1960bb1c978118816',
                     assets: ["APT", "BTC"],
 
@@ -44,19 +45,20 @@ const pool_data = {
                 },
                 {
                     name: "APT-ETH",
-                    platform: "liquidSwap",
+                    platform: "LiquidSwap",
                     assets: ["APT", "ETH",],
                     category:"Liquidity Pool",
-                    category_tag:"lend",
+                    category_tag:"Lend",
                     yp_address: '0x0448e99ab5f8230713a9f5d7e64ec2ab6e5952a3',
                     portion: 0.25,
                 },
                 {
                     name: 'BTC-USDT',
-                    platform: "Anime.swap",
+                    platform: "AnimeSwap",
                     assets: ["BTC", "USDT",],
                     category:"Liquidity Pool",
-                    category_tag:"lp",
+                    category_tag:"LP",
+                    portion: 0.25,
                     yp_address: '0x01522c42ca43d7bfd34f373d41ad7d90a95e714c'
                 }
             ]
