@@ -81,7 +81,7 @@ export const BaseRouter = () => {
               return loadModules(params.addr || "0x1", client);
             }}
           />
-          <Route
+          {/* <Route
             element={<Coins />}
             path="coins"
             // loading={<div>loading</div>}
@@ -97,7 +97,7 @@ export const BaseRouter = () => {
               console.log("running module loader");
               return loadCoins(client);
             }}
-          />
+          /> */}
           <Route
             element={<Validators />}
             path="validators/"
