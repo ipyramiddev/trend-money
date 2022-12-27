@@ -75,7 +75,7 @@ const Wrapper: React.FC<WrapperProps> = ({ children }) => {
     <GlobalStateProvider>
       <WalletProvider
         wallets={wallets}
-        autoConnect={false}
+        autoConnect={true}
         onError={(error) => {
           console.log("wallet errors: ", error);
           // message.error(error.message);

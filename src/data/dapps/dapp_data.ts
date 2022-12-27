@@ -15,21 +15,6 @@ export const dapps = [
     "k": "DEFI"
   },
   {
-    "name": "Home",
-    "tags": ["DeFi"],
-    "description": "",
-    "url": "",
-    "discord": "",
-    "Published": "Jul 25, 2022 10:00 AM",
-    "twitter": "https://twitter.com/Tsunamifinance_",
-    "status": "",
-    "image": "tsunami.png",
-    "github": "",
-    "docs": "https://docs.tsunami.finance/",
-    "Npm": "",
-    "k": "DEFI"
-  },
-  {
     "name": "Switchboard",
     "tags": ["Oracle"],
     "discord": "",
@@ -432,7 +417,7 @@ export const dapps = [
     "tags": ["Bridge"],
     "url" : "https://linktr.ee/wormholecrypto",
     "github": "",
-    "address":"0x783ea0c95907f6d1269647fa2516bb41966ef24c4446a854722ac2ebd1e39613",
+    "address":"0x5bc11445584a763c1fa7ed39081f1b920954da14e04b32440cba863d03e19625",
     "image": "wormhole.jpg",
     "twitter": "https://twitter.com/wormholecrypto",
     "discord": "https://t.co/pnxTzMsIqe",
@@ -457,6 +442,7 @@ export const dapps = [
     "twitter": "https://app.kanalabs.io/",
     "status": "TBA",
     "url": "https://arcoprotocol.tech/lend",
+    "address": "0x62fdfe47c9c37227be1f885e79be827be292fe1833ac63a2fe2c2c16c55ecb12",
     "image": "Arco.png",
   },
 
@@ -466,8 +452,48 @@ export const dapps = [
     "discord": "https://discord.com/invite/CrqCaQ45kZ",
     "Published": "",
     "twitter": "",
-    "status": "TBA",
+    "address": "0xd11107bdf0d6d7040c6c0bfbdecb6545191fdf13e8d8d259952f53e1713f61b5",
     "url": "https://stake.dittofinance.io/",
     "image": "Ditto.png",
+  },
+  {
+    "name": "Pyth",
+    "tags": ["Oracle"],
+    "discord": "https://discord.com/invite/CrqCaQ45kZ",
+    "Published": "",
+    "twitter": "",
+    "status": "TBA",
+    "docs": "https://docs.pyth.network/",
+    "url": "https://pyth.network/",
+    "address": "0xb31e712b26fd295357355f6845e77c888298636609e93bc9b05f0f604049f434",
+    "image": "pyth.png",
+  },
+
+  {
+    "name": "Rafflor",
+    "tags": ["Raffles", "NFTs"],
+    "status": "TBA",
+    "url": "https://stake.dittofinance.io/",
+    "image": "Rafflor.png",
+    "address": "0x22df18573dbf63cc0c05f695ef91331f6b6480c4445a891799b1b407ea987baf",
+  },
+  
+  {
+    "name": "LeverX",
+    "tags": ["Dex", "Derivatives"],
+    "status": "TBA",
+    "twitter":"https://twitter.com/LeveragedX",
+    "medium":"https://medium.com/@leverx_17257",
+    "url": "https://linktr.ee/lever_x",
+    "image": "LeverX.png",
+  },
+
+  {
+    "name": "AptosDragons",
+    "tags": ["Casino", "Gaming"],
+    "twitter":"https://twitter.com/aptosdragonsnft",
+    "url": "https://aptos-dragons-roulette.vercel.app/",
+    "image": "AptosDragons.png",
+    "address":"0x4ab7514a82f84f597bf35d7c51e2e4460ddb9a5cf80e2ea23a5c97eea475713b",
   },
 ]

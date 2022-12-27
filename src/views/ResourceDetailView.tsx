@@ -17,7 +17,7 @@ const ResourceDetailView = ({ address, showDetails,showUnder}: Props) => {
     }
     
     if (showUnder){
-        <div className="flex flex-col h-full ">
+        <div className=" h-full">
         <AccountResources address={address} selectResource={selectResources} />
         <div className="scrollable ">
         {showDetails ? ResourceDetails(resource) : null}
@@ -35,7 +35,9 @@ const ResourceDetails = (resource: Types.MoveResource | null) => {
     return (<div className="p-3 ">
         <p className="text-3xl">Resource Details</p>
         <p className="text-xl font-semibold">{resource?.type}</p>
-        <p className="w-2/3">{JSON.stringify(resource?.data,null, "\t")}</p>
+        <div className="overflow-hidden">
+        <p className="overflow-hidden">{JSON.stringify(resource?.data,null, "\t")}</p>
+        </div>
     </div>);
 }
 

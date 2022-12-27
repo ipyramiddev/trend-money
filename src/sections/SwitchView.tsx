@@ -8,26 +8,18 @@ const tabs = [
 
 function SwitchView(props: any) {
   const [view, setView] = useState("Transactions");
-
-  const switchTab = (tab: string) => {
-    if (tab !== view) {
-      setView(tab);
-    }
-  };
-
   return (
     <div className="flex flex-col  m-4 p-4 text-bold items-center justify-center">
       <div className="flex flex-row gap-2 items-center justify-center">
         {tabs.map((tab, index) => {
           return (
             <a
-              key={index}
-              className={`tab text-3xl tab-bordered ${
-                view === tab.name ? "text-underlined" : ""
-              }`}
+              key={index.toString()}
               onClick={() => setView(tab.name)}
             >
-              <p className="text-3xl">{tab.name}</p>
+              <p className={`tab text-3xl ${
+                view === tab.name ? " underline" : ""
+              }`}>{tab.name}</p>
             </a>
           );
         })}

@@ -2,17 +2,16 @@ import WindowWrapper from "components/etc/WindowWrapper";
 import Icons from "components/Icons";
 import { useRef, useState } from "react";
 import { FaArrowCircleUp, FaBackward, FaForward, FaGithub, FaHome, FaTwitter } from "react-icons/fa";
-import { Link, useLoaderData, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import ReactTooltip from "react-tooltip";
 import { dappByName } from "util/dappUtils";
-import { useDappContext } from "./DappContext";
 import DappLogo from "./DappLogo";
-import SplashFrame from "./SplashFrame";
 
 interface DappFrameProps {
     dapp: Dapp;
     viewUrl: string;
     selectDapp: (dapp: Dapp) => void;
+    goHome: () => void;
 
 }
 
@@ -38,7 +37,7 @@ const DappHeader = (dapp: Dapp) => {
 }
 
 
-const DappFrame = ({ dapp, viewUrl,selectDapp }: DappFrameProps) => {
+const DappFrame = ({ dapp, viewUrl,selectDapp,goHome }: DappFrameProps) => {
     const ref = useRef<any>();
     console.log("setting dapp:",dapp)
     let dapp_data = dappByName(dapp.name||"") as Dapp;
@@ -47,7 +46,7 @@ const DappFrame = ({ dapp, viewUrl,selectDapp }: DappFrameProps) => {
         <div className="w-full min-w-full">
             <WindowWrapper>
                 {DappHeader(dapp_data)}
-                {DappNav(dapp_data,selectDapp)}
+                {DappNav(dapp_data,selectDapp,goHome)}
                 {renderIDapp(dapp_data?.url||"")}
                 
             </WindowWrapper>
@@ -58,8 +57,7 @@ const DappFrame = ({ dapp, viewUrl,selectDapp }: DappFrameProps) => {
 export default DappFrame;
 
 
-const DappNav=(dapp:Dapp,selectDapp:(dapp:Dapp)=>void)=> {
-    const {toggleHome} = useDappContext();
+const DappNav=(dapp:Dapp,selectDapp:(dapp:Dapp)=>void,goHome:()=>void)=> {
     return (
         <div className="flex flex-row items-start justify-center px-3">
             {/* BACK ARROW */}
@@ -77,7 +75,7 @@ const DappNav=(dapp:Dapp,selectDapp:(dapp:Dapp)=>void)=> {
             {/* Home Icon button */}
             <Link to="/explorer/dapps/home">
             <button className="seam-sqr" data-tip="Home" 
-            onClick={()=>toggleHome()}
+            onClick={()=>goHome()}
             >
                 <FaHome/>
             </button>

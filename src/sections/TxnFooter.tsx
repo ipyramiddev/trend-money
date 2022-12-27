@@ -29,9 +29,11 @@ export const TxnFooter = ({ success, sender, timestamp, version, hash, gas_used,
             <div>
                 {HashLink(hash)}
                 {VersionLink(version)}
-                <p data-tip={`timestamp:${timestamp}`} className="text-left">
-                    {TimeAgo(timestamp)} from @ {shortenAddress(sender)}
-                </p>
+                <button 
+                    // onClick = {()=}
+                data-tip={`timestamp:${timestamp}`} className="text-left">
+                    {TimeAgo(timestamp)}
+                </button>
             </div>
         </div>
     );

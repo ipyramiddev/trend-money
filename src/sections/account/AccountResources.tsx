@@ -9,6 +9,8 @@ import AccountOutline from "components/etc/AccountOutline";
 import CoinImg from "components/etc/CoinImg";
 import ModuleOutline from "components/etc/ModuleOutline";
 import TypeOutline from "components/etc/TypeOutline";
+import AssetPrice from "components/asset/AssetPrice";
+import Token from "components/Token";
 
 
 interface Props{
@@ -35,9 +37,9 @@ const AccountResources = ({ address,selectResource }: Props) => {
     }, []
     );
     return (
-        <div className="">
+        <div className="max-w-1/2 items-end justify-end">
             <p className="text-3xl">Account Resources</p>
-            <div className="scrollY overflow-scroll p-2 flex flex-col max-h-2xl ">
+            <div className="overflow-scroll p-2 flex flex-col w-1/2 ">
                 {resources && resources.length !== 0 ? (filteredResources(resources,selectResource,[])) : <p>none</p>}
             </div>
         </div>
@@ -82,11 +84,11 @@ const Resource = (resource: Types.MoveResource,selectResource: (resource:Types.M
 
     
     const { address, module, name } = splitType(resource.type);
-    const isSelf = address==base_addr;
+    const isSelf = address===base_addr;
     return (
         <div className="p-2 m-2 outline h-40 rounded-lg outline-2 ">
 
-            <div className="flex flex-row items-center">
+            <div className="flex flex-wrap items-center">
             <AccountOutline name="" addr={address} isSelf={isSelf}/>
             <ModuleOutline module_name={module}/>
             <TypeOutline type_name={name}/>
@@ -127,6 +129,7 @@ const TokenStore = (tokenstore:any)=>{
         <div className="flex flex-col rounded-2xl outline outline-2 p-2 m-2">
             <p>Token Store</p>
             {DepositsWithdraws(tokenstore)}
+            <p>{JSON.stringify(data)}</p>
 
         </div>
     );
@@ -137,10 +140,10 @@ const CoinStore = (coins: any,) => {
 
     return (<div className="flex flex-col p-3 m-3 rounded-lg text-left items-start justify-start">
         <div className="outline flex flex-row items-center justify-between rounded-lg w-full p-2 m-1">
-            <img src="../tokens/asset_APT.png" className="w-10  rounded-full h-10 bg-white m-2"/>
             <div>
-            <p className="text-4xl font-bold">{format_large_number(coins.coin?.value)}</p>
+            <Token token={"APT"}/>
             <p className="text text-sm opacity-70">APT coin</p>
+            <p className="text-4xl font-bold">{format_large_number(coins.coin?.value)}</p>
             </div>
             
         {DepositsWithdraws(coins)}

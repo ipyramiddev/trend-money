@@ -42,7 +42,6 @@ const ModuleStruct = (struct: Types.MoveStruct) => {
         if (isComplexName(name)) {
             const [title, ...rest] = name.split("<");
             name = title;
-
         }
 
         return ({ name: field.name, type: name, module: module, address: address })
@@ -64,14 +63,13 @@ const ModuleStruct = (struct: Types.MoveStruct) => {
                                 </div>
                                 <div className="flex flex-row gap-1 justify-center items-center">
                                     <p>@</p>
-                                    {field.module != "base" ? (
+                                    {field.module !== "base" ? (
                                         <>
                                     <AccountOutline addr={field.address} />
-                                    <p> in ::</p>
+                                    <p>::</p>
                                     
                                     <ModuleOutline module_name={field.module}/></>) : (<p>std</p>)}
                                 </div>
-
                             </div>
                         </div>
                     )

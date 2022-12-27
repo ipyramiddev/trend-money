@@ -37,14 +37,17 @@ export const format_large_number = (n:number,decimals=100000000) => {
 }
 
 export const format_date = (date:number) => {
-    if (date === null) {
-        return '-';
-    }
-    const d = new Date(date*1000);
-    // + d.toLocaleTimeString().slice(0, -3);
-    return  d.toLocaleDateString().slice(0, -5)
+        const unix_ts = Number(date);
+        const diff = (Date.now()*1000 - unix_ts)/1000000/60/60
+        return diff.toFixed(1);
     
 
+}
+
+export const formatTimestamp = (time:string)=>{
+    const unix_ts = Number(time);
+    const diff = (Date.now()*1000 - unix_ts)/1000000/60/60
+    return diff.toFixed(1);
 }
 
 export const parsePayloadFunction = (funct:string) => {
@@ -149,15 +152,9 @@ export const formatType = (type:string)=>{
 return act + "::"+mod;
 }
   export const TimeAgo = (timestamp: string) => {
-    // convert unix timestamp in microseconds to milliseconds
-    // const date = new Date(parseInt(timestamp)/1000000000);
     
-    const date = new Date(timestamp);
-    const now = new Date();
-    const seconds = Math.round(Math.abs((now.getTime() - date.getTime())));
-    // console.log("seconds",date);
-    const minutes = Math.round(Math.abs(seconds / 60));
-    const hours = Math.round(Math.abs(minutes / 60));
-    // console.log("hours", minutes)
-    return hours + " hours ago";
+    const unix_ts = Number(timestamp);
+    const diff = (Date.now()*1000 - unix_ts)/1000000/60/60
+    const d =  diff.toFixed(1);
+    return d.toString() + " hours ago";
   }
