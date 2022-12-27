@@ -66,7 +66,6 @@ const PassDetails = () => {
 
 
 const SeamPassNft = () => {
-    const 
     const [totalMinted, setTotalMinted] = useState(0);
     const totalSupply = 1000;
     return (
