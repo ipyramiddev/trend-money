@@ -454,7 +454,7 @@ export const dapps = [
     "twitter": "",
     "address": "0xd11107bdf0d6d7040c6c0bfbdecb6545191fdf13e8d8d259952f53e1713f61b5",
     "url": "https://stake.dittofinance.io/",
-    "image": "Ditto.png",
+    "image": "ditto.png",
   },
   {
     "name": "Pyth",

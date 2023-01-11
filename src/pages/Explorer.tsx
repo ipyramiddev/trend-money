@@ -18,7 +18,7 @@ const Explorer = () => {
     // { name: 'Stats', id: 'stats' },
     { name: "Validators", id: "validators" },
     { name: "IDE", id: "IDE" },
-    { name: 'Coins', id: 'coins' },
+    // { name: 'Coins', id: 'coins' },
     { name: 'Seam Pass', id: 'seampass' }
   ];
   const view = pathname;

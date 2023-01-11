@@ -1,7 +1,7 @@
 import { AptosClient, Types } from "aptos";
 // import { loadCoinList } from "hooks/useAptos";
 import { useLoaderData } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { SetStateAction, useEffect, useState } from "react";
 import { coin_lists } from "../data/coin_data";
 interface PoolProps {
   client: AptosClient;
@@ -12,11 +12,11 @@ const Coins = () => {
   const coins = useLoaderData() as any;
   const [coinData, setCoinData] = useState<Types.MoveResource[]>([]);
 
-  // useEffect(() => {
-  //   loadCoinList(coin_lists).then((data) => {
-  //     setCoinData(data);
-  //   });
-  // }, []);
+  useEffect(() => {
+    // loadCoinList(coin_lists).then((data: SetStateAction<{ type: string; data: {}; }[]>) => {
+    //   setCoinData(data);
+    // });
+  }, []);
 
   return (
     <div>
