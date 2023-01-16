@@ -239,7 +239,7 @@ export const stringToHex= (text: string) => {
   }
 
 export const loadModules = async (address: string,client=mClient) => {
-    const modules = await client.getAccountModules(address) as Types.MoveModuleBytecode[];
+    const modules = await client.getAccountModules(new HexString(address)) as Types.MoveModuleBytecode[];
     return modules;
 }
 

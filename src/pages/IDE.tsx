@@ -87,22 +87,22 @@ const FileEditor = ({
     const [currentText, setCurrentText] = useState<string>(file.script);
 
     return (
-        <div className="mockup-window border-pink mockup-window-outline border-4 shadow-xl  shadow-pink  w-full min-h-1/2 pt-2 m-3">
-
+        <div className="mockup-window w-3/4 border-pink rounded-xl mockup-window-outline border-4 shadow-xl  shadow-pink  min-h-1/2 pt-2 m-3">
+<ParserServer/>
             <div>
-        <div className="multiline h-60">
+        {/* <div className="multiline h-60">
         <textarea 
         className="w-full h-full py-3 mx-3 rounded-2xl bg-white px-5 text-black"
           name="textValue"
           value={currentText}
         //   onChange={(e)=>handleChange(e)}
         />
-      </div>
-        <ParserServer/>
+      </div> */}
+        
 
       </div>
 
-      <p>{currentText}</p>
+      {/* <p>{currentText}</p> */}
             </div>
     )}
 

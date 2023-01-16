@@ -37,9 +37,9 @@ const AccountResources = ({ address,selectResource }: Props) => {
     }, []
     );
     return (
-        <div className="max-w-1/2 items-end justify-end">
+        <div className="items-end justify-start w-3/4">
             <p className="text-3xl">Account Resources</p>
-            <div className="overflow-scroll p-2 flex flex-col w-1/2 ">
+            <div className="overflow-scroll max-h-144 p-2 flex flex-wrap ">
                 {resources && resources.length !== 0 ? (filteredResources(resources,selectResource,[])) : <p>none</p>}
             </div>
         </div>

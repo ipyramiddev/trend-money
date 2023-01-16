@@ -20,11 +20,10 @@ const ModuleTypes = ({ module }: { module: Types.MoveModuleBytecode }) => {
 const ModuleStructs = (module: Types.MoveModuleBytecode) => {
     const { abi } = module;
     return (
-        <div className="flex flex-wrap  w-1/2 gap gap-2 items-start">
+        <div className="flex flex-wrap w-full gap gap-2 items-start">
             {abi?.structs.map((struct: Types.MoveStruct) => {
                 return ModuleStruct(struct);
             })}
-
         </div>
     )
 }

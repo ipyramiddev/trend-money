@@ -1,6 +1,6 @@
 
 import { useWallet } from "@manahippo/aptos-wallet-adapter";
-import { AptosAccount, AptosClient } from "aptos";
+import { AptosAccount, AptosClient, BCS, HexString, TxnBuilderTypes } from "aptos";
 import { Types } from "aptos";
 import ModuleOutline from "components/etc/ModuleOutline";
 import { formatParam } from "hooks/formatting";
@@ -16,21 +16,38 @@ interface TxnPreviewProps {
     client: AptosClient;
 }
 
+const {
+    AccountAddress,
+    TypeTagStruct,
+    EntryFunction,
+    StructTag,
+    TransactionPayloadEntryFunction,
+    RawTransaction,
+    ChainId,
+  } = TxnBuilderTypes;
+
+const type_parsers = {
+    "u64":(x:number)=>BCS.bcsSerializeUint64(x),
+    "str":(x:string)=>BCS.bcsSerializeStr(x),
+    "address":(x:string)=>BCS.bcsToBytes(AccountAddress.fromHex(new HexString(x))),
+    "0x1::string:String":(x:string)=>BCS.bcsToBytes(AccountAddress.fromHex(new HexString(x)))
+}
+
 const TxnPreview = ({ address, module, func, params, generic_types, client }: TxnPreviewProps) => {
     const [argList, setArgList] = useState<any[]>([]);
     const [gList, setgList] = useState<any[]>([]);
     const { account, connected,} = useWallet();
 
-    const updateArg = (index: number, value: string) => {
+    const updateArg = (index: number, value: string,type:any) => {
         const newArgs = [...argList];
-        newArgs[index] = value;
+        newArgs[index] = {value:value,type:type};
         setArgList(newArgs);
     }
 
     const updateG = (index: number, g: string) => {
-        const newArgs = [...argList];
+        const newArgs = [...gList];
         newArgs[index] = g;
-        setArgList(newArgs);
+        setgList(newArgs);
     }
 
     const checkTxn = (toAddr: string,
@@ -40,7 +57,36 @@ const TxnPreview = ({ address, module, func, params, generic_types, client }: Tx
         generic_type_params: string[],
         args: any[]) => {
 
-        const arg_ls = args.filter((a: Types.MoveType) => a != "signer");
+        // const arg_ls = args.filter((a: Types.MoveType) => a !== "signer");
+        const arg_ls = args.map((arg:any)=>{
+            const type = arg.type as String;
+            if (type==="address"){
+                return arg.value
+                // return BCS.bcsToBytes(AccountAddress.fromHex(new HexString(arg.value)));
+            }
+            else if(type==="u64"){
+                return arg.value
+                // return BCS.bcsSerializeUint64(arg.value);
+            }
+            else if(type==="0x1::string::String"){
+                return arg.value
+                // return {value:BCS.bcsSerializeStr(arg.value)};
+            }
+            else{
+                console.log("Unknown type", type);
+            }
+        });
+            
+
+
+        // const parsed_args = arg_ls.map((arg:Types.MoveType)=>{
+        //     const type = arg.type as String;
+        //     const parser = type_parsers.get(arg);
+        //     if (parser){
+        //         return parser(arg.value);
+        //     }
+        //     return arg.value;
+
         sendTransaction(toAddr, sender, mod, func, generic_type_params, arg_ls)
 
     };
@@ -63,13 +109,13 @@ const TxnPreview = ({ address, module, func, params, generic_types, client }: Tx
                 </div>
                 <div className="flex flex-row gap-2 ">
                     <div>
-                        { params.length!=0 && params[0] === "&signer" ? <p className="text-2xl">signer</p> : <p className="text-2xl">signer,</p>}
+                        { params.length!==0 && params[0] === "&signer" ? <p className="text-2xl">signer</p> : <p className="text-2xl">signer,</p>}
                         {params.filter(param => param!=="&signer").map((param: Types.MoveType, index: number) => {
                             return (
                                 <div key={index} className="flex flex-row items-baseline justify-start px-2 py-3 m-3 rounded-xl text-white">
                                     { }
                                     <p className="p-1 text-bold text-right">{param}</p>
-                                    <input className="px-3 text-black py-2 rounded-xl outline outline-2" type="text" placeholder={""} value={argList[index]} onChange={(event) => updateArg(index, event.target.value)} />
+                                    <input className="px-3 text-black py-2 rounded-xl outline outline-2" type="text" placeholder={""} value={argList[index]?.value} onChange={(event) => updateArg(index, event.target.value,param)} />
                                 </div>
                             )
                         })}
@@ -92,8 +138,11 @@ const TxnPreview = ({ address, module, func, params, generic_types, client }: Tx
                         })}
                     </div>
                 </div>
+                {argList.length !== 0 && <p className="text-2xl">args: {argList.map((arg: any) => arg.value).join(", ")}</p>}
+
+                {gList.length !== 0 && <p className="text-2xl">args: {gList.map((arg: any) => arg).join(", ")}</p>}
                         
-                <button onClick={() => checkTxn(address, account?.address?.toString()||"", module.abi?.name || "", func.name, func.generic_type_params as any[], argList)} className="seam-button ">send Txn</button>
+                <button onClick={() => checkTxn(address, account?.address?.toString()||"", module.abi?.name || "", func.name, gList as string[], argList)} className="seam-button ">send Txn</button>
             </div>
             {/* <button onClick={()=>setShowTxnModal(true)} className="seam-button ">Create Txn</button> */}
         </div>
