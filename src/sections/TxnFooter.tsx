@@ -13,13 +13,18 @@ export const TxnFooter = ({ success, sender, timestamp, version, hash, gas_used,
         // return event_txt;
     }) + "</div>";
 
+    const format_gas = (gas:string) => {
+        const gas_num = parseInt(gas);
+        const gas_apt = gas_num / 1000000;
+        return gas_apt.toFixed(3).toString() + " APT";
+    }
 
 
     return (
         <div className="flex flex-row justify-between">
             <div className="">
                 {/* <button className="text-underline">repeat tx </button> */}
-                <p>gas cost: {gas_used}</p>
+                <p>gas used: {format_gas(gas_used)}</p>
             </div>
             <div className="">
                 <p className="text-bold" data-tip={`<p>${event_txt}</p>`}>{events?.length} events</p>
