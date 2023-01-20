@@ -62,7 +62,7 @@ const TxnPayload = ({ payload }: Types.UserTransaction) => {
                 <div>
                     <div className=" bg-white">
                         {payload.type}
-                        <TxnHeader address={addr} module_name={mod} func_name={scr} />
+                        {/* <TxnHeader address={addr} module_name={mod} func_name={scr} /> */}
                         {/* <EntryTxnArgs {...payload} /> */}
                     </div>
                 </div>

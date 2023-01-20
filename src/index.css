@@ -470,3 +470,77 @@ body {
   }
 }
 
+@property --rotate {
+  syntax: "<angle>";
+  initial-value: 132deg;
+  inherits: false;
+}
+
+:root {
+  --card-height: 246px;
+  --card-width: calc(var(--card-height) / 1.5);
+}
+
+.card-body {
+  background: #191c29;
+  position: relative;
+  cursor: pointer;
+  padding: 2px;
+  
+  border-radius: 8px;
+  color: white;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  min-width: 250px;
+}
+
+
+.card-body::before {
+  content: "";
+  width: 104%;
+  height: 102%;
+  border-radius: 8px;
+  background-image: linear-gradient(
+    var(--rotate)
+    , #5ddcff, #3c67e3 43%, #4e00c2);
+  position: absolute;
+  z-index: 0;
+  top: -1%;
+  left: -2%;
+  animation: spin 2.5s linear infinite;
+  /* border: dashed 3px  #ffffff; */
+}
+
+.card-body::after {
+  position: absolute;
+  content: "";
+  top: calc(var(--card-height) / 10);
+  left: 0;
+  right: 0;
+  z-index: 0;
+  height: 100%;
+  width: 100%;
+  margin: 0 auto;
+  transform: scale(0.8);
+  filter: blur(calc(var(--card-height) / 10));
+  background-image: linear-gradient(
+    var(--rotate)
+    , #5ddcff, #3c67e3 43%, #4e00c2);
+    opacity: 1;
+  transition: opacity .5s;
+  animation: spin 2.5s linear infinite;
+  /* border: dashed 3px  #ffffff; */
+}
+
+@keyframes spin {
+  0% {
+    --rotate: 0deg;
+  }
+  100% {
+    --rotate: 360deg;
+  }
+}
+
+.progress-wrapper {
+  border: 1px solid #000;
+}
