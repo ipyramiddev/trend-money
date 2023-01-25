@@ -72,7 +72,7 @@ export const dapps = [
   },
   
   {
-    "name": "names.aptos",
+    "name": "Aptos-Names",
     "tags": ["Name Service", "Tools"],
     "discord": "",
     "published": "Jul 19, 2022 6:28 AM",
@@ -81,7 +81,7 @@ export const dapps = [
     "github": "",
     "url": "https://www.aptosnames.com/",
     "image": "aptosnames.svg",
-    "address": "0xe2c279d1ec67b814eac9802cc9f14bbf96b1e4cf67ad0767965835a5210e4d16"
+    "address": "0x867ed1f6bf916171b1de3ee92849b8978b7d1b9e0a8cc982a3d19d535dfd9c0c"
   },
   {
     "name": "BlueMove",
@@ -136,20 +136,6 @@ export const dapps = [
     "docs": "",
   },
 
-  // {
-  //   "name": "Empo",
-  //   discord: "",
-  //   image: "empo.jpg",
-  //   url: "",
-  //   description: "",
-  //   tags: ["DEX", "DeFi"],
-  //   Published: "Jul 19, 2022 6:53 AM",
-  //   twitter: "https://twitter.com/Empo_Fi",
-  //   status: "TBA",
-  //   github: "",
-  //   Docs: "",
-  //   Npm: "",
-  // },
 
   // {
   //   "name": "Enchanter",
