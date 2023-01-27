@@ -15,7 +15,7 @@
     "@headlessui/react": "^1.5.0",
     "@heroicons/react": "1.0.6",
     "@imcoding.online/js-move-playground": "^1.0.3",
-    "@manahippo/aptos-wallet-adapter": "1",
+    "@manahippo/aptos-wallet-adapter": "^1.0.10",
     "@manahippo/hippo-sdk": "^0.0.32",
     "@manahippo/move-to-ts": "^0.0.60",
     "@openzeppelin/contracts": "^4.5.0",

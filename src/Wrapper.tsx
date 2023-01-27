@@ -23,9 +23,11 @@ import {
   PontemWalletAdapter,
   RiseWalletAdapter,
   SpikaWalletAdapter,
-  FletchWalletAdapter
+  FletchWalletAdapter,
+  SpacecyWalletAdapter,
+  
   // AptosSnapAdapter,
-  // NightlyWalletAdapter,
+  NightlyWalletAdapter,
   // BitkeepWalletAdapter,
   // TokenPocketWalletAdapter,
   // BloctoWalletAdapter,
@@ -57,11 +59,12 @@ const Wrapper: React.FC<WrapperProps> = ({ children }) => {
       new FewchaWalletAdapter(),
       new PontemWalletAdapter(),
       new RiseWalletAdapter(),
-      new SpikaWalletAdapter()
+      new SpikaWalletAdapter(),
       // new FletchWalletAdapter(),
       // new AptosSnapAdapter(),
-      // new NightlyWalletAdapter(),
+      new NightlyWalletAdapter(),
       // new BitkeepWalletAdapter(),
+      new SpacecyWalletAdapter(),
       // new TokenPocketWalletAdapter(),
       // new BloctoWalletAdapter({ network: WalletAdapterNetwork.Testnet }),
       // new ONTOWalletAdapter(),

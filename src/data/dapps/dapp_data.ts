@@ -72,7 +72,7 @@ export const dapps = [
   },
   
   {
-    "name": "names.aptos",
+    "name": "Aptos-Names",
     "tags": ["Name Service", "Tools"],
     "discord": "",
     "published": "Jul 19, 2022 6:28 AM",
@@ -81,7 +81,7 @@ export const dapps = [
     "github": "",
     "url": "https://www.aptosnames.com/",
     "image": "aptosnames.svg",
-    "address": "0xe2c279d1ec67b814eac9802cc9f14bbf96b1e4cf67ad0767965835a5210e4d16"
+    "address": "0x867ed1f6bf916171b1de3ee92849b8978b7d1b9e0a8cc982a3d19d535dfd9c0c"
   },
   {
     "name": "BlueMove",
@@ -126,7 +126,7 @@ export const dapps = [
     "name": "Aries",
     "description": "Decentralised Margin Trading",
     "tags": ["DeFi","Lending","Borrowing"],
-    "url": "https://ariesmarkets.xyz/",
+    "url": "https://app.ariesmarkets.xyz/lending",
     "discord": "https://discord.gg/h6Kx9pkp",
     "twitter": "https://twitter.com/AriesMarkets",
     "address": "0x9770fa9c725cbd97eb50b2be5f7416efdfd1f1554beb0750d4dae4c64e860da3",
@@ -136,20 +136,6 @@ export const dapps = [
     "docs": "",
   },
 
-  // {
-  //   "name": "Empo",
-  //   discord: "",
-  //   image: "empo.jpg",
-  //   url: "",
-  //   description: "",
-  //   tags: ["DEX", "DeFi"],
-  //   Published: "Jul 19, 2022 6:53 AM",
-  //   twitter: "https://twitter.com/Empo_Fi",
-  //   status: "TBA",
-  //   github: "",
-  //   Docs: "",
-  //   Npm: "",
-  // },
 
   // {
   //   "name": "Enchanter",
@@ -393,7 +379,7 @@ export const dapps = [
     "url" : "https://app.cetus.zone/",
     "docs": "https://t.co/pnxTzMsIqe",
     "github": "",
-    "address":"0xec42a352cc65eca17a9fa85d0fc602295897ed6b8b8af6a6c79ef490eb8f9eba",
+    "address":"0xa7f01413d33ba919441888637ca1607ca0ddcbfa3c0a9ddea64743aaa560e498",
     "image": "cetus.png",
     "twitter": "https://twitter.com/CetusProtocol",
     "discord": "https://t.co/pnxTzMsIqe",
