@@ -3,6 +3,7 @@ import Logo from "../Logo";
 import { useWallet } from '@manahippo/aptos-wallet-adapter';
 import { useWeb3 } from "@fewcha/web3-react";
 import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
 import {
   FaGithub,
@@ -31,11 +32,13 @@ const nav_icons = [
 ];
 
 function NavbarItem(props: any) {
+ 
   return (
-    <li className="block py-2 pr-4 pl-3 text-white hover:bg-white hover:text-blac rounded-lg">
+    <li className="block py-2 pl-1 text-white rounded-lg menu-font">
       <a href={props.item.path} className=" ">
         {props.item.name}
       </a>
+      <div className="h-[2px] w-[80%] m-auto bg-gradient-to-r from-point1 to-point2 hidden active-bar"></div>
     </li>
   );
 }
@@ -67,8 +70,12 @@ export default function Navbar(props: any) {
   } = useWallet();
 
   const nav_items = (network: any) => [
-    { name: "Looms", path: "/powersets" },
-    { name: "Explorer", path: `/explorer/modules/${network}/0x1` },
+    // { name: "Looms", path: "/powersets" },
+    { name: "EXPLORER", path: `/explorer/modules/${network}/0x1` },
+    { name: "GITHUB", path: `https://github.com/SeamMoney/` },
+    { name: "TWITTER", path: `https://twitter.com/SeamMoney` },
+    { name: "DOCS", path: `https://docs.seam.money/` },
+    { name: "BLOG", path: `/#` },
   ];
 
   // const location = useLocation()
@@ -91,8 +98,8 @@ export default function Navbar(props: any) {
   }, []);
 
   return (
-    <nav className=" px-2 sm:px-4 py-2.5 text-white">
-      <div className="container flex flex-wrap justify-between items-center mx-auto">
+    <nav className="py-2.5 text-white">
+      <div className="px-4 lg:pl-32 lg:pr-0 flex flex-wrap justify-between items-center mx-auto">
         <a href="/" className="flex items-center">
           <Logo />
         </a>
@@ -142,13 +149,14 @@ export default function Navbar(props: any) {
             {/* {nav_icons.map((item, i) => {
               return NavbarIcon(item.link, item.icon, i);
             })} */}
-
-            <button
-              className="seam-button m-3"
-              onClick={() => !connected ? props.showConnectModal(true) : onDisconnect()}
-            >
-              {!connected ? "Connect" : "Disconnect"}
-            </button>
+            <div className="pr-3">
+              <button
+                className="seam-button m-3"
+                onClick={() => !connected ? props.showConnectModal(true) : onDisconnect()}
+              >
+                {!connected ? "Connect" : "Disconnect"}
+              </button>
+            </div>
           </ul>
         </div>
       </div>

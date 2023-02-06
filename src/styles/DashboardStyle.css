@@ -1,0 +1,4 @@
+.border-blur {
+    box-shadow: 148px 0px 28px -63px rgb(20 20 20 / 98%);
+    z-index: 100;
+}

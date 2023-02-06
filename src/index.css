@@ -3,22 +3,25 @@
 @tailwind utilities;
 
 @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Akshar&display=swap');
 
 
 .container {
   align-items: center;
 }
-.pool-stack{
-  
-  width:30rem;
+
+.pool-stack {
+
+  width: 30rem;
   align-self: start;
   padding-left: 0.5rem;
   padding-top: 0.5rem;
   aspect-ratio: 5 / 2;
 }
+
 /*  */
 
-.table{
+.table {
   background-color: black;
 }
 
@@ -42,7 +45,7 @@
 
 .addr-dropdown {
   width: 50%;
-  
+
   border: white;
   border-width: 5px;
   border-radius: 0.5rem;
@@ -51,7 +54,7 @@
   cursor: pointer;
 }
 
-.seam-button{
+.seam-button {
   background-color: transparent;
   margin: 0.5rem;
   padding-left: 1rem;
@@ -60,19 +63,19 @@
   padding-bottom: 0.5rem;
   border-radius: 8px;
   color: white;
-  border: dashed 3px  #ffffff;
+  border: dashed 3px #ffffff;
 }
 
-.seam-sqr{
+.seam-sqr {
   margin: 0.5rem;
   padding: 0.7rem;
-  
+
   border-radius: 5px;
   color: white;
-  border: dashed 3px  #ffffff;
+  border: dashed 3px #ffffff;
 }
 
-.module-container{
+.module-container {
   width: 80%;
   height: 100%;
   /* display: flex; */
@@ -83,7 +86,7 @@
 
 
 
-.seam-outline{
+.seam-outline {
   /* background-color: transparent; */
   padding-left: 1rem;
   padding-right: 2rem;
@@ -93,15 +96,15 @@
   margin-bottom: 1rem;
   border-radius: 8px;
   color: white;
-  border: dashed 3px  #ffffff;
+  border: dashed 3px #ffffff;
 }
 
-.seam-button:hover{
+.seam-button:hover {
   background-color: #ffffff;
   color: black;
 }
 
-.user-stat{
+.user-stat {
   /* background-color: #000000; */
   padding-left: 1rem;
   padding-right: 1rem;
@@ -110,17 +113,17 @@
   border-radius: 8px;
   margin-top: 1rem;
   /* color: black; */
-  border: dashed 3px  #ffffff;
+  border: dashed 3px #ffffff;
 
 }
 
-.stat-val{
+.stat-val {
   color: white;
   font-size: 2rem;
 }
 
 
-.param-outline{
+.param-outline {
   background-color: transparent;
   padding-left: 0.5rem;
   padding-right: 1rem;
@@ -131,12 +134,12 @@
   border-radius: 8px;
   color: white;
   width: 100%;
-  border: solid 3px  #e39165;
+  border: solid 3px #e39165;
 }
 
 
 
-.return-outline{
+.return-outline {
   background-color: transparent;
   padding-left: 0.5rem;
   padding-right: 1rem;
@@ -147,15 +150,15 @@
   border-radius: 8px;
   color: white;
   width: 100%;
-  border: solid 3px  #dd14c9;
+  border: solid 3px #dd14c9;
 }
 
-.return-outline:hover{
+.return-outline:hover {
   background-color: #dd14c9;
-  
+
 }
 
-.function-outline{
+.function-outline {
   background-color: transparent;
   padding-left: 0.5rem;
   padding-right: 1rem;
@@ -175,7 +178,7 @@
 } */
 
 
-.mOutline{
+.mOutline {
   background-color: transparent;
   padding-left: 0.5rem;
   padding-right: 1rem;
@@ -184,12 +187,12 @@
   margin-top: 0.3rem;
   margin-bottom: 0.3rem;
   border-radius: 8px;
-  border: solid 3px  #3f14dd;
+  border: solid 3px #3f14dd;
   width: 100%;
   /* color: white; */
 }
 
-.module-outline{
+.module-outline {
   background-color: transparent;
   padding-left: 0.5rem;
   padding-right: 0.5rem;
@@ -198,11 +201,11 @@
   margin-top: 0.3rem;
   margin-bottom: 0.3rem;
   border-radius: 8px;
-  border: solid 3px  #3f14dd;
+  border: solid 3px #3f14dd;
   width: 100%;
 }
 
-.account-outline{
+.account-outline {
   background-color: transparent;
   padding-left: 0.5rem;
   padding-right: 0.5rem;
@@ -215,7 +218,7 @@
 }
 
 
-.type-outline{
+.type-outline {
   background-color: transparent;
   padding-left: 0.5rem;
   padding-right: 0.5rem;
@@ -229,7 +232,7 @@
 
 
 
-.attribute-box{
+.attribute-box {
   padding: 4;
   background: #ffffff;
   color: #222222;
@@ -240,32 +243,32 @@
 
 
 
-.dappBubble{
+.dappBubble {
   align-items: center;
   justify-content: center;
   justify-items: center;
   width: 18rem;
 }
 
-.scrollable{
+.scrollable {
   overflow-x: scroll;
   overflow-y: hidden;
   height: 200px;
 }
 
-.scrollY{
+.scrollY {
   overflow-x: hidden;
   overflow-y: scroll;
   height: 500px;
 
 }
 
-.label{
+.label {
   font-size: 0.8rem;
   opacity: 0.5;
 }
 
-.dappBadge{
+.dappBadge {
   align-items: center;
   justify-content: center;
   justify-items: center;
@@ -278,7 +281,7 @@
   border-radius: 0.5rem;
 }
 
-.dappScroll{
+.dappScroll {
   overflow-x: scroll;
   overflow-y: hidden;
   flex-direction: row;
@@ -286,7 +289,7 @@
   scrollbar-width: thin;
 }
 
-.modOverview{
+.modOverview {
   align-items: center;
   flex: 1;
   margin: 1.5rem;
@@ -295,7 +298,7 @@
   width: 70%;
 }
 
-.dapps{
+.dapps {
   align-items: center;
   justify-content: center;
   justify-items: center;
@@ -303,54 +306,53 @@
   width: 80%;
 }
 
-.dappBadge-img{
+.dappBadge-img {
   width: 5rem;
   height: 5rem;
   /* width:80%; */
   aspect-ratio: 1 / 1;
   padding: 0.5rem
-
 }
 
-.txScroller{
+.txScroller {
   overflow-x: hidden;
   overflow-y: scroll;
   height: 1000px;
   width: 650px;
-  
+
 }
 
 
-.hScroller{
+.hScroller {
   /* overflow-x: scroll;
   overflow-y: hidden;
   height: 90px; */
   /* width: 100%; */
 }
-.fnScroller{
+
+.fnScroller {
   overflow-x: hidden;
   overflow-y: scroll;
   height: 250px;
   width: 100%;
 }
 
-.cc{
+.cc {
   align-items: center;
   justify-content: center;
   justify-items: center;
 }
 
-.modScroller{
+.modScroller {
   overflow-x: hidden;
   overflow-y: scroll;
   height: 250px;
   width: 100%
-  
 }
 
 body {
   /* margin: 2rem; */
-  background-color: black ;
+  background-color: black;
   color: #ffffff;
   font-family: -apple-system, BlinkMacSystemFont, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -384,11 +386,11 @@ body {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   left: 0;
   top: 0;
   min-height: 100%;
@@ -414,7 +416,7 @@ body {
 
 .nav .mobile_nav .close_btn:hover {
   -webkit-transform: rotateZ(360deg);
-          transform: rotateZ(360deg);
+  transform: rotateZ(360deg);
   -webkit-transition: -webkit-transform 0.4s linear;
   transition: -webkit-transform 0.4s linear;
   transition: transform 0.4s linear;
@@ -425,18 +427,18 @@ body {
   position: relative;
   font-size: 24px;
   -webkit-animation-name: slideRight;
-          animation-name: slideRight;
+  animation-name: slideRight;
   -webkit-animation-duration: 1s;
-          animation-duration: 1s;
+  animation-duration: 1s;
   -webkit-animation-delay: 0.5s;
-          animation-delay: 0.5s;
+  animation-delay: 0.5s;
   -webkit-transition: -webkit-animation 1s linear;
   transition: -webkit-animation 1s linear;
   transition: animation 1s linear;
   transition: animation 1s linear, -webkit-animation 1s linear;
 }
 
-.nav .mobile_nav .nav_links > * {
+.nav .mobile_nav .nav_links>* {
   margin: 24px 0;
 }
 
@@ -444,6 +446,7 @@ body {
   .nav .nav_link_wrapper {
     display: none;
   }
+
   .nav .act_button {
     display: none;
   }
@@ -453,11 +456,11 @@ body {
   .nav .btn_group {
     -webkit-box-orient: horizontal !important;
     -webkit-box-direction: normal !important;
-        -ms-flex-direction: row !important;
-            flex-direction: row !important;
+    -ms-flex-direction: row !important;
+    flex-direction: row !important;
     -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
   }
 }
 
@@ -465,6 +468,7 @@ body {
   .nav .mobile_nav_icon {
     display: none;
   }
+
   .nav .mobile_nav {
     display: none;
   }
@@ -482,19 +486,18 @@ body {
 }
 
 .card-body {
-  background: #191c29;
+  /* background: #191c29; */
   position: relative;
   cursor: pointer;
   padding: 2px;
-  
+
   border-radius: 8px;
   color: white;
   margin-top: 1rem;
   margin-bottom: 1rem;
-  min-width: 250px;
 }
 
-
+/* 
 .card-body::before {
   content: "";
   width: 104%;
@@ -508,10 +511,9 @@ body {
   top: -1%;
   left: -2%;
   animation: spin 2.5s linear infinite;
-  /* border: dashed 3px  #ffffff; */
-}
+} */
 
-.card-body::after {
+/* .card-body::after {
   position: absolute;
   content: "";
   top: calc(var(--card-height) / 10);
@@ -529,13 +531,13 @@ body {
     opacity: 1;
   transition: opacity .5s;
   animation: spin 2.5s linear infinite;
-  /* border: dashed 3px  #ffffff; */
-}
+} */
 
 @keyframes spin {
   0% {
     --rotate: 0deg;
   }
+
   100% {
     --rotate: 360deg;
   }
@@ -543,4 +545,28 @@ body {
 
 .progress-wrapper {
   border: 1px solid #000;
+}
+
+.title-font {
+  font-family: akshar;
+}
+
+.menu-font {
+  font-family: akshar;
+  font-size: 16px;
+  
+}
+
+.menu-font:hover>.active-bar{
+  display: block !important;
+}
+
+@media (min-width: 1024px) {
+  .nav .mobile_nav_icon {
+    display: none;
+  }
+
+  .nav .mobile_nav {
+    display: none;
+  }
 }

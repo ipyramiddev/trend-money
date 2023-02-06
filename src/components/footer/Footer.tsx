@@ -19,7 +19,7 @@ export default function Footer() {
   ];
   
   return (
-    <div className="mt-[1060px] max-w-[1920px] flex justify-center items-center flex-col">
+    <div className="mt-[64px] max-w-[1920px] flex justify-center items-center flex-col">
       <div className="flex items-center mb-[32px]">
         <a href="/">
           <Logo />

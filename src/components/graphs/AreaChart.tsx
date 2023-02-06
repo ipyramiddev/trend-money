@@ -11,50 +11,54 @@ import Chart from "react-apexcharts";
 const AreaChart = () => {
   const data = {
     series: [{
-        name: 'series1',
-        data: [31, 40, 28, 51, 42, 109, 100]
+      name: 'series1',
+      data: [51, 41, 20, 0, 40, 25, 40, 30, 50]
     }, {
-        name: 'series2',
-        data: [11, 32, 45, 32, 34, 52, 41]
+      name: 'series2',
+      data: [49, 39, 70, 50, 20, 25, 10, 28, 40]
     }],
     options: {
-        chart: {
-            id: "area-chart",
-            toolbar: {
-                show: false,
-            },
-            sparkline: {
-                enabled: true,
-            }
+      chart: {
+        id: "area-chart",
+        toolbar: {
+          show: false,
         },
-        dataLabels: {
-            enabled: false
-        },
-        xaxis: {
-            labels: {
-                show: false,
-            }
-        },
-        yaxis: {
-            labels: {
-                show: false,
-            }
-        },
-        stroke: {
-            show: false,
-        },
+        sparkline: {
+          enabled: true,
+        }
+      },
+      dataLabels: {
+        enabled: false
+      },
+      xaxis: {
+        labels: {
+          show: false,
+        }
+      },
+      yaxis: {
+        labels: {
+          show: false,
+        }
+      },
+      stroke: {
+        show: false,
+      },
+      fill: {
+        type: 'solid',
+        colors: ["#18382E", "#4AA57A"],
+        opacity: [0.5, 0.5],
+      },
     },
   };
 
   return (
-    <div className="p-2">
+    <div className="p-8">
       <div className="mixed-chart text-black">
         <Chart
           options={data.options}
           series={data.series}
           type="area"
-          width="250"
-          colors={["#BBBBBB", "#00A8FF"]}
+          width="100%"
         />
       </div>
     </div>

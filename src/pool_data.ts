@@ -23,43 +23,47 @@ const pool_data = {
                 {
                     name: 'Supply APT',
                     platform: "Aptin",
-                    assets: ["APT"],
-                    category:"Supply asset",
-                    deposit_payload: aptinSupplyPayload("APT",10000),
-                    category_tag:"Lend",
+                    assets: ["APT", "USDC", "wETH"],
+                    category: "Supply asset",
+                    deposit_payload: aptinSupplyPayload("APT", 10000),
+                    category_tag: "Lend",
                     supply_apy: 0.05,
                     portion: 0.25,
-                    yp_address: '0x01522c42ca43d7bfd34f373d41ad7d90a95e714c'
+                    yp_address: '0x01522c42ca43d7bfd34f373d41ad7d90a95e714c',
+                    description: '3X-Stake-Lend-LP Leveraged'
                 },
                 {
                     name: "APT-BTC",
                     platform: "LiquidSwap",
-                    category:"Liquidity Pool",
-                    category_tag:"LP",
+                    category: "Liquidity Pool",
+                    category_tag: "LP",
                     yp_address: '0xb460f9ae1fea4f77107146c1960bb1c978118816',
-                    assets: ["APT", "BTC"],
+                    assets: ["APT", "USDC", "wETH"],
 
                     portion: 0.25,
-                    
+                    description: 'Cross-Chain Staking'
+
 
                 },
                 {
                     name: "APT-ETH",
                     platform: "LiquidSwap",
-                    assets: ["APT", "ETH",],
-                    category:"Liquidity Pool",
-                    category_tag:"Lend",
+                    assets: ["APT", "USDC", "wETH"],
+                    category: "Liquidity Pool",
+                    category_tag: "Lend",
                     yp_address: '0x0448e99ab5f8230713a9f5d7e64ec2ab6e5952a3',
                     portion: 0.25,
+                    description: 'XXXX Leveraged'
                 },
                 {
                     name: 'BTC-USDT',
                     platform: "AnimeSwap",
-                    assets: ["BTC", "USDT",],
-                    category:"Liquidity Pool",
-                    category_tag:"LP",
+                    assets: ["APT", "USDC", "wETH"],
+                    category: "Liquidity Pool",
+                    category_tag: "LP",
                     portion: 0.25,
-                    yp_address: '0x01522c42ca43d7bfd34f373d41ad7d90a95e714c'
+                    yp_address: '0x01522c42ca43d7bfd34f373d41ad7d90a95e714c',
+                    description: '2X-Delegate-LP Leveraged'
                 }
             ]
         },
@@ -84,7 +88,7 @@ const pool_data = {
                     assets: ["APT", "APT",],
                     yp_address: '0x0448e99ab5f8230713a9f5d7e64ec2ab6e5952a3',
                     portion: 0.25,
-                    category_tag:"lp",
+                    category_tag: "lp",
                 },
                 {
                     name: "APT-APT",
@@ -92,7 +96,7 @@ const pool_data = {
                     assets: ["APT", "APT",],
                     yp_address: '0x0448e99ab5f8230713a9f5d7e64ec2ab6e5952a3',
                     portion: 0.25,
-                    category_tag:"lp",
+                    category_tag: "lp",
                 },
                 {
                     name: "APT-APT",
@@ -100,7 +104,7 @@ const pool_data = {
                     assets: ["APT", "APT",],
                     yp_address: '0x0448e99ab5f8230713a9f5d7e64ec2ab6e5952a3',
                     portion: 0.25,
-                    category_tag:"lp",
+                    category_tag: "lp",
                 },
 
             ]
@@ -110,30 +114,30 @@ const pool_data = {
 }
 
 const aptin_data = {
-    assets : [
+    assets: [
         {
             symbol: "APT",
-            name:"Aptos",
-            
+            name: "Aptos",
+
         },
         {
             symbol: "BTC",
-            name:"Bitcoin",
+            name: "Bitcoin",
         }
     ],
-    supply_pools : [
+    supply_pools: [
         {
-            name:"supply aptos",
+            name: "supply aptos",
             assets: ["APT"],
             apy: 0.05,
             supplied_q: 10000,
             borrow_q: 10000,
-            deposit_payload: aptinSupplyPayload("APT",10000)
+            deposit_payload: aptinSupplyPayload("APT", 10000)
         }
     ],
     borrow_pools: [
         {
-            name:"Borrow aptos",
+            name: "Borrow aptos",
             assets: ["APT"],
             apy: 0.06,
             supplied_q: 10000,
@@ -143,10 +147,10 @@ const aptin_data = {
 }
 
 const resources = [
-    {name:"aptos forum", url:"https://forum.aptoslabs.com/"},
-    {name:"aptos docs", url:"https://forum.aptoslabs.com/"},
-    {name:"aptos SDK docs", url:"https://aptos.dev/sdks"}
-    
+    { name: "aptos forum", url: "https://forum.aptoslabs.com/" },
+    { name: "aptos docs", url: "https://forum.aptoslabs.com/" },
+    { name: "aptos SDK docs", url: "https://aptos.dev/sdks" }
+
 ]
 
 

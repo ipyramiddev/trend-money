@@ -1,0 +1,95 @@
+.swiper {
+    height: 850px;
+}
+
+.swiper-button-next {
+    width: 60px;
+    height: 60px;
+    border-style: dashed;
+    outline: 3px solid white;
+    outline-offset: -9px;
+    outline-style: dashed;
+    color: white;
+    border-radius: 50%;
+    background: #000000;
+    top: 90%;
+    right: 33%;
+}
+
+.swiper-button-prev {
+    width: 60px;
+    height: 60px;
+    border-style: dashed;
+    outline: 3px solid white;
+    outline-offset: -9px;
+    outline-style: dashed;
+    color: white;
+    border-radius: 50%;
+    background: #000000;
+    top: 90%;
+    left: 33%;
+}
+
+.swiper-button-next:after {
+    content: '';
+    display: inline-block;
+    background: url("/public/others/rightArrow.svg");
+    width: 20px;
+    height: 20px;
+}
+
+.swiper-button-prev:after {
+    content: '';
+    display: inline-block;
+    background: url("/public/others/leftArrow.svg");
+    width: 20px;
+    height: 20px;
+}
+
+.swiper-slide-shadow-left {
+    background-image: none !important;
+}
+
+.swiper-slide-shadow-right {
+    background-image: none !important;
+}
+
+@media screen and (min-width: 700px) {
+    .swiper {
+        height: 780px;
+    }
+
+    .swiper-button-next {
+        top: 95%;
+        right: 38%;
+    }
+
+    .swiper-button-prev {
+        top: 95%;
+        left: 38%;
+    }
+}
+
+@media screen and (min-width: 1800px) {
+    .swiper {
+        height: 820px;
+    }
+}
+
+@media screen and (min-width: 2100px) {
+    .swiper {
+        height: 860px;
+    }
+}
+
+@media screen and (min-width: 2400px) {
+    .swiper {
+        height: 890px;
+    }
+}
+
+@media screen and (min-width: 2500px) {
+    .swiper {
+        height: 920px;
+    }
+}

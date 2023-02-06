@@ -35,7 +35,7 @@ const CategoryTag = (cat: string, color = "pink") => {
   return <p className={"text-md px-3 py-1 rounded-lg " + tag.color}>{cat}</p>;
 };
 
-const SubStrat = ({ pool }: any) => {
+export const SubStrat = ({ pool }: any) => {
   const [open, setOpen] = useState(false);
 
   const openModal = () => {
@@ -64,7 +64,7 @@ const SubStrat = ({ pool }: any) => {
               </div>
               <div className="p-4">
                 <div className="flex">
-                  {pool.assets.map((token: string, index:number) => {
+                  {pool.assets.map((token: string, index: number) => {
                     return (
                       <div className="m-2 px-2 py-1 bg-[#00E8A2] rounded-lg text-black font-bold text-sm" key={index}>
                         {token}

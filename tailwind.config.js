@@ -9,9 +9,10 @@ module.exports = {
   theme: {
 		screens: {
 			sm: '480px',
+			mobile: '600px',
 			md: '768px', 
 			lg: '1093px',
-			xl: '1440px',
+		  	xl: '1440px',
 		},
 		colors: {
 			blue2: '#4dbbfa',
@@ -29,6 +30,10 @@ module.exports = {
         	pastelPink: '#E2536D',
 			red: '#ff0000',
 			black: '#000000',
+			darkgray: '#141414',
+			point1: 'rgb(255, 153, 153)',
+			point2: 'rgb(232, 0, 83)',
+			cardgray: '#0e0e0e',
 		},
 		
 		fontFamily: {
