@@ -6,6 +6,7 @@ import "../styles/DashboardStyle.css";
 import {SliderCard} from "components/sliderCard/SliderCard";
 import pool_data from "pool_data";
 
+
 export function Dashboard() {
     const [isMobile, setIsMobile] = useState(false);
     useEffect(() => {

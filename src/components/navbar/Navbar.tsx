@@ -4,6 +4,7 @@ import { useWallet } from '@manahippo/aptos-wallet-adapter';
 import { useWeb3 } from "@fewcha/web3-react";
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import Btn from "components/btn/btn";
 
 import {
   FaGithub,
@@ -150,12 +151,13 @@ export default function Navbar(props: any) {
               return NavbarIcon(item.link, item.icon, i);
             })} */}
             <div className="pr-3">
-              <button
+              {/* <button
                 className="seam-button m-3"
                 onClick={() => !connected ? props.showConnectModal(true) : onDisconnect()}
               >
                 {!connected ? "Connect" : "Disconnect"}
-              </button>
+              </button> */}
+              <Btn label={!connected ? "Connect" : "Disconnect"} onClick={() => !connected ? props.showConnectModal(true) : onDisconnect()} />
             </div>
           </ul>
         </div>

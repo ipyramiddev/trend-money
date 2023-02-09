@@ -1,0 +1,139 @@
+@import url('https://fonts.googleapis.com/css2?family=Akshar&display=swap');
+      html {
+        box-sizing: border-box;
+      }
+      *,
+      *:before,
+      *:after {
+        box-sizing: inherit;
+      }
+      body {
+        font-family: "Electrolize", sans-serif;
+        background: #070707;
+        overflow: hidden;
+      }
+      .wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        width: 100%;
+      }
+      .wrapper > div {
+        margin: 20px;
+      }
+      .bttn {
+        display: inline-block;
+        vertical-align: middle;
+        position: relative;
+      }
+      .bttn span {
+        display: block;
+        padding: 16px;
+        font-size: 30px;
+        color: #ffb902;
+        text-transform: uppercase;
+      }
+      .bttn:hover {
+        cursor: pointer;
+      }
+
+      .bttn.out .corners {
+        position: absolute;
+        width: 100%;
+        transition-duration: 0.5s;
+      }
+      .bttn.out .corners:before,
+      .bttn.out .corners:after {
+        content: "";
+        position: absolute;
+        width: 9px;
+        height: 9px;
+        border-style: solid;
+        transition-duration: 0.5s;
+        transform: translateZ(0);
+      }
+      .bttn.out .corners.top:before {
+        border-width: 2px 0 0 2px;
+      }
+      .bttn.out .corners.top:after {
+        border-width: 2px 2px 0 0;
+      }
+      .bttn.out .corners.bottom:before {
+        border-width: 0 0 2px 2px;
+      }
+      .bttn.out .corners.bottom:after {
+        border-width: 0 2px 2px 0;
+      }
+      .bttn.out .corners:before {
+        left: 0;
+        visibility: hidden;
+        opacity: 0;
+      }
+      .bttn.out .corners:after {
+        right: 0;
+        visibility: hidden;
+        opacity: 0;
+      }
+      .bttn.out .corners.top {
+        top: 0;
+      }
+      .bttn.out .corners.bottom {
+        bottom: 14px;
+      }
+      .bttn.out:hover .corners:before {
+        left: 12px;
+        visibility: visible;
+        opacity: 1;
+      }
+      .bttn.out:hover .corners:after {
+        right: 12px;
+        visibility: visible;
+        opacity: 1;
+      }
+      .bttn.out:hover .corners.top {
+        top: 12px;
+      }
+      .bttn.out:hover .corners.bottom {
+        bottom: 21px;
+      }
+      .bttn.cyan .corners:after,
+      .bttn.cyan .corners:before {
+        border-color: grey;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(50%);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0%);
+        }
+      }
+      .animation-btn {
+        /* width: 400px;
+        height: 100px; */
+        border: 1.5px solid #b0b0b0;
+        color: white;
+        cursor: pointer;
+
+        background-image: radial-gradient(#464545 10%, #282828 70%);
+        background-position: 0 0;
+        background-size: 5px 5px;
+        transition: all 0.5s ease-in-out;
+
+        /* font-family: "Akshar"; */
+        font-size: 16px;
+        height: 40px;
+        padding: 8px 16px;
+      }
+      .animation-btn:hover {
+        background: radial-gradient(
+          farthest-side,
+          rgb(255 201 3) 5%,
+          rgb(245 57 0) 130%
+        );
+        color: rgba(0, 0, 0, 1);
+        box-shadow: 0 0px 20px 5px #e98406;
+      }
